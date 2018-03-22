@@ -1,0 +1,198 @@
+\documentclass[12pt,twoside,openright]{moddalthesis}
+
+\usepackage{hyperref}
+\usepackage[spanish,english]{babel}
+%\usepackage[spanish]{babel}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
+
+%-------------------------------------
+
+\usepackage{graphicx}
+\usepackage{color}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{subfig}
+
+
+\newcommand{\blankpage}{
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+}
+
+
+%\includeonly{FrontBackmatter/Contents,Chapters/Chapter03,Chapters/Chapter04,Chapters/Chapter05,Chapters/Chapter06,Chapters/Chapter0A,FrontBackmatter/Bibliography}
+
+%\includeonly{Chapters/Chapter01,Chapters/Chapter02}
+
+%-------------------------------------
+
+
+\begin{document}
+\title{\textbf{Histogram of Oriented Gradients of Signal Plots for Brain Computer Interfaces}}
+\author{Rodrigo Ramele}
+\dept{Doctorado}
+\faculty{Escuela de Ingeniería en Informática}
+\university{Instituto Tecnológico de Buenos Aires}
+\address{Buenos Aires, Argentina}
+
+\submitdate{6 de Agosto, 2012}
+\defencedate{Mes Día, 2012}
+\copyrightyear{2015}
+\convocation{Mes}{Año}
+
+%\phd
+\degree{Doctor en Ingeniería Informatica}
+\degreeinitial{Doctor en Ingeniería Informatica}
+
+\supervisor{Dr. Juan Santos}
+
+\firstreader{Dra. Jurado}
+\secondreader{Dr. Jurado}
+\thirdreader{Dr. Jurado}
+
+
+%%% ZONA PARA LA PRIMERA PAGINA EN SP
+%\title{\textbf{Titulo en Espanol}}
+%\dept{Ingenier\'ia en Inform\'atica}
+%\faculty{Ingenier\'ia}
+%\university{Instituto Tecnol\'ogico de Buenos Aires}
+%\address{Buenos Aires, Argentina}
+%%
+%\submitdate{Month Day, Year}
+%\defencedate{Month Day, Year}
+%\copyrightyear{Year}
+%\convocation{Month}{Year}
+% FINNNNN
+
+
+\dedicate{This is the optional\\
+dedication page.\\
+Break lines up\\
+like this.}
+
+
+%\nodedicationpage
+%\notableofcontents
+\nolistoftables
+\nolistoffigures
+
+
+%{
+%\typeout{:?000000000} % Don't bother with over/under-full boxes
+\beforepreface
+%\typeout{:?111111111} % Process All Errors from Here on
+%}
+ 
+\begin{abstract}
+The brain is a wonderful controlling machine.  At the same time
+
+This work is part of worldwide effort to provide a neural interaface which would be able to transmit direct information
+from the brain and use that information to exert control.
+
+
+In recent years, the appealing idea of a direct interface between the human brain and an artificial system, called Brain Computer Interface (BCI) or Brain Machine Interfaces (BMI), has proved the feasibility of a distinct non-biological communication channel to transmit information from the Central Nervous System (CNS) to a computer device. Its most important and straightforward application is for people affected by neuro-degenerative diseases.
+
+A very remarkable aspect of this communication channel is the ability to transmit some general cognitive state, like alertness, drowsiness, boredom, and so on, which can very helpful particularly in rehabilitation procedures.
+
+CNS's biosignals, like EEG, have a high variability between different subjects and even between different moments for the same subject. This inherent complexity is a real challenge when it is required to feasily extract information from raw EEG signals.
+
+Due to this inner complexity, it is often necessary to implement many distinct and specialized algorithmic methods, to filter the signal, classify it, and try to determine some meaning out of it.
+
+Outstanding success has been achieved with invasive BCI, i.e. with surgically implanted electrodes, from the total reproduction of arm movement to the remote control of a manipulator by a macaque using brainwave information. However, Biocompatibilities issues and the pervasive complexity and risks of surgical procedures are the main drive to enhance current non-invasive technologies. Above all, Electroencephalography (EEG), is the most widespread method to gather information from the CNS in a non-invasive way. It measures the summed activity of post-synaptic potentials from electrodes positioned over the scalp. EEG has been used in various working prototypes, as assisting devices, mainly wheelchairs. In order to derive information out of the subject's volition, different mental paradigms have been discovered and applied. There have been many algorithms developed so far for processing EEG signals, based on time, frequency, spatial domains or combinations. However, the exploration of alternative paths is ongoing, because non-invasive BCI still lacks the required performance to be used in real-time environments and to be ready for mainstream production.
+
+Those devices that not only restrict themselves to use CNSs signals, but they also include any kind of biological signal (EMG, EKG, EOG, GSR, etc) combined with sensor fussion algorithms are often called Hybrid BCIs or the BCI term is generalized to BNCI: Brain Neuronal Computer Interaction. Additionally, when the controlling device is not restricted to a computer, the term BMI, Brain Machine Interface, could be also used.
+\end{abstract}
+
+\newpage
+\mbox{}
+\newpage
+
+\begin{abstract}
+Aquí la versi\'on en ingl\'es del abstract (la segunda).
+\end{abstract}
+
+
+\begin{listofpubs}
+Lo reportado en las siguientes publicaciones conforma la base de la
+presente tesis.
+
+\begin{itemize}
+\item publicación 1
+\item publicación 2
+\item publicación 3
+\end{itemize}
+\end{listofpubs}
+
+
+\begin{acknowledgements}
+Agradecimientos...
+\end{acknowledgements}
+
+
+
+\include{Chapters/Chapter00_notacion}
+\addcontentsline{toc}{chapter}{Notaciones}
+
+% \listoftables
+% \addcontentsline{toc}{chapter}{List of Tables}
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
+
+
+
+\afterpreface
+\linespread{1.5}
+% ------------------------------------------------------------------------
+
+%AQUI CHAPTERS
+
+% \chapter[Introduction]{Introduction}
+% ...
+% \chapter[Future Work]{Future Work}
+
+\include{Chapters/Chapter01}
+\include{Chapters/Chapter02}
+\include{Chapters/Chapter03}
+\include{Chapters/Chapter04}
+\include{Chapters/Chapter05}
+\include{Chapters/Chapter06}
+\include{Chapters/Chapter07}
+\include{Chapters/Chapter08}
+
+% ********************************************************************
+% Backmatter
+%*******************************************************
+\appendix
+\cleardoublepage
+%\part{Apéndice}
+\include{Chapters/Chapter0A}
+\include{Chapters/Chapter0B}
+\include{Chapters/Chapter0C}
+
+
+
+% ------------------------------------------------------------------------
+
+%BIBLIOGRAFIA
+\linespread{1.44}
+\bibliographystyle{amsplain}
+\bibliography{Bibliography}
+
+% =================================================================
+% Dummy directive
+% Included for Gather Purpose only:
+% %input "Xbib.bib"
+% is no longer necessary because
+%  \bibliography{xbib}
+% is now defined as an input directive
+% (see Options -> Advanced -> Tree [INPUT_DIRECTIVES] for details...
+% It can be reconfigured!
+% =================================================================
+\end{document}
+% ------------------------------------------------------------------------

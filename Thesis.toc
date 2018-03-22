@@ -1,0 +1,18 @@
+\select@language {english}
+\contentsline {chapter}{Abstract}{ix}{chapter*.2}
+\contentsline {chapter}{Abstract}{xi}{chapter*.3}
+\contentsline {chapter}{Lists of Publications}{xiii}{chapter*.4}
+\contentsline {chapter}{Acknowledgements}{xv}{chapter*.5}
+\contentsline {chapter}{Notaciones}{xix}{chapter*.6}
+\contentsline {chapter}{List of Figures}{xix}{chapter*.7}
+\contentsline {chapter}{\numberline {Chapter 1}Visually Decoding Brain Signals}{1}{chapter.1}
+\contentsline {chapter}{\numberline {Chapter 2}Histogram of Oriented Gradients of Signal Plots}{3}{chapter.2}
+\contentsline {chapter}{\numberline {Chapter 3}The Histogram of Oriented Gradients of Signal Plots}{5}{chapter.3}
+\contentsline {chapter}{\numberline {Chapter 4}Alpha Wave and Motor Imaginary: the power of masses}{7}{chapter.4}
+\contentsline {chapter}{\numberline {Chapter 5}Motor Imagery}{9}{chapter.5}
+\contentsline {chapter}{\numberline {Chapter 6}P300}{11}{chapter.6}
+\contentsline {chapter}{\numberline {Chapter 7}Conclusions}{13}{chapter.7}
+\contentsline {chapter}{\numberline {Chapter 8}Legal and Ethical Implications}{15}{chapter.8}
+\contentsline {chapter}{\numberline {Appendix A}BCI en Argentina}{17}{appendix.A}
+\contentsline {chapter}{\numberline {Appendix B}T\IeC {\'\i }tulo Ap\IeC {\'e}ndice}{19}{appendix.B}
+\contentsline {chapter}{\numberline {Appendix C}SIFT}{21}{appendix.C}
