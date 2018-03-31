@@ -729,8 +729,7 @@
          \item[Departamento:]    {\bfseries\@dept}
       \end{list}
       T\'itulo Acad\'emico:      {\bfseries\@degreeinitial\hfill}
-      Convocatoria: {\bfseries\@convocationmonth\hfill}
-      A\~no:        {\bfseries\@convocationyear} \\
+      Convocatoria: {\bfseries\@convocationmonth\hfill} {\bfseries\@convocationyear} \\
 %      \bigskip
       \linespread{1}\normalsize
       \setlength{\parindent}{36pt}
@@ -740,7 +739,7 @@
 
 Por la presente se otorga permiso al Instituto Tecnol\'ogico de Buenos Aires (ITBA) para: (i) realizar copias de la presente Tesis y para almacenarla y/o conservarla en el formato, soporte o medio que la Universidad considere conveniente a su discreci\'on y con prop\'ositos no-comerciales; y, (ii) a brindar acceso p\'ublico a la Tesis para fines acad\'emicos no lucrativos a los individuos e Instituciones que as\'i lo soliciten (incluyendo, pero no limitado a la reproducci\'on y comunicaci\'on al p\'ublico no comercial de toda o parte de la Tesis, a trav\'es de su sitios o p\'aginas Web o medios an\'alogos que en el futuro se desarrollen). 
 
-A excepci\'on de lo autorizado expresamente en el p\'arrafo precedente, me reservo los dem\'as derechos de publicaci\'on y, en consecuencia, ni la Tesis ni extractos de la misma podr\'an ser impresos o reproducidos de otro modo sin mi previo consentimiento otorgado por escrito.
+%A excepci\'on de lo autorizado expresamente en el p\'arrafo precedente, me reservo los dem\'as derechos de publicaci\'on y, en consecuencia, ni la Tesis ni extractos de la misma podr\'an ser impresos o reproducidos de otro modo sin mi previo consentimiento otorgado por escrito.
 
 Declaro que he obtenido la autorizaci\'on para el uso de cualquier material protegido por las leyes de propiedad intelectual mencionado o incluido en la tesis (excepto pasajes cortos, transcripciones, citas o extractos que solo requieran ser referenciados o citados por escrito) y que el uso que se ha hecho de estos est\'a expresamente reconocido por las leyes aplicables en la materia.
 
