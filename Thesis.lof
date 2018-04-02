@@ -3,7 +3,9 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces PSD values for every channel (x-axis) are being shown for class 1, dashed line, and class 2, solid line, for Dataset I (left). Sample EEG plot image corresponding to the subject 1 (center) for class 1 (eyes open), for the channel 7 ($ O_1 $) \relax }}{8}{figure.caption.10}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces PSD values for every channel (x-axis) are being shown for class 1, dashed line, and class 2, solid line, for Dataset I (left). Sample EEG plot image corresponding to the subject 1 (center) for class 1 (eyes open), for the channel 7 ($ O_1 $) \relax }}{16}{figure.caption.11}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces (Left) A detailed image of a SIFT Descriptor over a plotted signal is shown. (Right) Classification Accuracy for discriminating windows of 1s (128 samples) of EEG signals from 10 subjects with their eyes open and closed. The classification accuracy is maximum on occipital channels O1 and O2. The descriptor size is 12x12 pixels which corresponds to a variation of 12 microvolts in the signal amplitude during 0.09 s\relax }}{17}{figure.caption.12}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Classification Accuracy for discriminating windows of 1s (160 samples) of EEG for Alpha Waves differences between subjects with eyes opened and closed. The descriptor size is 12x12 pixels. (Left) 10-Fold cross validated accuracies for one subject. (Right) Average accuracy levels for 25 subjects for the occipital channels. Medians were above $75\%$.\relax }}{17}{figure.caption.13}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

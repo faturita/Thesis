@@ -2,18 +2,20 @@
 \BOOKMARK [0][-]{chapter*.3}{Abstract}{}% 2
 \BOOKMARK [0][-]{chapter*.4}{Lists of Publications}{}% 3
 \BOOKMARK [0][-]{chapter*.5}{Acknowledgements}{}% 4
-\BOOKMARK [0][-]{chapter*.6}{Notaciones}{}% 5
+\BOOKMARK [0][-]{chapter*.6}{List of Acronyms}{}% 5
 \BOOKMARK [0][-]{chapter*.7}{List of Tables}{}% 6
 \BOOKMARK [0][-]{chapter*.8}{List of Figures}{}% 7
-\BOOKMARK [0][-]{chapter.1}{Visually Decoding Brain Signals}{}% 8
-\BOOKMARK [1][-]{section.1.1}{EEG}{chapter.1}% 9
-\BOOKMARK [0][-]{chapter.2}{Signal Plots}{}% 10
-\BOOKMARK [0][-]{chapter.3}{The Histogram of Oriented Gradients of Signal Plots}{}% 11
-\BOOKMARK [0][-]{chapter.4}{Alpha Wave and Motor Imaginary: the power of masses}{}% 12
-\BOOKMARK [0][-]{chapter.5}{Motor Imagery}{}% 13
-\BOOKMARK [0][-]{chapter.6}{P300}{}% 14
-\BOOKMARK [0][-]{chapter.7}{Conclusions}{}% 15
-\BOOKMARK [0][-]{chapter.8}{Legal and Ethical Implications}{}% 16
-\BOOKMARK [0][-]{appendix.A}{BCI en Argentina}{}% 17
-\BOOKMARK [0][-]{appendix.B}{Walkthough BCI}{}% 18
-\BOOKMARK [0][-]{appendix.C}{SIFT}{}% 19
+\BOOKMARK [1][-]{section.0.1}{Como estructurar esta tesis}{chapter*.8}% 8
+\BOOKMARK [0][-]{chapter.1}{Visually Decoding Brain Signals}{}% 9
+\BOOKMARK [1][-]{section.1.1}{EEG}{chapter.1}% 10
+\BOOKMARK [1][-]{section.1.2}{BCI}{chapter.1}% 11
+\BOOKMARK [0][-]{chapter.2}{Signal Plots}{}% 12
+\BOOKMARK [0][-]{chapter.3}{The Histogram of Oriented Gradients of Signal Plots}{}% 13
+\BOOKMARK [0][-]{chapter.4}{Alpha Wave: inhibition signal}{}% 14
+\BOOKMARK [0][-]{chapter.5}{Motor Imagery}{}% 15
+\BOOKMARK [0][-]{chapter.6}{P300}{}% 16
+\BOOKMARK [0][-]{chapter.7}{Conclusions}{}% 17
+\BOOKMARK [0][-]{chapter.8}{Legal and Ethical Implications}{}% 18
+\BOOKMARK [0][-]{appendix.A}{BCI en Argentina}{}% 19
+\BOOKMARK [0][-]{appendix.B}{Walkthough BCI}{}% 20
+\BOOKMARK [0][-]{appendix.C}{SIFT}{}% 21

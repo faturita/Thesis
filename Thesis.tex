@@ -7,6 +7,8 @@
 \usepackage[utf8]{inputenc}
 
 %-------------------------------------
+\usepackage{chronology}
+\usepackage{epigraph}
 
 \usepackage{graphicx}
 \usepackage{color}
@@ -14,9 +16,32 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
-
 \usepackage{subfig}
 
+%--------
+\usepackage[many]{tcolorbox}
+\usepackage{marginnote}
+\usepackage{kantlipsum}
+\tcbuselibrary{skins,breakable}
+\newtcolorbox{story}[1][]{
+    width=\textwidth,
+    colback=magenta!20,
+    colframe=red!75!black,
+    colbacktitle=blue!85!black,
+    fonttitle=\bfseries,
+    left=0ex,
+    right=0ex,
+    top=0pt,
+    arc=0pt,
+    outer arc=0pt,
+    leftrule=0pt,
+    rightrule=0pt,
+    toprule=0pt,
+    bottomrule=0pt,
+    breakable,
+    enhanced jigsaw,
+    title= #1}
+%-------
 
 \newcommand{\blankpage}{
 \newpage
@@ -91,7 +116,7 @@ like this.}
  
 \begin{abstract}
 This work is part of worldwide effort to provide a neural interaface which would be able to transmit direct information
-from the brain and use that information to exert control.
+from the brain and use that information to exert external control.
 
 In recent years, the appealing idea of a direct interface between the human brain and an artificial system, called Brain Computer Interface (BCI) or Brain Machine Interfaces (BMI), has proved the feasibility of a distinct non-biological communication channel to transmit information from the Central Nervous System (CNS) to a computer device. Its most important and straightforward application is for people affected by neuro-degenerative diseases.
 
@@ -145,8 +170,8 @@ Agradecimientos...
 
 
 
-\include{Chapters/Chapter00_notacion}
-\addcontentsline{toc}{chapter}{Notaciones}
+\include{Chapters/Chapter_acronyms}
+\addcontentsline{toc}{chapter}{List of Acronyms}
 
 \listoftables
 \addcontentsline{toc}{chapter}{List of Tables}
@@ -164,7 +189,45 @@ Agradecimientos...
 % \chapter[Introduction]{Introduction}
 % ...
 % \chapter[Future Work]{Future Work}
+\section{Como estructurar esta tesis}
 
+Las tesis se tienen que escribir para alguno de estos tres:
+
+\begin{itemize}
+\item BCI newbie   Very long and extended
+\item Wolpaw    30 pages
+\item Jury   FOCALIZED
+\end{itemize}
+
+Esta tesis está escrita para el jurado con lo cual esta focalizada en el tema.  Sin embargo, tiene apéndices donde está información para un BCI newbie de Argentina.
+
+Esta tesis está estructurada de la siguiente forma
+
+\begin{itemize}
+\item Titulo
+\item Abstract: Español e Ingles
+\item Introduccion al propio manuscrito de la tesis
+\item State of the ART for BCI
+\begin{itemize}
+\item BCI
+\item EEG
+\item Abordaje BCI / EEG Basado en las waveforms
+\end{itemize}
+\item Histogram of oriented gradients of signal plots applied to bci
+\item Alpha Waves
+\item Motor Imagery
+\item P300
+\item Conclussions
+\item References
+\item Appendices
+\begin{itemize}
+\item Historia de BCI en Argentina (en castellano)
+\item SIFT
+\item Descriptor Space
+\end{itemize}
+\end{itemize}
+
+\include{Chapters/Chapter00}
 \include{Chapters/Chapter01}
 \include{Chapters/Chapter02}
 \include{Chapters/Chapter03}

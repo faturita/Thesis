@@ -1,5 +1,7 @@
 \chapter{Visually Decoding Brain Signals}
 
+Where are the waveforms ? By estimates from the 2016 BCI Award, around 71.2$\%$ of noninvasive BCI research is based on Electroencephalography (EEG) [1]. Although mature clinical EEG has traditionally focused on temporal waveforms, and a whole branch of electrophenomenology has arisen around EEG graphoelements [2], signal analysis methods which follow this path has been overshadow in BCI research. Few works have investigated the idea of exploiting signal waveforms to analyze the EEG signal on BCI applications. The seminal work of Bandt-Pompe Permutation Entropy [3] explores succinctly this concept and in [4] an approach based on Slope Horizontal Chain Code is presented. A similar methodology is implemented in [5] based on Mathematical Morphological Analysis. The work proposed here is based on waveform analysis of the shape of the EEG signal, but using the histogram of gradient orientations, mimicking what traditionally electroencephalographers have been doing for almost a century: visually inspecting raw EEG signal plots. Material, Methods and Results: The histogram of gradient orientations is a popular and powerful tool used in Computer Vision to characterize local features from images and is the basis of the feature generation algorithm in Lowe's SIFT Descriptor [7]. This technique can be applied to identify components in EEG signals in five steps, (1) signal preprocessing, (2) signal segmentation, (3) transformation on a channel by channel basis of each signal segment into a binary image of a signal plot, (4) assignment of keypoint location on the newly created image depending on the physiological phenomena under study and finally (5) calculation of the histogram of gradient orientations using finite differences from the image around the keypoint (Figure 1). This method generates a feature, a normalized 128-dimension SIFT descriptor, which can be used to compare the signal segments that were used to generate the plots, thus they can be used to analyze the underlying cognitive phenomena. This method was used to identify and detect Visual Occipital Alpha Waves, Motor Imagery Rolandinc Mu rhythms [6] with results above chance level. It was also tested on P300 detection for Visual P300 Speller Matrix on ALS public dataset and for an own dataset of healthy subjects as well as identifying K-Complexes in sleep EEG (unpublished, under review). Discussion: A procedure which is biomimetically based on how the visual cortex works by detecting orientations, ironically, is used precisely to detect information from the brain. Although we found that it is possible to decode with accuracy above chance level and to differentiate patterns with cognitive correlations, the stability of the signature of the component is a key and challenging aspect. The method was also applied to patterns which are more frequently studied by their spectral characteristics. Significance: A method to analyze EEG signals which is based on the waveform characterization is presented. The benefits of the proposed approach are twofold, (1) it has a universal applicability because the same basic methodology can be applied to detect different patterns in EEG signals with applications to BCI and (2) it has the potential to foster close collaboration with physicians and electroencephalograph technicians because the approach follows the established procedure of the clinical EEG community of analyzing waveforms by their shapes.
+
 Esta sección contiene el estado del arte del método
 
 BCI + EEG
@@ -53,3 +55,34 @@ trials are general realizations of the experiment.
 tampering window could be gaussian, hamming, blackman, hanning
 
 Impedance
+
+\section{BCI}
+
+A key contribution to this expansion has been the field of Brain Computer Interfaces (BCI)~\cite{WolpawJonathanR2012} which is the pursuit of the development of a new channel of communication particularly aimed to persons affected by neurodegenerative diseases.
+
+One noteworthy aspect of this novel communication channel is the ability to transmit information from the Central Nervous System (CNS) to a computer device and from there use that information to control a wheelchair~\cite{Carlson2013}, as input to a speller application~\cite{Guger2009a}, in a Virtual Reality environment~\cite{Lotte2013} or as aiding tool in a rehabilitation procedure~\cite{Jure2016}.  The holly grail of BCI is to implement a new complete and alternative pathway to restore lost locomotion~\cite{WolpawJonathanR2012}.
+
+EEG signals are remarkably complex and have been characterized as a multichannel non-stationary stochastic process.  Additionally, they have high variability between different subjects and even between different moments for the same subject, requiring adaptive and co-adaptive calibration and learning procedures~\cite{Clerc}.  Hence, this imposes an outstanding challenge that is necessary to overcome in order to extract information from raw EEG signals.
+
+Moreover, EEG markers~\cite{Clerc} that can be used to  transmit volitional information are limited, and each one of them has a particular combination of appropriate methods to decode them. Inevitably, it is necessary to implement  distinct and specialized algorithmic methods, to filter the signal, enhance its Signal to Noise Ratio (SNR), and try to determine some meaning out of it.  
+
+BCI has gained mainstream public awareness with worldwide challenge competitions like Cybathlon~\cite{Riener2014} and even been broadcasted during the inauguration ceremony of the 2014 Soccer World Cup.  New developments have overcome the out-of-the-lab high-bar and they are starting to be used in real world environments~\cite{Guger2017,Huggins2016}.  However, they still lack the necessary robustness, and its performance is well behind any other method of human computer interaction, including any kind of detection of residual muscular movement~\cite{Clerc}.
+
+\begin{chronology}[5]{1983}{2010}{3ex}[\textwidth]
+\event{1984}{one}
+\event[1985]{1986}{two}
+\event{\decimaldate{25}{12}{2001}}{three}
+\end{chronology}
+
+Where are we.
+BCI plateau
+
+BCNI Horizon, what the people is saying
+
+Status in Argentina
+
+Reference to thesis
+
+OpenBCI and the Wearables movement
+
+Neuro....everythig

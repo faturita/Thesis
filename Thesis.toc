@@ -3,20 +3,22 @@
 \contentsline {chapter}{Abstract}{xi}{chapter*.3}
 \contentsline {chapter}{Lists of Publications}{xiii}{chapter*.4}
 \contentsline {chapter}{Acknowledgements}{xv}{chapter*.5}
-\contentsline {chapter}{Notaciones}{xix}{chapter*.6}
+\contentsline {chapter}{List of Acronyms}{xviii}{chapter*.6}
 \contentsline {chapter}{List of Tables}{xix}{chapter*.7}
 \contentsline {chapter}{List of Figures}{xxi}{chapter*.8}
-\contentsline {chapter}{\numberline {Chapter 1}Visually Decoding Brain Signals}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}EEG}{2}{section.1.1}
-\contentsline {chapter}{\numberline {Chapter 2}Signal Plots}{3}{chapter.2}
-\contentsline {chapter}{\numberline {Chapter 3}The Histogram of Oriented Gradients of Signal Plots}{5}{chapter.3}
-\contentsline {chapter}{\numberline {Chapter 4}Alpha Wave and Motor Imaginary: the power of masses}{7}{chapter.4}
-\contentsline {subsubsection}{Dataset I - Drowsiness Detection}{7}{section*.9}
-\contentsline {subsubsection}{Dataset II - BCI Competition 2003 IV \textit {self-paced 1s}}{8}{section*.11}
-\contentsline {chapter}{\numberline {Chapter 5}Motor Imagery}{11}{chapter.5}
-\contentsline {chapter}{\numberline {Chapter 6}P300}{13}{chapter.6}
-\contentsline {chapter}{\numberline {Chapter 7}Conclusions}{15}{chapter.7}
-\contentsline {chapter}{\numberline {Chapter 8}Legal and Ethical Implications}{17}{chapter.8}
-\contentsline {chapter}{\numberline {Appendix A}BCI en Argentina}{19}{appendix.A}
-\contentsline {chapter}{\numberline {Appendix B}Walkthough BCI}{23}{appendix.B}
-\contentsline {chapter}{\numberline {Appendix C}SIFT}{25}{appendix.C}
+\contentsline {section}{\numberline {0.1}Como estructurar esta tesis}{1}{section.0.1}
+\contentsline {chapter}{\numberline {Chapter 1}Visually Decoding Brain Signals}{5}{chapter.1}
+\contentsline {section}{\numberline {1.1}EEG}{7}{section.1.1}
+\contentsline {section}{\numberline {1.2}BCI}{7}{section.1.2}
+\contentsline {chapter}{\numberline {Chapter 2}Signal Plots}{11}{chapter.2}
+\contentsline {chapter}{\numberline {Chapter 3}The Histogram of Oriented Gradients of Signal Plots}{13}{chapter.3}
+\contentsline {chapter}{\numberline {Chapter 4}Alpha Wave: inhibition signal}{15}{chapter.4}
+\contentsline {subsubsection}{Dataset I - Drowsiness Detection}{15}{section*.10}
+\contentsline {subsubsection}{Dataset II - BCI Competition 2003 IV \textit {self-paced 1s}}{18}{section*.14}
+\contentsline {chapter}{\numberline {Chapter 5}Motor Imagery}{19}{chapter.5}
+\contentsline {chapter}{\numberline {Chapter 6}P300}{21}{chapter.6}
+\contentsline {chapter}{\numberline {Chapter 7}Conclusions}{23}{chapter.7}
+\contentsline {chapter}{\numberline {Chapter 8}Legal and Ethical Implications}{25}{chapter.8}
+\contentsline {chapter}{\numberline {Appendix A}BCI en Argentina}{27}{appendix.A}
+\contentsline {chapter}{\numberline {Appendix B}Walkthough BCI}{31}{appendix.B}
+\contentsline {chapter}{\numberline {Appendix C}SIFT}{33}{appendix.C}
