@@ -13,8 +13,7 @@
 \contentsline {chapter}{\numberline {Chapter 2}Signal Plots}{11}{chapter.2}
 \contentsline {chapter}{\numberline {Chapter 3}The Histogram of Oriented Gradients of Signal Plots}{13}{chapter.3}
 \contentsline {chapter}{\numberline {Chapter 4}Alpha Wave: inhibition signal}{15}{chapter.4}
-\contentsline {subsubsection}{Dataset I - Drowsiness Detection}{15}{section*.10}
-\contentsline {subsubsection}{Dataset II - BCI Competition 2003 IV \textit {self-paced 1s}}{18}{section*.14}
+\contentsline {subsubsection}{Dataset II - BCI Competition 2003 IV \textit {self-paced 1s}}{18}{section*.13}
 \contentsline {chapter}{\numberline {Chapter 5}Motor Imagery}{19}{chapter.5}
 \contentsline {chapter}{\numberline {Chapter 6}P300}{21}{chapter.6}
 \contentsline {chapter}{\numberline {Chapter 7}Conclusions}{23}{chapter.7}

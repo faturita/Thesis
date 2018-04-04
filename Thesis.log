@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.5)  2 APR 2018 20:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.5)  3 APR 2018 10:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1479,40 +1479,40 @@ Chapter 3.
 ]
 Chapter 4.
 
-LaTeX Warning: Citation `c3' on page 15 undefined on input line 10.
+LaTeX Warning: Citation `c3' on page 15 undefined on input line 8.
 
 
-LaTeX Warning: Reference `psd' on page 15 undefined on input line 12.
+LaTeX Warning: Reference `psd' on page 15 undefined on input line 10.
 
 
-LaTeX Warning: Citation `c3' on page 15 undefined on input line 25.
+LaTeX Warning: Citation `c3' on page 15 undefined on input line 22.
 
 
-LaTeX Warning: Citation `c6' on page 15 undefined on input line 25.
+LaTeX Warning: Citation `c6' on page 15 undefined on input line 22.
 
 
-LaTeX Warning: Citation `c11' on page 15 undefined on input line 25.
+LaTeX Warning: Citation `c11' on page 15 undefined on input line 22.
 
 
-LaTeX Warning: Reference `psd' on page 15 undefined on input line 25.
+LaTeX Warning: Reference `psd' on page 15 undefined on input line 22.
 
-[15] <images/PSDExperiment1VsExperiment5.png, id=295, 421.575pt x 316.18124pt>
+[15] <images/PSDExperiment1VsExperiment5.png, id=279, 421.575pt x 316.18124pt>
 File: images/PSDExperiment1VsExperiment5.png Graphic file (type png)
 
 <use images/PSDExperiment1VsExperiment5.png>
 Package pdftex.def Info: images/PSDExperiment1VsExperiment5.png used on input l
-ine 31.
+ine 28.
 (pdftex.def)             Requested size: 71.12645pt x 51.21239pt.
 
-<images/s_1_e_1_c_7_4.png, id=296, 12.30849pt x 14.454pt>
+<images/s_1_e_1_c_7_4.png, id=280, 12.30849pt x 14.454pt>
 File: images/s_1_e_1_c_7_4.png Graphic file (type png)
 
 <use images/s_1_e_1_c_7_4.png>
-Package pdftex.def Info: images/s_1_e_1_c_7_4.png used on input line 32.
+Package pdftex.def Info: images/s_1_e_1_c_7_4.png used on input line 29.
 (pdftex.def)             Requested size: 142.39748pt x 51.21777pt.
 
 
-LaTeX Warning: Citation `c11' on page 16 undefined on input line 37.
+LaTeX Warning: Citation `c11' on page 16 undefined on input line 34.
 
 Package epstopdf Info: Source file: <images/Dataset1AccuracyPerChannel.eps>
 (epstopdf)                    date: 2015-11-11 11:32:21
@@ -1523,23 +1523,23 @@ erted-to.pdf>
 (epstopdf)                    size: 6183 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/Dataset1AccuracyPer
 Channel-eps-converted-to.pdf images/Dataset1AccuracyPerChannel.eps>
-(epstopdf)             \includegraphics on input line 45.
+(epstopdf)             \includegraphics on input line 42.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/Dataset1AccuracyPerChannel-eps-converted-to.pdf, id=298, 562.1pt x 421.
+<images/Dataset1AccuracyPerChannel-eps-converted-to.pdf, id=282, 562.1pt x 421.
 575pt>
 File: images/Dataset1AccuracyPerChannel-eps-converted-to.pdf Graphic file (type
  pdf)
  <use images/Dataset1AccuracyPerChannel-eps-converted-to.pdf>
 Package pdftex.def Info: images/Dataset1AccuracyPerChannel-eps-converted-to.pdf
- used on input line 45.
+ used on input line 42.
 (pdftex.def)             Requested size: 71.12859pt x 51.21078pt.
 
-<images/AlphaWaveSampleEEG.png, id=299, 88.6512pt x 102.1416pt>
+<images/AlphaWaveSampleEEG.png, id=283, 88.6512pt x 102.1416pt>
 File: images/AlphaWaveSampleEEG.png Graphic file (type png)
 
 <use images/AlphaWaveSampleEEG.png>
-Package pdftex.def Info: images/AlphaWaveSampleEEG.png used on input line 46.
+Package pdftex.def Info: images/AlphaWaveSampleEEG.png used on input line 43.
 (pdftex.def)             Requested size: 71.1334pt x 51.21405pt.
  [16 <./images/PSDExperiment1VsExperiment5.png (PNG copy)> <./images/s_1_e_1_c_
 7_4.png>]
@@ -1554,17 +1554,17 @@ eps-converted-to.pdf>
 (epstopdf)             Command: <repstopdf --outfile=images/DatasetPhysionetAcc
 uracyPerChannel-eps-converted-to.pdf images/DatasetPhysionetAccuracyPerChannel.
 eps>
-(epstopdf)             \includegraphics on input line 61.
+(epstopdf)             \includegraphics on input line 58.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/DatasetPhysionetAccuracyPerChannel-eps-converted-to.pdf, id=306, 420.57
+<images/DatasetPhysionetAccuracyPerChannel-eps-converted-to.pdf, id=290, 420.57
 124pt x 316.18124pt>
 File: images/DatasetPhysionetAccuracyPerChannel-eps-converted-to.pdf Graphic fi
 le (type pdf)
 
 <use images/DatasetPhysionetAccuracyPerChannel-eps-converted-to.pdf>
 Package pdftex.def Info: images/DatasetPhysionetAccuracyPerChannel-eps-converte
-d-to.pdf used on input line 61.
+d-to.pdf used on input line 58.
 (pdftex.def)             Requested size: 71.13037pt x 51.21239pt.
 Package epstopdf Info: Source file: <images/DatasetPhysionetBoxPlots.eps>
 (epstopdf)                    date: 2015-11-14 01:23:53
@@ -1575,25 +1575,25 @@ ted-to.pdf>
 (epstopdf)                    size: 5859 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/DatasetPhysionetBox
 Plots-eps-converted-to.pdf images/DatasetPhysionetBoxPlots.eps>
-(epstopdf)             \includegraphics on input line 62.
+(epstopdf)             \includegraphics on input line 59.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/DatasetPhysionetBoxPlots-eps-converted-to.pdf, id=307, 420.57124pt x 31
+<images/DatasetPhysionetBoxPlots-eps-converted-to.pdf, id=291, 420.57124pt x 31
 6.18124pt>
 File: images/DatasetPhysionetBoxPlots-eps-converted-to.pdf Graphic file (type p
 df)
  <use images/DatasetPhysionetBoxPlots-eps-converted-to.pdf>
 Package pdftex.def Info: images/DatasetPhysionetBoxPlots-eps-converted-to.pdf u
-sed on input line 62.
+sed on input line 59.
 (pdftex.def)             Requested size: 71.13037pt x 51.21239pt.
  [17 <./images/Dataset1AccuracyPerChannel-eps-converted-to.pdf> <./images/Alpha
 WaveSampleEEG.png> <./images/DatasetPhysionetAccuracyPerChannel-eps-converted-t
 o.pdf> <./images/DatasetPhysionetBoxPlots-eps-converted-to.pdf>]
 
-LaTeX Warning: Citation `c51' on page 18 undefined on input line 74.
+LaTeX Warning: Citation `c51' on page 18 undefined on input line 71.
 
 
-LaTeX Warning: Citation `c52' on page 18 undefined on input line 74.
+LaTeX Warning: Citation `c52' on page 18 undefined on input line 71.
 
 ) [18]
 \openout2 = `Chapters/Chapter05.aux'.
@@ -1731,9 +1731,9 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 269.
  ) 
 Here is how much of TeX's memory you used:
- 29622 strings out of 493014
- 587929 string characters out of 6133352
- 1178967 words of memory out of 5000000
+ 29621 strings out of 493014
+ 587918 string characters out of 6133352
+ 1176801 words of memory out of 5000000
  32573 multiletter control sequences out of 15000+600000
  12925 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1747,10 +1747,10 @@ sr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/
 local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
 ocal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/lo
 cal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on Thesis.pdf (54 pages, 204948 bytes).
+Output written on Thesis.pdf (54 pages, 207605 bytes).
 PDF statistics:
- 474 PDF objects out of 1000 (max. 8388607)
- 394 compressed objects within 4 object streams
- 83 named destinations out of 1000 (max. 500000)
+ 459 PDF objects out of 1000 (max. 8388607)
+ 379 compressed objects within 4 object streams
+ 82 named destinations out of 1000 (max. 500000)
  211 words of extra memory for PDF output out of 10000 (max. 10000000)
 

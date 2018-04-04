@@ -3,14 +3,11 @@
 \epigraph{This is awesome!}{Berger}
 
 
-\subsubsection{Dataset I - Drowsiness Detection}
-
 %We gather the first dataset  using the EEG EPOC Emotiv Headset and we  access the raw signals using its C++ SDK provided by the manufacturer.  The device sends wirelessly  digitalized 128 Hz sampled EEG information as discrete packets.  Every packet is numbered and the electronic impedance is constantly measured, and delivered as part of the packet information. The wireless transmitter connects to a standard RF dongle which receives the information from  14 channels and forwards it into the PC, particularly to a custom C++ EEG Datalogger program that was developed in-house.  The program is waiting passively until a new packet is received from the dongle, verifying the packet numbering and controlling that the impedance is bellow a certain level, according to the device's documentation \cite{c11}. 
 
 Alpha Waves are 8-12 Hz signals, physiologically well consistent across subjects, and they are associated with synchronous inhibitory processes and attention shifting, more prominent while the eyes are closed \cite{c3}. The results of applying a 8-12 Hz band-pass filter and calculating the Power Spectral Density (PSD) across subjects for each channel can be seen in Fig. \ref{figure1}, where the values obtained for class 2 (eyes closed) are higher than the values for class 1 (eyes open), showing that the differentiation information is contained in the frequency-domain.
  
-They tend to be more prominent while the eyes are closed and appear stronger in occipital regions. We process this Dataset with a 8-12 Hz band-pass filter, and calculate the Power Spectral Density across subjects for each channel.  In Fig. \ref{psd} it can be seen that the PSD value is greater for the class 2 (eyes closed), showing also that the differentiation information is contained mostly in the frequency-domain.
-
+They tend to be more prominent  and appear stronger in occipital regions. We process this Dataset with a 8-12 Hz band-pass filter, and calculate the Power Spectral Density across subjects for each channel.  In Fig. \ref{psd} it can be seen that the PSD value is greater for the class 2 (eyes closed), showing also that the differentiation information is contained mostly in the frequency-domain.
 
 %As can be seen in Fig. , if we process the Drowsiness dataset with a 8-12Hz band-pass filter and calculate the average power spectral density across subjects and for each channel, we can see how clearly the value corresponding to class 2 (eyes closed) is always higher than the value for class 1 (eyes open), confirming the expected result.  This also verifies how the differentiation information is contained mostly in the frequency-domain.
 
@@ -30,7 +27,7 @@ Alpha Waves are 10 Hz signals, physiologically consistent across subjects, and t
 	  \setlength\fboxrule{0.5pt}
       \fbox{\includegraphics[width=2.5cm, height=1.8cm]{images/PSDExperiment1VsExperiment5.png}}
       \fbox{\includegraphics[width=5cm, height=1.8cm]{images/s_1_e_1_c_7_4.png}}
-      \caption{PSD values for every channel (x-axis) are being shown for class 1, dashed line, and class 2, solid line, for Dataset I (left). Sample EEG plot image corresponding to the subject 1 (center) for class 1 (eyes open), for the channel 7 ($ O_1 $) }
+      \caption[Power Spectral Density of Alpha Waves]{PSD values for every channel (x-axis) are being shown for class 1, dashed line, and class 2, solid line, for Dataset I (left). Sample EEG plot image corresponding to the subject 1 (center) for class 1 (eyes open), for the channel 7 ($ O_1 $) }
       \label{figure1}
    \end{figure}
    
@@ -44,7 +41,7 @@ For this dataset, 10 windows of 1s for each class were gathered from 10 healthy 
 	  \setlength\fboxrule{0.5pt}
       \fbox{\includegraphics[width=2.5cm, height=1.8cm]{images/Dataset1AccuracyPerChannel}}
       \fbox{\includegraphics[width=2.5cm, height=1.8cm]{images/AlphaWaveSampleEEG.png}}
-      \caption{(Left) A detailed image of a SIFT Descriptor over a plotted signal is shown.  (Right) Classification Accuracy for discriminating windows of 1s (128 samples) of EEG signals from 10 subjects with their eyes open and closed.  The classification accuracy is maximum on occipital channels O1 and O2. The descriptor size is 12x12 pixels which corresponds to a variation of 12 microvolts in the signal amplitude during 0.09 s}
+      \caption[Alpha Waves Classification]{(Left) A detailed image of a SIFT Descriptor over a plotted signal is shown.  (Right) Classification Accuracy for discriminating windows of 1s (128 samples) of EEG signals from 10 subjects with their eyes open and closed.  The classification accuracy is maximum on occipital channels O1 and O2. The descriptor size is 12x12 pixels which corresponds to a variation of 12 microvolts in the signal amplitude during 0.09 s}
       \label{figure1}
    \end{figure}
    
@@ -60,7 +57,7 @@ Additionally, we tested the method against the public datset of the AlphaNet eff
 	  \setlength\fboxrule{0.5pt}
       \fbox{\includegraphics[width=2.5cm, height=1.8cm]{images/DatasetPhysionetAccuracyPerChannel}}
       \fbox{\includegraphics[width=2.5cm, height=1.8cm]{images/DatasetPhysionetBoxPlots}}
-      \caption{Classification Accuracy for discriminating windows of 1s (160 samples) of EEG for Alpha Waves differences between subjects with eyes opened and closed. The descriptor size is 12x12 pixels. (Left) 10-Fold cross validated accuracies for one subject.  (Right) Average accuracy levels for 25 subjects for the occipital channels. Medians were above $75\%$.}
+      \caption[Classification Accuracy of Alpha Waves]{Classification Accuracy for discriminating windows of 1s (160 samples) of EEG for Alpha Waves differences between subjects with eyes opened and closed. The descriptor size is 12x12 pixels. (Left) 10-Fold cross validated accuracies for one subject.  (Right) Average accuracy levels for 25 subjects for the occipital channels. Medians were above $75\%$.}
       \label{figure1}
    \end{figure}   
 
