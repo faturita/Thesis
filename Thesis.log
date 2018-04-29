@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.5)  29 APR 2018 19:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.5)  29 APR 2018 19:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1428,22 +1428,22 @@ Dalthesis preface pages completed.
 
 ] [3]
 
-LaTeX Warning: Citation `Hartman2005' on page 4 undefined on input line 19.
+LaTeX Warning: Citation `Hartman2005' on page 4 undefined on input line 21.
 
 
-LaTeX Warning: Citation `Schomer2010' on page 4 undefined on input line 19.
+LaTeX Warning: Citation `Schomer2010' on page 4 undefined on input line 21.
 
 
-LaTeX Warning: Citation `Hartman2005' on page 4 undefined on input line 19.
+LaTeX Warning: Citation `Hartman2005' on page 4 undefined on input line 21.
 
 
-LaTeX Warning: Citation `Jansen1991' on page 4 undefined on input line 21.
+LaTeX Warning: Citation `Jansen1991' on page 4 undefined on input line 23.
 
 
-LaTeX Warning: Citation `Yuste2017' on page 4 undefined on input line 21.
+LaTeX Warning: Citation `Yuste2017' on page 4 undefined on input line 23.
 
 
-LaTeX Warning: Citation `Guger2017' on page 4 undefined on input line 21.
+LaTeX Warning: Citation `Guger2017' on page 4 undefined on input line 23.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1844,7 +1844,7 @@ ve/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/
 6/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2016
 /texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/
 2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Thesis.pdf (54 pages, 351365 bytes).
+Output written on Thesis.pdf (54 pages, 354690 bytes).
 PDF statistics:
  520 PDF objects out of 1000 (max. 8388607)
  427 compressed objects within 5 object streams
