@@ -1,4 +1,4 @@
-\documentclass[12pt,twoside,openright]{moddalthesis}
+\documentclass[11pt,twoside,openright]{moddalthesis}
 
 \usepackage{hyperref}
 \usepackage[spanish,english]{babel}
@@ -19,6 +19,7 @@
 \usepackage{subfig}
 
 %--------
+\usepackage{gitinfo}
 \usepackage[many]{tcolorbox}
 \usepackage{marginnote}
 \usepackage{kantlipsum}
@@ -41,6 +42,12 @@
     breakable,
     enhanced jigsaw,
     title= #1}
+    
+\usepackage{eso-pic}
+\newcommand\AlCentroPagina[1]{% 
+\AddToShipoutPicture*{\AtPageCenter{% 
+\makebox(0,0){\hspace*{3cm}\includegraphics% 
+[width=0.9\paperwidth]{#1}}}}}    
 %-------
 
 \newcommand{\blankpage}{
@@ -59,6 +66,9 @@
 
 
 \begin{document}
+
+\AlCentroPagina{images/itbalogoshaded}
+
 \title{\textbf{Histogram of Oriented Gradients of Signal Plots for Brain Computer Interfaces}}
 \author{Rodrigo Ramele}
 \dept{Doctorado}
@@ -66,9 +76,9 @@
 \university{Instituto Tecnológico de Buenos Aires}
 \address{Buenos Aires, Argentina}
 
-\submitdate{6 de Agosto, 2012}
-\defencedate{Mes Día, 2012}
-\copyrightyear{2015}
+\submitdate{30 de Noviembre, 2018}
+\defencedate{Mes Día, 2018}
+\copyrightyear{2018}
 \convocation{Mes}{Año}
 
 %\phd
@@ -135,22 +145,22 @@ Those devices that not only restrict themselves to use CNSs signals, but they al
 \mbox{}
 \newpage
 
+
+\selectlanguage{spanish}%
+
 \begin{abstract}
-Las interfaces BCI (Brain Computer Interfaces, Interfaces Cerebro Computadora) ó BMI (Brain Machine Interfaces, Interfaces Cerebro Máquina) surgen como un nuevo canal de comunicación entre el cerebro y computadoras, máquinas o robots, distinto de los canales biológicos estándar (musculares).
-Tienen un carácter fuertemente interdisciplinario, donde convergen ramas de la neurobiología, la psicología, las matemáticas, las ciencias de la computación y la ingeniería.
+Las interfaces BCI (Brain Computer Interfaces, Interfaces Cerebro Computadora) ó BMI (Brain Machine Interfaces, Interfaces Cerebro Máquina) surgen como un nuevo canal de comunicación entre el cerebro y computadoras, máquinas o robots, distinto de los canales biológicos estándar (musculares). Tienen un carácter fuertemente interdisciplinario, donde convergen ramas de la neurobiología, la psicología, las matemáticas, las ciencias de la computación y la ingeniería.
 
-Las personas afectadas por enfermedades o traumas neurológicos tales como \textit{amiotrofía, esclerosis múltiple, ACV, lesiones espinales, parálisis cerebral} sufren un problema derivado que es la imposibilidad, en diferentes grados, de comunicarse tanto así sea como por el atrofiamiento de los sentidos para la recepción de información, como por los inconvenientes, generalmente
-motores que pueden presentarse para transmitir esa información.   
-La interfaz BCI surge como una alternativa de comunicación donde la información es extraída directamente del cerebro humano a través de algún esquema de estudio cerebral que permita analizar la actividad del sistema nervioso central (CNS) \cite{Wolpaw2002}.
+Las personas afectadas por enfermedades o traumas neurológicos tales como \textit{amiotrofía, esclerosis múltiple, ACV, lesiones espinales, parálisis cerebral} sufren un problema derivado que es la imposibilidad, en diferentes grados, de comunicarse tanto así sea como por el atrofiamiento de los sentidos para la recepción de información, como por los inconvenientes, generalmente motores que pueden presentarse para transmitir esa información.   
+Las interfaces BCI surgen como una alternativa de comunicación donde la información es extraída directamente del cerebro humano a través de algún esquema de estudio cerebral que permita analizar la actividad del sistema nervioso central (CNS) \cite{Wolpaw2002}.
 
-La creciente necesidad de utilización de más y mejores mecanismos de comunicación digitales (HCI) ha impulsado, paralelamente, diversos usos de BCI para personas sin dificultades comunicacionales \cite{Allison}
-como ser soluciones para la discapacidad temporal inducida, la \textit{neuroergonomia} \cite{Parasuraman2008}, mejoramiento de sensores para la industria automotriz, detección rápida de señales (pilotos, cirujanos), ERN (corrección de errores), videos juegos, 
-interfaces confidenciales (seguridad), telepresencia (mejoramiento de interfaces hápticas), \textit{ciberinfraestructura} \cite{bookbci}  y particularmente una contribución relevante en la Robótica Asistiva \cite{Cherubini2007,Tonin2009,Hirata2008}.
+La creciente necesidad de utilización de más y mejores mecanismos de comunicación digitales (HCI) ha impulsado, paralelamente, diversos usos de BCI para personas sin dificultades comunicacionales \cite{Allison} como ser soluciones para la discapacidad temporal inducida, la \textit{neuroergonomia} \cite{Parasuraman2008}, el mejoramiento de biosensores para la industria automotriz, la detección rápida de señales (pilotos, cirujanos), los mecanismos de análisis de errores humanos o de análisis de carga de trabajo, los videos juegos, los sistemas biométricos para seguridad informática, le mejoramiento de las interfaces hápticas en la \textbf{telepresencia}, \textit{ciberinfraestructura} \cite{bookbci}  así como también en la Robótica Asistiva \cite{Cherubini2007,Tonin2009,Hirata2008}.
 
-Los sistemas BCI deben ser Directos, con un control intencional por el usuario de alguna característica de la señal, deben procesar en tiempo real y finalmente 
-generar una señal de feedback al usuario\cite{Pfurtscheller2010}.
+Idealmente, los sistemas BCI deben ser directos, con un control intencional por el usuario mediante la modulación de alguna característica de la señal, se deben procesar en tiempo real y finalmente deben generar una señal de feedback al usuario\cite{Pfurtscheller2010}.
+
 \end{abstract}
 
+\selectlanguage{english} %
 
 \begin{listofpubs}
 Lo reportado en las siguientes publicaciones conforma la base de la
@@ -227,6 +237,13 @@ Esta tesis está estructurada de la siguiente forma
 \end{itemize}
 \end{itemize}
 
+% Por que este parrafor esta aca
+% Ordenada
+% Oraciones cortas
+% Tiempo presente
+% items y descripciones una a una.
+
+
 \include{Chapters/Chapter00}
 \include{Chapters/Chapter01}
 \include{Chapters/Chapter02}
@@ -235,7 +252,7 @@ Esta tesis está estructurada de la siguiente forma
 \include{Chapters/Chapter05}
 \include{Chapters/Chapter06}
 \include{Chapters/Chapter07}
-\include{Chapters/Chapter08}
+%\include{Chapters/Chapter08}
 
 % ********************************************************************
 % Backmatter

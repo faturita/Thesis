@@ -1,16 +1,55 @@
 \chapter*{Introduction}
 
-During the last years of the 20th century an emerging idea took form and shaped one of the oldest dreams of mankind.
+%\textit{The cognitive computational process of agency does not reside exclusively on the internal physiological mechanism that sustain it, it requires a fluid active interaction with the environment in which it is located.  The limits of the mind are not determined by the material border, they extend across the environment, across the bubble which is feasible to be sensed, where the agent is physically located.  When this interaction is interrupted, it must be restored and enhanced when it is possible.}
 
-In terms of Schwartz Laboratory, the bandwidth of communication based on HCI devices seems very low (cite)
+%\quotation{ \textit{...the brain is not a passive decoder of information but a dynamic and distributed modeler of a reality comprised of a multitude of feedback, local, modulatory, and feedforward neural pathways conjuring a vast and elaborate organic spatiotemporal grid \cite{nicolelis2011beyond}} } \\
 
-As mentioned in the most cited paper of the discipline, there are three motives behind BCI: the first is the Aging Societies: estimated for 2025, 800 millions people will be over 65 years old, and $2/3$ of them on developing countries.  This may lead to an increased tendency to develop diseases that affect motor pathways, that will require some for of assistance from technology. At the same time, science has provided the understanding that an Active Lifestyle is necessary to maintain body and mind health.  It is known that the ability to walk independently is a key indicator of psychological and physical health.   Last, but not least, the digital world demands more methods of interactions.  Digital society demands more mechanisms to interpret our surrounding  world and to translate our intentions through digital gadgets.
+The brain is a machine with the sole purpose to respond appropriately to external and internal events, and to spread its own presence into the environment where it belongs~\footnote{The sensorimotor Hipothesis (young 1990, Wolpaw 2002) and The Extended Mind Thesis (Clark,2003)}.  Hence, the brain needs to communicate and it posses mainly two natural ways to do it: hormonal or neuromuscular.  When those natural channels are interrupted, they are not available or when it needs to increase or enhance the communication alternatives, a new artificial communication channel is needed which is not based on those natural pathways, it is based instead on a new technology feat that decode the information from the CNS and transmit it directly to a computer or machine.
 
-Objectives of this work
+Brain Computer Interface, BCI, is a system that measures brainwaves and converts them into artificial output that replaces, restores, enhances, supplements or improves natural CNS output and changes the ongoing interactions between the CNS and its external or internal environment (Wolpaw). Brain Machine Interface (BMI) generally refers to invasive devices and Brain Neural Computer Interfaces (BNCI) may refer to devices that do not exclusively use information from the CNS, they also may use any kind of biological signal that can be harnessed with the purpose of volitionally transmit information. Above all, BCIs are communication devices.
 
-This thesis tries to unravel the following question:  it is possible to analyze and discriminate brainwaves signals, particularly Electroencephalographic signals, out of the automatic processing of the shape of waveforms using the Histogram of oriented gradients ?
+There are five motives behind BCI: the \textbf{first} is the Aging of Societies: estimated for 2025, 800 millions people will be over 65 years old, and $2/3$ of them on developing countries (REF).  This may lead to an increased tendency to develop diseases that affect motor pathways that  require some form of assistance from technology.  The \textbf{second} reason is the digital world that demands more methods of interactions. A new digital society demands more mechanisms to interpret our surrounding world and to translate our intentions through digital gadgets.  Additionally, the advancement of wearable devices and the proliferation of smart machines is also pushing the frontiers to go deeper into the body and find there useful information.  \textit{Neuroscience is the new black} and that is why this is the \textbf{third} motive.  The \textbf{fourth} reason is the potentialities of BCI as a clinical tool which can help to diagnose diseases, as aid in the field of neurorehabilitation,  or to provide neurofeedback.  The \textbf{fifth}, final and most important motive, the reason behind Brain Computer Interfaces, is the yet unfulfilled societal promise of social inclusion of people with disabilities.  It is known that the ability to walk and live independently is a key indicator of psychological and physical health, and we have to do all we can to provide the technological tools to achieve this goal.  (REF LOTTE RAO WOLPAW). 
 
-To do that, I ask the reader to join me following this path:  (1) we will give details of what is Brain Computer Interfaces and the particularities of the first window of electric mind: the EEG.  (2)  we will cover also the state of the art in the methods that explore the waveform automatically.  The following section will give an overview about how a digital plotting is actually performed. The following section is the core of this theses and we will describe the Histogram of Gradient Orientations and how it can be used to process one dimensional signals.
-Next, results and experimental procedures will be described, particularly Alpha Waves (4.3), Motor Imagery (5.2), P300 (6) and SSVEP.  Future Work and Conclussions will be addressed in 66.5.  Additionally, appendixes provide extra more information which is not extrictly related to this thesis but which provides information regarding the state-of-the-art of this discipline in Argentina, and also provides more inforamtion about the SIFT method and the theory behind the Histogram of Gradient Orientations of Signal Plots.
+In line with the aforementioned motives, there are several applications currently under development for BCI.  People affected by any kind of neurodegenerative diseases, particularly those affected by advanced stages of amyotrophic lateral sclerosis (ALS) with locked-in syndrome may find in BCIs the only remaining alternative to communicate. Other applications targeted for the general population include alertness monitoring, telepresence, gaming, education, art, human augmentation (RAO book, Paper Nature, BCI BOOK) biometric identification, virtual reality avatar, assistive robotics and education.  New niches where this new communication channel can provide new tools are found routinely (REF). If you are new to this discipline a word of warning: there is still a long way ahead.  This area advanced rapidly but the complexity of brain signals in all their forms is still a big problem to tackle.  
 
+%There are two types of BCIs.  Invasive and Noninvasive.  The first one involves 
+
+%The traditional clinical approach consisted in analyzing the paper strip that was generated by the plot of the signal obtained from the device.  Expert technician and physicians analyzed visually the plots looking for specific patterns that may give a hint of the underlying cognitive process or pathology.   Atlases and guidelines were created in order to help in the recognition of these complex patterns.   Even Video-electroencephalography scalp recordings are routinely used as a diagnostic tools \cite{Giagante2003} .  The clinical EEG research has also focused on temporal waveforms, and a whole branch of electrophenomenology has arisen around EEG \textit{graphoelements} \cite{Schomer2010}.  
+
+Electroencephalography (EEG) is the most widespread device to capture electrical brain information in a non-invasive and portable way, and it is the most used device in BCI research and applications.  The clinical and historical tactic to analyze EEG signals were based on detecting visual patterns out of the EEG trace or polygraph\cite{Hartman2005}: multichannel signals were extracted and continuously plotted over a piece of paper. Electroencephalographers or Electroencephalography technician have decoded and detected patterns along the signals by visually inspecting them \cite{Schomer2010}.   Nowadays clinical EEG still remains a visually interpreted test \cite{Hartman2005}.
+
+In contrast, automatic processing, or quantitative EEG, was based first on analog electronic devices and later on computerized digital processing methods \cite{Jansen1991}.  They implemented mathematically and algorithmically complex procedures to decode the information with good results \cite{Yuste2017}.  The best materialization of the automatic processing of EEG signals rests precisely in the BCI discipline, where around $71.2\%$ is based on noninvasive EEG \cite{Guger2017}.  
+
+%rich clinical literature
+
+Hence, the traditional and knowledgeable approach was mainly overshadow particularly in BCI Research, and the waveform of the EEG was replaced by pragmatically sound procedures that were difficult to link to existing clinical EEG knowledge.  
+
+%What if we could develop an automatic processing procedure which mimic how human beings interpret waveforms and analyze EEG in that same manner ?
+
+This thesis tries to unravel the following question:  is it possible to analyze and discriminate Electroencephalographic signals by automatic processing the shape of the waveforms using the Histogram of Gradient Orientations, a method from Computer Vision that aims to mimetically reproduce how the Visual Cortex discriminate shapes ?
+
+To do that, I humbly ask the reader to join me in this brief journey:  (1) The first section gives details of what is Brain Computer Interfaces and the particularities of the first window of the electric mind: the EEG. It also covers the state of the art in the methods that explore the waveform automatically.  The following section (3) will give an overview about the procedure to construct a plot representing the signal. Section (4) is the core of this thesis and describes the Histogram of Gradient Orientations and how it can be used to process one-dimensional signals.
+Next, results and experimental procedures are described, particularly Alpha Waves (4.3), Motor Imagery (5.2), P300 (6) and SSVEP.  Future Work and Conclusions are addressed in (6).  Finally, appendixes provide extra additional information regarding the state-of-the-art of this discipline in Argentina, and also outlines particularities of the SIFT method and the theory behind the Histogram of Gradient Orientations of Signal Plots.
+
+\subsection{Significance}
+
+This thesis propose
+
+\begin{itemize}
+\item A procedure to construct analyzable 2D-images based on one-dimensional signals.
+\item A mapping procedure to link time-series characteristics based on feature of the 2D-image representation.
+\item A feature extraction method for EEG signals that can be used objectively to construct a representation of the waveform.
+\item A classification algorithm that can be used effectively with these features.
+\end{itemize}
+
+\subsection{Read this if this is the only thing you will read}
+
+\begin{itemize}
+\item What is this all about?: a method to analyze EEG signals based on extracting local feature from their 2D image representation.
+\item What you won't find in this thesis?: yet another description of BCI.
+\item What you will find in this thesis?: a point of view that emphasizes the importance of providing mechanisms that help to understand signals based on how they look like on plots.
+\item Does it work?: It works when the waveform contains the discriminative information.  If a person is able to discriminate the signals, this method would also do that.
+\item Can I use it?:  Yes you can.  The software to use it is open-source and you can use out-of-the-box.  It is particular useful when you need to have an explanation of the classification procedure.
+\item Why I do not use something else?: If you need to emphasize the shape of the waveform, this is what you are looking for.
+\end{itemize}
 

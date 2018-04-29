@@ -459,7 +459,7 @@
    \begin{center}
       \hyphenpenalty=10000\large\MakeUppercaseWithNewline{\@title}
    \end{center}
-   \vfill
+   %\vfill
    \begin{center}
       \rmfamily por\\
       \@author

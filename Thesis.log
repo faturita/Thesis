@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.5)  3 APR 2018 10:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.5.5)  29 APR 2018 19:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -14,8 +14,8 @@ LaTeX Warning: You have requested document class `moddalthesis',
 Document Class: dalthesis 2003/12/12 v2.2 Dalhousie University thesis class
 (/usr/local/texlive/2016/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
-(/usr/local/texlive/2016/texmf-dist/tex/latex/base/size12.clo
-File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@chapter=\count80
@@ -1075,7 +1075,19 @@ Package caption Info: hyperref package is loaded.
 \sf@top=\skip69
 \sf@bottom=\skip70
 )
-(/usr/local/texlive/2016/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/gitinfo/gitinfo.sty
+Package: gitinfo 2011/08/10 v1.00 git revision information
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count179
+)
+
+Package gitInfo Warning: I can't find the file `gitHeadInfo.gin`.
+(gitInfo)                All git metadata has been set to ``(None)''. on input 
+line 57.
+
+) (/usr/local/texlive/2016/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
 Package: tcolorbox 2016/04/27 version 3.91 text color boxes
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/tools/verbatim.sty
@@ -1090,10 +1102,6 @@ Package: environ 2014/05/04 v0.3 A new way to define environments
 (/usr/local/texlive/2016/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
-(/usr/local/texlive/2016/texmf-dist/tex/latex/etoolbox/etoolbox.sty
-Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count179
-)
 \tcb@titlebox=\box58
 \tcb@upperbox=\box59
 \tcb@lowerbox=\box60
@@ -1173,7 +1181,13 @@ Package: kantlipsum 2012/10/14 v0.6 Dummy text in Kantian style
 . ignored.
 .................................................
 )
-(./Thesis.aux (./Chapters/Chapter_acronyms.aux) (./Chapters/Chapter00.aux)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+Package: eso-pic 2015/07/21 v2.0g eso-pic (RN)
+)
+(./Thesis.aux
+LaTeX Info: Redefining \. on input line 29.
+LaTeX Info: Redefining \% on input line 29.
+ (./Chapters/Chapter_acronyms.aux) (./Chapters/Chapter00.aux)
 (./Chapters/Chapter01.aux) (./Chapters/Chapter02.aux) (./Chapters/Chapter03.aux
 ) (./Chapters/Chapter04.aux
 
@@ -1183,26 +1197,26 @@ LaTeX Warning: Label `figure1' multiply defined.
 LaTeX Warning: Label `figure1' multiply defined.
 
 ) (./Chapters/Chapter05.aux) (./Chapters/Chapter06.aux)
-(./Chapters/Chapter07.aux) (./Chapters/Chapter08.aux) (./Chapters/Chapter0A.aux
-) (./Chapters/Chapter0B.aux) (./Chapters/Chapter0C.aux))
+(./Chapters/Chapter07.aux) (./Chapters/Chapter0A.aux) (./Chapters/Chapter0B.aux
+) (./Chapters/Chapter0C.aux))
 \openout1 = `Thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
 \AtBeginShipoutBox=\box70
-Package hyperref Info: Link coloring OFF on input line 61.
+Package hyperref Info: Link coloring OFF on input line 68.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1212,9 +1226,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count190
 )
-LaTeX Info: Redefining \ref on input line 61.
-LaTeX Info: Redefining \pageref on input line 61.
-LaTeX Info: Redefining \nameref on input line 61.
+LaTeX Info: Redefining \ref on input line 68.
+LaTeX Info: Redefining \pageref on input line 68.
+LaTeX Info: Redefining \nameref on input line 68.
 
 (./Thesis.out) (./Thesis.out)
 \@outlinefile=\write6
@@ -1258,30 +1272,44 @@ Package marginnote Info: \pdfoutput not 0 and \pdflastxpos available.
 Unavoidable over/underfulls may occur in the first
 few pages of dalthesis. These can usually be ignored.
 However, if uncorrectable errors occur, notify staff.
-LaTeX Info: Redefining \\ on input line 113.
-LaTeX Info: Redefining \\ on input line 113.
-LaTeX Info: Redefining \\ on input line 113.
-LaTeX Info: Redefining \\ on input line 113.
-LaTeX Info: Redefining \\ on input line 113.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 113.
+LaTeX Info: Redefining \\ on input line 123.
+LaTeX Info: Redefining \\ on input line 123.
+LaTeX Info: Redefining \\ on input line 123.
+LaTeX Info: Redefining \\ on input line 123.
+LaTeX Info: Redefining \\ on input line 123.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 123.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 113.
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 123.
+
+<images/itbalogoshaded.png, id=95, 597.432pt x 293.6571pt>
+File: images/itbalogoshaded.png Graphic file (type png)
+
+<use images/itbalogoshaded.png>
+Package pdftex.def Info: images/itbalogoshaded.png used on input line 123.
+(pdftex.def)             Requested size: 552.86174pt x 271.77196pt.
  [1
 
-{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Info: Redefining \\ on input line 113.
-LaTeX Info: Redefining \\ on input line 113.
+{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./image
+s/itbalogoshaded.png>]
+LaTeX Info: Redefining \\ on input line 123.
+LaTeX Info: Redefining \\ on input line 123.
  [2
 
 ]
-LaTeX Info: Redefining \\ on input line 113.
+LaTeX Info: Redefining \\ on input line 123.
 
-Underfull \hbox (badness 10000) in paragraph at lines 113--113
+Underfull \hbox (badness 10000) in paragraph at lines 123--123
 
+ []
+
+
+Overfull \hbox (8.26959pt too wide) in paragraph at lines 123--123
+\OT1/cmr/m/n/10 leyes de propiedad in-t-elec-tual men-cionado o in-clu-ido en l
+a tesis (ex-cepto pasajes cor-tos, tran-scrip-ciones,
  []
 
 [3
@@ -1289,12 +1317,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 113--113
 ] [4
 
 ] (./Thesis.toc
-LaTeX Font Info:    Try loading font information for U+msa on input line 9.
+LaTeX Info: Redefining \. on input line 3.
+LaTeX Info: Redefining \% on input line 3.
+LaTeX Font Info:    Try loading font information for U+msa on input line 11.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 9.
+LaTeX Font Info:    Try loading font information for U+msb on input line 11.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1318,42 +1348,38 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Class dalthesis Warning: Abstract longer than one page.
 
 [8] [9]
+LaTeX Info: Redefining \. on input line 149.
+LaTeX Info: Redefining \% on input line 149.
 \ab@page=\count198
  [10
 
 ]
 
-LaTeX Warning: Citation `Wolpaw2002' on page xi undefined on input line 144.
+LaTeX Warning: Citation `Wolpaw2002' on page xi undefined on input line 155.
 
 
-Overfull \hbox (22.80968pt too wide) in paragraph at lines 142--145
-[]\OT1/cmr/m/n/12 Las per-sonas afec-tadas por en-fer-medades o trau-mas neu-ro
-l^^Sogicos tales como \OT1/cmr/m/it/12 amiotrof^^S^^Pa,
- []
+LaTeX Warning: Citation `Allison' on page xi undefined on input line 157.
 
 
-LaTeX Warning: Citation `Allison' on page xi undefined on input line 146.
-
-
-LaTeX Warning: Citation `Parasuraman2008' on page xi undefined on input line 14
+LaTeX Warning: Citation `Parasuraman2008' on page xi undefined on input line 15
 7.
 
 
-LaTeX Warning: Citation `bookbci' on page xi undefined on input line 148.
+LaTeX Warning: Citation `bookbci' on page xi undefined on input line 157.
 
 
-LaTeX Warning: Citation `Cherubini2007' on page xi undefined on input line 148.
+LaTeX Warning: Citation `Cherubini2007' on page xi undefined on input line 157.
 
 
 
-LaTeX Warning: Citation `Tonin2009' on page xi undefined on input line 148.
+LaTeX Warning: Citation `Tonin2009' on page xi undefined on input line 157.
 
 
-LaTeX Warning: Citation `Hirata2008' on page xi undefined on input line 148.
+LaTeX Warning: Citation `Hirata2008' on page xi undefined on input line 157.
 
 
 LaTeX Warning: Citation `Pfurtscheller2010' on page xi undefined on input line 
-151.
+159.
 
 
 Class dalthesis Warning: Abstract longer than one page.
@@ -1376,29 +1402,54 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--4
 ) [17] [18
 
 
-] (./Thesis.lot)
+] (./Thesis.lot
+LaTeX Info: Redefining \. on input line 2.
+LaTeX Info: Redefining \% on input line 2.
+)
 \tf@lot=\write8
 \openout8 = `Thesis.lot'.
 
  [19] [20
 
-] (./Thesis.lof)
+] (./Thesis.lof
+LaTeX Info: Redefining \. on input line 2.
+LaTeX Info: Redefining \% on input line 2.
+)
 \tf@lof=\write9
 \openout9 = `Thesis.lof'.
 
  [21]
 Dalthesis preface pages completed.
-[1] [2]
+[1]
 \openout2 = `Chapters/Chapter00.aux'.
 
- (./Chapters/Chapter00.tex
-Underfull \vbox (badness 1609) has occurred while \output is active []
-
- [3
+ (./Chapters/Chapter00.tex [2
 
 
-])
-[4]
+] [3]
+
+LaTeX Warning: Citation `Hartman2005' on page 4 undefined on input line 19.
+
+
+LaTeX Warning: Citation `Schomer2010' on page 4 undefined on input line 19.
+
+
+LaTeX Warning: Citation `Hartman2005' on page 4 undefined on input line 19.
+
+
+LaTeX Warning: Citation `Jansen1991' on page 4 undefined on input line 21.
+
+
+LaTeX Warning: Citation `Yuste2017' on page 4 undefined on input line 21.
+
+
+LaTeX Warning: Citation `Guger2017' on page 4 undefined on input line 21.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [4]
+[5]) [6]
 \openout2 = `Chapters/Chapter01.aux'.
 
  (./Chapters/Chapter01.tex
@@ -1406,97 +1457,138 @@ Chapter 1.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [5
+ [7
 
 
 
 ]
-[6]
+[8]
 
-LaTeX Warning: Citation `WolpawJonathanR2012' on page 7 undefined on input line
+LaTeX Warning: Citation `WolpawJonathanR2012' on page 9 undefined on input line
  61.
 
-[7]
 
-LaTeX Warning: Citation `Carlson2013' on page 8 undefined on input line 63.
-
-
-LaTeX Warning: Citation `Guger2009a' on page 8 undefined on input line 63.
+LaTeX Warning: Citation `Carlson2013' on page 9 undefined on input line 63.
 
 
-LaTeX Warning: Citation `Lotte2013' on page 8 undefined on input line 63.
+LaTeX Warning: Citation `Guger2009a' on page 9 undefined on input line 63.
 
 
-LaTeX Warning: Citation `Jure2016' on page 8 undefined on input line 63.
+LaTeX Warning: Citation `Lotte2013' on page 9 undefined on input line 63.
 
 
-LaTeX Warning: Citation `WolpawJonathanR2012' on page 8 undefined on input line
+LaTeX Warning: Citation `Jure2016' on page 9 undefined on input line 63.
+
+
+LaTeX Warning: Citation `WolpawJonathanR2012' on page 9 undefined on input line
  63.
 
 
-LaTeX Warning: Citation `Clerc' on page 8 undefined on input line 65.
+LaTeX Warning: Citation `Clerc' on page 9 undefined on input line 65.
+
+[9]
+
+LaTeX Warning: Citation `Clerc' on page 10 undefined on input line 67.
 
 
-LaTeX Warning: Citation `Clerc' on page 8 undefined on input line 67.
+LaTeX Warning: Citation `Riener2014' on page 10 undefined on input line 69.
 
 
-LaTeX Warning: Citation `Riener2014' on page 8 undefined on input line 69.
+LaTeX Warning: Citation `Guger2017' on page 10 undefined on input line 69.
 
 
-LaTeX Warning: Citation `Guger2017' on page 8 undefined on input line 69.
+LaTeX Warning: Citation `Huggins2016' on page 10 undefined on input line 69.
 
 
-LaTeX Warning: Citation `Huggins2016' on page 8 undefined on input line 69.
+LaTeX Warning: Citation `Clerc' on page 10 undefined on input line 69.
 
-
-LaTeX Warning: Citation `Clerc' on page 8 undefined on input line 69.
-
-) [8] [9]
+) [10]
 \openout2 = `Chapters/Chapter02.aux'.
 
- (./Chapters/Chapter02.tex [10
+ (./Chapters/Chapter02.tex
+Chapter 2.
+[11
 
 
 
 ]
-Chapter 2.
-[11]) [12]
+Overfull \hbox (9.05298pt too wide) in paragraph at lines 53--54
+\OT1/cmr/m/n/10.95 where the min-i-miza-tion and max-i-miza-tion are car-ried o
+ut for $\OML/cmm/m/it/10.95 n$ \OT1/cmr/m/n/10.95 vary-ing be-tween $[]$. 
+ []
+
+
+LaTeX Warning: Citation `Bresenham1965' on page 12 undefined on input line 55.
+
+
+LaTeX Warning: Citation `Ramele2016' on page 12 undefined on input line 55.
+
+[12]) [13]
 \openout2 = `Chapters/Chapter03.aux'.
 
- (./Chapters/Chapter03.tex
-Chapter 3.
-) [13
+ (./Chapters/Chapter03.tex [14
 
 
 
 ]
+Chapter 3.
+
+LaTeX Warning: Citation `Lowe2004' on page 15 undefined on input line 20.
+
+
+LaTeX Warning: Citation `cogprints561' on page 15 undefined on input line 20.
+
+[15]
+
+LaTeX Warning: Citation `Lowe2004' on page 16 undefined on input line 30.
+
+
+LaTeX Warning: Citation `Vedaldi2010' on page 16 undefined on input line 30.
+
+
+Overfull \hbox (36.98682pt too wide) in paragraph at lines 30--31
+\OT1/cmr/m/n/10.95 where $\OT1/cmr/bx/n/10.95 p$ \OT1/cmr/m/n/10.95 is a pixel 
+from within the patch, $\OML/cmm/m/it/10.95 ^^R$ \OT1/cmr/m/n/10.95 is the an-g
+le bin with $\OML/cmm/m/it/10.95 ^^R \OMS/cmsy/m/n/10.95 2 f\OT1/cmr/m/n/10.95 
+0\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 45\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/
+10.95 90\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 135\OML/cmm/m/it/10.95 ; \OT1/
+cmr/m/n/10.95 180\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 225\OML/cmm/m/it/10.9
+5 ; \OT1/cmr/m/n/10.95 270\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 315\OMS/cmsy
+/m/n/10.95 g$\OT1/cmr/m/n/10.95 ,
+ []
+
+
+LaTeX Warning: Reference `fig:sampledescriptor' on page 16 undefined on input l
+ine 54.
+
+) [16] [17]
 \openout2 = `Chapters/Chapter04.aux'.
 
- (./Chapters/Chapter04.tex [14
+ (./Chapters/Chapter04.tex [18
 
 
 
 ]
 Chapter 4.
 
-LaTeX Warning: Citation `c3' on page 15 undefined on input line 8.
+LaTeX Warning: Citation `c3' on page 19 undefined on input line 8.
 
 
-LaTeX Warning: Reference `psd' on page 15 undefined on input line 10.
+LaTeX Warning: Reference `psd' on page 19 undefined on input line 10.
 
 
-LaTeX Warning: Citation `c3' on page 15 undefined on input line 22.
+LaTeX Warning: Citation `c3' on page 19 undefined on input line 22.
 
 
-LaTeX Warning: Citation `c6' on page 15 undefined on input line 22.
+LaTeX Warning: Citation `c6' on page 19 undefined on input line 22.
 
 
-LaTeX Warning: Citation `c11' on page 15 undefined on input line 22.
+LaTeX Warning: Citation `c11' on page 19 undefined on input line 22.
 
 
-LaTeX Warning: Reference `psd' on page 15 undefined on input line 22.
+LaTeX Warning: Reference `psd' on page 19 undefined on input line 22.
 
-[15] <images/PSDExperiment1VsExperiment5.png, id=279, 421.575pt x 316.18124pt>
+<images/PSDExperiment1VsExperiment5.png, id=322, 421.575pt x 316.18124pt>
 File: images/PSDExperiment1VsExperiment5.png Graphic file (type png)
 
 <use images/PSDExperiment1VsExperiment5.png>
@@ -1504,7 +1596,7 @@ Package pdftex.def Info: images/PSDExperiment1VsExperiment5.png used on input l
 ine 28.
 (pdftex.def)             Requested size: 71.12645pt x 51.21239pt.
 
-<images/s_1_e_1_c_7_4.png, id=280, 12.30849pt x 14.454pt>
+<images/s_1_e_1_c_7_4.png, id=323, 12.30849pt x 14.454pt>
 File: images/s_1_e_1_c_7_4.png Graphic file (type png)
 
 <use images/s_1_e_1_c_7_4.png>
@@ -1512,8 +1604,9 @@ Package pdftex.def Info: images/s_1_e_1_c_7_4.png used on input line 29.
 (pdftex.def)             Requested size: 142.39748pt x 51.21777pt.
 
 
-LaTeX Warning: Citation `c11' on page 16 undefined on input line 34.
+LaTeX Warning: Citation `c11' on page 19 undefined on input line 34.
 
+[19]
 Package epstopdf Info: Source file: <images/Dataset1AccuracyPerChannel.eps>
 (epstopdf)                    date: 2015-11-11 11:32:21
 (epstopdf)                    size: 9013 bytes
@@ -1526,7 +1619,7 @@ Channel-eps-converted-to.pdf images/Dataset1AccuracyPerChannel.eps>
 (epstopdf)             \includegraphics on input line 42.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/Dataset1AccuracyPerChannel-eps-converted-to.pdf, id=282, 562.1pt x 421.
+<images/Dataset1AccuracyPerChannel-eps-converted-to.pdf, id=328, 562.1pt x 421.
 575pt>
 File: images/Dataset1AccuracyPerChannel-eps-converted-to.pdf Graphic file (type
  pdf)
@@ -1535,13 +1628,13 @@ Package pdftex.def Info: images/Dataset1AccuracyPerChannel-eps-converted-to.pdf
  used on input line 42.
 (pdftex.def)             Requested size: 71.12859pt x 51.21078pt.
 
-<images/AlphaWaveSampleEEG.png, id=283, 88.6512pt x 102.1416pt>
+<images/AlphaWaveSampleEEG.png, id=329, 88.6512pt x 102.1416pt>
 File: images/AlphaWaveSampleEEG.png Graphic file (type png)
 
 <use images/AlphaWaveSampleEEG.png>
 Package pdftex.def Info: images/AlphaWaveSampleEEG.png used on input line 43.
 (pdftex.def)             Requested size: 71.1334pt x 51.21405pt.
- [16 <./images/PSDExperiment1VsExperiment5.png (PNG copy)> <./images/s_1_e_1_c_
+ [20 <./images/PSDExperiment1VsExperiment5.png (PNG copy)> <./images/s_1_e_1_c_
 7_4.png>]
 Package epstopdf Info: Source file: <images/DatasetPhysionetAccuracyPerChannel.
 eps>
@@ -1557,7 +1650,7 @@ eps>
 (epstopdf)             \includegraphics on input line 58.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/DatasetPhysionetAccuracyPerChannel-eps-converted-to.pdf, id=290, 420.57
+<images/DatasetPhysionetAccuracyPerChannel-eps-converted-to.pdf, id=335, 420.57
 124pt x 316.18124pt>
 File: images/DatasetPhysionetAccuracyPerChannel-eps-converted-to.pdf Graphic fi
 le (type pdf)
@@ -1578,7 +1671,7 @@ Plots-eps-converted-to.pdf images/DatasetPhysionetBoxPlots.eps>
 (epstopdf)             \includegraphics on input line 59.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/DatasetPhysionetBoxPlots-eps-converted-to.pdf, id=291, 420.57124pt x 31
+<images/DatasetPhysionetBoxPlots-eps-converted-to.pdf, id=336, 420.57124pt x 31
 6.18124pt>
 File: images/DatasetPhysionetBoxPlots-eps-converted-to.pdf Graphic file (type p
 df)
@@ -1586,56 +1679,53 @@ df)
 Package pdftex.def Info: images/DatasetPhysionetBoxPlots-eps-converted-to.pdf u
 sed on input line 59.
 (pdftex.def)             Requested size: 71.13037pt x 51.21239pt.
- [17 <./images/Dataset1AccuracyPerChannel-eps-converted-to.pdf> <./images/Alpha
+
+
+LaTeX Warning: Citation `c51' on page 21 undefined on input line 71.
+
+
+LaTeX Warning: Citation `c52' on page 21 undefined on input line 71.
+
+
+Underfull \vbox (badness 3668) has occurred while \output is active []
+
+ [21 <./images/Dataset1AccuracyPerChannel-eps-converted-to.pdf> <./images/Alpha
 WaveSampleEEG.png> <./images/DatasetPhysionetAccuracyPerChannel-eps-converted-t
-o.pdf> <./images/DatasetPhysionetBoxPlots-eps-converted-to.pdf>]
-
-LaTeX Warning: Citation `c51' on page 18 undefined on input line 71.
-
-
-LaTeX Warning: Citation `c52' on page 18 undefined on input line 71.
-
-) [18]
+o.pdf> <./images/DatasetPhysionetBoxPlots-eps-converted-to.pdf>]) [22]
 \openout2 = `Chapters/Chapter05.aux'.
 
- (./Chapters/Chapter05.tex
+
+(./Chapters/Chapter05.tex
 Chapter 5.
-) [19
+) [23
 
 
 
 ]
 \openout2 = `Chapters/Chapter06.aux'.
 
- (./Chapters/Chapter06.tex [20
+ (./Chapters/Chapter06.tex [24
 
 
 
 ]
 Chapter 6.
-) [21]
+) [25]
 \openout2 = `Chapters/Chapter07.aux'.
 
- (./Chapters/Chapter07.tex [22
+ (./Chapters/Chapter07.tex [26
 
 
 
 ]
 Chapter 7.
-)
-Underfull \vbox (badness 2020) has occurred while \output is active []
 
- [23]
-[24]
-\openout2 = `Chapters/Chapter08.aux'.
+Overfull \hbox (1.73122pt too wide) in paragraph at lines 18--28
+[]\OT1/cmr/m/n/10.95 In or-der to clas-sify each 30 sec-ond seg-ment of sleep a
+c-cord-ing to the clas-si-cal [Rechtschaen
+ []
 
- (./Chapters/Chapter08.tex
-Chapter 8.
-) [25
-
-
-
-] [26
+) [27] [28
 
 
 ]
@@ -1644,61 +1734,56 @@ Chapter 8.
  (./Chapters/Chapter0A.tex
 Appendix A.
 
-Overfull \hbox (3.30489pt too wide) in paragraph at lines 8--13
-\OT1/cmtt/m/n/12 / / www . bioingenieria . edu . ar / postgrado / index . php ?
- option = com _ content &
+Overfull \hbox (26.27191pt too wide) in paragraph at lines 8--13
+\OT1/cmr/m/n/10.95 leti []$\OT1/cmtt/m/n/10.95 http : / / cortex . loria . fr /
+ Projects / STIC-[]AmSud-[]BCI$[]\OT1/cmr/m/n/10.95 , []$\OT1/cmtt/m/n/10.95 ht
+tp : / / www . bioingenieria .
  []
 
-[27
+
+Overfull \hbox (13.40926pt too wide) in paragraph at lines 8--13
+\OT1/cmtt/m/n/10.95 edu . ar / postgrado / index . php ? option = com _ content
+ & view = category & id = 72 & Itemid =
+ []
+
+[29
 
 
 ]
-Overfull \hbox (2.21855pt too wide) in paragraph at lines 29--32
-\OT1/cmr/m/n/12 centro-de-inteligencia-computacional Proyecto Doc-tor-ado Rob^^
-Sotica Asis-tiva BCI
+Overfull \hbox (103.80069pt too wide) in paragraph at lines 29--32
+\OT1/cmr/m/n/10.95 bil-itaci^^Son, Ro-drigo Ramele []$\OT1/cmtt/m/n/10.95 http 
+: / / www . unsam . edu . ar / tss / controlar-[]maquinas-[]con-[]el-[]pensamie
+nto /
  []
 
 
-Overfull \hbox (196.4932pt too wide) in paragraph at lines 29--32
-\OT1/cmr/m/n/12 Neu-rore-ha-bil-itaci^^Son, Ro-drigo Ramele []$\OT1/cmtt/m/n/12
- http : / / www . unsam . edu . ar / tss / controlar-[]maquinas-[]con-[]el-[]pe
-nsamiento /
+Overfull \hbox (160.12645pt too wide) in paragraph at lines 32--35
+\OT1/cmtt/m/n/10.95 electronicosonline . com / 2013 / 07 / 08 / crean-[]jovenes
+-[]argentinos-[]interface-[]cerebral-[]para-[]discapacitados/$[]
  []
 
 
-Overfull \hbox (228.605pt too wide) in paragraph at lines 32--35
-\OT1/cmtt/m/n/12 www . electronicosonline . com / 2013 / 07 / 08 / crean-[]jove
-nes-[]argentinos-[]interface-[]cerebral-[]para-[]discapacitados/$[]
+Overfull \hbox (12.25601pt too wide) in paragraph at lines 35--40
+\OT1/cmtt/m/n/10.95 unlp . edu . ar / handle / 10915 / 3800631605$[] \OT1/cmr/m
+/n/10.95 Tesis de Maestr^^S^^Pa de An-drea Noelia Bermudez
  []
 
 
-Overfull \hbox (13.6073pt too wide) in paragraph at lines 40--45
-[]\OT1/cmr/m/n/12 Universidad Na-cional de Tu-cuman, In-sti-tuto Su-pe-rior de 
-In-ves-ti-ga-ciones Biol^^Sogicas
+Overfull \hbox (37.66066pt too wide) in paragraph at lines 52--54
+[]\OT1/cmr/m/n/10.95 IBCN Sil-via Kochen []$\OT1/cmtt/m/n/10.95 http : / / www 
+. ibcn . fmed . uba . ar / 200 _ grupos-[]lab-[]epilepsia-[]kochen .
  []
 
-
-Overfull \hbox (2.07095pt too wide) in paragraph at lines 40--45
-\OT1/cmr/m/n/12 (IN-SI-BIO) []$\OT1/cmtt/m/n/12 www . lamein . org$[] \OT1/cmr/
-m/n/12 In-ves-ti-gaci^^Son so-bre al-ter-na-ti-vas de cod-i-fi-caci^^Son neu-
- []
-
-
-Overfull \hbox (72.34555pt too wide) in paragraph at lines 52--54
-[]\OT1/cmr/m/n/12 IBCN Sil-via Kochen []$\OT1/cmtt/m/n/12 http : / / www . ibcn
- . fmed . uba . ar / 200 _ grupos-[]lab-[]epilepsia-[]kochen .
- []
-
-[28]) [29]
+) [30]
 \openout2 = `Chapters/Chapter0B.aux'.
 
- (./Chapters/Chapter0B.tex [30
+ (./Chapters/Chapter0B.tex
+Appendix B.
+) [31
 
 
 
 ]
-Appendix B.
-) [31]
 \openout2 = `Chapters/Chapter0C.aux'.
 
  (./Chapters/Chapter0C.tex [32
@@ -1709,18 +1794,20 @@ Appendix B.
 Appendix C.
 ) [33]
 No file Thesis.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 269.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 269.
-(./Thesis.aux (./Chapters/Chapter_acronyms.aux) (./Chapters/Chapter00.aux)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 286.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 286.
+(./Thesis.aux
+LaTeX Info: Redefining \. on input line 29.
+LaTeX Info: Redefining \% on input line 29.
+ (./Chapters/Chapter_acronyms.aux) (./Chapters/Chapter00.aux)
 (./Chapters/Chapter01.aux) (./Chapters/Chapter02.aux) (./Chapters/Chapter03.aux
 ) (./Chapters/Chapter04.aux) (./Chapters/Chapter05.aux)
-(./Chapters/Chapter06.aux) (./Chapters/Chapter07.aux) (./Chapters/Chapter08.aux
-) (./Chapters/Chapter0A.aux) (./Chapters/Chapter0B.aux)
-(./Chapters/Chapter0C.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 269.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 269.
+(./Chapters/Chapter06.aux) (./Chapters/Chapter07.aux) (./Chapters/Chapter0A.aux
+) (./Chapters/Chapter0B.aux) (./Chapters/Chapter0C.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 286.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 286.
 Package rerunfilecheck Info: File `Thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 6E2F55692E303C8AD5075AE548909087;1137.
+(rerunfilecheck)             Checksum: C3CADD5C39F798EB78F9151529CE1F33;1234.
 
 
 LaTeX Warning: There were undefined references.
@@ -1728,29 +1815,39 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 269.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 286.
  ) 
 Here is how much of TeX's memory you used:
- 29621 strings out of 493014
- 587918 string characters out of 6133352
- 1176801 words of memory out of 5000000
- 32573 multiletter control sequences out of 15000+600000
- 12925 words of font info for 48 fonts, out of 8000000 for 9000
+ 29876 strings out of 493014
+ 591386 string characters out of 6133352
+ 1178940 words of memory out of 5000000
+ 32802 multiletter control sequences out of 15000+600000
+ 16778 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,8n,93p,10440b,874s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
-></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pf
-b></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
-></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><
-/usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></u
-sr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/
-local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
-ocal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/lo
-cal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on Thesis.pdf (54 pages, 207605 bytes).
+ 62i,14n,93p,10440b,874s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
+</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></
+usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><
+/usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></
+usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></u
+sr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr
+/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/l
+ocal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loc
+al/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local
+/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/te
+xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texli
+ve/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/
+2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2
+016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/20
+16/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/201
+6/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2016
+/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/
+2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Thesis.pdf (54 pages, 351365 bytes).
 PDF statistics:
- 459 PDF objects out of 1000 (max. 8388607)
- 379 compressed objects within 4 object streams
- 82 named destinations out of 1000 (max. 500000)
- 211 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 520 PDF objects out of 1000 (max. 8388607)
+ 427 compressed objects within 5 object streams
+ 93 named destinations out of 1000 (max. 500000)
+ 224 words of extra memory for PDF output out of 10000 (max. 10000000)
 

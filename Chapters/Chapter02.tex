@@ -1,4 +1,4 @@
-\chapter{Signal Plots}
+\chapter{From signals to images}
 
 Contiene el método y el enfoque.
 
@@ -21,3 +21,36 @@ DTI is non-invasive and can be done on most research MRI scanners. It involves u
 
 Functional Neuroimaging
 Any technique that quantifies some metric of brain activity. This would include EEG (ElectroEncephaloGraphy), MEG (MagnetoEncephaloGraphy), fMRI (functional MRI), PET/SPECT (Positron Emission Tomography/Single Positron Emission Computed Tomography), NIRS (Near-InfraRed Spectroscopy), and, to a certain extent, TMS (Transcranial Magnetic Stimulation) and TDCS (Transcranial Direct Current Stimulation), along with several others.
+
+\subsubsection{Signal Plotting} \label{Plot}
+
+Averaged signal segments are standardized and scaled by 
+
+\begin{equation}
+\tilde{x}(n,c) = \left \lfloor{ \gamma \cdot \frac{( x(n,c) - \bar{x}(c)  )}{ \hat{\sigma}(c) } }\right \rfloor, \; n \in \{ 1, \dots, n_{max}\},\; c \in \{1,2,\dots,Ch\}
+\label{eq:standarizedaverages}
+\end{equation}
+
+\noindent where $\gamma > 0$ is an input parameter of the algorithm and  it is related to the image scale. In addition, $ x(n,c) $ is the point-to-point averaged multichannel EEG signal for the sample point $n$ and for channel $c$. Lastly, $$\bar{x}(c) =\frac{1}{n_{max}}\sum_{n=1}^{n_{max}}x(n,c)$$ and $$ \hat{\sigma}(c) = (\frac{1}{n_{max}-1}\sum_{n=1}^{n_{max}}(x(n,c)-\bar{x}(c))^2 )^{\frac{1}{2}}$$ are the mean and estimated standard deviation of $x(n,c), n \in \{1,\dots,n_{max}\} $, for each channel $c$.
+
+Consequently, the image is constructed by placing the sample points according to
+
+\begin{equation}
+I(z_1,z_2) = \left\{ \begin{array}{rl}
+255 & \text{if} \,  z_1 = \gamma \cdot n; \; z_2 = \tilde{x}(n,c) + z(c) \\
+0   & \mbox{otherwise}
+\end{array}\right.
+\label{eq:images}
+\end{equation}
+
+\noindent where $ (z_1,z_2) \in \mathbb{N} \times \mathbb{N}$ iterate over the width (based on the length of the signal segment) and height (based on the peak-to-peak amplitude) of the newly created image,  $n \in \{1, \dots, n_{max}\}$ and $c \in \{1,2,\dots,Ch\}$.  The values $z(c)$, $c \in \{1,2,\dots,Ch\}$ are the location on the image where the signal's zero value has to be located in order to fit the entire signal within the image for each c:
+
+\begin{equation}
+z(c) = \left \lfloor{ \frac{\max_{n} \tilde{x}(n,c)  - \min_{n} \tilde{x}(n,c) }{2} }\right \rfloor -   \left \lfloor{ \frac{\max_{n} \tilde{x}(n,c)  + \min_{n} \tilde{x}(n,c)}{ 2} }\right \rfloor
+\label{eq:zerolevel}
+\end{equation}
+
+\noindent where the minimization and maximization are carried out for $n$ varying between ${1 \leq n\leq n_{max}}$.
+  
+In order to complete the plot from the pixels, the Bresenham \cite{Bresenham1965,Ramele2016} algorithm is used to interpolate straight lines between each pair of  consecutive pixels.
+
