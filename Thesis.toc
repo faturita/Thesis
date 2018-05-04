@@ -10,7 +10,7 @@
 \contentsline {chapter}{List of Figures}{xxi}{chapter*.8}
 \contentsline {section}{\numberline {0.1}Como estructurar esta tesis}{1}{section.0.1}
 \contentsline {subsection}{\numberline {0.1.1}Significance}{5}{subsection.0.1.1}
-\contentsline {subsection}{\numberline {0.1.2}Read this if this is the only thing you will read}{5}{subsection.0.1.2}
+\contentsline {subsection}{\numberline {0.1.2}Summary}{5}{subsection.0.1.2}
 \contentsline {chapter}{\numberline {Chapter 1}State of the Art}{7}{chapter.1}
 \contentsline {section}{\numberline {1.1}EEG}{9}{section.1.1}
 \contentsline {section}{\numberline {1.2}BCI}{9}{section.1.2}
@@ -26,3 +26,4 @@
 \contentsline {chapter}{\numberline {Appendix A}BCI en Argentina}{29}{appendix.A}
 \contentsline {chapter}{\numberline {Appendix B}Walkthough BCI}{31}{appendix.B}
 \contentsline {chapter}{\numberline {Appendix C}SIFT}{33}{appendix.C}
+\contentsline {chapter}{Bibliography}{34}{appendix.C}
