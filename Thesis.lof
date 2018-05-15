@@ -1,13 +1,13 @@
-\select@language {english}
-\select@language {spanish}
-\select@language {english}
+\babel@toc {english}{}
+\babel@toc {spanish}{}
+\babel@toc {english}{}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Power Spectral Density of Alpha Waves}}{20}{figure.caption.12}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Alpha Waves Classification}}{21}{figure.caption.13}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Classification Accuracy of Alpha Waves}}{21}{figure.caption.14}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Power Spectral Density of Alpha Waves}}{18}{figure.caption.12}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Alpha Waves Classification}}{19}{figure.caption.13}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Classification Accuracy of Alpha Waves}}{19}{figure.caption.14}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
