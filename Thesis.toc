@@ -26,7 +26,4 @@
 \contentsline {chapter}{\numberline {Appendix A}BCI en Argentina}{27}{appendix.A}
 \contentsline {chapter}{\numberline {Appendix B}Walkthough BCI}{29}{appendix.B}
 \contentsline {chapter}{\numberline {Appendix C}SIFT}{31}{appendix.C}
-<<<<<<< HEAD
 \contentsline {chapter}{Bibliography}{32}{appendix.C}
-=======
->>>>>>> 37d0fbcc3703434319bf0221d87cf927e67f4615
