@@ -220,3 +220,7 @@ TSWLatexianTemp*
 # expex forward references with \gathertags
 *-tags.tex
 .DS_Store
+*.aux
+*.log
+*.synctex.gz
+*.toc
