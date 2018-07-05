@@ -12,13 +12,15 @@
 
 %La relación entre la senial ruido obtenida en el experimento de LIGO y la que se obtiene en EEG.
 
-With Vidal's work in 1970s, Brain-Computer Interfaces started as a technological amusement, and it steadely moved toward a mature and highly researched area of work.  Outstanding success has been achieved with invasive BCI, i.e. with surgically implanted electrodes, from the total reproduction of arm movement \cite{c27} to the remote control of a manipulator by a macaque using brainwave information \cite{c29} albeit of persistent biocompatibilities issues and the pervasive complexity and risks of surgical procedures. One noteworthy aspect of this novel communication channel is the ability to transmit information from the Central Nervous System (CNS) to a computer device and from there use that information to control a wheelchair~\cite{Carlson2013}, as input to a speller application~\cite{Guger2009a}, in a Virtual Reality environment~\cite{Lotte2013} or as aiding tool in a rehabilitation procedure~\cite{Jure2016}.  The holly grail of BCI is to implement a new complete and alternative pathway to restore lost locomotion~\cite{WolpawJonathanR2012}.
+With Vidal's work in 1970s, Brain-Computer Interfaces started as a technological amusement, and it steadely moved toward a mature and highly researched area of work.  Outstanding success has been achieved with invasive BCI, i.e. with surgically implanted electrodes, from the total reproduction of arm movement \cite{c27} to the remote control of a manipulator by a macaque using brainwave information \cite{c29} albeit of persistent biocompatibilities issues and the pervasive complexity and risks of surgical procedures. One noteworthy aspect of this novel communication channel is the ability to transmit information from the Central Nervous System (CNS) to a computer device and from there use that information to control a wheelchair~\cite{Carlson2013}, as input to a speller application~\cite{Guger2009a}, in a Virtual Reality environment~\cite{Lotte2013} or as aiding tool in a rehabilitation procedure~\cite{Jure2016}.  Other recent applications include the real-time control of flight simulators \cite{Amin2018}, the implementation of neuroadaptive interfaces where the computer is aware of the correctness of certain command based on the detection of ErrP \cite{Zander2016}.
+
+ The holly grail of BCI is to implement a new complete and alternative pathway to restore lost locomotion~\cite{WolpawJonathanR2012}.
 
 \begin{chronology}[5]{1966}{2010}{80ex}[\textwidth]
-\event{1966}{Kamiya, neurofeedback for $\alpha$ waves}
-\event{1969}{Fetz, operand conditioning}
+\event{1966}{Kamiya, Neurofeedback for $\alpha$ waves}
+\event{1969}{Fetz, Operand Conditioning}
 \event{1973}{Vidal, first use of BCI word}
-\event{1987}{Donchin P300}
+\event{1987}{Donchin \textbf{P300}}
 \event{1989}{Hiraiwa, Bereitschaftspotentials}
 \event{1991}{Wolpaw $\mu$ \textbf{Wadsworth BCI}}
 \event{1993}{Pfurtscheller SMR \textbf{Graz BCI}}
@@ -30,13 +32,14 @@ With Vidal's work in 1970s, Brain-Computer Interfaces started as a technological
 \event{2006}{Millan, ErrP}
 \event{2008}{Blankertz, adaptive \textbf{Berlin BCI}}
 \event{2010}{Schalk, ECoG BCI}
+\event{2012}[2010]{Zander, Passive BCI \textbf{pBCI}}
 %\event{\decimaldate{25}{12}{2001}}{three}
 \label{fig:story}
 \end{chronology}
 
 Figure \ref{fig:story} shows a brief chronology of the main events in BCI history.  During recent years, it has gained mainstream public awareness with worldwide challenge competitions like Cybathlon~\cite{Riener2014,cybathlon2} and even been broadcasted during the inauguration ceremony of the 2014 Soccer World Cup.  New developments have overcome the out-of-the-lab high-bar and they are starting to be used in real world environments~\cite{Guger2017,Huggins2016}.  Moreover, BCI research had rampantly been advanced accomplishing a BCI Society, a BCI Journal, BCI Award, annual conference meetings, practical applications, myriads of startups companies and even included in the Gartner list of Hype technologies \cite{GartnerHype2016}. 
 
-Other applications may include, Temporal induced disability, Neuroergonomy, early detection of errors, affective computing, biometric authentication, teleprescence (improvement of haptic interface), ciberinfrastructure and assistive robotics.  Intensive care units and disorders of consciousness \cite{Annen2018} (detection of remanent activity in comatose patients) are recent disciplines where BCI is showing tremendous prospects and possible applications.
+Other applications may include, Temporal induced disability, Neuroergonomy, early detection of errors, affective computing, biometric authentication, teleprescence (improvement of haptic interface), ciberinfrastructure and assistive robotics.  Intensive care units and disorders of consciousness \cite{Annen2018} (detection of remanent activity in comatose patients) are recent disciplines where BCI is showing tremendous prospects and possible applications.  
 
 \vspace{10px}
 
@@ -73,10 +76,9 @@ increasing the ITR, SNR, the reliability of the system, its portability, and the
 
 \section{Brain Computer Interface Model and Architecture}
 
-The general idea of BCI can be summarized in Fig \ref{fig:bciblockdiagram}.  A volitional control, a will to transmit information, is exerted by a user. A measuring device captures his/her signal using a brain imaging device.  A signal acquisition module obtains the brainwaves and the information is digitalized and transmited to a computer device.  Signal preprocessing is applied to eliminate nuisances and artifacts and to enhance the Signal to Noise Ratio (SNR), or to apply spatial or frequency filters.  In the next step, a \textit{feature} is carefully constructed in order to differentiate at least between two different mental states.  Finally a classification step is applied to derive the actual information bit out of the system.   An Application System uses this information to affect some external device.  By visual or any other sensory means, the feedback is fed back to the user and a loop is finally closed.
+The draft architecture of a BCI system can be summarized in Fig \ref{fig:bciblockdiagram}.  A volitional control, a will to transmit information, is exerted by a user. A measuring device captures his/her signal using a brain imaging device.  A signal acquisition module obtains the brainwaves and the information is digitalized and transmited to a computer device.  Signal preprocessing is applied to eliminate nuisances and artifacts and to enhance the Signal to Noise Ratio (SNR), or to apply spatial or frequency filters.  In the next step, a \textit{feature} is carefully constructed in order to differentiate at least between two different mental states.  Finally a classification step is applied to derive the actual information bit out of the system.   An Application System uses this information to affect some external device.  By visual or any other sensory means, the feedback is fed back to the user and a loop is finally closed.
 
-The key point of this system is called the \textit{Brain Machine Dilemma} \cite{WolpawJonathanR2012}.  The central idea is that the BCI system adapts to the user's thinking patterns but at the same time the brain is adapting to what the system is doing, and changing their own signals in the process.  This is the reason why it is often called, a \textit{co-adaptive system}, where two different intelligent devices, one biological and the other electronic, try to adapt to each other.
-
+The central point of this system is called the \textit{Brain Machine Dilemma} \cite{WolpawJonathanR2012}.  The central idea is that the BCI system adapts to the user's thinking patterns but at the same time the brain is adapting to what the system is doing, and changing their own signals in the process.  This is the reason why it is often called, a \textit{co-adaptive system}, where two different intelligent devices, one biological and the other electronic, try to adapt to each other.
 
 \begin{figure}[]
 \centering
@@ -88,27 +90,30 @@ The key point of this system is called the \textit{Brain Machine Dilemma} \cite{
 The basic model of any BCI is to take a multichannel digital signal $\mathbf{x}(n)$, and transform it to an output control signal $y(n)$ which can be a scalar or binary function.  The BCI system can be modeled as the transformation $T$.
 
 \begin{equation}
-y(n) = T\left[x(n)\right]
+y(n) = T\left[\mathbf{x}(n)\right]
 \end{equation}
+
+\section{Signal Processing}
 
 From this signal processing point of view, BCIs are:
 
 \begin{itemize}
-\item Causal  $ y(n) = f( \mathbf{v}(m) ) $, where $ m \leq n $.
-\item Dynamic: it is not a function of only the current value $ y(n) = f( \mathbf{v}(m) ) $.
+\item Causal  $ y(n) = f( \mathbf{v}(m) ) $, where $ m \leq n $.  The action of a BCI system depends on the history of the captured brainwaves.
+\item Dynamic: $ y(n) = f( \mathbf{v}(m),  \mathbf{\dot{v}}(m),\mathbf{\ddot{v}}(m)) $.  A BCI system is dynamic, where the output function do not depend only on the current value being observed.
 \item Time invariant $ y(n) = T\left[ \mathbf{v}(n) \right] \Rightarrow y(n-k) = T\left[ \mathbf{v}(n-k) \right] $.  Adaptive BCI in general are not.
-\item Non linear: the system is linear when $T\left[ a_1 \mathbf{v}(n) + a_2 \mathbf{v}(n) \right]  = a_1 T \left[ \mathbf{v}(n) \right] + a_2 T \left[ \mathbf{v}(n) \right] $ 
-\item Multi rate: or broadband.  The energy of the FFT is not confined to a certain band, and almost all frequency channels convey some information.
+\item Non linear: the system is linear when $T\left[ a_1 \mathbf{v}(n) + a_2 \mathbf{v}(n) \right]  = a_1 T \left[ \mathbf{v}(n) \right] + a_2 T \left[ \mathbf{v}(n) \right] $. Due to brainwaves complexity, BCI systems are not linear.
+\item Multirate or broadband.  The energy of the FFT is not confined to a certain band, and almost all frequency channels convey some information.
 \end{itemize}
 
-Spatial Filter
+There are several filters that can be applied to the system to eliminate artifacts, enhance the signal, and to ease the detection of the discriminative information.
+
+Static Filters like square or logartihmic were traditionally used in analog signal processing and are currently part of many of the brainwave measuring devices.  Wiener and Kallman Filters are usually applied to invasive techniques.  The filter, particularly when it is linear, can be viewed as:
+
 \begin{equation}
-y(n) = M T\left[x(n)\right]
+y(n) = M T\left[\mathbf{x}(n)\right]
 \end{equation}
 
-Static Filter: square or logartihmic.
-
-Temporal Filter
+Spatial filters emphasize the arrangement of sensors around or within the head and the spatial structure of the information that is being captured.  On the other hand,  Spectral Filters do consider the brainwaves as another digital signal and a combination of \textit{Filter Banks} is applied as a sort of tool to enhance the signal quality. 
 
 \begin{figure}[]
 \centering
@@ -123,6 +128,10 @@ Temporal Filter
 \caption[Neuroanatomy]{Neuroanatomical regions of the brain.}
 \label{fig:sampleeeg}
 \end{figure}
+
+\section{The Forward and Inverse Model}
+
+Sensor Space and Source Space.
 
 \section{Brain Imaging Technologies}
 
@@ -149,16 +158,13 @@ Above all, Electroencephalography (EEG), is the most widespread method to gather
 EEG BCIs are of particular interest mainly because of their non-invasiveness and their optimal time resolution. Moreover, they are portable, cheap, wearable and can be more easily integrated into fashionable designs aimed for real users [11].
 Routinely physicians explore morphologically these raw EEG signals scavenging for signs of disease or irregular patterns and they have been doing this since almost the dawn of the technology at the hands of Hans Berger. Sleep spindles, Lambda waves, K-Complexes, Vertex waves, Positive Occipital Sharp Transients and more visual features had been identified with relevant clinical characterizations [16]. Even within the BCI community, visually extracting artifacts for offline processing is a common and well known practice [1,11]. 
 
-The EEG signal goes from 10-100 microvolts
-
-monopolar, reference, averaged, 
-bipolar
-
-segmentation is commong, which is generally called epoching
-trials are general realizations of the experiment.
-tampering window could be gaussian, hamming, blackman, hanning
-
-Impedance
+%The EEG signal goes from 10-100 microvolts
+%monopolar, reference, averaged, 
+%bipolar
+%segmentation is commong, which is generally called epoching
+%trials are general realizations of the experiment.
+%tampering window could be gaussian, hamming, blackman, hanning
+%Impedance
 
 The Electroencephalography consists on the measurement of small variations of electrical currents over the scalp.  It is one of the most widespread used methods to capture brain signals and was initially developed by Hans Berger in 1924 and has been extensively used for decades to diagnose neural diseases and other medical conditions.
 
@@ -363,76 +369,58 @@ Other works on EEG explored the idea to extend human capacities analyzing EEG wa
 %
 %Warp averaging
 
-Where are the waveforms ? By estimates from the 2016 BCI Award, around 71.2$\%$ of noninvasive BCI research is based on Electroencephalography (EEG) [1]. Although mature clinical EEG has traditionally focused on temporal waveforms, and a whole branch of electrophenomenology has arisen around EEG graphoelements [2], signal analysis methods which follow this path has been overshadow in BCI research. Few works have investigated the idea of exploiting signal waveforms to analyze the EEG signal on BCI applications. The seminal work of Bandt-Pompe Permutation Entropy [3] explores succinctly this concept and in [4] an approach based on Slope Horizontal Chain Code is presented. A similar methodology is implemented in [5] based on Mathematical Morphological Analysis. The work proposed here is based on waveform analysis of the shape of the EEG signal, but using the histogram of gradient orientations, mimicking what traditionally electroencephalographers have been doing for almost a century: visually inspecting raw EEG signal plots. Material, Methods and Results: The histogram of gradient orientations is a popular and powerful tool used in Computer Vision to characterize local features from images and is the basis of the feature generation algorithm in Lowe's SIFT Descriptor [7]. This technique can be applied to identify components in EEG signals in five steps, (1) signal preprocessing, (2) signal segmentation, (3) transformation on a channel by channel basis of each signal segment into a binary image of a signal plot, (4) assignment of keypoint location on the newly created image depending on the physiological phenomena under study and finally (5) calculation of the histogram of gradient orientations using finite differences from the image around the keypoint (Figure 1). This method generates a feature, a normalized 128-dimension SIFT descriptor, which can be used to compare the signal segments that were used to generate the plots, thus they can be used to analyze the underlying cognitive phenomena. This method was used to identify and detect Visual Occipital Alpha Waves, Motor Imagery Rolandinc Mu rhythms [6] with results above chance level. It was also tested on P300 detection for Visual P300 Speller Matrix on ALS public dataset and for an own dataset of healthy subjects as well as identifying K-Complexes in sleep EEG (unpublished, under review). Discussion: A procedure which is biomimetically based on how the visual cortex works by detecting orientations, ironically, is used precisely to detect information from the brain. Although we found that it is possible to decode with accuracy above chance level and to differentiate patterns with cognitive correlations, the stability of the signature of the component is a key and challenging aspect. The method was also applied to patterns which are more frequently studied by their spectral characteristics. Significance: A method to analyze EEG signals which is based on the waveform characterization is presented. The benefits of the proposed approach are twofold, (1) it has a universal applicability because the same basic methodology can be applied to detect different patterns in EEG signals with applications to BCI and (2) it has the potential to foster close collaboration with physicians and electroencephalograph technicians because the approach follows the established procedure of the clinical EEG community of analyzing waveforms by their shapes.
-
-Esta sección contiene el estado del arte del método
-
-BCI + EEG
-
-Cómo es el abordaje basado en Waveforms
-
-Machine Learning
-
-Shearlets
-
-Scalar Space Theory
+%Where are the waveforms ? By estimates from the 2016 BCI Award, around 71.2$\%$ of noninvasive BCI research is based on Electroencephalography (EEG) [1]. Although mature clinical EEG has traditionally focused on temporal waveforms, and a whole branch of electrophenomenology has arisen around EEG graphoelements [2], signal analysis methods which follow this path has been overshadow in BCI research. Few works have investigated the idea of exploiting signal waveforms to analyze the EEG signal on BCI applications. The seminal work of Bandt-Pompe Permutation Entropy [3] explores succinctly this concept and in [4] an approach based on Slope Horizontal Chain Code is presented. A similar methodology is implemented in [5] based on Mathematical Morphological Analysis. The work proposed here is based on waveform analysis of the shape of the EEG signal, but using the histogram of gradient orientations, mimicking what traditionally electroencephalographers have been doing for almost a century: visually inspecting raw EEG signal plots. Material, Methods and Results: The histogram of gradient orientations is a popular and powerful tool used in Computer Vision to characterize local features from images and is the basis of the feature generation algorithm in Lowe's SIFT Descriptor [7]. This technique can be applied to identify components in EEG signals in five steps, (1) signal preprocessing, (2) signal segmentation, (3) transformation on a channel by channel basis of each signal segment into a binary image of a signal plot, (4) assignment of keypoint location on the newly created image depending on the physiological phenomena under study and finally (5) calculation of the histogram of gradient orientations using finite differences from the image around the keypoint (Figure 1). This method generates a feature, a normalized 128-dimension SIFT descriptor, which can be used to compare the signal segments that were used to generate the plots, thus they can be used to analyze the underlying cognitive phenomena. This method was used to identify and detect Visual Occipital Alpha Waves, Motor Imagery Rolandinc Mu rhythms [6] with results above chance level. It was also tested on P300 detection for Visual P300 Speller Matrix on ALS public dataset and for an own dataset of healthy subjects as well as identifying K-Complexes in sleep EEG (unpublished, under review). Discussion: A procedure which is biomimetically based on how the visual cortex works by detecting orientations, ironically, is used precisely to detect information from the brain. Although we found that it is possible to decode with accuracy above chance level and to differentiate patterns with cognitive correlations, the stability of the signature of the component is a key and challenging aspect. The method was also applied to patterns which are more frequently studied by their spectral characteristics. Significance: A method to analyze EEG signals which is based on the waveform characterization is presented. The benefits of the proposed approach are twofold, (1) it has a universal applicability because the same basic methodology can be applied to detect different patterns in EEG signals with applications to BCI and (2) it has the potential to foster close collaboration with physicians and electroencephalograph technicians because the approach follows the established procedure of the clinical EEG community of analyzing waveforms by their shapes.
 
 
-Diffusion Tensor Imagin
-
-La idea es estructurar el paso a paso de como se puede ir usando el descriptor de gradientes de sift para 
-mapear informacion.  Primero con una señal cruda, luego agregarle informacion extra, luego agregar ruido al azar, y finalmente empezar con información real de señales.  El tema luego se focaliza en EEG especificamente para BCI.
+%La idea es estructurar el paso a paso de como se puede ir usando el descriptor de gradientes de sift para 
+%mapear informacion.  Primero con una señal cruda, luego agregarle informacion extra, luego agregar ruido al azar, y finalmente empezar con información real de señales.  El tema luego se focaliza en EEG especificamente para BCI.
 
 
-Describir la importancia de la impedencia (basado en el libro de Signal processing for neuro) con el paper que habla sobre EEG mas la pagina 144 del libro 2 de lotte.
+%Describir la importancia de la impedencia (basado en el libro de Signal processing for neuro) con el paper que habla sobre EEG mas la pagina 144 del libro 2 de lotte.
+%
+%Aca tambien pueden ir las referencias a la tesis de spinelli
+%
+%Pattern Matching
 
-Aca tambien pueden ir las referencias a la tesis de spinelli
 
-Pattern Matching
-
-
-Esta es la razon porque el metodo funciona ya que lo que termina detectando es de manera masiva
-esas formas especificas que son las que le dan a las ondas alfa y mu sus nombres.
-
-In human electrophysiology, oscillations with stereotyped nonsinusoidal shapes include the
-sensorimotor mu rhythm, motor cortical beta oscillation, and cortical slow oscillations. The mu
-rhythm oscillates at an alpha frequency (around 10 Hz) and was named because its waveform
-shape resembles the Greek character m (Figure 1A). It is characterized by the fact that one
-extremum (e.g., its peak) is consistently sharper than the other (e.g., its trough); it is also
-described as an arch, comb, or wicket shape [4–10].
-In addition to the sensorimotor mu rhythm, we have recently highlighted that motor cortical beta
-oscillations also have striking nonsinusoidal features [11]. These beta oscillations manifest a
-sawtooth shape in that their voltage either rapidly rises before more slowly falling off, or vice
-versa (Figure 1B).
+%Esta es la razon porque el metodo funciona ya que lo que termina detectando es de manera masiva
+%esas formas especificas que son las que le dan a las ondas alfa y mu sus nombres.
+%
+%In human electrophysiology, oscillations with stereotyped nonsinusoidal shapes include the
+%sensorimotor mu rhythm, motor cortical beta oscillation, and cortical slow oscillations. The mu
+%rhythm oscillates at an alpha frequency (around 10 Hz) and was named because its waveform
+%shape resembles the Greek character m (Figure 1A). It is characterized by the fact that one
+%extremum (e.g., its peak) is consistently sharper than the other (e.g., its trough); it is also
+%described as an arch, comb, or wicket shape [4–10].
+%In addition to the sensorimotor mu rhythm, we have recently highlighted that motor cortical beta
+%oscillations also have striking nonsinusoidal features [11]. These beta oscillations manifest a
+%sawtooth shape in that their voltage either rapidly rises before more slowly falling off, or vice
+%versa (Figure 1B).
 
 
 EEG signals are remarkably complex and have been characterized as a multichannel non-stationary stochastic process.  Additionally, they have high variability between different subjects and even between different moments for the same subject, requiring adaptive and co-adaptive calibration and learning procedures~\cite{Clerc}.  Hence, this imposes an outstanding challenge that is necessary to overcome in order to extract information from raw EEG signals.
 
 Moreover, EEG markers~\cite{Clerc} that can be used to  transmit volitional information are limited, and each one of them has a particular combination of appropriate methods to decode them. Inevitably, it is necessary to implement  distinct and specialized algorithmic methods, to filter the signal, enhance its Signal to Noise Ratio (SNR), and try to determine some meaning out of it.  
 
-\section{BCI Paradigms}
+\section{BCI EEG Paradigms}
 
-Steady State Visual Evoked Potentials
+Due to their popularity ($71.2\%$ of the BCI projects submitted to BCI Award 2016 were with EEG) BCI based on EEG are 
 
-Bereitschaftspotentials, Readiness Potential or Movement-Related Potentials
-
-Motor Imagery
-ERD/ERS: Event Related
-Wadsworth BCI
-Graz BCI
-
-Selective Attention
-P300
-N400
-
-Mental Tasks
-
-Operant Conditioning
-Slow Cortical Potentials
-Berlin BCI
-
-
-Focusing on EEG Noninvasive BCI
+\begin{enumerate}
+\item Steady State Visual Evoked Potentials
+\item Bereitschaftspotentials, Readiness Potential or Movement-Related Potentials
+\item Motor Imagery
+\item ERD/ERS: Event Related
+\item Wadsworth BCI
+\item Graz BCI
+\item Selective Attention
+\item P300
+\item N400
+\item Mental Tasks
+\item Operant Conditioning
+\item Slow Cortical Potentials
+\item Berlin BCI
+\end{enumerate}
 
 Classification methods for BCI (Lotte 2007)
 

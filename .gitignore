@@ -224,3 +224,4 @@ TSWLatexianTemp*
 *.log
 *.synctex.gz
 *.toc
+Chapters/Chapter*.aux
