@@ -16,7 +16,7 @@ With Vidal's work in 1970s, Brain-Computer Interfaces started as a technological
 
 Overall, the holly grail of BCI is to implement a new complete and alternative pathway to restore lost locomotion~\cite{WolpawJonathanR2012}.
 
-\begin{chronology}[5]{1966}{2014}{80ex}[\textwidth]
+\begin{chronology}[5]{1966}{2014}{90ex}[\textwidth]
 \event{1966}{Kamiya, Neurofeedback for $\alpha$ waves}
 \event{1969}{Fetz, Operand Conditioning}
 \event{1973}{Vidal, first use of BCI word}
@@ -37,11 +37,11 @@ Overall, the holly grail of BCI is to implement a new complete and alternative p
 \label{fig:story}
 \end{chronology}
 
-Figure \ref{fig:story} shows a brief chronology of the main events in BCI history, starting from the early works on Neurofeedback in the 70s and walking throught the different paradigms.  In recent years, it has gained mainstream public awareness with worldwide challenge competitions like Cybathlon~\cite{Riener2014,cybathlon2} and even been broadcasted during the inauguration ceremony of the 2014 Soccer World Cup.  New developments have overcome the out-of-the-lab high-bar and they are starting to be used in real world environments~\cite{Guger2017,Huggins2016}.  Moreover, BCI research had rampantly been advanced accomplishing a BCI Society, a BCI Journal, BCI Award, annual conference meetings, practical applications, myriads of startups companies and even included in the Gartner list of Hype technologies \cite{GartnerHype2016}. 
+Figure \ref{fig:story} shows a brief chronology of the main events in BCI history, starting from the early works on Neurofeedback in the 70s and walking throught the different paradigms.  In recent years, this discipline has gained mainstream public awareness with worldwide challenge competitions like Cybathlon~\cite{Riener2014,cybathlon2} and even been broadcasted during the inauguration ceremony of the 2014 Soccer World Cup.  New developments are approaching the out-of-the-lab high-bar and they are starting to be used in real world environments~\cite{Guger2017,Huggins2016}.  Moreover, BCI research had rampantly been advanced accomplishing a BCI Society, a BCI Journal, BCI Award, annual conference meetings, practical applications, myriads of startups companies and even included in the Gartner list of Hype technologies \cite{GartnerHype2016}. 
 
 From its root as assistive technology it has now expanded to include several application niches like Temporal induced disability, Neuroergonomy, early detection of human error, affective computing, biometric authentication, teleprescence (improvement of haptic interface), cyberinfrastructure and assistive robotics.  Intensive care units (ICU) and disorders of consciousness (DoC) \cite{Annen2018} (detection of remaining brain activity in comatose patients) are recent disciplines where BCI is showing tremendous prospects and possible applications.  
 
-A noteworthy aspect is that Stroke Rehabilitation is the only area where clinical trials for BCI are being conducted. It is understood that the neurofeedback provided by a BCI interface improves the prognosis of motor rehabilitation \cite{Ang2011}.
+Their adoption as a clinical tool is still years ahead.  Stroke Rehabilitation is the only area where clinical trials for BCI are being conducted. It is understood that the neurofeedback provided by a BCI interface improves the prognosis of motor rehabilitation \cite{Ang2011}.
 
 \vspace{10px}
 
@@ -53,7 +53,7 @@ A noteworthy aspect is that Stroke Rehabilitation is the only area where clinica
 \end{definition}
 \end{story}
 
-However, its primary objective, its core motive of moving into real applications for disabled people has yet to come \cite{Brunner2014,Jeunet2014,Toward2013}. They still lack the necessary robustness, and its performance is well behind any other method of human computer interaction, including any kind of detection of residual muscular movement~\cite{Clerc}. Among the many and current challenges of BCI \cite{Brunner2014} one which is still perennial is precisely their inability to be used and applied outside the BNCI community and specifically in clinical context.  
+Despite all this, its primary objective, its core motive of moving into real applications for disabled people has yet to come \cite{Brunner2014,Jeunet2014,Toward2013}. They still lack the necessary robustness, and its performance is well behind any other method of human computer interaction, including any kind of detection of residual muscular movement~\cite{Clerc}. Among the many and current challenges of BCI \cite{Brunner2014} one which is still perennial is precisely their inability to be used and applied outside the BNCI community and specifically in clinical context.  
 
 %BCIs are currently in a plateau.  BCNI Horizon, what the people is saying.  OpenBCI and the Wearables movement.
 % The convergence of invasive BCI and noninvasive BCI into a huge community and the appearance of myriad of comapnies that are exploring the technology.
@@ -73,8 +73,8 @@ Quoting experts in the field,
 
 \vspace{10px}
 
-Overall, as the feasibility of the system has been proved current challenges in BCI can be summarizing at 
-increasing the ITR, the pervasive low signal-to-noise ratio of brainwaves, particularly of noninvasive signals \cite{Lotte2018}, the reliability of the system, its portability, and the usability of the system \cite{Wang2018}, and at the same time decreasing the setup, the training and,calibration time and the subject's inter/intra variability. The search for practical relevant \textit{features} that convey good-enough information about the underlying cognitive process is still a goal to be achieved \cite{Perdikis2014}.  Ethical aspects of BCI \cite{Yuste2017} must also be considered and tackled: cybersecurity threats and privacy concerns,  agency and identity issues that might be occurring by deleterious plasticity with BCI users and the strict peg to the \textit{Primun non vocere}~\footnote{\textit{First, do not harm}, in reference to the Hippocratic Oath} mandate.
+The feasibility of the system has been proved but there are several challenges in BCI that need to be tackled. They can be summarizing as 
+increasing the ITR, the pervasive low signal-to-noise ratio of brainwaves, particularly of noninvasive signals \cite{Lotte2018}, the reliability of the system, its portability, and the usability of the system \cite{Wang2018}, and at the same time decreasing the setup, the training and,calibration time and the subject's inter/intra variability. The search for practical, relevant, and invariant \textit{features} that convey good-enough information about the underlying cognitive process is still a goal to be achieved \cite{Perdikis2014}.  Ethical aspects of BCI \cite{Yuste2017} must also be considered and handled: cybersecurity threats and privacy concerns,  agency and identity issues that might be occurring by deleterious plasticity with BCI users and the strict peg to the \textit{Primun non vocere}~\footnote{\textit{First, do not harm}, in reference to the Hippocratic Oath} mandate.
 
 
 \section{Brain Computer Interface Model and Architecture}
@@ -94,49 +94,62 @@ The basic model of any BCI is to take a multichannel digital signal $\mathbf{x}(
 
 \begin{equation}
 y(n) = T\left[\mathbf{x}(n)\right]
+\label{eq:bcimodel}
 \end{equation}
+
+What a BCI system must do, is to take at least a single bit of information out of $y(n)$ and use that information to derive some action. 
 
 \section{Signal Processing}
 
 From this signal processing point of view, BCIs are:
 
 \begin{itemize}
-\item Causal  $ y(n) = f( \mathbf{v}(m) ) $, where $ m \leq n $.  The action of a BCI system depends on the history of the captured brainwaves.
-\item Dynamic: $ y(n) = f( \mathbf{v}(m),  \mathbf{\dot{v}}(m),\mathbf{\ddot{v}}(m)) $.  A BCI system is dynamic, where the output function do not depend only on the current value being observed, it does depend on the dynamic interactions.
-\item Time invariant $ y(n) = T\left[ \mathbf{v}(n) \right] \Rightarrow y(n-k) = T\left[ \mathbf{v}(n-k) \right] $.  The output of a BCI system does not depend on the particular time frame where it is being used.  However, Adaptive BCI, which do adapt to the user behavior are in general time variant.
+\item Causal:  $ y(n) = f( \mathbf{v}(m) ) $, where $ m \leq n $.  The action of a BCI system depends on the history of the captured brainwaves.
+\item Dynamic: $ y(n) = f( \mathbf{v}(m),  \mathbf{\dot{v}}(m),\mathbf{\ddot{v}}(m),...) $.  A BCI system is dynamic, where the output function do not depend only on the current value being observed, it does depend on its dynamic interactions.
+\item Time invariant: $ y(n) = T\left[ \mathbf{v}(n) \right] \Rightarrow y(n-k) = T\left[ \mathbf{v}(n-k) \right] $.  The output of a BCI system does not depend on the particular time frame where it is being used.  However, Adaptive BCI, which do adapt to the user behavior are in general time variant.
 \item Nonlinear: a system is linear when $T\left[ a_1 \mathbf{v}(n) + a_2 \mathbf{v}(n) \right]  = a_1 T \left[ \mathbf{v}(n) \right] + a_2 T \left[ \mathbf{v}(n) \right] $. Due to brainwave complexity, BCI systems are not linear.
-\item Multirate or broadband \cite{Miller2010}.  The energy of brainwaves spectrum is not confined to a certain band, and almost all frequency channels convey some information.
+\item Multirate or broadband \cite{Miller2010}:  The energy of brainwave spectrum is not confined to a certain band, and almost all frequency channels convey some information.
 \end{itemize}
 
 There are several filters that can be applied to the system to eliminate artifacts, enhance the signal, and to ease the detection of the discriminative information.
 
-\textbf{Static Filters} like square or logartihmic were traditionally used in analog signal processing and are currently part of many of the brainwave measuring devices.  Wiener and Kallman Filters are usually applied to invasive techniques.  The filter, particularly when it is linear, can be viewed as:
+\textbf{Static Filters} like square or logartihmic were traditionally used in analog signal processing and are currently already embedded in the measuring device.  Wiener and Kallman Filters are usually applied to invasive techniques~\cite{NeuralEngineeringBookBinHe}.  The filter, particularly when it is linear, can be viewed as the matrix $M$ in:
 
 \begin{equation}
 y(n) = M T\left[\mathbf{x}(n)\right]
+\label{eq:filters}
 \end{equation}
 
-\textbf{Spatial filters} emphasize the arrangement of sensors around or within the head and the spatial structure of the information that is being captured. Derived from neuroscience research, locations on the head are structured according to neuroanatomical planes or axes (Figure \ref{fig:neuralplanes}) and normally the brain, or the head, are divided in different broad regions (Figure \ref{fig:neuroanatomy}).   
+\textbf{Spatial filters} are carefully adapted to the arrangement of sensors around or within the head and they emphasize the spatial structure of the information that is being captured. Derived from neuroscience research, locations on the head are structured according to neuroanatomical planes or axes and normally the brain, or the head, are divided in different anatomical regions (Figure \ref{fig:neuroanatomy}).   
 
 \textbf{Spectral Filters}, on the other hand, consider brainwaves as another digital signal, and they perform different transformations based on the spectral information contained within the signal $\mathbf{x}(n)$.  They can be combined creating  \textit{Filter Banks} to enhance signal quality. 
 
-\begin{figure}[]
-\centering
-\includegraphics[scale=0.5]{images/neuralplanes.png}
-\caption[Neural Planes]{Neuronal Planes regularly used in neuroscience research.  In BCI they are used to understand electrode location and spatial filters.}
-\label{fig:neuralplanes}
-\end{figure}
 
-\begin{figure}[]
+\begin{figure}[htb]
 \centering
-\includegraphics[scale=0.5]{images/neuroanatomy.png}
-\caption[Neuroanatomy]{Neuroanatomical regions of the brain.}
+\subfigure[Neuronal Planes]{\includegraphics[scale=0.4]{images/neuralplanes.png}}
+\subfigure[Neuroanatomical regions of the brain.]{\includegraphics[scale=0.4]{images/neuroanatomy.png}}
+\caption[Neuroanatomical structures of the brain]{Neuronal Planes regularly used in neuroscience research.  In BCI they are used to understand electrode location and spatial filters.}
 \label{fig:neuroanatomy}
 \end{figure}
 
+%\begin{figure}[]
+%\centering
+%\includegraphics[scale=0.5]{images/neuralplanes.png}
+%\caption[Neural Planes]{Neuronal Planes regularly used in neuroscience research.  In BCI they are used to understand electrode location and spatial filters.}
+%\label{fig:neuralplanes}
+%\end{figure}
+%
+%\begin{figure}[]
+%\centering
+%\includegraphics[scale=0.5]{images/neuroanatomy.png}
+%\caption[Neuroanatomy]{Neuroanatomical regions of the brain.}
+%\label{fig:neuroanatomy}
+%\end{figure}
+
 \section{The Forward and Inverse Model}
 
-Brainwaves are obtained via sensors, where each one of them captures only a part or a version of the information.  However, whatever is actually happening inside the brain can be only recovered indirectly from the \textit{Sensor Space} back to the real landscape where it is occurring inside the \textit{Source Space}.  This is a regular problem found in Engineering and it is not different in BCI.  \textit{Calculating} the signal on each a sensor from a projection of a known source of information from within the head is called \textit{The Forward Problem}\cite{Parra2008,WolpawJonathanR2012}  and doing the opposite, \textit{estimating} the contributions of different sources to whatever activity is found on sensors is called  \textit{The Inverse Problem} .  The latter is more relevant in BCI because it allows to determine source origins that can be traced more directly to cognitive activities.  However, this kind of problem is highly ill-posed and it is precisely where the majority of the efforts of this discipline are concentrated due to its complexity.
+Brainwaves are obtained via sensors, where each one of them captures only a part or a version of the information.  However, whatever is actually happening inside the brain can be only recovered indirectly from the \textit{Sensor Space}. From there, the information can be traced back to the real landscape where the information source is located, inside the \textit{Source Space}.  This is a regular problem found in Engineering and it is not different in BCI.  \textit{Calculating} the signal on each a sensor from a projection of a known source of information from within the head is called \textit{The Forward Problem}\cite{Parra2008,WolpawJonathanR2012}  and doing the opposite, \textit{estimating} the contributions of different sources to whatever activity is found on sensors is called  \textit{The Inverse Problem} .  The latter is more relevant in BCI because it allows to determine source origins that can be mapped more directly to cognitive activities.  However, this kind of problem is highly ill-posed and it is precisely where the majority of the efforts of this discipline are concentrated due to its complexity.
 
 Particularly for noninvasive electrophysiological modalities, an additional problem makes thing harder.  Due to its electromagnetic properties, the brain acts like conductive gel, and any signal that is generated inside the brain is irradiated to every direction and it can influence every sensor regardless of its position.  This is called \textit{Volume conduction} \cite{Nam2018} and can be visualized in Figure~\ref{fig:volconduction}.
 
@@ -150,7 +163,7 @@ Particularly for noninvasive electrophysiological modalities, an additional prob
 
 \section{Brain Imaging Technologies}
 
-The measuring technique determines the most important taxonomic differentiation in BCI.
+The measuring technique determines the most important taxonomic differentiation in BCI, according to how they extract the information from the CNS Central Nervous System.
 
 \begin{enumerate}
 \item fNIRS: functional Near Infra Red Spectroscopy.
@@ -162,7 +175,7 @@ The measuring technique determines the most important taxonomic differentiation 
 \item INR: Intracortical Neuron Recordings.  Particularly LFP and microelectrodes (Utah array).
 \end{enumerate}
 
-ECoG and INR are invasive technologies that require some neurosurgery and an implantation of electrodes inside the skull the former, and inside the brain the latter.  All the remaining imaging techniques are external and all of them are used in BCI research.  In line, Hybrid BCI, or Brain Neural Computer Interface, are BCI devices that use not only signals from the CNS, they also used any kind of available biosignal that can be volitionally modulated to transmit information (this is also called dependant BCI).  On the other hand, when the pace of the BCI is regulated by external stimulus it is called synchronous and when the user choose their own pace to transmit information, it is often called asynchronous or self-paced BCI.
+ECoG and INR are invasive technologies that require some neurosurgery and an implantation of electrodes inside the skull the former, and inside the brain the latter.  All the remaining imaging techniques are external or noninvasive.  Hybrid BCI, or Brain Neural Computer Interface, are BCI devices that use not only signals from the CNS, they utilize any kind of available biosignal that can be volitionally modulated to transmit information (this is called dependant BCI).  On the other hand, when the pace of the BCI is regulated by external stimulus it is called synchronous and when the user choose their own pace to transmit information, it is often called asynchronous or self-paced BCI.
 
 Recent years have seen an incredible advance of Passive BCI, pBCI \cite{Zander2010}.  The original definition of BCI did not included Passive modalities but per definition \ref{def:BCI} it is now part of this discipline.  The important aspect is that passive technologies do not entail necessary the volitional requirement to transmit information.  EEG-based passive BCI is a promising and advancing area of research and of commercial applications.
 
@@ -208,8 +221,8 @@ The device that captures these small variations in current potentials over the s
 
 \begin{figure}[]
 \centering
-\includegraphics[height=6cm,width=8cm]{images/emotivsubject.jpg}
-\includegraphics[height=6cm,width=8cm]{images/gTecsubject.jpg}
+\includegraphics[height=4cm,width=7cm]{images/emotivsubject.jpg}
+\includegraphics[height=4cm,width=7cm]{images/gTecsubject.jpg}
 \caption[Wearable portable Digital Electroencephalograph]{Consumer-grade digital electroencephalograph.}
 \label{fig:digitalelectroencephalograph}
 \end{figure}
@@ -256,6 +269,64 @@ Regarding how the EEG activity can be related to an external stimulus that is af
 The number of electrodes and their positions over the scalp determines a Spatial Structure: signal elements can be generalized, focal or lateralized, depending on in which channel (i.e. electrode) they are found.
 
 %Finally, indexes can be derived as  CFC, Cross Frequency Coupling,  Phase-Amplitude Coupling, Phase-Phase Coupling.
+
+
+\section{BCI EEG Paradigms}
+
+%Due to their popularity ($71.2\%$ of the BCI projects submitted to BCI Award 2016 were with EEG) BCI based on EEG are 
+
+\textit{BCI Paradigms} are referred to noninvasive EEG-based BCI configurations that can be used to transmit volitional information.  The popularity of EEG ($71.2\%$ of the BCI projects submitted to BCI Award 2016 were with EEG)~\cite{GugerBook2016} pushed the adoption of paradigms exclusively for noninvasive BCI.   Their chronology can be found in Figure \ref{fig:story}. They are
+
+\begin{enumerate}
+\item Steady State Visual Evoked Potentials
+\item Bereitschaftspotentials, Readiness Potential or Movement-Related Potentials
+\item Motor Imagery
+\item ERD/ERS: Event Related
+\item Wadsworth BCI
+\item Graz BCI
+\item Selective Attention
+\item P300
+\item N400
+\item Mental Tasks
+\item Operant Conditioning
+\item Slow Cortical Potentials
+\item Berlin BCI
+
+
+
+\end{enumerate}
+
+
+\section{State of the Art of BCI Algorithms for EEG processing}
+
+According to general layout of any BCI, Figure \ref{fig:bciblockdiagram}, specific algorithms or techniques are derived for both the Feature extraction and classification step.
+
+The most relevant features used in BCI are:
+
+\begin{itemize}
+\item Time points:  the sequence of time series, often, concatenated in time or space.
+\item Band Power: frequency based features.
+\item Complexity:  based on complexity measurements like entropy, fractal.
+\item Statistical: AR parameters, covariances matrix.
+\end{itemize}
+
+The most successfull used and verified classification methods for BCI \cite{Lotte2007} can be described as linear versions of popular Machine Learning tools.  Particularly, Support Vector Machines SVM, Linear Discriminant Analysis LDA and its variant SWLDA.  This one was also relevant for two reasons:  the first is that the stepwise identification of features improves the selection criteria and also the spatial filter that this procedure encompass.  Additionally, and more from a more pragmatic perspective, this method was included in the popular BCI2000~\cite{bci2000} package and was the default option for anyone doing ERP identification.  Spatial Filters have also being incorporated and have shown substantial improvement in classification accuracies.  The now classical Common Spatial Patterns CSP for the identification of Motor Imagery as well as the xDAWN algorithm for P300 identification.
+
+Recent years (circa 2018) have seen the evolution of the methodology but the focus was not centered on any particular classification algorithm.  Instead how they are used became much more important~\cite{Lotte2018}.
+
+\begin{itemize}
+\item Ensemble Classifiers: SVM ensembles~\cite{Rakotomamonjy2008} and variants of Random Forest~\cite{Steryl2014}.  Features are segmented and divided and the forest performs a classification step on each part and maximizes classification accuracies.
+\item Cross-Paradigm BCI: the use of Reinforced Signal RS with ErrP feedback or the use of SSVEP in combination with P300 detection~\cite{aca}.
+\item Adaptive Classifiers: the parameters of the classifiers are adapted continuously and online adapting to the natural variation of the EEG signals~\cite{Lotte2018}.
+\item Transfer Learning: transfer the calibration information obtained by users to new subjects.  This aims to eases the issue of the intra-subject variability in BCI .
+\item RGC: Rienmann Geometry Classifiers
+\item Tensor-based BCI
+\item Deep Learning: heavily tried but without significant success.
+\end{itemize}
+
+%What if we can find an automatic system to identify, search, and even classify EEG signals based on the morphological visual structure of the signal, mimicking what the physician does, but using automated tools to do so?
+
+\section{EEG Waveform Analysis}
 
 \subsection{EEG Waveform Characterization}
 
@@ -354,6 +425,8 @@ Moreover, EEG data acquisition is a key procedure during the assessment of patie
 %The traditional approach do not consider waveform even though the brain oscilations are in general nonsinusoidal (reference)
 % Waveform characterization, on the other hand, has been extensively used in artifact detection and averaging.
 
+\subsection{EEG Waveform Analysis Algorithms}
+
 Shape or waveform analysis methods are considered as nonparametric (in opposition to statistical or dynamical models).  They explore signal's time-domain metrics or even derive more complex indexes from it \cite{Thakor2009}. 
 
 One of the earliest approach to automatically process EEG data is the Peak Picking method.  Although of limited usability, peak picking has been used to determine latency of transient events in EEG \cite{Jaskowski2000,Zhang2011}.  Straightforward in its implementation, it consists in selecting a component, a simple component based on the expected location of its more prominent deflection \cite{Ouyang2017}.  Evoked Potentials (EPs) and Event Related Potentials (ERPs) are transient component that may arise as a brain response to an external visual, tactile or auditory stimulus.  Particularly, EPs are regularly used to assess auditory response in infants. ERPs are precisely characterized in this manner, where the name of many of the EEG features evoke directly a peak within the component, e.g. P300 or P3a, P3b or N100.  This leads to a natural procedure to classify them visually by selecting appropriate peaks and matching their positions and amplitudes in an orderly manner.  The letter provides the polarity (Positive or Negative) and the numbering shows the time referencing the stimulus onset, or the ordinal position of each peak (first, second, etc).   
@@ -418,36 +491,21 @@ Other works on EEG explored the idea to extend human capacities analyzing EEG wa
 %versa (Figure 1B).
 
 
-EEG signals are remarkably complex and have been characterized as a multichannel non-stationary stochastic process.  Additionally, they have high variability between different subjects and even between different moments for the same subject, requiring adaptive and co-adaptive calibration and learning procedures~\cite{Clerc}.  Hence, this imposes an outstanding challenge that is necessary to overcome in order to extract information from raw EEG signals.
+%\item Merging of Increasing and Decreasing Sequences
+%\item Local Binary Patterns (1-D LNBP, 1D-LBP and LBP)
 
-Moreover, EEG markers~\cite{Clerc} that can be used to  transmit volitional information are limited, and each one of them has a particular combination of appropriate methods to decode them. Inevitably, it is necessary to implement  distinct and specialized algorithmic methods, to filter the signal, enhance its Signal to Noise Ratio (SNR), and try to determine some meaning out of it.  
+Pursuit algorithms refer, in their many variants, blind source separation(REF) techniques that assume that the EEG signal is a linear combination of different words that are derived from a template or dictionary database.  The underlying idea is to find the best template out of a dictionary that matches against the signal and substract it from the signal.  The algorithm works iteratively  (ref Cohen book, Sanei book, Mallat and Zhang 1993) identifying the templates and their coefficients.  The set of selected templates and coefficients is a feature.  
 
-\section{BCI EEG Paradigms}
+Another method that explores the waveform is Bond and Pompe Permutation Entropy (REF original paper).  This has been extensively used in EEG processing, particularly for Epilepsy pre-ictal detection.  This method generates a feature based on the orderly arrangement of sequential samples, and then derives a metric which is based on the amount of entropy of each code within the signal.   For instance, a pure random signal, will achieve the maximum entropy value due to the probability of each code being equal for all of them. There are many variants of this idea that instrinsically explore the waveform complexity (Lempel Ziv, Permutation Entropy a new feature for brain computer interfaces).
 
-%Due to their popularity ($71.2\%$ of the BCI projects submitted to BCI Award 2016 were with EEG) BCI based on EEG are 
+Slope Horizontal Chain Code and Slope Chain Code (SCC) (ref a SCC paper y a SHCC paper) derive a feature of the sequence of sample points based on the angle between the horizontal segment and any segment other segment, one by one.  These are very similar to Local Binary Patterns  (1-D LNBP, 1D-LBP and LBP) \cite{fdsfsdfs} algorithms.
+Finally, the  MIDS Merging of Increasing and Decreasing Sequences do not generate a feature but it provides a filter or downsampling scheme which is based on the waveform structure.
 
-\textit{BCI Paradigms} are referred to noninvasive EEG BCI configurations that can be used to transmit volitional information.  They are
+%EEG signals are remarkably complex and have been characterized as a multichannel non-stationary stochastic process.  Additionally, they have high variability between different subjects and even between different moments for the same subject, requiring adaptive and co-adaptive calibration and learning procedures~\cite{Clerc}.  Hence, this imposes an outstanding challenge that is necessary to overcome in order to extract information from raw EEG signals.
+%
+%Moreover, EEG markers~\cite{Clerc} that can be used to  transmit volitional information are limited, and each one of them has a particular combination of appropriate methods to decode them. Inevitably, it is necessary to implement  distinct and specialized algorithmic methods, to filter the signal, enhance its Signal to Noise Ratio (SNR), and try to determine some meaning out of it.  
 
-
-\begin{enumerate}
-\item Steady State Visual Evoked Potentials
-\item Bereitschaftspotentials, Readiness Potential or Movement-Related Potentials
-\item Motor Imagery
-\item ERD/ERS: Event Related
-\item Wadsworth BCI
-\item Graz BCI
-\item Selective Attention
-\item P300
-\item N400
-\item Mental Tasks
-\item Operant Conditioning
-\item Slow Cortical Potentials
-\item Berlin BCI
-\end{enumerate}
+All these methods provide a feature that can be used as a template, whereas all of them are based on metrics that can be extracted from the shape of the signal.  These features can be used to create dictionaries or template databases.  These templates provide the basis for the pattern matching algorithm and offline classification.
 
 
-\section{BCI Algorithms for EEG processing}
 
-Classification methods for BCI (Lotte 2007)
-
-%What if we can find an automatic system to identify, search, and even classify EEG signals based on the morphological visual structure of the signal, mimicking what the physician does, but using automated tools to do so?
