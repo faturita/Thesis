@@ -14,6 +14,10 @@
 \usepackage{graphicx}
 \usepackage{color}
 
+%\usepackage[backend=biber,style=alphabetic,citestyle=authoryear]{biblatex}
+
+%\usepackage{natbib}    % Change bibstyle.
+
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -72,6 +76,7 @@
 
 %-------------------------------------
 
+%\addbibresource{Bibliography.bib}    % Use with biblatex
 
 \begin{document}
 
@@ -133,7 +138,7 @@ like this.}
 %}
  
 \begin{abstract}
-This work is part of worldwide effort to provide a neural interaface which would be able to transmit direct information
+This work is part of worldwide effort to provide a neural interface which would be able to transmit direct information
 from the brain and use that information to exert external control.
 
 In recent years, the appealing idea of a direct interface between the human brain and an artificial system, called Brain Computer Interface (BCI) or Brain Machine Interfaces (BMI), has proved the feasibility of a distinct non-biological communication channel to transmit information from the Central Nervous System (CNS) to a computer device. Its most important and straightforward application is for people affected by neuro-degenerative diseases.
@@ -281,6 +286,7 @@ Esta tesis está estructurada de la siguiente forma
 %BIBLIOGRAFIA
 \linespread{1.44}
 \bibliographystyle{amsplain}
+%\bibliographystyle{ksfh_nat}
 \bibliography{Bibliography}
 
 % =================================================================

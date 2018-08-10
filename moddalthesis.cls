@@ -1,5 +1,5 @@
 %%
-%% This is file `dalthesis.cls',
+%% This is file `moddalthesis.cls',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
@@ -42,7 +42,7 @@
 
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{dalthesis}
+\ProvidesClass{moddalthesis}
    [\filedate\space v\fileversion\space
     Dalhousie University thesis class]
 \newif\ifdal@title@page        \dal@title@pagetrue
@@ -314,7 +314,7 @@
 \newcount\dal@supervisornum \dal@supervisornum=0
 \def\supervisor#1{%
    \ifnum\dal@supervisornum=2
-      \ClassWarningNoLine{dalthesis}%
+      \ClassWarningNoLine{moddalthesis}%
          {Sorry, provisions have been made to allow only
           two supervisors}%
    \else
@@ -331,7 +331,7 @@
 \setcounter{dal@readernum}{0}
 \def\reader#1{%
    \ifnum\value{dal@readernum}=5
-      \ClassWarningNoLine{dalthesis}%
+      \ClassWarningNoLine{moddalthesis}%
          {Sorry, provisions have been made to allow only
           five readers}%
    \else
@@ -425,7 +425,7 @@
    \space \number\the\year}
 \def\convocation#1#2{%
    \gdef\@convocationmonth{#1}\gdef\@convocationyear{#2}}
-\def\@convwarn{\ClassWarningNoLine{dalthesis}%
+\def\@convwarn{\ClassWarningNoLine{moddalthesis}%
    {Convocation date may be incorrect}}
 \ifnum\month<5
    \def\@convocationmonth{May}
@@ -868,7 +868,7 @@ Hago entrega en este acto de un ejemplar de la Tesis en formato impreso y otro e
    {\vfil
     \advance \ab@page by \arabic{page}
     \ifnum\ab@page>0
-       \ClassWarningNoLine{dalthesis}%
+       \ClassWarningNoLine{moddalthesis}%
           {Abstract longer than one page}
     \fi}
 \newcommand{\ackname}{Acknowledgements}
@@ -891,7 +891,7 @@ Hago entrega en este acto de un ejemplar de la Tesis en formato impreso y otro e
 \renewcommand{\contentsname}{Table of Contents}
 \def\frontmatter{%
    \typeout{Unavoidable over/underfulls may occur in the first^^J%
-            few pages of dalthesis. These can usually be ignored.^^J%
+            few pages of moddalthesis. These can usually be ignored.^^J%
             However, if uncorrectable errors occur, notify staff.}
    \pagenumbering{roman}
    \pagestyle{plain}
@@ -951,7 +951,7 @@ Hago entrega en este acto de un ejemplar de la Tesis en formato impreso y otro e
    \fi
    }
 \def\mainmatter{\newpage
-        \typeout{Dalthesis preface pages completed.}
+        \typeout{Moddalthesis preface pages completed.}
         \pagenumbering{arabic}
         \properpagestyle
         \dal@set@textheight{\dal@textheight@default}
@@ -1006,8 +1006,8 @@ Hago entrega en este acto de un ejemplar de la Tesis en formato impreso y otro e
 \def\nobib{\dal@print@bibfalse}
 \msc
 \properpagestyle
-\InputIfFileExists{dalthesis.cfg}
+\InputIfFileExists{moddalthesis.cfg}
    {\typeout{Local config file dalthesis.cfg used.}}{}
 \endinput
 %%
-%% End of file `dalthesis.cls'.
+%% End of file `moddalthesis.cls'.

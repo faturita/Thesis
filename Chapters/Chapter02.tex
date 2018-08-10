@@ -1,26 +1,76 @@
 \chapter{From signals to images}
 
-Contiene el método y el enfoque.
+%Contiene el método y el enfoque.
 
-Mental Chrometry and averaging 
+%Mental Chrometry and averaging 
 %https://www.ncbi.nlm.nih.gov/pmc/articles/PMC548951/
 
 
 
-Broadly speaking, I would say there are three categories of neuroimaging: structural, functional, and chemical. These can then be subdivided into non-invasive, semi-invasive, and invasive, which delineate the degree of physical invasiveness involved in the imaging method. That is, cutting open the skull and implanting electrodes would be considered invasive, whereas putting the electrodes on the head (such as in scalp EEG) is non-invasive. Because I'm not proficient in animal imaging methods I will focus on human studies, most of which are non- or semi-invasive, with a few exceptions.
+%Broadly speaking, I would say there are three categories of neuroimaging: structural, functional, and chemical. These can then be subdivided into non-invasive, semi-invasive, and invasive, which delineate the degree of physical invasiveness involved in the imaging method. That is, cutting open the skull and implanting electrodes would be considered invasive, whereas putting the electrodes on the head (such as in scalp EEG) is non-invasive. Because I'm not proficient in animal imaging methods I will focus on human studies, most of which are non- or semi-invasive, with a few exceptions.
+%
+%Structural Neuroimaging
+%Any technique that images structures of the brain. This would include CT (Computed Tomography), MRI (Magnetic Resonance Imaging), and DTI (Diffusion Tensor Imaging).
+%
+%CT scanning is non-invasive uses x-rays to image tissue density. It is very rapid and can detect cerebral hemorrhaging in the early (acute) stage. It is most often, therefore, used for medical purposes.
+%
+%Structural MRI is non-invasive and often provides better contrast resolution than CT with similar (and again, often better) spatial resolution. Unlike CT, structural MRI provides excellent tissue delineation, allowing users to visualize boundaries between grey and white matter in the brain, for example. Structural MRI is often used in neuroimaging to calculate volume of different brain regions or to define regions of brain damage or tumor.
+%
+%DTI is non-invasive and can be done on most research MRI scanners. It involves using a special scanning and reconstruction sequence to image the flow (or, more specifically, constraints in the flow) of water through the brain. Because water flow is constrained by the axons (white matter) in the brain, it can be used to image large axonal connections between brain regions.
+%
+%
+%Functional Neuroimaging
+%Any technique that quantifies some metric of brain activity. This would include EEG (ElectroEncephaloGraphy), MEG (MagnetoEncephaloGraphy), fMRI (functional MRI), PET/SPECT (Positron Emission Tomography/Single Positron Emission Computed Tomography), NIRS (Near-InfraRed Spectroscopy), and, to a certain extent, TMS (Transcranial Magnetic Stimulation) and TDCS (Transcranial Direct Current Stimulation), along with several others.
 
-Structural Neuroimaging
-Any technique that images structures of the brain. This would include CT (Computed Tomography), MRI (Magnetic Resonance Imaging), and DTI (Diffusion Tensor Imaging).
+In how many ways EEG signals can be mapped into 2D images ?
 
-CT scanning is non-invasive uses x-rays to image tissue density. It is very rapid and can detect cerebral hemorrhaging in the early (acute) stage. It is most often, therefore, used for medical purposes.
+\begin{equation}
+I(x,y,n) = 0
+\label{eq:standarizedaverages}
+\end{equation}
 
-Structural MRI is non-invasive and often provides better contrast resolution than CT with similar (and again, often better) spatial resolution. Unlike CT, structural MRI provides excellent tissue delineation, allowing users to visualize boundaries between grey and white matter in the brain, for example. Structural MRI is often used in neuroimaging to calculate volume of different brain regions or to define regions of brain damage or tumor.
+which is a three dimensional manifold.
 
-DTI is non-invasive and can be done on most research MRI scanners. It involves using a special scanning and reconstruction sequence to image the flow (or, more specifically, constraints in the flow) of water through the brain. Because water flow is constrained by the axons (white matter) in the brain, it can be used to image large axonal connections between brain regions.
+\paragraph{Channel by Channel binary image }
+\begin{equation}
+I(z_1,z_2) = \left\{ \begin{array}{rl}
+255 & \text{if} \,  z_1 = \gamma \cdot n; \; z_2 = \tilde{x}(n,c) + z(c) \\
+0   & \mbox{otherwise}
+\end{array}\right.
+\label{eq:images}
+\end{equation}
+\paragraph{Channel by channel grey color image}
+\begin{equation}
+I(z_1,z_2) = \left\{ \begin{array}{rl}
+255 & \text{if} \,  z_1 = \gamma \cdot n; \; z_2 = \tilde{x}(n,c) + z(c) \\
+0   & \mbox{otherwise}
+\end{array}\right.
+\label{eq:images}
+\end{equation}
+\paragraph{Multichannel Full grey color image}
+\begin{equation}
+I(z_1,z_2) = \left\{ \begin{array}{rl}
+255 & \text{if} \,  z_1 = \gamma \cdot n; \; z_2 = \tilde{x}(n,c) + z(c) \\
+0   & \mbox{otherwise}
+\end{array}\right.
+\label{eq:images}
+\end{equation}
+\paragraph{Multichannel Binary image}
+\begin{equation}
+I(z_1,z_2) = \left\{ \begin{array}{rl}
+255 & \text{if} \,  z_1 = \gamma \cdot n; \; z_2 = \tilde{x}(n,c) + z(c) \\
+0   & \mbox{otherwise}
+\end{array}\right.
+\label{eq:images}
+\end{equation}
+\paragraph{Channel by channel full grey color image}
 
 
-Functional Neuroimaging
-Any technique that quantifies some metric of brain activity. This would include EEG (ElectroEncephaloGraphy), MEG (MagnetoEncephaloGraphy), fMRI (functional MRI), PET/SPECT (Positron Emission Tomography/Single Positron Emission Computed Tomography), NIRS (Near-InfraRed Spectroscopy), and, to a certain extent, TMS (Transcranial Magnetic Stimulation) and TDCS (Transcranial Direct Current Stimulation), along with several others.
+
+\paragraph{Standardized plotting}
+
+Autoscaled plotting.
+
 
 \subsubsection{Signal Plotting} \label{Plot}
 

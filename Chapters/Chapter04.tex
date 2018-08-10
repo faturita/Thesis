@@ -21,15 +21,15 @@ They tend to be more prominent  and appear stronger in occipital regions. We pro
    
 Alpha Waves are 10 Hz signals, physiologically consistent across subjects, and they are associated with synchronous inhibitory processes and attention shifting \cite{c3}. They tend to be more prominent while the eyes are closed and appear stronger in occipital regions ($O_1$ and $O_2$ according to the 10-20 system \cite{c6,c11}). As can be seen in Fig. \ref{psd}, if we process the Drowsiness dataset with a 8-12Hz band-pass filter and calculate the average power spectral density across subjects and for each channel, we can see how clearly the value corresponding to class 2 (eyes closed) is always higher than the value for class 1 (eyes open), confirming the expected result.  This also verifies how the differentiation information is contained mostly in the frequency-domain.
 
-   \begin{figure}[thpb]
-      \centering
-      \setlength\fboxsep{0pt}
-	  \setlength\fboxrule{0.5pt}
-      \fbox{\includegraphics[width=2.5cm, height=1.8cm]{images/PSDExperiment1VsExperiment5.png}}
-      \fbox{\includegraphics[width=5cm, height=1.8cm]{images/s_1_e_1_c_7_4.png}}
-      \caption[Power Spectral Density of Alpha Waves]{PSD values for every channel (x-axis) are being shown for class 1, dashed line, and class 2, solid line, for Dataset I (left). Sample EEG plot image corresponding to the subject 1 (center) for class 1 (eyes open), for the channel 7 ($ O_1 $) }
-      \label{figure1}
-   \end{figure}
+%   \begin{figure}[thpb]
+%      \centering
+%      \setlength\fboxsep{0pt}
+%	  \setlength\fboxrule{0.5pt}
+%      \fbox{\includegraphics[width=2.5cm, height=1.8cm]{images/PSDExperiment1VsExperiment5.png}}
+%      \fbox{\includegraphics[width=2cm, height=1.8cm]{images/s_1_e_1_c_7_4.png}}
+%      \caption[Power Spectral Density of Alpha Waves]{PSD values for every channel (x-axis) are being shown for class 1, dashed line, and class 2, solid line, for Dataset I (left). Sample EEG plot image corresponding to the subject 1 (center) for class 1 (eyes open), for the channel 7 ($ O_1 $) }
+%      \label{figure1}
+%   \end{figure}
    
 First, an in-house dataset (see [12] for details) which characterizes one of the most prominent cognitive phenomena, occipital visual alpha rhythm Event Related Synchronization on closed eyes, was used.  We gather the first dataset using the EEG EPOC Emotiv Headset using the C++ SDK library provided by the manufacturer and an in-house developed program. The device has 14 channels, and a sampling rate of 128 Hz \cite{c11}. Ten random healthy subjects between ages 20-50 were recruited and they accepted to wear the device and to participate in the experiments.  A 30 minutes procedure was required to adjust the headset to each user, in order to decrease the impedance on each electrode. Once the set up was finished, each subject was instructed to sit in a relaxed position. Subsequently, she/he was instructed to watch the screen for 15 seconds, trying to avoid, as much as possible, to abruptly move its body or head.  During that time, a single-trial of 10 seconds-length window of EEG signals data was transferred to a PC and logged into standard binary files. After a 5 minutes pause, the subject was asked to close the eyes avoiding any movement while keeping the same pose for another batch of 15 seconds.  Again, 10 seconds of EEG information were transferred and logged into the PC. This finally gave us a sample of 10 subjects,  2 trial per subject, one for each class, composed of 14 channels, 10-seconds length or 1280 samples per window. 
 
