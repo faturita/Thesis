@@ -5,31 +5,47 @@
 %Mental Chrometry and averaging 
 %https://www.ncbi.nlm.nih.gov/pmc/articles/PMC548951/
 
+\section{EEG plotting}
+
+The plotting of the EEG is instrisically mixed with the nuisances of the electroencephalography itself.  Plotting goes by using a chart recorded with a single pen (REF Jestico).   Voltages are represented in a vertical axis while time is represented in the horizontal axis, in a Cartesian arrangement. 
+
+\begin{enumerate}
+\item Sensitivity: also termed gain due the amplification procedure.  It was represented in $ \frac{mV}{mm}$.  In the digital form, it is $\frac{\mu V}{pixel}$.
+\item Epoch/Paper speed: the time span that is represented in a single screen.  For paper strips it was used to be $10s$ (Figure FIG).  In the digital version is $ \frac{\lambda}{pixel}$.
+\end{enumerate}
+
+Logarithmic plotting, montage, calibration (cite Electroencphalograpy for empilepsy society)
 
 
-%Broadly speaking, I would say there are three categories of neuroimaging: structural, functional, and chemical. These can then be subdivided into non-invasive, semi-invasive, and invasive, which delineate the degree of physical invasiveness involved in the imaging method. That is, cutting open the skull and implanting electrodes would be considered invasive, whereas putting the electrodes on the head (such as in scalp EEG) is non-invasive. Because I'm not proficient in animal imaging methods I will focus on human studies, most of which are non- or semi-invasive, with a few exceptions.
-%
-%Structural Neuroimaging
-%Any technique that images structures of the brain. This would include CT (Computed Tomography), MRI (Magnetic Resonance Imaging), and DTI (Diffusion Tensor Imaging).
-%
-%CT scanning is non-invasive uses x-rays to image tissue density. It is very rapid and can detect cerebral hemorrhaging in the early (acute) stage. It is most often, therefore, used for medical purposes.
-%
-%Structural MRI is non-invasive and often provides better contrast resolution than CT with similar (and again, often better) spatial resolution. Unlike CT, structural MRI provides excellent tissue delineation, allowing users to visualize boundaries between grey and white matter in the brain, for example. Structural MRI is often used in neuroimaging to calculate volume of different brain regions or to define regions of brain damage or tumor.
-%
-%DTI is non-invasive and can be done on most research MRI scanners. It involves using a special scanning and reconstruction sequence to image the flow (or, more specifically, constraints in the flow) of water through the brain. Because water flow is constrained by the axons (white matter) in the brain, it can be used to image large axonal connections between brain regions.
-%
-%
-%Functional Neuroimaging
-%Any technique that quantifies some metric of brain activity. This would include EEG (ElectroEncephaloGraphy), MEG (MagnetoEncephaloGraphy), fMRI (functional MRI), PET/SPECT (Positron Emission Tomography/Single Positron Emission Computed Tomography), NIRS (Near-InfraRed Spectroscopy), and, to a certain extent, TMS (Transcranial Magnetic Stimulation) and TDCS (Transcranial Direct Current Stimulation), along with several others.
+\begin{story}[Neuroimaging]
+With the advent of digital computers and the digital revolution, Plotting has become imaging.  Neuroimaging (CIte book Rodrigo Q Q) means mapping activity or structure to neuroanatomical regions (see figure anatomical structures).
 
-In how many ways EEG signals can be mapped into 2D images ?
+There are currently three categories of neuroimaging: structural, functional, and chemical. 
+
+\begin{itemize}
+\item Structural Neuroimaging
+Any technique that images structures of the brain. This would include CT (Computed Tomography), MRI (Magnetic Resonance Imaging), and DTI (Diffusion Tensor Imaging).
+
+CT scanning is non-invasive uses x-rays to image tissue density. It is very rapid and can detect cerebral hemorrhaging in the early (acute) stage. It is most often, therefore, used for medical purposes.
+
+Structural MRI is non-invasive and often provides better contrast resolution than CT with similar (and again, often better) spatial resolution. Unlike CT, structural MRI provides excellent tissue delineation, allowing users to visualize boundaries between grey and white matter in the brain, for example. Structural MRI is often used in neuroimaging to calculate volume of different brain regions or to define regions of brain damage or tumor.
+
+DTI is non-invasive and can be done on most research MRI scanners. It involves using a special scanning and reconstruction sequence to image the flow (or, more specifically, constraints in the flow) of water through the brain. Because water flow is constrained by the axons (white matter) in the brain, it can be used to image large axonal connections between brain regions.
+
+\item Functional Neuroimaging
+Any technique that quantifies some metric of brain activity. This would include EEG (ElectroEncephaloGraphy), MEG (MagnetoEncephaloGraphy), fMRI (functional MRI), PET/SPECT (Positron Emission Tomography/Single Positron Emission Computed Tomography), NIRS (Near-InfraRed Spectroscopy), and, to a certain extent, TMS (Transcranial Magnetic Stimulation) and TDCS (Transcranial Direct Current Stimulation), along with several others.
+\end{itemize}
+
+\end{story}
+
+In how many ways EEG signals can be mapped into 2D greyscale or binary images ?
 
 \begin{equation}
 I(x,y,n) = 0
 \label{eq:standarizedaverages}
 \end{equation}
 
-which is a three dimensional manifold.
+which is a three dimensional surface.
 
 \paragraph{Channel by Channel binary image }
 \begin{equation}
@@ -64,27 +80,6 @@ I(z_1,z_2) = \left\{ \begin{array}{rl}
 \label{eq:images}
 \end{equation}
 \paragraph{Channel by channel full grey color image}
-
-
-
-\paragraph{Standardized plotting}
-
-Autoscaled plotting.
-
-
-\subsubsection{Signal Plotting} \label{Plot}
-
-Averaged signal segments are standardized and scaled by 
-
-\begin{equation}
-\tilde{x}(n,c) = \left \lfloor{ \gamma \cdot \frac{( x(n,c) - \bar{x}(c)  )}{ \hat{\sigma}(c) } }\right \rfloor, \; n \in \{ 1, \dots, n_{max}\},\; c \in \{1,2,\dots,Ch\}
-\label{eq:standarizedaverages}
-\end{equation}
-
-\noindent where $\gamma > 0$ is an input parameter of the algorithm and  it is related to the image scale. In addition, $ x(n,c) $ is the point-to-point averaged multichannel EEG signal for the sample point $n$ and for channel $c$. Lastly, $$\bar{x}(c) =\frac{1}{n_{max}}\sum_{n=1}^{n_{max}}x(n,c)$$ and $$ \hat{\sigma}(c) = (\frac{1}{n_{max}-1}\sum_{n=1}^{n_{max}}(x(n,c)-\bar{x}(c))^2 )^{\frac{1}{2}}$$ are the mean and estimated standard deviation of $x(n,c), n \in \{1,\dots,n_{max}\} $, for each channel $c$.
-
-Consequently, the image is constructed by placing the sample points according to
-
 \begin{equation}
 I(z_1,z_2) = \left\{ \begin{array}{rl}
 255 & \text{if} \,  z_1 = \gamma \cdot n; \; z_2 = \tilde{x}(n,c) + z(c) \\
@@ -93,14 +88,46 @@ I(z_1,z_2) = \left\{ \begin{array}{rl}
 \label{eq:images}
 \end{equation}
 
-\noindent where $ (z_1,z_2) \in \mathbb{N} \times \mathbb{N}$ iterate over the width (based on the length of the signal segment) and height (based on the peak-to-peak amplitude) of the newly created image,  $n \in \{1, \dots, n_{max}\}$ and $c \in \{1,2,\dots,Ch\}$.  The values $z(c)$, $c \in \{1,2,\dots,Ch\}$ are the location on the image where the signal's zero value has to be located in order to fit the entire signal within the image for each c:
+\section{Signal to Image transformation}
+
+To extract features from an image, first you need an image.  And this image needs to represent the underlying signal.  The easiest way to do it, replicating the traditional analog or digital EEG is to plot a line on background.  This is a black-and-white binary image.  In principle, is completely arbitrary the color selection (white for the line, black for the background).
+
+The value $z^l(c)$ is the image vertical position where the signal's zero value has to be situated in order to fit the entire signal within the image for each channel c:
 
 \begin{equation}
 z(c) = \left \lfloor{ \frac{\max_{n} \tilde{x}(n,c)  - \min_{n} \tilde{x}(n,c) }{2} }\right \rfloor -   \left \lfloor{ \frac{\max_{n} \tilde{x}(n,c)  + \min_{n} \tilde{x}(n,c)}{ 2} }\right \rfloor
 \label{eq:zerolevel}
 \end{equation}
 
-\noindent where the minimization and maximization are carried out for $n$ varying between ${1 \leq n\leq n_{max}}$.
+\noindent where the minimization and maximization are carried out for $n$ varying between ${1 \leq n\leq n_{max}}$, and $ \lfloor \cdot  \rfloor $ denote the rounding to the smaller nearest integer of the number.
+
+
+\paragraph{Standardized plotting}
+
+Averaged signal segments are standardized and scaled for $1 \leq n \leq n_{max}$ and $1 \leq c \leq C$ by 
+
+\begin{equation}
+\tilde{x}(n,c) = \left \lfloor{ \gamma \; \frac{( x(n,c) - \bar{x}(c)  )}{ \hat{\sigma}(c) } }\right \rfloor
+\label{eq:standarizedaverages}
+\end{equation}
+
+\noindent where $\gamma > 0$ is an input parameter of the algorithm and  it is related to the image scale. In addition, $ x^l(n,c) $ is the point-to-point averaged multichannel EEG signal for the sample point $n$ and for channel $c$. Lastly, $$\bar{x}^l(c) =\frac{1}{n_{max}}\sum_{n=1}^{n_{max}}x^l(n,c)$$ and $$ \hat{\sigma}^l(c) = (\frac{1}{n_{max}-1}\sum_{n=1}^{n_{max}}(x^l(n,c)-\bar{x}^l(c))^2 )^{\frac{1}{2}}$$ are the mean and estimated standard deviation of $x^l(n,c), 1 \leq n \leq n_{max}$, for each channel $c$.
+
+\paragraph{Autoscaled plotting}
+
+\paragraph{Binary Image}
+
+Consequently, a binary image $I^{(c)}$ is constructed according to
+
+\begin{equation}
+I^{(c)}(z_1,z_2) = \left\{ \begin{array}{rl}
+255 & \text{if} \,  z_1 = \gamma \  n; \! z_2 = \tilde{x}(n,c) + z(c) \\
+0   & \mbox{otherwise}
+\end{array}\right.
+\label{eq:images}
+\end{equation}
+
+\noindent with $255$ being white and representing the signal's value location and $0$ for black which is the background contrast, conforming a black-and-white plot of the signal.  Pixel arguments $ (z_1,z_2) \in \mathbb{N} \times \mathbb{N}$ iterate over the width (based on the length of the signal segment) and height (based on the peak-to-peak amplitude) of the newly created image with $1 \leq n \leq n_{max}$ and $1 \leq c \leq C$.  
   
-In order to complete the plot from the pixels, the Bresenham \cite{Bresenham1965,Ramele2016} algorithm is used to interpolate straight lines between each pair of  consecutive pixels.
+In order to complete the plot $I^{(l,c)}$ from the pixels, the Bresenham \cite{Bresenham1965,Ramele2016} algorithm is used to interpolate straight lines between each pair of  consecutive pixels.
 
