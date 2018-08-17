@@ -1,6 +1,8 @@
 \chapter{The Histogram of Oriented Gradients of Signal Plots}
-
+\label{chapter:three}
 In this section the generalities of the method will be described.
+
+\section{Introduction}
 
 Image transformation and variants to transform a signal into an image.
 
@@ -11,7 +13,7 @@ The research that encompass how to extract information
 
 The work of Edelman, Intrator and Poggio 1997 how the visual cortex sees features was the inspiration to the use of the histogram of gradient orientations to 
 
-\subsubsection{Feature Extraction: Histogram of Gradient Orientations}
+\section{Feature Extraction: Histogram of Gradient Orientations}
 \label{SIFT}
 
 
@@ -52,3 +54,16 @@ Lastly, the fixed value of $ 3 $ is a magnification factor which corresponds to 
 %It can be observed that the histogram is computed by multiplying by $ |J(\mathbf{p})| $, so the method considers both, the magnitude and the orientation of the gradient vector. 
 
 Fig.~\ref{fig:sampledescriptor} shows an example of a patch and a scheme of the histogram computation. In (A) a plot of the signal and the patch centered around the keypoint is shown. In (B) the possible orientations on each patch are illustrated.  Only the upper-left four blocks are visible.  The first eight orientations of the first block, are labeled from $1$ to $8$ clockwise. The orientations of the second block $ B_{1,2} $ are labeled from $9$ to $16$.  This labeling continues left-to-right, up-down until the eight orientations for all the sixteen blocks are assigned. They form the corresponding $\mathbf{kp}$-descriptor of $128$ coordinates. Finally, in (C) an enlarged image plot is shown where the oriented gradient vector for each pixel can be seen.
+
+\section{Keypoint Location}
+
+\section{Oscillatory Processes}
+
+\section{Transient Events}
+
+\section{Mapping Functions}
+
+\section{Implementation}
+
+\subsection{Matlab}
+

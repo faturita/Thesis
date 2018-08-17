@@ -1,5 +1,5 @@
 \chapter{From signals to images}
-
+\label{chapter:two}
 %Contiene el método y el enfoque.
 
 %Mental Chrometry and averaging 
@@ -150,12 +150,11 @@ Averaged signal segments are standardized and scaled for $1 \leq n \leq n_{max}$
 \label{eq:standarizedaverages}
 \end{equation}
 
-\noindent where $\gamma > 0$ is an input parameter of the algorithm and  it is related to the image scale. In addition, $ x^l(n,c) $ is the point-to-point averaged multichannel EEG signal for the sample point $n$ and for channel $c$. Lastly, $$\bar{x}^l(c) =\frac{1}{n_{max}}\sum_{n=1}^{n_{max}}x^l(n,c)$$ and $$ \hat{\sigma}^l(c) = (\frac{1}{n_{max}-1}\sum_{n=1}^{n_{max}}(x^l(n,c)-\bar{x}^l(c))^2 )^{\frac{1}{2}}$$ are the mean and estimated standard deviation of $x^l(n,c), 1 \leq n \leq n_{max}$, for each channel $c$.
+\noindent where $\gamma > 0$ is an input parameter of the algorithm and  it is related to the image scale. In addition, $ x^l(n,c) $ is the point-to-point averaged multichannel EEG signal for the sample point $n$ and for channel $c$. Lastly, $$\bar{x}(c) =\frac{1}{n_{max}}\sum_{n=1}^{n_{max}}x(n,c)$$ and $$ \hat{\sigma}(c) = (\frac{1}{n_{max}-1}\sum_{n=1}^{n_{max}}(x(n,c)-\bar{x}(c))^2 )^{\frac{1}{2}}$$ are the mean and estimated standard deviation of $x(n,c), 1 \leq n \leq n_{max}$, for each channel $c$.
 
 \paragraph{Autoscaled plotting}
 
-
-
+The signal is free to take its own value and the image is created based on the peak-to-peak amplitude of the signal within the segment.  In this case the zero-level of the signal is exactly half the size of peak-to-peak amplitude.  Generated images in this case will have varying heights but the half-height of it is always the zero-level of the signal.
 
 \section{EEG Signal Plot}
 
