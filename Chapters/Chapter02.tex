@@ -248,6 +248,8 @@ However, as seen in Figure, it can lead to very sharp edges around the sample pi
 
 Figure where the interpolation is improved.
 
+(based on Matlab resample function) .resample applies an antialiasing FIR lowpass filter to x and compensates for the delay introduced by the filter.
+
 Special care must be taken to avoid artifacts around the edges of the signal, so a window is also necessary to avoid this (like hamming).
 
 \subsection{Resolution}
