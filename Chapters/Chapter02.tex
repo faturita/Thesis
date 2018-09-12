@@ -13,31 +13,17 @@ The plotting of the EEG is intrinsically mixed with the nuisances of the electro
 
 \begin{enumerate}
 \item Sensitivity: also termed gain due the amplification procedure.  Its units are $ \frac{mV}{mm}$.  In the digital form, it is $\frac{\mu V}{pixel}$.
-\item Epoch/Paper speed: the time span that is represented in a single screen.  For paper strips it was used to be $10s$ (Figure FIG).  In the digital version is $ \frac{\lambda}{pixel}$.
+\item Epoch/Paper speed: the time span that is represented in a single screen.  For paper strips it was used to be $10s$ (Figure FIG).  In the digital version is $ \frac{\lambda}{pixel}$ with $\lambda$ being the length of the signal segment.
 \end{enumerate}
 
-Logarithmic plotting, montage, calibration (cite Electroencphalograpy for empilepsy society)
+On analog plotting montage was essential, but digital plotting allows to implement flexible configuration.  Montage can be monopolar or bipolar.  On Monopolar Montages each electrode obtain the potential difference against a common reference, and with Bipolar Montages, electrodes are paired, even in chained configurations, and the potential difference is obtained between them (cite Electroencphalograpy for empilepsy society).
 
+%Logarithmic plotting, montage, calibration (cite Electroencphalograpy for empilepsy society)
 
 \begin{story}[Neuroimaging]
 With the advent of digital computers and the digital revolution, Plotting has become imaging.  Neuroimaging (CIte book Rodrigo Q Q) means mapping activity or structure to neuroanatomical regions (see Figure \ref{fig:neuroanatomy}).
 
-There are currently three categories of neuroimaging: structural, functional, and chemical. 
-
-\begin{itemize}
-\item Structural Neuroimaging
-Any technique that images structures of the brain. This would include CT (Computed Tomography), MRI (Magnetic Resonance Imaging), and DTI (Diffusion Tensor Imaging).
-
-CT scanning is non-invasive uses x-rays to image tissue density. It is very rapid and can detect cerebral hemorrhaging in the early (acute) stage. It is most often, therefore, used for medical purposes.
-
-Structural MRI is non-invasive and often provides better contrast resolution than CT with similar (and again, often better) spatial resolution. Unlike CT, structural MRI provides excellent tissue delineation, allowing users to visualize boundaries between grey and white matter in the brain, for example. Structural MRI is often used in neuroimaging to calculate volume of different brain regions or to define regions of brain damage or tumor.
-
-DTI is non-invasive and can be done on most research MRI scanners. It involves using a special scanning and reconstruction sequence to image the flow (or, more specifically, constraints in the flow) of water through the brain. Because water flow is constrained by the axons (white matter) in the brain, it can be used to image large axonal connections between brain regions.
-
-\item Functional Neuroimaging
-Any technique that quantifies some metric of brain activity. This would include EEG (ElectroEncephaloGraphy), MEG (MagnetoEncephaloGraphy), fMRI (functional MRI), PET/SPECT (Positron Emission Tomography/Single Positron Emission Computed Tomography), NIRS (Near-InfraRed Spectroscopy), and, to a certain extent, TMS (Transcranial Magnetic Stimulation) and TDCS (Transcranial Direct Current Stimulation), along with several others.
-\end{itemize}
-
+There are currently three categories of neuroimaging: \textit{structural} includes CT (Computed Tomography), MRI (Magnetic Resonance Imaging) and DTI (Diffusion Tensor Imaging), \textit{functional}, which encompass EEG, MEG (Magnetoencephalography), fMRI (functional MRI) PET (Positron Emission Tomography), SPECT (Single Positron Emission Computed Tomography), NIRS (Near-Infrared Spectroscopy) and \textit{chemical} which involves dyes which are sensible to neuron firing.
 \end{story}
 
 \section{Signal to Image transformation}
@@ -49,11 +35,14 @@ The EEG signal may be represented by
 \label{eq:zerolevel}
 \end{equation}
 
-\noindent where $n$ are sample points digitalized at sampling frequency $F_s$.  This is a multichannel signal, for $c$ varying between $1$ and $C$.  Each one of this channels is assigned a name according to the 10-20 international system, and there are $C$ available channels. The sample index $n$ varies between $1$ and $N$.  The span of the signal as $\lambda$ is the inverse of the sampling frequency.
- 
-To extract features from an image, first you need an image.  And this image needs to represent the underlying signal.  The straightforward way to do it, reproducing the traditional analog or digital EEG, is to draw a line on contrast background.  The line represents the voltage amplitude of the corresponding channel in relation to a zero-level $z(c)$, with a positive deflection going upwards (towards the zero value in the image coordinate system) and downwards for negative deflection (Figure \ref{fig:plot}).  If only two colors are used, this image is a black-and-white binary image.  In principle, color selection is completely arbitrary (white for the line, black for the background), but it has some implications in terms of the feature extraction procedure that we will describe later.
+\noindent where $n$ are sample points digitalized at sampling frequency $F_s$.  This is a multichannel signal, for $c$ varying between $1$ and $C$.  Each one of this channels is assigned a name according to the 10-20 international system, and there are $C$ available channels. The sample index $n$ varies between $1$ and $N$.  The span of the signal $\lambda$ is the length of the signal segment in sample points and as the segment is in general 1s length, this is the inverse of the sampling frequency.
 
-This chapter mostly deal with the coordinates transformation that need to be enforced while converting the signal into a plot.  Figure \ref{fig:plot} shows the image coordinate system where the $(z_1,z_2)$ represents the horizontal and vertical location, and the $(0,0)$ value is the upper-left position of the image.
+\vspace{10}
+
+
+To extract features from an image, first you need an image.  And this image needs to represent the underlying signal.  The straightforward way to do it, reproducing the traditional analog or digital EEG, is to draw a line on a contrast background.  The line represents the voltage amplitude of the corresponding channel in relation to a zero-level $z(c)$, with a positive deflection going upwards (towards the zero value in the image coordinate system) and downwards for negative deflection (Figure \ref{fig:plottingscheme}).  If only two colors are used, this image is a black-and-white binary image.  In principle, color selection is completely arbitrary (white for the line, black for the background), but it has some implications in terms of the feature extraction procedure that we will describe later.
+
+This chapter mostly deal with the coordinates transformation that need to be enforced while converting the signal into a plot.  Figure \ref{fig:plottingscheme} shows the image coordinate system where the $(z_1,z_2)$ represents the horizontal and vertical location, and the $(0,0)$ value is the upper-left position of the image.
 
 In how many ways EEG signals can be mapped into 2D greyscale or binary images ?
 
