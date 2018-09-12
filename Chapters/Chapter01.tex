@@ -149,7 +149,7 @@ y(n) = M T\left[\mathbf{x}(n)\right]
 
 \section{The Forward and Inverse Model}
 
-Brainwaves are obtained via sensors, where each one of them captures only a part or a version of the information.  However, whatever is actually happening inside the brain can be only recovered indirectly from the \textit{Sensor Space}. From there, the information can be traced back to the real landscape where the information source is located, inside the \textit{Source Space}.  This is a regular problem found in Engineering and it is not different in BCI.  \textit{Calculating} the signal on each a sensor from a projection of a known source of information from within the head is called \textit{The Forward Problem}\cite{Parra2008,WolpawJonathanR2012}  and doing the opposite, \textit{estimating} the contributions of different sources to whatever activity is found on sensors is called  \textit{The Inverse Problem} .  The latter is more relevant in BCI because it allows to determine source origins that can be mapped more directly to cognitive activities.  However, this kind of problem is highly ill-posed and it is precisely where the majority of the efforts of this discipline are concentrated due to its complexity.
+Brainwaves are obtained via sensors. Each one of them captures only a part or a version of the information.  However, whatever is actually happening inside the brain can be only recovered indirectly from the \textit{Sensor Space}. From there, the information can be traced back to the real landscape where the information source is located, inside the \textit{Source Space}.  This is a regular problem found in Engineering and it is not different in BCI.  \textit{Calculating} the signal on each a sensor from a projection of a known source of information from within the head is called \textit{The Forward Problem}\cite{Parra2008,WolpawJonathanR2012}  and doing the opposite, \textit{estimating} the contributions of different sources to whatever activity is found on sensors is called  \textit{The Inverse Problem} .  The latter is more relevant in BCI because it allows to determine source origins that can be mapped more directly to cognitive activities.  However, this kind of problem is highly ill-posed and it is precisely where the majority of the efforts of this discipline are concentrated due to its complexity.
 
 Particularly for noninvasive electrophysiological modalities, an additional problem makes thing harder.  Due to its electromagnetic properties, the brain acts like conductive gel, and any signal that is generated inside the brain is irradiated to every direction and it can influence every sensor regardless of its position.  This is called \textit{Volume conduction} \cite{Nam2018} and can be visualized in Figure~\ref{fig:volconduction}.
 
@@ -172,7 +172,7 @@ The measuring technique determines the most important taxonomic differentiation 
 \item PET: Positron Emission Tomography
 \item fMRI: functional Magnetic Resonance Imaging
 \item ECoG: Electrocorticography 
-\item INR: Intracortical Neuron Recordings.  Particularly LFP and microelectrodes (Utah array).
+\item INR: Intracortical Neuron Recordings.  Particularly LFP (iEEG, intracraneal EEG\cite{Buzsaki2012}) and microelectrodes (Utah array).
 \end{enumerate}
 
 ECoG and INR are invasive technologies that require some neurosurgery and an implantation of electrodes inside the skull the former, and inside the brain the latter.  All the remaining imaging techniques are external or noninvasive.  Hybrid BCI, or Brain Neural Computer Interface, are BCI devices that use not only signals from the CNS, they utilize any kind of available biosignal that can be volitionally modulated to transmit information (this is called dependant BCI).  On the other hand, when the pace of the BCI is regulated by external stimulus it is called synchronous and when the user choose their own pace to transmit information, it is often called asynchronous or self-paced BCI.
@@ -275,7 +275,7 @@ The number of electrodes and their positions over the scalp determines a Spatial
 
 %Due to their popularity ($71.2\%$ of the BCI projects submitted to BCI Award 2016 were with EEG) BCI based on EEG are 
 
-\textit{BCI Paradigms} are referred to noninvasive EEG-based BCI configurations that can be used to transmit volitional information.  The popularity of EEG ($71.2\%$ of the BCI projects submitted to BCI Award 2016 were with EEG)~\cite{GugerBook2016} pushed the adoption of paradigms exclusively for noninvasive BCI.   Their chronology can be found in Figure \ref{fig:story}. They are
+\textit{BCI Paradigms} are referred to noninvasive EEG-based BCI configurations that can be used to transmit volitional information.  The popularity of EEG ($71.2\%$ of the BCI projects submitted to BCI Award 2016 were with EEG)~\cite{GugerBook2016} pushed the adoption of paradigms focused on noninvasive BCI.   Their chronology can be found in Figure \ref{fig:story}. They are
 
 \begin{enumerate}
 \item Steady State Visual Evoked Potentials
