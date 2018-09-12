@@ -151,7 +151,7 @@ y(n) = M T\left[\mathbf{x}(n)\right]
 
 Brainwaves are obtained via sensors. Each one of them captures only a part or a version of the information.  However, whatever is actually happening inside the brain can be only recovered indirectly from the \textit{Sensor Space}. From there, the information can be traced back to the real landscape where the information source is located, inside the \textit{Source Space}.  This is a regular problem found in Engineering and it is not different in BCI.  \textit{Calculating} the signal on each a sensor from a projection of a known source of information from within the head is called \textit{The Forward Problem}\cite{Parra2008,WolpawJonathanR2012}  and doing the opposite, \textit{estimating} the contributions of different sources to whatever activity is found on sensors is called  \textit{The Inverse Problem} .  The latter is more relevant in BCI because it allows to determine source origins that can be mapped more directly to cognitive activities.  However, this kind of problem is highly ill-posed and it is precisely where the majority of the efforts of this discipline are concentrated due to its complexity.
 
-Particularly for noninvasive electrophysiological modalities, an additional problem makes thing harder.  Due to its electromagnetic properties, the brain acts like conductive gel, and any signal that is generated inside the brain is irradiated to every direction and it can influence every sensor regardless of its position.  This is called \textit{Volume conduction} \cite{Nam2018} and can be visualized in Figure~\ref{fig:volconduction}.
+Particularly for noninvasive electrophysiological modalities, an additional problem makes thing harder.  Due to its electromagnetic properties, the brain acts like conductive gel, and any signal that is generated inside the brain is irradiated to every direction and it can influence every sensor regardless of its position.  This is called \textit{Volume conduction} \cite{Nam2018,Buzsaki2012} and can be visualized in Figure~\ref{fig:volconduction}.
 
 \begin{figure}[]
 \centering
@@ -275,7 +275,7 @@ The number of electrodes and their positions over the scalp determines a Spatial
 
 %Due to their popularity ($71.2\%$ of the BCI projects submitted to BCI Award 2016 were with EEG) BCI based on EEG are 
 
-\textit{BCI Paradigms} are referred to noninvasive EEG-based BCI configurations that can be used to transmit volitional information.  The popularity of EEG ($71.2\%$ of the BCI projects submitted to BCI Award 2016 were with EEG)~\cite{GugerBook2016} pushed the adoption of paradigms focused on noninvasive BCI.   Their chronology can be found in Figure \ref{fig:story}. They are
+\textit{BCI Paradigms} are referred to noninvasive EEG-based BCI configurations that can be used to transmit volitional information.  The popularity of EEG ($71.2\%$ of the BCI projects submitted to BCI Award 2016 were with EEG)~\cite{Guger2017} pushed the adoption of paradigms exclusively for noninvasive BCI.   Their chronology can be found in Figure \ref{fig:story}. They are
 
 \begin{enumerate}
 \item Steady State Visual Evoked Potentials
@@ -291,7 +291,6 @@ The number of electrodes and their positions over the scalp determines a Spatial
 \item Operant Conditioning
 \item Slow Cortical Potentials
 \item Berlin BCI
-
 
 
 \end{enumerate}
@@ -356,8 +355,8 @@ Other regular characterizations which are based on shape features may include:
 
 \begin{itemize}
 \item Attenuation: Also called suppression or depression. Reduction of amplitude of EEG activity resulting from decreased voltage. When activity is attenuated by stimulation, it is said to have been "blocked" or to show "blocking".
-\item Hypersynchrony: Seen as an increase in voltage and regularity of rhythmic activity, or within the alpha, beta, or theta range. The term suggest an increase in the number of neural elements contributing to the rhythm.
-\item Paroxysmal: Activity that emerges from background with a rapid onset, reaching (usually) quite high voltage and ending with an abrupt return to lower voltage activity. Though the term does not directly imply abnormality, much abnormal activity is paroxysmal.
+\item Hypersynchrony: Seen as an increase in voltage and regularity of rhythmic activity, or within the alpha, beta, or theta range. The term suggest an increase in the number of neural elements contributing to the rhythm and a synchronization of neurons with similar firing patterns~\cite{Buzsaki2012}.
+\item Paroxysmal: Activity that emerges from background with a rapid onset, reaching (usually) quite high voltage and ending with an abrupt return to lower voltage activity. 
 \end{itemize}
 
 \begin{itemize}
@@ -494,12 +493,11 @@ Other works on EEG explored the idea to extend human capacities analyzing EEG wa
 %\item Merging of Increasing and Decreasing Sequences
 %\item Local Binary Patterns (1-D LNBP, 1D-LBP and LBP)
 
-Pursuit algorithms refer, in their many variants, blind source separation(REF) techniques that assume that the EEG signal is a linear combination of different words that are derived from a template or dictionary database.  The underlying idea is to find the best template out of a dictionary that matches against the signal and substract it from the signal.  The algorithm works iteratively  (ref Cohen book, Sanei book, Mallat and Zhang 1993) identifying the templates and their coefficients.  The set of selected templates and coefficients is a feature.  
+\textit{Pursuit} algorithms refer, in their many variants, as blind source separation \cite{Vincent2010} techniques that assume the EEG signal as a linear combination of different sparse sources extracted from a template's dictionaries.  Matching Pursuit \textit{MP}~\cite{Mallat1993}, the most representative of this algorithms, is a greedy variant that decomposes a signal into a linear combination of waveforms, called atoms, that are well localized in time and frequency \cite{ChandranKS2016}.  This method has been used to identify epileptogenetic patterns from EEG traces~\cite{Vareka2012}.
 
-Another method that explores the waveform is Bond and Pompe Permutation Entropy (REF original paper).  This has been extensively used in EEG processing, particularly for Epilepsy pre-ictal detection.  This method generates a feature based on the orderly arrangement of sequential samples, and then derives a metric which is based on the amount of entropy of each code within the signal.   For instance, a pure random signal, will achieve the maximum entropy value due to the probability of each code being equal for all of them. There are many variants of this idea that instrinsically explore the waveform complexity (Lempel Ziv, Permutation Entropy a new feature for brain computer interfaces).
+Another method that explores the waveform is Bond and Pompe Permutation Entropy~\cite{Bandt2002}.  This has been extensively used in EEG processing, with applications on Anesthesia, Sleep Stage evaluation and increasingly for Epilepsy pre-ictal detection .  This method generates a code based on the orderly arrangement of sequential samples, and then derives a metric which is based on the number of times each sequence is found on the signal.  This numeric value can be calculated as information entropy~\cite{Nicolaou2010}.
 
-Slope Horizontal Chain Code and Slope Chain Code (SCC) (ref a SCC paper y a SHCC paper) derive a feature of the sequence of sample points based on the angle between the horizontal segment and any segment other segment, one by one.  These are very similar to Local Binary Patterns  (1-D LNBP, 1D-LBP and LBP) \cite{fdsfsdfs} algorithms.
-Finally, the  MIDS Merging of Increasing and Decreasing Sequences do not generate a feature but it provides a filter or downsampling scheme which is based on the waveform structure.
+A related method is Slope Horizontal Chain Code and Slope Chain Code (SCC)~\cite{Alvarado-Gonzalez2016}. This algorithm proceeds by generating a coding scheme from a sequence of sample points. This encoding is based on the angle between the horizontal line on a 2D-plane and any segment produced by two consecutive sample points, regarding them as coordinates on that plane.  Similar works were provided in Local Binary Patterns  (1-D LNBP, 1D-LBP and LBP)\cite{Jaiswal2017} algorithms.  Finally, the  MIDS Merging of Increasing and Decreasing Sequences~\cite{Zhang2013} do not generate a feature but it provides a filter or downsampling scheme which is based on the waveform structure.
 
 %EEG signals are remarkably complex and have been characterized as a multichannel non-stationary stochastic process.  Additionally, they have high variability between different subjects and even between different moments for the same subject, requiring adaptive and co-adaptive calibration and learning procedures~\cite{Clerc}.  Hence, this imposes an outstanding challenge that is necessary to overcome in order to extract information from raw EEG signals.
 %

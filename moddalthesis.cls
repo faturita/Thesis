@@ -601,7 +601,7 @@
       \signature{Examining Committee:}{\@firstreader}
    \else % not Ph.D. degree:
       \ifdal@two@supervisors
-         \signature{Supervisors:}{\@supervisor}
+         \signature{Directores:}{\@supervisor}
          \signature{}{\@cosupervisor}
       \else
          \signature{Director:}{\@supervisor}

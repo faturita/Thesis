@@ -6,6 +6,7 @@
 %\usepackage[spanish]{babel}
 %\usepackage[latin1]{inputenc}
 \usepackage[utf8]{inputenc}
+\usepackage{CJKutf8}
 
 %-------------------------------------
 \usepackage{chronology}
@@ -84,7 +85,7 @@
 
 \AlCentroPagina{images/itbalogoshaded}
 
-\title{\textbf{Histogram of Oriented Gradients of Signal Plots for Brain Computer Interfaces}}
+\title{\textbf{Histogram of Gradient Orientations of Signal Plots for Brain Computer Interfaces}}
 \author{Rodrigo Ramele}
 \dept{Doctorado}
 \faculty{Escuela de Ingeniería en Informática}
@@ -127,7 +128,6 @@ dedication page.\\
 Break lines up\\
 like this.}
 
-
 %\nodedicationpage
 %\notableofcontents
 \nolistoftables
@@ -139,22 +139,85 @@ like this.}
 \beforepreface
 %\typeout{:?111111111} % Process All Errors from Here on
 %}
- 
+
 \begin{abstract}
-This work is part of worldwide effort to provide a neural interface which would be able to transmit direct information
-from the brain and use that information to exert external control.
+Brain Computer Interface (BCI) or Brain Machine Interfaces (BMI), has proved the feasibility of a distinct non-biological communication channel to transmit information from the Central Nervous System (CNS) to a computer device.  Promising success has been achieved with invasive BCI, though biocompatibilities issues and the complexity and risks of surgical procedures are the main drive to enhance current non-invasive technologies.
 
-In recent years, the appealing idea of a direct interface between the human brain and an artificial system, called Brain Computer Interface (BCI) or Brain Machine Interfaces (BMI), has proved the feasibility of a distinct non-biological communication channel to transmit information from the Central Nervous System (CNS) to a computer device. Its most important and straightforward application is for people affected by neuro-degenerative diseases.
+Electroencephalography (EEG) is the most widespread method to gather information from the CNS in a non-invasive way.  Clinical EEG has traditionally focused on temporal waveforms, but signal analysis methods which follow this path has been overshadow in BCI research. 
 
-A very remarkable aspect of this communication channel is the ability to transmit some general cognitive state, like alertness, drowsiness, boredom, and so on, which can very helpful particularly in rehabilitation procedures.
+This thesis propose a method and framework to analyze the waveform, the shape of the EEG signal, using the histogram of gradient orientations, a fruitful technique from Computer Vision which is used to characterize image local features. Inspiration comes from what traditionally electroencephalographers have been doing for almost a century: visually inspecting raw EEG signal plots. 
 
-CNS's biosignals, like EEG, have a high variability between different subjects and even between different moments for the same subject. This inherent complexity is a real challenge when it is required to feasily extract information from raw EEG signals.
+The validity of the method is verified by identifying and detecting Visual Occipital Alpha Waves and Motor Imagery Rolandinc Mu rhythms. It is also applied on P300 ERP detection and used to implement a P300-Based Visual Speller application. Experimental protocols to produce these cognitive patterns were designed and own datasets produced and published using both commercial-grade and research-grade EEG devices.  Obtained results on public and own datasets are outlined and described, and comparisons performed against similar procedures.
 
-Due to this inner complexity, it is often necessary to implement many distinct and specialized algorithmic methods, to filter the signal, classify it, and try to determine some meaning out of it.
+The benefits of the approach presented here are twofold, (1) it has a universal applicability because the same basic methodology can be applied to detect different patterns in EEG signals with applications to BCI and (2) it has the potential to foster close collaboration with physicians and electroencephalograph technicians because this direction of work follows the established procedure of the clinical EEG community of analyzing waveforms by their shapes.
+\end{abstract}
 
-Outstanding success has been achieved with invasive BCI, i.e. with surgically implanted electrodes, from the total reproduction of arm movement to the remote control of a manipulator by a macaque using brainwave information. However, Biocompatibilities issues and the pervasive complexity and risks of surgical procedures are the main drive to enhance current non-invasive technologies. Above all, Electroencephalography (EEG), is the most widespread method to gather information from the CNS in a non-invasive way. It measures the summed activity of post-synaptic potentials from electrodes positioned over the scalp. EEG has been used in various working prototypes, as assisting devices, mainly wheelchairs. In order to derive information out of the subject's volition, different mental paradigms have been discovered and applied. There have been many algorithms developed so far for processing EEG signals, based on time, frequency, spatial domains or combinations. However, the exploration of alternative paths is ongoing, because non-invasive BCI still lacks the required performance to be used in real-time environments and to be ready for mainstream production.
 
-Those devices that not only restrict themselves to use CNSs signals, but they also include any kind of biological signal (EMG, EKG, EOG, GSR, etc) combined with sensor fussion algorithms are often called Hybrid BCIs or the BCI term is generalized to BNCI: Brain Neuronal Computer Interaction. Additionally, when the controlling device is not restricted to a computer, the term BMI, Brain Machine Interface, could be also used.
+\begin{abstract}
+
+Brain Computer Interface (BCI) or Brain Machine Interfaces (BMI), has proved the feasibility of a distinct non-biological communication channel to transmit information from the Central Nervous System (CNS) to a computer device.  Promising success has been achieved with invasive BCI, though biocompatibilities issues and the complexity and risks of surgical procedures are the main drive to enhance current non-invasive technologies.  
+
+Electroencephalography (EEG) is the most widespread method to gather information from the CNS in a non-invasive way.  Clinical EEG has traditionally focused on temporal waveforms, but signal analysis methods which follow this path has been overshadow in BCI research. 
+
+This thesis propose a method and framework to analyze the waveform, the shape of the EEG signal, using the histogram of gradient orientations, a fruitful technique from Computer Vision which is used to characterize image local features. Inspiration comes from what traditionally electroencephalographers have been doing for almost a century: visually inspecting raw EEG signal plots. 
+
+This technique can be outlined in five steps, (1) signal preprocessing, (2) signal segmentation, (3) transformation on a channel by channel basis of each signal segment into a binary image of a signal plot, (4) assignment of keypoint location on a position over the newly created image depending on the physiological phenomena under study and finally (5) the calculation of the histogram of gradient orientations using finite differences from the image around this keypoint. This method generates a feature, a normalized 128-dimension descriptor. This feature is used to compare the signal segments that were used to generate them, hence to analyze the underlying cognitive phenomena. 
+
+The validity of the method was verified by studying three cognitive patterns.  First, Visual Occipital Alpha Waves are analyzed.  An experimental protocol is designed and a dataset is produced using a commercial-grade EEG device.  Additionally, the ability of the method to capture oscillatory processes is verified by analyzing a public dataset. Moreover, this methodology is extended to study a related oscillatory process: Motor Imagery Rolandic Mu rhythms.  The performance of the method to discriminate right vs left motor imagery against a public dataset of healthy subjects is verified.  Results are informed and reported. Finally, the method is modified to capture transient events, particularly the P300 Event Related Potential.  A minute description on how to extract the ERP from the EEG segment is offered, and a detailed description of how to implement a P300-Based BCI Speller application is outlined.  It's performance is verified by processing a public dataset of ALS patients and contrasted against an own dataset produced in house replicating the same experimental conditions.
+
+The benefits of the approach presented here are twofold, (1) it has a universal applicability because the same basic methodology can be applied to detect different patterns in EEG signals with applications to BCI and (2) it has the potential to foster close collaboration with physicians and electroencephalograph technicians because this direction of work follows the established procedure of the clinical EEG community of analyzing waveforms by their shapes.
+
+
+%In recent years, the idea of a direct interface between the human brain and an artificial system, called Brain Computer Interface (BCI) or Brain Machine Interfaces (BMI), has proved the feasibility of a distinct non-biological communication channel to transmit information from the Central Nervous System (CNS) to a computer device. Its most important application is for people affected by neuro-degenerative diseases.
+%
+%Promising success has been achieved with invasive BCI, i.e. with surgically implanted electrodes, from the total reproduction of arm movement to the remote control of a manipulator by a macaque, using brainwave information. However, biocompatibilities issues and the complexity and risks of surgical procedures are the main drive to enhance current non-invasive technologies. 
+%
+%By estimates from the 2016 BCI Award, around 71.2$\%$ of noninvasive BCI research is based on non-invasive brain imaging modality, particularly Electroencephalography (EEG), which is the most widespread method to gather information from the CNS in a non-invasive way. EEG has been used in various working prototypes, as assisting devices, wheelchairs and speller applications. There have been many algorithms developed for processing EEG signals, based on time, frequency, spatial domains or combinations. However, the exploration of alternative procedures is ongoing, because non-invasive BCI still lacks the required performance to be used in real-time environments and to be ready for mainstream production.
+%
+%Although mature clinical EEG has traditionally focused on temporal waveforms, signal analysis methods which follow this path has been overshadow in BCI research. Hence, where are the waveforms ?
+%
+%%Few works have investigated the idea of exploiting signal waveforms to analyze the EEG signal on BCI applications. The seminal work of Bandt-Pompe Permutation Entropy [3] explores succinctly this concept and in [4] an approach based on Slope Horizontal Chain Code is presented. A similar methodology is implemented in [5] based on Mathematical Morphological Analysis. 
+%
+%This thesis propose a method and framework to analyze the waveform, the shape of the EEG signal, using the histogram of gradient orientations, a fruitful technique from Computer Vision which is used to characterize image local features. Inspiration comes from what traditionally electroencephalographers have been doing for almost a century: visually inspecting raw EEG signal plots. 
+%
+%%The validity of the method is verified by identifying and detecting Visual Occipital Alpha Waves and Motor Imagery Rolandinc Mu rhythms. It is also applied on P300 ERP detection and used to implement a P300-Based Visual Speller application.  Obtained results on public and own datasets are outlined and described. 
+%
+%This technique can be outlined in five steps, (1) signal preprocessing, (2) signal segmentation, (3) transformation on a channel by channel basis of each signal segment into a binary image of a signal plot, (4) assignment of keypoint location on a position over the newly created image depending on the physiological phenomena under study and finally (5) the calculation of the histogram of gradient orientations using finite differences from the image around this keypoint. This method generates a feature, a normalized 128-dimension descriptor. This feature is used to compare the signal segments that were used to generate them, hence to analyze the underlying cognitive phenomena. 
+%
+%The validity of the method was first verified studying three cognitive patterns.  First, Visual Occipital Alpha Waves are analyzed.  An experimental protocol is designed and a dataset is produced using a commercial-grade EEG device.  Additionally, the ability of the method to capture oscillatory processes is verified by analyzing a public dataset.
+%
+%Moreover, this methodology is extended to study a related oscillatory process: Motor Imagery Rolandic Mu rhythms.  The performance of the method to discriminate right vs left motor imagery against a public dataset of healthy subjects is verified.  Results are informed and reported.
+%
+%Finally, the method is modified to capture transient events, particularly the P300 Event Related Potential.  A detailed description on how to extract the ERP from the EEG segment is offered, and a detailed description of how to implement a P300-Based BCI Speller application is outlined.  It's performance is verified by processing a public dataset of ALS patients and contrasted against an own dataset produced in house replicating the same experimental conditions.
+%
+%%This novel procedure is biomimetically based on how the visual cortex works by detecting orientations, and ironically, is used here to detect information about how the brain works. 
+%
+%The benefits of the approach presented here are twofold, (1) it has a universal applicability because the same basic methodology can be applied to detect different patterns in EEG signals with applications to BCI and (2) it has the potential to foster close collaboration with physicians and electroencephalograph technicians because this direction of work follows the established procedure of the clinical EEG community of analyzing waveforms by their shapes.
+%
+%%Material, Methods and Results: The histogram of gradient orientations is a popular and powerful tool used in Computer Vision to characterize local features from images and is the basis of the feature generation algorithm in Lowe's SIFT Descriptor [7]. This technique can be applied to identify components in EEG signals in five steps, (1) signal preprocessing, (2) signal segmentation, (3) transformation on a channel by channel basis of each signal segment into a binary image of a signal plot, (4) assignment of keypoint location on the newly created image depending on the physiological phenomena under study and finally (5) calculation of the histogram of gradient orientations using finite differences from the image around the keypoint (Figure 1). This method generates a feature, a normalized 128-dimension SIFT descriptor, which can be used to compare the signal segments that were used to generate the plots, thus they can be used to analyze the underlying cognitive phenomena. 
+
+%This method was used to identify and detect Visual Occipital Alpha Waves, Motor Imagery Rolandinc Mu rhythms [6] with results above chance level. It was also tested on P300 detection for Visual P300 Speller Matrix on ALS public dataset and for an own dataset of healthy subjects as well as identifying K-Complexes in sleep EEG (unpublished, under review). 
+%
+%Discussion: A procedure which is biomimetically based on how the visual cortex works by detecting orientations, ironically, is used precisely to detect information from the brain. Although we found that it is possible to decode with accuracy above chance level and to differentiate patterns with cognitive correlations, the stability of the signature of the component is a key and challenging aspect. The method was also applied to patterns which are more frequently studied by their spectral characteristics. 
+%
+%Significance: A method to analyze EEG signals which is based on the waveform characterization is presented. The benefits of the proposed approach are twofold, (1) it has a universal applicability because the same basic methodology can be applied to detect different patterns in EEG signals with applications to BCI and (2) it has the potential to foster close collaboration with physicians and electroencephalograph technicians because the approach follows the established procedure of the clinical EEG community of analyzing waveforms by their shapes.
+
+
+%This thesis is a proposal of a new method to analyze and classify EEG (Electroencephalography) signals based on the extraction of characteristics based on the signal's waveform structure obtained from images of signal plots.  
+%This procedure has the advantage that the features which are used to classify are visually relevant and meaningful to a human observer, particularly to a physician, improving close collaboration and clinical adoption.  
+%Moreover, this may allow to tackle this demanding technology from a different perspective and improve the prospects of the BNCI, Brain Neural Computer Interaction field. 
+
+
+%A very remarkable aspect of this communication channel is the ability to transmit some general cognitive state, like alertness, drowsiness, boredom, and so on, which can very helpful particularly in rehabilitation procedures.
+
+%CNS's biosignals, like EEG, have a high variability between different subjects and even between different moments for the same subject. This inherent complexity is a real challenge when it is required to feasily extract information from raw EEG signals.
+%
+%Due to this inner complexity, it is often necessary to implement many distinct and specialized algorithmic methods, to filter the signal, classify it, and try to determine some meaning out of it.
+%
+%Outstanding success has been achieved with invasive BCI, i.e. with surgically implanted electrodes, from the total reproduction of arm movement to the remote control of a manipulator by a macaque using brainwave information. However, Biocompatibilities issues and the pervasive complexity and risks of surgical procedures are the main drive to enhance current non-invasive technologies. Above all, Electroencephalography (EEG), is the most widespread method to gather information from the CNS in a non-invasive way. It measures the summed activity of post-synaptic potentials from electrodes positioned over the scalp. EEG has been used in various working prototypes, as assisting devices, mainly wheelchairs. In order to derive information out of the subject's volition, different mental paradigms have been discovered and applied. There have been many algorithms developed so far for processing EEG signals, based on time, frequency, spatial domains or combinations. However, the exploration of alternative paths is ongoing, because non-invasive BCI still lacks the required performance to be used in real-time environments and to be ready for mainstream production.
+%
+%Those devices that not only restrict themselves to use CNSs signals, but they also include any kind of biological signal (EMG, EKG, EOG, GSR, etc) combined with sensor fussion algorithms are often called Hybrid BCIs or the BCI term is generalized to BNCI: Brain Neuronal Computer Interaction. Additionally, when the controlling device is not restricted to a computer, the term BMI, Brain Machine Interface, could be also used.
+
 \end{abstract}
 
 \newpage
@@ -165,27 +228,50 @@ Those devices that not only restrict themselves to use CNSs signals, but they al
 \selectlanguage{spanish}%
 
 \begin{abstract}
-Las interfaces BCI (Brain Computer Interfaces, Interfaces Cerebro Computadora) ó BMI (Brain Machine Interfaces, Interfaces Cerebro Máquina) surgen como un nuevo canal de comunicación entre el cerebro y computadoras, máquinas o robots, distinto de los canales biológicos estándar (musculares). Tienen un carácter fuertemente interdisciplinario, donde convergen ramas de la neurobiología, la psicología, las matemáticas, las ciencias de la computación y la ingeniería.
 
-Las personas afectadas por enfermedades o traumas neurológicos tales como \textit{amiotrofía, esclerosis múltiple, ACV, lesiones espinales, parálisis cerebral} sufren un problema derivado que es la imposibilidad, en diferentes grados, de comunicarse tanto así sea como por el atrofiamiento de los sentidos para la recepción de información, como por los inconvenientes, generalmente motores que pueden presentarse para transmitir esa información.   
-Las interfaces BCI surgen como una alternativa de comunicación donde la información es extraída directamente del cerebro humano a través de algún esquema de estudio cerebral que permita analizar la actividad del sistema nervioso central (CNS) \cite{Wolpaw2002}.
+%Las interfaces BCI (Brain Computer Interfaces, Interfaces Cerebro Computadora) ó BMI (Brain Machine Interfaces, Interfaces Cerebro Máquina) surgen como un nuevo canal de comunicación entre el cerebro y las computadoras, máquinas o robots, distinto de los canales biológicos estándar. Tienen un carácter fuertemente interdisciplinario, donde convergen ramas de neurobiología, psicología, matemática, ciencias de la computación e ingeniería.
+%
+%Las personas afectadas por enfermedades o traumas neurológicos tales como \textit{amiotrofía, esclerosis múltiple, ACV, lesiones espinales, parálisis cerebral} sufren un problema derivado que es la imposibilidad, parcial o total, de comunicarse, tanto así sea como por el atrofiamiento de los sentidos para la recepción de información, como por los inconvenientes motores que pueden presentarse para transmitir esa información.  Este es el grupo de usuario potenciales de esta herramientas, especialmente utilizando dispositivos no invasivos de adquisición de señales cerebrales como la Electroencefalografía.
+%
+%Con el objetivo de extraer la información oculta de estas señales, diversas técnicas computacionales y se han desarrollado con diferentes grados de éxito.  Hasta el momento, esta disciplina no ha considerado a las técnicas y el conocimiento producido para la clínica médica en psiquiatría o neurocirujía, el cual está basado en el estudio de las formas de ondas que las señales de electroencefalografía dejan sobre los registros encefalográficos.
+%
+%Este trabajo presenta un método basado en técnicas de Visión por Computadora para analizar y clasificar señales de Electroencefalografía, capturando la estructura de la forma de la onda de la señal.  Este método esta inspirado en cómo la corteza visual identifica patrones de orientaciones.
+%El método procede en 4 pasos, (1) se produce una gráfica de la señal canal por canal, (2) se asigna una localización dentro de la imágen para posicionar un parche de un determinado tamaño y escala, (3) se divide al parche en una grilla de 4x4, (4) se obtiene un campo vectorial 
+%
+%
+%
+%This technique can be applied to identify components in EEG signals in five steps, (1) signal preprocessing, (2) signal segmentation, (3) transformation on a channel by channel basis of each signal segment into a binary image of a signal plot, (4) assignment of keypoint location on the newly created image depending on the physiological phenomena under study and finally (5) calculation of the histogram of gradient orientations using finite differences from the image around the keypoint (Figure 1). This method generates a feature, a normalized 128-dimension SIFT descriptor, which can be used to compare the signal segments that were used to generate the plots, thus they can be used to analyze the underlying cognitive phenomena. 
+%
+%
+% con ello se construye un histograma de gradientes orientados e ironicamente se utiliza para identificar justamente algunos aspectos de cómo el cerebro procesa cierta información.
+%
+%La validez y alcance del método es evaluado mediante el estudio de Ondas Alfa, señales $\mu$ de imaginación motora y detectando potenciales evocados como el P300.  Adicionalmente, se aplica para implementar un procesador de texto basado en P300.
 
-La creciente necesidad de utilización de más y mejores mecanismos de comunicación digitales (HCI) ha impulsado, paralelamente, diversos usos de BCI para personas sin dificultades comunicacionales \cite{Allison} como ser soluciones para la discapacidad temporal inducida, la \textit{neuroergonomia} \cite{Parasuraman2008}, el mejoramiento de biosensores para la industria automotriz, la detección rápida de señales (pilotos, cirujanos), los mecanismos de análisis de errores humanos o de análisis de carga de trabajo, los videos juegos, los sistemas biométricos para seguridad informática, le mejoramiento de las interfaces hápticas en la \textbf{telepresencia}, \textit{ciberinfraestructura} \cite{bookbci}  así como también en la Robótica Asistiva \cite{Cherubini2007,Tonin2009,Hirata2008}.
+%El advenimiento de mejoras en los dispositivos de diagnóstico que capturan información de bioseñales generadas en el Sistema Nervioso Central abrió la puerta a la posibilidad de utilizar esas señales para transmitir información y controlar elementos tecnológicos directamente de manera intencional mediante la actividad mental.
+%Estos mecanismos generan un nuevo canal de comunicación y tienen por ello una inmediata aplicación en la vida de personas afectadas principalmente por enfermedades neurodegenerativas, que conllevan generalmente a una reducción, o incluso eliminación, de la posibilidad de transmitir información por los canales habituales de habla o gestos.
+%
+% En este trabajo doctoral, se desarrolla un método para analizar las señales cerebrales de Electroencefalografía de forma automática basado en las diferentes formas de onda de la señal.  Este algoritmo permite identificarlas, clasificarlas, catalogarlas, y tiene una directa aplicación para controlar computadoras, drones, teléfonos celulares o cualquier otro elemento tecnológico.
 
-Idealmente, los sistemas BCI deben ser directos, con un control intencional por el usuario mediante la modulación de alguna característica de la señal, se deben procesar en tiempo real y finalmente deben generar una señal de feedback al usuario\cite{Pfurtscheller2010}.
+%Las interfaces BCI (Brain Computer Interfaces, Interfaces Cerebro Computadora) ó BMI (Brain Machine Interfaces, Interfaces Cerebro Máquina) surgen como un nuevo canal de comunicación entre el cerebro y computadoras, máquinas o robots, distinto de los canales biológicos estándar (musculares). Tienen un carácter fuertemente interdisciplinario, donde convergen ramas de la neurobiología, la psicología, las matemáticas, las ciencias de la computación y la ingeniería.
+%
+%Las personas afectadas por enfermedades o traumas neurológicos tales como \textit{amiotrofía, esclerosis múltiple, ACV, lesiones espinales, parálisis cerebral} sufren un problema derivado que es la imposibilidad, en diferentes grados, de comunicarse tanto así sea como por el atrofiamiento de los sentidos para la recepción de información, como por los inconvenientes, generalmente motores que pueden presentarse para transmitir esa información.   
+%Las interfaces BCI surgen como una alternativa de comunicación donde la información es extraída directamente del cerebro humano a través de algún esquema de estudio cerebral que permita analizar la actividad del sistema nervioso central (CNS) \cite{Wolpaw2002}.
+%
+%La creciente necesidad de utilización de más y mejores mecanismos de comunicación digitales (HCI) ha impulsado, paralelamente, diversos usos de BCI para personas sin dificultades comunicacionales \cite{Allison} como ser soluciones para la discapacidad temporal inducida, la \textit{neuroergonomia} \cite{Parasuraman2008}, el mejoramiento de biosensores para la industria automotriz, la detección rápida de señales (pilotos, cirujanos), los mecanismos de análisis de errores humanos o de análisis de carga de trabajo, los videos juegos, los sistemas biométricos para seguridad informática, le mejoramiento de las interfaces hápticas en la \textbf{telepresencia}, \textit{ciberinfraestructura} \cite{bookbci}  así como también en la Robótica Asistiva \cite{Cherubini2007,Tonin2009,Hirata2008}.
+%
+%Este trabajo resurge las viejas dieas
 
 \end{abstract}
 
 \selectlanguage{english} %
 
 \begin{listofpubs}
-Lo reportado en las siguientes publicaciones conforma la base de la
-presente tesis.
+%Lo reportado en las siguientes publicaciones conforma la base de la presente tesis.
+The following publications are the basis of this thesis
 
 \begin{itemize}
-\item publicación 1
-\item publicación 2
-\item publicación 3
+\item Ramele, R., A.J.Villar, and J.M.Santos."A Brain Computer Interface Classification Method Based on SIFT Descriptors." VI Latin American Congress on Biomedical Engineering CLAIB 2014, Paraná, Argentina 29,30,31 October 2014. Springer International Publishing, 2015.
+\item Ramele, R., A. J. Villar, and J. M. Santos. "A Brain Computer Interface Classification Method Based on Signal Plots." 4th Winter Conference on Brain Computer Interfaces, Yongpyong, Korea, February 2015. IEEE Signal and Processing, 2016. 
 \end{itemize}
 \end{listofpubs}
 
@@ -216,54 +302,54 @@ Es un falacia creer que existe alguna actividad en nuestra vida que la hacemos s
 % ...
 % \chapter[Future Work]{Future Work}
 
-\chapter*{Guia para mi - BORRAR}
-\addcontentsline{toc}{chapter}{Guia para mi} 
-
-Las tesis se tienen que escribir para alguno de estos tres:
-
-\begin{itemize}
-\item Neofito de BCI:  tesis larga, bastante completa y extendida.
-\item Para Wolpaw: 30 páginas aproximadamente, sólo con la propuesta.
-\item Para el Jurado: Focalizada
-\end{itemize}
-
-Esta tesis está escrita para el jurado con lo cual esta focalizada en el tema.  Sin embargo, tiene apéndices donde está información para un neofito de BCI  de Argentina.
-
-Esta tesis está estructurada de la siguiente forma
-
-\begin{itemize}
-\item Titulo
-\item Abstract: Español e Ingles
-\item Introduccion al propio manuscrito de la tesis
-\item State of the ART for BCI
-\begin{itemize}
-\item BCI
-\item EEG
-\item Abordaje BCI / EEG Basado en las waveforms
-\end{itemize}
-\item Histogram of oriented gradients of signal plots applied to bci
-\item Alpha Waves
-\item Motor Imagery
-\item P300
-\item Conclussions
-\item References
-\item Appendices
-\begin{itemize}
-\item Historia de BCI en Argentina (en castellano)
-\item SIFT
-\item Walkthrough de BCI
-\end{itemize}
-\end{itemize}
-
-Juliana's Tips:
-
-\begin{itemize}
-\item Por que este parrafo esta aca
-\item Ordenada
-\item Oraciones cortas
-\item Tiempo presente
-\item Items y descripciones una a una.
-\end{itemize}
+%\chapter*{Guia para mi - BORRAR}
+%\addcontentsline{toc}{chapter}{Guia para mi} 
+%
+%Las tesis se tienen que escribir para alguno de estos tres:
+%
+%\begin{itemize}
+%\item Neofito de BCI:  tesis larga, bastante completa y extendida.
+%\item Para Wolpaw: 30 páginas aproximadamente, sólo con la propuesta.
+%\item Para el Jurado: Focalizada
+%\end{itemize}
+%
+%Esta tesis está escrita para el jurado con lo cual esta focalizada en el tema.  Sin embargo, tiene apéndices donde está información para un neofito de BCI  de Argentina.
+%
+%Esta tesis está estructurada de la siguiente forma
+%
+%\begin{itemize}
+%\item Titulo
+%\item Abstract: Español e Ingles
+%\item Introduccion al propio manuscrito de la tesis
+%\item State of the ART for BCI
+%\begin{itemize}
+%\item BCI
+%\item EEG
+%\item Abordaje BCI / EEG Basado en las waveforms
+%\end{itemize}
+%\item Histogram of oriented gradients of signal plots applied to bci
+%\item Alpha Waves
+%\item Motor Imagery
+%\item P300
+%\item Conclussions
+%\item References
+%\item Appendices
+%\begin{itemize}
+%\item Historia de BCI en Argentina (en castellano)
+%\item SIFT
+%\item Walkthrough de BCI
+%\end{itemize}
+%\end{itemize}
+%
+%Juliana's Tips:
+%
+%\begin{itemize}
+%\item Por que este parrafo esta aca
+%\item Ordenada
+%\item Oraciones cortas
+%\item Tiempo presente
+%\item Items y descripciones una a una.
+%\end{itemize}
 
 
 
