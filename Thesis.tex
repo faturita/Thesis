@@ -6,7 +6,8 @@
 %\usepackage[spanish]{babel}
 %\usepackage[latin1]{inputenc}
 \usepackage[utf8]{inputenc}
-%\usepackage{CJKutf8}
+\usepackage{CJKutf8}
+
 
 %-------------------------------------
 \usepackage{chronology}
@@ -85,7 +86,7 @@
 
 \AlCentroPagina{images/itbalogoshaded}
 
-\title{\textbf{Histogram of Gradient Orientations of Signal Plots for Brain Computer Interfaces}}
+\title{\textbf{Histogram of Gradient Orientations of EEG Signal Plots for Brain Computer Interfaces}}
 \author{Rodrigo Ramele}
 \dept{Doctorado}
 \faculty{Escuela de Ingeniería en Informática}
@@ -123,10 +124,7 @@
 % FINNNNN
 
 
-\dedicate{Thisis th\\
-dedication page.\\
-Break lines up\\
-like this.}
+\dedicate{\begin{CJK}{UTF8}{min}希望がある所に道もあります\end{CJK}}
 
 %\nodedicationpage
 %\notableofcontents
@@ -140,17 +138,17 @@ like this.}
 %\typeout{:?111111111} % Process All Errors from Here on
 %}
 
-\begin{abstract}
-Brain Computer Interface (BCI) or Brain Machine Interfaces (BMI), has proved the feasibility of a distinct non-biological communication channel to transmit information from the Central Nervous System (CNS) to a computer device.  Promising success has been achieved with invasive BCI, though biocompatibilities issues and the complexity and risks of surgical procedures are the main drive to enhance current non-invasive technologies.
-
-Electroencephalography (EEG) is the most widespread method to gather information from the CNS in a non-invasive way.  Clinical EEG has traditionally focused on temporal waveforms, but signal analysis methods which follow this path has been overshadow in BCI research. 
-
-This thesis propose a method and framework to analyze the waveform, the shape of the EEG signal, using the histogram of gradient orientations, a fruitful technique from Computer Vision which is used to characterize image local features. Inspiration comes from what traditionally electroencephalographers have been doing for almost a century: visually inspecting raw EEG signal plots. 
-
-The validity of the method is verified by identifying and detecting Visual Occipital Alpha Waves and Motor Imagery Rolandinc Mu rhythms. It is also applied on P300 ERP detection and used to implement a P300-Based Visual Speller application. Experimental protocols to produce these cognitive patterns were designed and own datasets produced and published using both commercial-grade and research-grade EEG devices.  Obtained results on public and own datasets are outlined and described, and comparisons performed against similar procedures.
-
-The benefits of the approach presented here are twofold, (1) it has a universal applicability because the same basic methodology can be applied to detect different patterns in EEG signals with applications to BCI and (2) it has the potential to foster close collaboration with physicians and electroencephalograph technicians because this direction of work follows the established procedure of the clinical EEG community of analyzing waveforms by their shapes.
-\end{abstract}
+%\begin{abstract}
+%Brain Computer Interface (BCI) or Brain Machine Interfaces (BMI), has proved the feasibility of a distinct non-biological communication channel to transmit information from the Central Nervous System (CNS) to a computer device.  Promising success has been achieved with invasive BCI, though biocompatibilities issues and the complexity and risks of surgical procedures are the main drive to enhance current non-invasive technologies.
+%
+%Electroencephalography (EEG) is the most widespread method to gather information from the CNS in a non-invasive way.  Clinical EEG has traditionally focused on temporal waveforms, but signal analysis methods which follow this path has been overshadow in BCI research. 
+%
+%This thesis propose a method and framework to analyze the waveform, the shape of the EEG signal, using the histogram of gradient orientations, a fruitful technique from Computer Vision which is used to depict image local characteristics. This method generates a feature, a 128-dimension descriptor, that  is used to to analyze the underlying cognitive phenomena. Inspiration comes from what traditionally electroencephalographers have been doing for almost a century: visually inspecting raw EEG signal plots. 
+%
+%The validity of the method is verified by identifying Visual Occipital Alpha Waves and Motor Imagery Rolandinc Mu rhythms. It is also applied on P300 ERP detection and used to implement a P300-Based Visual Speller application. Experimental protocols to produce these cognitive patterns were designed and own datasets produced and published using both commercial-grade and research-grade EEG devices.  Obtained results on public and own datasets are outlined, and comparisons performed against similar procedures.
+%
+%The benefits of the approach presented here are twofold, (1) it has a universal applicability because the same basic methodology can be applied to detect different patterns in EEG signals with applications to BCI and (2) it has the potential to foster close collaboration with physicians and electroencephalograph technicians because this direction of work follows the established procedure of the clinical EEG community of analyzing waveforms by their shapes.
+%\end{abstract}
 
 
 \begin{abstract}
@@ -163,7 +161,9 @@ This thesis propose a method and framework to analyze the waveform, the shape of
 
 This technique can be outlined in five steps, (1) signal preprocessing, (2) signal segmentation, (3) transformation on a channel by channel basis of each signal segment into a binary image of a signal plot, (4) assignment of keypoint location on a position over the newly created image depending on the physiological phenomena under study and finally (5) the calculation of the histogram of gradient orientations using finite differences from the image around this keypoint. This method generates a feature, a normalized 128-dimension descriptor. This feature is used to compare the signal segments that were used to generate them, hence to analyze the underlying cognitive phenomena. 
 
-The validity of the method was verified by studying three cognitive patterns.  First, Visual Occipital Alpha Waves are analyzed.  An experimental protocol is designed and a dataset is produced using a commercial-grade EEG device.  Additionally, the ability of the method to capture oscillatory processes is verified by analyzing a public dataset. Moreover, this methodology is extended to study a related oscillatory process: Motor Imagery Rolandic Mu rhythms.  The performance of the method to discriminate right vs left motor imagery against a public dataset of healthy subjects is verified.  Results are informed and reported. Finally, the method is modified to capture transient events, particularly the P300 Event Related Potential.  A minute description on how to extract the ERP from the EEG segment is offered, and a detailed description of how to implement a P300-Based BCI Speller application is outlined.  It's performance is verified by processing a public dataset of ALS patients and contrasted against an own dataset produced in house replicating the same experimental conditions.
+The validity of the method is verified by studying three cognitive patterns.  First, Visual Occipital Alpha Waves are analyzed.  An experimental protocol is designed and a dataset is produced using a commercial-grade EEG device.  Additionally, the ability of the method to capture oscillatory processes is verified by analyzing a public dataset. Moreover, this methodology is extended to study a related oscillatory process: Motor Imagery Rolandic Mu rhythms.  The performance of the method to discriminate right vs left motor imagery against a public dataset of healthy subjects, is verified.  Results are informed and reported. 
+
+Finally, the method is modified to capture transient events, particularly the P300 Event Related Potential.  A description on how to extract the ERP from the EEG segment is offered, and a detailed depiction of how to implement a P300-Based BCI Speller application is outlined.  Its performance is verified by processing a public dataset of Amiotrophic Lateral Sclerosis (ALS) patients and contrasted against an own dataset produced in-house replicating the same experimental conditions.
 
 The benefits of the approach presented here are twofold, (1) it has a universal applicability because the same basic methodology can be applied to detect different patterns in EEG signals with applications to BCI and (2) it has the potential to foster close collaboration with physicians and electroencephalograph technicians because this direction of work follows the established procedure of the clinical EEG community of analyzing waveforms by their shapes.
 
@@ -228,6 +228,21 @@ The benefits of the approach presented here are twofold, (1) it has a universal 
 \selectlanguage{spanish}%
 
 \begin{abstract}
+
+Las interfaces BCI (Brain Computer Interfaces, Interfaces Cerebro Computadora) ó BMI (Brain Machine Interfaces, Interfaces Cerebro Máquina) surgen como un nuevo canal de comunicación entre el cerebro y las computadoras, máquinas o robots, distinto de los canales biológicos estándar.  Resultados prometedores han sido obtenidos por sus variantes invasivas, pero problemas persistentes de biocompatibilidad y, las complejidades y riesgos de los procedimientos quirúrgicos son las principales razones que impulsan las mejoras de las tecnologías no invasiva.
+
+La Electroencefalografía (EEG) es el método más difundido para obtener información del Sistema Nervioso Central de manera no invasiva.  La Electroencefalografía Clínica se ha enfocado tradicionalmente en el estudio de las formas de ondas temporales, pero los métodos de procesamiento de señales que exploren esta metodología han sido ignorados en las investigaciones sobre BCI.
+
+Esta tesis propone un método y un marco para analizar las formas de ondas, las formas de las señales de EEG, utilizando los histogramas de gradientes orientados, una útil técnica de Visión Artificial que es utilizada para tipificar características locales en regiones de una imagen.  Este procedimiento está inspirado en lo que tradicionalmente los técnicos electroencefalógrafos han realizado por casi un siglo: inspeccionar visualmente los registros electroencefalográficos.
+
+La presente técnica puede resumirse en 5 pasos, (1) preprocesamiento de la señal cruda, (2) segmentación de la señal, (3) una gráfica blanco y negro de la señal canal por canal, (4) asignación de una localización dentro de la imagen para posicionar un parche de un determinado tamaño y escala dependiendo del fenómeno cognitivo en estudio, y (5) el procedimiento para calcular el histograma de los gradientes orientados de la intensidades de los pixeles usando diferencias finitas, y alrededor de cada punto distinguido.  Este mecanismo genera un vector de 128 dimensiones, que se utiliza para comparar los segmentos de señales entre sí, y que permite entonces analizar el fenómeno cognitivo subyacente.
+
+La validez del método es verificada estudiando tres patrones cognitivos.  Primero, las ondas visuales occipitales alfa son analizadas.  Se diseñó un protocolo experimental y se obtuvo un dataset mediante la utilización de un dispositivo electroencefalográfico digital de uso comercial.  Adicionalmente, la posibilidad del método de capturar el comportamiento de ondas oscilatorias es demostrada sobre un dataset público.  Su empleo se hace extensivo para analizar los Ritmos Mu de Imaginaria Motora, otro tipo de onda oscilatoria.  Se reporta la efectividad del método para discriminar entre imaginaria motora derecha de izquierda en base al estudio de otro dataset público de pacientes sanos.  Los resultados son informados y reportados.  
+
+Finalmente, esta propuesta es utilizada para estudiar eventos transitorios, particularmente el potencial evocado P300.  Se ofrece una descripción sobre cómo extraer este potencial de los segmentos de EEG, y se implementa un procesador de texto basado en P300 que utiliza este método.  La eficiencia del sistema es verificada mediante el procesamiento de un dataset público de pacientes con Esclerosis Lateral Amiotrófica, y corroborada contra un dataset de sujetos sanos obtenidos de manera experimental, replicando el mismo protocolo.
+
+Los beneficios de esta propuesta se resumen en, (1) tiene una aplicación potencialmente universal, debido a que el mismo tipo de metodología puede ser aplicada para detectar cualquier tipo de patrón obtenido en la señal de EEG con eventuales aplicaciones a BCI, y (2) ofrece la posibilidad de incentivar la colaboración y utilización de estas técnicas en la clínica médica especializada en electroencefalografía ya que esta perspectiva basada en el estudio de las formas de onda de las señales, es un procedimiento conocido y ya establecido por esa comunidad.
+
 
 %Las interfaces BCI (Brain Computer Interfaces, Interfaces Cerebro Computadora) ó BMI (Brain Machine Interfaces, Interfaces Cerebro Máquina) surgen como un nuevo canal de comunicación entre el cerebro y las computadoras, máquinas o robots, distinto de los canales biológicos estándar. Tienen un carácter fuertemente interdisciplinario, donde convergen ramas de neurobiología, psicología, matemática, ciencias de la computación e ingeniería.
 %
