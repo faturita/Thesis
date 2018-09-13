@@ -37,7 +37,7 @@ The EEG signal may be represented by
 
 \noindent where $n$ are sample points digitalized at sampling frequency $F_s$.  This is a multichannel signal, for $c$ varying between $1$ and $C$.  Each one of this channels is assigned a name according to the 10-20 international system, and there are $C$ available channels. The sample index $n$ varies between $1$ and $N$.  The span of the signal $\lambda$ is the length of the signal segment in sample points and as the segment is in general 1s length, this is the inverse of the sampling frequency.
 
-\vspace{10}
+\vspace{10pt}
 
 
 To extract features from an image, first you need an image.  And this image needs to represent the underlying signal.  The straightforward way to do it, reproducing the traditional analog or digital EEG, is to draw a line on a contrast background.  The line represents the voltage amplitude of the corresponding channel in relation to a zero-level $z(c)$, with a positive deflection going upwards (towards the zero value in the image coordinate system) and downwards for negative deflection (Figure \ref{fig:plottingscheme}).  If only two colors are used, this image is a black-and-white binary image.  In principle, color selection is completely arbitrary (white for the line, black for the background), but it has some implications in terms of the feature extraction procedure that we will describe later.
