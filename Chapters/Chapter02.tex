@@ -5,7 +5,7 @@
 %Mental Chrometry and averaging 
 %https://www.ncbi.nlm.nih.gov/pmc/articles/PMC548951/
 
-This chapter describes the procedure to plot an image from the digital EEG signal.  This image is used to extract a feature which represents the waveform, the structure of the signal on a plot.  By analyzing this feature, we hypothesize that the underlying cognitive process can be detected and that it can be used to implement a brain-computer communication device.
+This chapter describes the procedure to plot an image from the digital EEG signal.  This image is used to extract a feature which represents the waveform, the structure of the signal on a plot.  By analyzing this feature, we hypothesize that the underlying cognitive process can be detected and it can be used to implement a brain-computer communication device.
 
 \section{Electroencephalographic Plotting}
 
@@ -13,15 +13,15 @@ The plotting of the EEG is intrinsically mixed with the nuisances of the electro
 
 \begin{enumerate}
 \item Sensitivity: also termed gain due the amplification procedure.  Its units are $ \frac{mV}{mm}$.  In the digital form, it is $\frac{\mu V}{pixel}$.
-\item Epoch/Paper speed: the time span that is represented in a single screen.  For paper strips it was used to be $10s$ (Figure FIG).  In the digital version is $ \frac{\lambda}{pixel}$ with $\lambda$ being the length of the signal segment.
+\item Epoch/Paper speed: the time span that is represented in a single screen.  For paper strips it was used to be $10s$.  In its digital counterpart is $ \frac{\lambda}{pixel}$ with $\lambda$ being the length of the signal segment.
 \end{enumerate}
 
-On analog plotting montage was essential, but digital plotting allows to implement flexible configuration.  Montage can be monopolar or bipolar.  On Monopolar Montages each electrode obtain the potential difference against a common reference, and with Bipolar Montages, electrodes are paired, even in chained configurations, and the potential difference is obtained between them (cite Electroencphalograpy for empilepsy society).
+On analog plotting, montage is essential, but digital plotting allows to implement flexible configuration.  Montage can be monopolar or bipolar.  On monopolar montages each electrode obtains the potential difference against a common reference, and with bipolar montages, electrodes are paired, even in chained configurations, and the potential difference is obtained between them~\cite{EEGIntro}.
 
 %Logarithmic plotting, montage, calibration (cite Electroencphalograpy for empilepsy society)
 
 \begin{story}[Neuroimaging]
-With the advent of digital computers and the digital revolution, Plotting has become imaging.  Neuroimaging (CIte book Rodrigo Q Q) means mapping activity or structure to neuroanatomical regions (see Figure \ref{fig:neuroanatomy}).
+With the advent of digital computers and the digital revolution, Plotting has become imaging.  Neuroimaging~\cite{Freeman2013} means mapping activity or structure to neuroanatomical regions.
 
 There are currently three categories of neuroimaging: \textit{structural} includes CT (Computed Tomography), MRI (Magnetic Resonance Imaging) and DTI (Diffusion Tensor Imaging), \textit{functional}, which encompass EEG, MEG (Magnetoencephalography), fMRI (functional MRI) PET (Positron Emission Tomography), SPECT (Single Positron Emission Computed Tomography), NIRS (Near-Infrared Spectroscopy) and \textit{chemical} which involves dyes which are sensible to neuron firing.
 \end{story}
@@ -41,9 +41,17 @@ The EEG signal may be represented by
 
 To extract features from an image, first you need an image.  And this image needs to represent the underlying signal.  The straightforward way to do it, reproducing the traditional analog or digital EEG, is to draw a line on a contrast background.  The line represents the voltage amplitude of the corresponding channel in relation to a zero-level $z(c)$, with a positive deflection going upwards (towards the zero value in the image coordinate system) and downwards for negative deflection (Figure \ref{fig:plottingscheme}).  If only two colors are used, this image is a black-and-white binary image.  In principle, color selection is completely arbitrary (white for the line, black for the background), but it has some implications in terms of the feature extraction procedure that we will describe later.
 
-This chapter mostly deal with the coordinates transformation that need to be enforced while converting the signal into a plot.  Figure \ref{fig:plottingscheme} shows the image coordinate system where the $(z_1,z_2)$ represents the horizontal and vertical location, and the $(0,0)$ value is the upper-left position of the image.
+This chapter mostly deal with the coordinates transformation that need to be enforced while converting the signal into a plot.  Figure \ref{fig:imagecoordinatesystem} shows the image coordinate system where the $(z_1,z_2)$ represents the horizontal and vertical location, and the $(0,0)$ value is the upper-left position of the image.
 
 In how many ways EEG signals can be mapped into 2D greyscale or binary images ?
+
+
+\begin{figure}[]
+\centering
+\includegraphics[scale=0.2]{images/SignalTransformation.jpg}
+\caption[EEG Signal Mapping to Images]{In how many ways EEG signals can be mapped into 2D greyscale or binary images?}
+\label{fig:mappingimages}
+\end{figure}
 
 \begin{equation}
 I(x,y,n) = 0
@@ -140,7 +148,7 @@ The transformation from signal to image is continuously repeated, and many image
 
 \subsection{Standardized plotting}
 
-There are many ways to regularize the signal, but the \textit{z-score} is widely used and accepted to do this (ref z-score in BCI).
+There are many ways to regularize the signal, but the \textit{z-score} is widely used and accepted to do this~\cite{Zhang2013}.
 
 The standardization is defined for  $1 \leq n \leq n_{max}$ and $1 \leq c \leq C$ by doing
 
@@ -230,15 +238,23 @@ On the horizontal axis, $z_1$, no discretization is needed because time is alrea
 
 Equation \ref{eq:images} produces a set of isolated pixels over the image.  To produce the plot $I^{(c)}$, the Bresenham \cite{Bresenham1965,Ramele2016} algorithm is used to interpolate straight lines between each pair of consecutive pixels.
 
-Figure where the interpolation is shown.
+\begin{figure}[]
+\centering
+\includegraphics[scale=10]{images/s_1_e_1_c_7_4.png}
+\caption[Signal Plotting: Interpolation]{A sampled EEG signal interpolated with the Bresenham algorithm.}
+\label{fig:imagecoordinatesystem}
+\end{figure}
 
-However, as seen in Figure, it can lead to very sharp edges around the sample pixels.  This can lead to a quantization of histogram gradients, so another option is to use an interpolated version.  Instead of just skipping time points values, these values are interpolated according to a linear quadratic or cubic interpolation, which smooths the curve around each point.
+However, as seen in Figure, it can lead to very sharp edges around the sample pixels.  This can lead to a quantization of histogram gradients. The alternative is to use a smoothing interpolated using splines.  Instead of just skipping time points values, these values are interpolated according to a linear quadratic or cubic interpolation, which smooths the curve around each point.  This procedure can be implemented by the Matlab function \textbf{resample} which applies an antialiasing FIR lowpass filter.
 
-Figure where the interpolation is improved.
+\begin{figure}[]
+\centering
+\includegraphics[scale=10]{images/s_1_e_1_c_7_4.png}
+\caption[Signal Plotting: Interpolation]{An interpolated upsampled EEG signal.  Once the new set of sample points are generated, the plot is also interpolated with the Bresenham algorithm.}
+\label{fig:imagecoordinatesystem}
+\end{figure}
 
-(based on Matlab resample function) .resample applies an antialiasing FIR lowpass filter to x and compensates for the delay introduced by the filter.
-
-Special care must be taken to avoid artifacts around the edges of the signal, so a window is also necessary to avoid this (like hamming).
+Special care must be taken to avoid artifacts around the edges of the signal, so a windowing procedure is also necessary to avoid this (e.g. Hamming).
 
 \subsection{Resolution}
 
