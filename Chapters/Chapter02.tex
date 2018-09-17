@@ -13,10 +13,10 @@ The plotting of the EEG is intrinsically mixed with the nuisances of the electro
 
 \begin{enumerate}
 \item Sensitivity: also termed gain due the amplification procedure.  Its units are $ \frac{mV}{mm}$.  In the digital form, it is $\frac{\mu V}{pixel}$.
-\item Epoch/Paper speed: the time span that is represented in a single screen.  For paper strips it was used to be $10s$.  In its digital counterpart is $ \frac{\lambda}{pixel}$ with $\lambda$ being the length of the signal segment.
+\item Epoch/Paper speed: the time span that is represented in a single screen.  For paper strips it is usually $10s$.  In its digital counterpart is $ \frac{\lambda}{pixel}$ with $\lambda$ being the span of the signal segment.
 \end{enumerate}
 
-On analog plotting, montage is essential, but digital plotting allows to implement flexible configuration.  Montage can be monopolar or bipolar.  On monopolar montages each electrode obtains the potential difference against a common reference, and with bipolar montages, electrodes are paired, even in chained configurations, and the potential difference is obtained between them~\cite{EEGIntro}.
+On analog plotting, montage is essential, but digital plotting allows to implement flexible configuration.  Montage can be monopolar or bipolar.  On monopolar montages each electrode obtains the potential difference against a common reference, and with bipolar montages, electrodes are paired, even in chained configurations. The potential difference is obtained between each pair of electrodes~\cite{EEGIntro}.
 
 %Logarithmic plotting, montage, calibration (cite Electroencphalograpy for empilepsy society)
 
@@ -35,28 +35,35 @@ The EEG signal may be represented by
 \label{eq:zerolevel}
 \end{equation}
 
-\noindent where $n$ are sample points digitalized at sampling frequency $F_s$.  This is a multichannel signal, for $c$ varying between $1$ and $C$.  Each one of this channels is assigned a name according to the 10-20 international system, and there are $C$ available channels. The sample index $n$ varies between $1$ and $N$.  The span of the signal $\lambda$ is the length of the signal segment in sample points and as the segment is in general 1s length, this is the inverse of the sampling frequency.
+\noindent where $n$ are sample points digitalized at sampling frequency $F_s$.  This is a multichannel signal, for $c$ varying between  $1 \leq c \leq C$.  Each one of this channels is assigned a name according to the 10-20 international system, and there are $C$ available channels. The sample index $n$ varies between $1$ and $N$.  The span of the signal $\lambda$ is the length in seconds of the signal segment and as the segment is in general 1s length, this is the inverse of the sampling frequency.
 
 \vspace{3pt}
 
-To extract features from an image, first you need an image.  And this image needs to represent the underlying signal.  The straightforward way to do it, reproducing the traditional analog or digital EEG, is to draw a line on a contrast background.  The line represents the voltage amplitude of the corresponding channel in relation to a zero-level $z(c)$, with a positive deflection going upwards (towards the zero value in the image coordinate system) and downwards for negative deflection (Figure \ref{fig:plottingscheme}).  If only two colors are used, this image is a black-and-white binary image.  In principle, color selection is completely arbitrary (white for the line, black for the background), but it has some implications in terms of the feature extraction procedure that we will describe later.
+To extract features from an image, we first construct an image which represents the underlying signal.  The straightforward way to do it, reproducing the traditional analog or digital EEG, is to draw a line on a contrast background.  This line represents the voltage amplitude of the corresponding channel in relation to a zero-level $z(c)$, with a positive deflection going upwards (towards the zero value in the image coordinate system) and downwards for negative deflection.  Figure \ref{fig:plottingsample} shows an EEG signal segment sample plot.  If only two colors are used, this image is a black-and-white binary image.  The color selection is arbitrary (white for the line, black for the background), but it has some implications in terms of the feature extraction procedure that we will describe later.
+
+\begin{figure}[]
+\centering
+\includegraphics[scale=1.5]{images/plottingsample.png}
+\caption[EEG Signal Mapping to Images]{Sample EEG signal plotting.  Span of the signal is 1s, which is 250 sample points.  The height of the image is 73 pixels, which is the peak-to-peak amplitude of the signal segment.  Channel Oz is being shown.}
+\label{fig:plottingsample}
+\end{figure}
 
 This chapter mostly deal with the coordinates transformation that need to be enforced while converting the signal into a plot.  Figure \ref{fig:imagecoordinatesystem} shows the image coordinate system where the $(z_1,z_2)$ represents the horizontal and vertical location, and the $(0,0)$ value is the upper-left position of the image.
 
-In how many ways EEG signals can be mapped into 2D greyscale or binary images ?
+\begin{figure}[]
+\centering
+\includegraphics[scale=1]{images/imagecoordinatesystem.pdf}
+\caption[Image Coordinate System]{A K-Complex transient event is shown on the image }
+\label{fig:imagecoordinatesystem}
+\end{figure}
 
 
 \begin{figure}[]
 \centering
 \includegraphics[scale=0.2]{images/SignalTransformation.jpg}
-\caption[EEG Signal Mapping to Images]{In how many ways EEG signals can be mapped into 2D greyscale or binary images?}
+\caption[EEG Signal Mapping to Images]{Six ways of mapping an EEG signal segment into a binary or greyscale image.}
 \label{fig:mappingimages}
 \end{figure}
-
-\begin{equation}
-I(x,y,n) = 0
-\label{eq:standarizedaverages}
-\end{equation}
 
 which is a three dimensional surface.
 
@@ -128,7 +135,8 @@ I(z_1,z_2) = \left\{ \begin{array}{rl} \phi(x(n,c_i))  & \text{if} \,  z_1 = n; 
 \label{eq:images}
 \end{equation}
 
-This last representation has the important property that $ LoG(I(x,0)) = LoG(x(n,c)) $.
+%This last representation has the important property that $ LoG(I(x,0)) = LoG(x(n,c)) $.
+
 
 \section{EEG Signal Plot}
 
@@ -216,12 +224,6 @@ W_x = \gamma_t  N
 \label{eq:standarizedaverages}
 \end{equation}
 
-\begin{figure}[]
-\centering
-\includegraphics[scale=1]{images/imagecoordinatesystem.pdf}
-\caption[Image Coordinate System]{A K-Complex transient event is shown on the image }
-\label{fig:imagecoordinatesystem}
-\end{figure}
 
 \subsection{Pixelation}
 
@@ -240,9 +242,9 @@ Equation \ref{eq:images} produces a set of isolated pixels over the image.  To p
 
 \begin{figure}[]
 \centering
-\includegraphics[scale=10]{images/s_1_e_1_c_7_4.png}
+\includegraphics[height=5cm,width=15cm]{images/s_1_e_1_c_7_4.png}
 \caption[Signal Plotting: Interpolation]{A sampled EEG signal interpolated with the Bresenham algorithm.}
-\label{fig:imagecoordinatesystem}
+\label{fig:interpolation}
 \end{figure}
 
 However, as seen in Figure, it can lead to very sharp edges around the sample pixels.  This can lead to a quantization of histogram gradients. The alternative is to use a smoothing interpolated using splines.  Instead of just skipping time points values, these values are interpolated according to a linear quadratic or cubic interpolation, which smooths the curve around each point.  This procedure can be implemented by the Matlab function \textbf{resample} which applies an antialiasing FIR lowpass filter.
@@ -277,3 +279,17 @@ Consistently, on the vertical axis, one pixel is analogous to
 \end{equation}
 
 \noindent where $\gamma$ is the signal scale.  As EEG time-series are digitalized in $\si\mu{V}$, this the unit of choice.  In Figure \ref{fig:imagecoordinatesystem}, $1$ vertical pixel represents exactly $1 \mu V$.
+
+
+\section{Mapping}
+
+We propose the Equations~\ref{eq:mapping2} and~\ref{eq:mapping1} to compute the scale value in horizontal and vertical directions, respectively. 
+\begin{equation}
+s_x = \frac{ \gamma \;  \lambda \  F_s}{12}
+\label{eq:mapping2}
+\end{equation}
+
+\begin{equation}
+s_y= \frac{\gamma \; \Delta \mu V}{12} 
+\label{eq:mapping1}
+\end{equation}
