@@ -5,6 +5,7 @@
 %Mental Chrometry and averaging 
 %https://www.ncbi.nlm.nih.gov/pmc/articles/PMC548951/
 
+A regular practice in image processing is to analyze images as bidimensional signals.  We do here the opposite and analyze signals based on images.
 This chapter describes the procedure to plot an image from the digital EEG signal.  This image is used to extract a feature which represents the waveform, the structure of the signal on a plot.  By analyzing this feature, we hypothesize that the underlying cognitive process can be detected and it can be used to implement a brain-computer communication device.
 
 \section{Electroencephalographic Plotting}
@@ -16,19 +17,19 @@ The plotting of the EEG is intrinsically mixed with the nuisances of the electro
 \item Epoch/Paper speed: the time span that is represented in a single screen.  For paper strips it is usually $10s$.  In its digital counterpart is $ \frac{w}{pixel}$ with $w$ being the length in milliseconds of the signal segment.
 \end{enumerate}
 
-On analog plotting, montage is essential, but digital plotting allows to implement flexible configuration.  Montage can be monopolar or bipolar.  On monopolar montages each electrode obtains the potential difference against a common reference, and with bipolar montages, electrodes are paired, even in chained configurations. The potential difference is obtained between each pair of electrodes~\cite{EEGIntro}.
+On analog plotting, montage is essential, but digital plotting allows flexible configuration.  Montage can be monopolar or bipolar.  On monopolar montages each electrode obtains the potential difference against a common reference, and with bipolar montages, electrodes are paired, eventually in chained configurations. The potential difference is obtained between each pair of electrodes~\cite{EEGIntro}.
 
 %Logarithmic plotting, montage, calibration (cite Electroencphalograpy for empilepsy society)
 
 \begin{story}[Neuroimaging]
 With the advent of digital computers and the digital revolution, Plotting has become imaging.  Neuroimaging~\cite{Freeman2013} means mapping activity or structure to neuroanatomical regions.
 
-There are currently three categories of neuroimaging: \textit{structural} includes CT (Computed Tomography), MRI (Magnetic Resonance Imaging) and DTI (Diffusion Tensor Imaging), \textit{functional}, which encompass EEG, MEG (Magnetoencephalography), fMRI (functional MRI) PET (Positron Emission Tomography), SPECT (Single Positron Emission Computed Tomography), NIRS (Near-Infrared Spectroscopy) and \textit{chemical} which involves dyes which are sensible to neuron firing.
+There are currently three categories of neuroimaging: \textit{structural} includes CT (Computed Tomography), MRI (Magnetic Resonance Imaging) and DTI (Diffusion Tensor Imaging), \textit{functional}, which encompass EEG, MEG (Magnetoencephalography), fMRI (functional MRI) PET (Positron Emission Tomography), SPECT (Single Positron Emission Computed Tomography), NIRS (Near-Infrared Spectroscopy) and \textit{chemical} which involves special dyes which are sensible to neuron firing.
 \end{story}
 
 \section{Signal to Image transformation}
 
-The EEG signal may be represented by
+The EEG signal is represented by
 
 \begin{equation}
 \mathbf{x}(n) = x(n,c)
@@ -324,12 +325,12 @@ s_y= \frac{\gamma \; \Delta \mu V}{12}
 
 
 \begin{equation}
-\frac{W_x-1}{\sqrt{2} \; 15}  \leq S_t 
+\frac{W_x-1}{\sqrt{2} \; 15}  \geq S_t 
 \label{eq:restriction1}
 \end{equation}
 
 \begin{equation}
-\frac{H_y-1}{\sqrt{2} \; 15}  \leq S_v 
+\frac{H_y-1}{\sqrt{2} \; 15}  \geq S_v 
 \label{eq:restriction2}
 \end{equation}
 
