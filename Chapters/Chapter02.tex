@@ -22,7 +22,7 @@ On analog plotting, montage is essential, but digital plotting allows flexible c
 %Logarithmic plotting, montage, calibration (cite Electroencphalograpy for empilepsy society)
 
 \begin{story}[Neuroimaging]
-With the advent of digital computers and the digital revolution, Plotting has become imaging.  Neuroimaging~\cite{Freeman2013} means mapping activity or structure to neuroanatomical regions.
+With the advent of digital computers and the digital revolution, plotting has become imaging.  Neuroimaging~\cite{Freeman2013} means mapping activity or structure to neuroanatomical regions.
 
 There are currently three categories of neuroimaging: \textit{structural} includes CT (Computed Tomography), MRI (Magnetic Resonance Imaging) and DTI (Diffusion Tensor Imaging), \textit{functional}, which encompass EEG, MEG (Magnetoencephalography), fMRI (functional MRI) PET (Positron Emission Tomography), SPECT (Single Positron Emission Computed Tomography), NIRS (Near-Infrared Spectroscopy) and \textit{chemical} which involves special dyes which are sensible to neuron firing.
 \end{story}
@@ -36,7 +36,9 @@ The EEG signal is represented by
 \label{eq:zerolevel}
 \end{equation}
 
-\noindent where $n$ are sample points digitalized at sampling frequency $F_s$.  This is a multichannel signal, for $c$ varying between  $1 \leq c \leq C$.  Each one of this channels is assigned a name according to the 10-20 international system, and there are $C$ available channels. The sample index $n$ varies between $1$ and $N$.  The span of the signal $\lambda$ is the length in milliseconds of the waveform under study. When the segment encompass the entire waveform and as the segment is in general 1s length, this is the inverse of the sampling frequency.
+\noindent where $n$ are sample points digitalized at sampling frequency $F_s$.  This is a multichannel signal, for $c$ varying between  $1 \leq c \leq C$.  Each one of this channels is assigned a name according to the 10-20 international system, and there are $C$ available channels. The sample index $n$ varies between $1$ and $N$.  The span of the signal $\lambda$ is the length in milliseconds of the waveform under study. When the segment encompass the entire waveform and it is 1s length, this is the inverse of the sampling frequency.
+
+The length of segment in sample units, the sampling frequency and the segment length in \si{\ms} are related by
 
 \begin{equation}
 N = \left\lfloor F_s \; w \right\rfloor
@@ -45,20 +47,20 @@ N = \left\lfloor F_s \; w \right\rfloor
 
 \vspace{3pt}
 
-To extract features from an image, we first construct an image which represents the underlying signal.  The straightforward way to do it, reproducing the traditional analog or digital EEG, is to draw a line on a contrast background.  This line represents the voltage amplitude of the corresponding channel in relation to a zero-level $z(c)$, with a positive deflection going upwards (towards the zero value in the image coordinate system) and downwards for negative deflection.  Figure \ref{fig:plottingsample} shows an EEG signal segment sample plot.  If only two colors are used, this image is a black-and-white binary image.  The color selection is arbitrary (white for the line, black for the background), but it has some implications in terms of the feature extraction procedure that we will describe later.
+To extract features from an image, we first construct an image which represents the underlying signal.  The straightforward way to do it, reproducing the traditional analog or digital EEG, is to draw a line on a contrast background.  This line represents the voltage amplitude of the corresponding channel in relation to a zero-level $z(c)$, with a positive deflection going upwards (towards the zero value in the image coordinate system) and downwards for negative deflection.  Figure \ref{fig:plottingsample} shows an example of an EEG signal segment plot.  If only two colors are used, this image is a black-and-white binary image.  The color selection is arbitrary (white for the line, black for the background), but it has some implications in terms of the feature extraction procedure that we will describe later.
 
 \begin{figure}[]
 \centering
 \includegraphics[scale=1.5]{images/plottingsample.png}
-\caption[EEG Signal Mapping to Images]{Sample EEG signal plotting.  For this sample image, the span of the signal is 1s, which is 250 sample points.  The height of the image is 73 pixels, which is the peak-to-peak amplitude of the signal segment.  Channel Oz of baseline EEG activity is being shown.}
+\caption[EEG Signal Mapping to Images]{Sample EEG signal plotting.  For this sample image, the length of the signal is 1s, which is 250 sample points.  The height of the image is 73 pixels, which is the peak-to-peak amplitude of the signal segment.  Channel Oz of baseline EEG activity is being shown.}
 \label{fig:plottingsample}
 \end{figure}
 
 This chapter mostly deal with the coordinates transformation that need to be enforced while converting the signal into a plot.  Figure \ref{fig:imagecoordinatesystem} shows the image coordinate system where the $(z_1,z_2)$ represents the horizontal and vertical location, and the $(0,0)$ value is the upper-left position of the image.
 
-\begin{figure}[]
+\begin{figure}[h!]
 \centering
-\includegraphics[scale=1]{images/imagecoordinatesystem.pdf}
+\includegraphics[scale=1.2]{images/imagecoordinatesystem.pdf}
 \caption[Image Coordinate System]{The image coordinate system and the mapping from the signal segment.  The origin is the $(0,0)$ position at the upper-left corner of the image.  Time is represented as sample points on the horizontal axis and the amplitude in $\mu V$ is shown on the vertical axis. Image height $H_y$ and width $W_x$ are obtained based on signal parameters.  The signal's zero-level $z(c)$ is the vertical location where the signal zero value is located. The plot of the signal is obtained by first setting the sample points on the predetermined image locations according to equation \ref{eq:images} and then applying a discrete interpolation algorithm to connect them with straight lines. }
 \label{fig:imagecoordinatesystem}
 \end{figure}
@@ -71,7 +73,7 @@ This chapter mostly deal with the coordinates transformation that need to be enf
 %\end{figure}
 
 
-In order to convert the EEG original signal into an image, the following six alternatives can be used, where the $I(z_1,z_2)$ is the generated image.
+In order to convert the EEG original signal $x(n,c)$ into an image $I(z_1,z_2)$, the following six alternatives can be used.
 
 \begin{itemize}
 \item Channel by Channel binary image
@@ -187,7 +189,7 @@ z(c) = \left \lfloor{ \frac{\max_{n} \tilde{x}(n,c)  - \min_{n} \tilde{x}(n,c) }
 
 \subsection{Autoscaled plotting}
 
-This plotting scheme allows each image to adapt to the underlying signal.  The height is set at twice the value of the zero-level, and the signal mean is subtracted from the signal, which is a vertical displacement.
+This plotting scheme allows each image to adapt to the underlying signal.  The height is set at twice the value of the zero-level, and the signal mean is subtracted from the signal, producing a vertical displacement.
 
 \begin{equation}
 \tilde{x}(n,c) =  x(n,c) - \bar{x}(c) 
@@ -198,9 +200,9 @@ Figure \ref{fig:plottingscheme}(b) shows the results of the plotting for an impu
 
 \begin{figure}[htb]
 \centering
-\subfigure[A signal pulse determines the height of the plotted image. The signal is standardized and the height of the image is determined according to the peak-to-peak amplitude, which is in constant for every image and equal to $\gamma$. ]
+\subfigure[An artificial signal pulse and their plotting representation. The signal is standardized and the height of the image is determined according to the peak-to-peak amplitude, which is constant for every image and equal to $\gamma$. ]
 {\includegraphics[height=5cm,width=15cm]{images/signalplot1.eps}}
-\subfigure[The plotted image is twice the zero-level. In this case, the height is also determined according to the peak-to-peak amplitude of each segment, proportional to $\gamma$, and not constant. Transformed images do not have the same height, but the zero-level is always located at half the height of the image.]{\includegraphics[height=5cm,width=15cm]{images/signalplot2.eps}}
+\subfigure[The plotted image height is twice the zero-level. In this case, the height is also determined according to the peak-to-peak amplitude of each segment, proportional to $\gamma$, and not constant. Transformed images do not have the same height, but the zero-level is always located at half the height of the image.]{\includegraphics[height=5cm,width=15cm]{images/signalplot2.eps}}
 \caption[Signal plot of an impulse response]{Signal plotting schemes.}
 \label{fig:plottingscheme}
 \end{figure}
@@ -226,7 +228,7 @@ H_y = 2 \; z(c)
 
 \subsubsection{Width}
 
-The width on the other hand is obtained based on the span of the signal segment, scaled by the $\gamma_t$  time factor,
+The width on the other hand is obtained based on the length of the signal segment, scaled by the $\gamma_t$  time factor,
 
 \begin{equation}
 W_x = \gamma_t  N
@@ -236,27 +238,34 @@ W_x = \gamma_t  N
 
 \subsection{Pixelation}
 
-EEG time-series are floating-point numbers and the image is constructed based on discrete and integer pixels.  
+EEG time-series are floating-point numbers and the image is constructed based on discrete and integer pixels.  Image's pixel values $(z_1,z_2)$ are obtained according to Equation~\ref{eq:images}.  Thus, on the horizontal axis, $z_1$, no discretization is needed because time is already digitalized in sample units. 
+
+\begin{equation}
+z_1 = \gamma_t  \; n.
+\label{eq:horizontalpixelation}
+\end{equation}
+
+On the other hand, on the vertical axis, pixels are discretized according to
 
 \begin{equation}
 z_2 = \left \lfloor{ \gamma  \; \tilde{x}(n,c)  }\right \rceil
-\label{eq:standarizedaverages}
+\label{eq:verticalpixelation}
 \end{equation}
 
-\noindent where $\gamma$ is the scale parameter, which also affects the height of the image in Equation \ref{eq:height}.
-
-On the other hand, on the horizontal axis, $z_1$, no discretization is needed because time is already digitalized in sample units. 
+\noindent where $\gamma$ is the scale amplitude factor parameter, which also affects the height of the image in Equation \ref{eq:height}.
 
 \subsection{Interpolation}
 
 Equation \ref{eq:images} produces a set of isolated pixels over the image.  To produce the plot $I^{(c)}$, the Bresenham \cite{Bresenham1965,Ramele2016} algorithm is used to interpolate straight lines between each pair of consecutive pixels.
 
-\begin{figure}[htb]
+\begin{figure}[h!]
 \centering
-\subfigure[A sampled EEG signal interpolated with the Bresenham algorithm. ]
-{\includegraphics[height=5cm,width=15cm]{images/s_1_e_1_c_7_4.png}}
-\subfigure[An interpolated upsampled EEG signal.  Once the new set of sample points are generated, the plot is also interpolated with the Bresenham algorithm.]
-{\includegraphics[height=5cm,width=15cm]{images/s_1_e_1_c_7_4.png}}
+\subfigure[Sample points are located on the image according to Equation \ref{eq:images}. ]
+{\includegraphics[height=5cm,width=15cm]{images/samplepoints.eps}}
+\subfigure[Sample points are linearly interpolated in a discrete procedure using the Bresenham algorithm.]
+{\includegraphics[height=5cm,width=15cm]{images/bresenham.eps}}
+\subfigure[The digital signal is upsampled 4 times and the generated sample points are interpolated using the Bresenham algorithm.]
+{\includegraphics[height=5cm,width=15cm]{images/upsample.eps}}
 \caption[Signal Plotting: Interpolation]{Generated images based on different interpolation schemes.}
 \label{fig:interpolation}
 \end{figure}
