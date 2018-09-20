@@ -16,6 +16,9 @@
 \usepackage{graphicx}
 \usepackage{color}
 
+\usepackage[symbols,nogroupskip,nonumberlist,sort=use]{glossaries-extra}
+
+
 %\usepackage[backend=biber,style=alphabetic,citestyle=authoryear]{biblatex}
 
 %\usepackage{natbib}    % Change bibstyle.
@@ -73,6 +76,24 @@
 \newpage
 }
 
+\makenoidxglossaries
+
+\glsxtrnewsymbol[description={Signal Segment Size}]{w}{\ensuremath{w}}
+\glsxtrnewsymbol[description={Sample points}]{N}{\ensuremath{N}}
+\glsxtrnewsymbol[description={Signal Span}]{lambda}{\ensuremath{\lambda}}
+\glsxtrnewsymbol[description={Sampling Frequency}]{Fs}{\ensuremath{F_s}}
+\glsxtrnewsymbol[description={Pixels in unit scale}]{Deltas}{\ensuremath{\Delta_s}}
+\glsxtrnewsymbol[description={Peak-to-peak Amplitude}]{DeltamuV}{\ensuremath{\Delta \mu V}}
+\glsxtrnewsymbol[description={Signal Amplitude Scale Factor}]{gamma}{\ensuremath{\gamma}}
+\glsxtrnewsymbol[description={Time Scale Factor}]{gammat}{\ensuremath{\gamma_t}}
+\glsxtrnewsymbol[description={Image Height}]{Hy}{\ensuremath{H_y}}
+\glsxtrnewsymbol[description={Image Width}]{Wx}{\ensuremath{W_x}}
+\glsxtrnewsymbol[description={Patch Horizontal Scale}]{St}{\ensuremath{S_t}}
+\glsxtrnewsymbol[description={Patch Vertical Scale}]{Sv}{\ensuremath{S_v}}
+\glsxtrnewsymbol[description={Patch Height}]{Sy}{\ensuremath{\mathbf{S}_y}}
+\glsxtrnewsymbol[description={Patch Width}]{Sx}{\ensuremath{\mathbf{S}_x}}
+
+%$\gls{N}$, $\gls{\lambda}$, $\gls{F_s}$, $\gls{\Delta_s}$, $\gls{\Delta \mu V}$.
 
 %\includeonly{FrontBackmatter/Contents,Chapters/Chapter03,Chapters/Chapter04,Chapters/Chapter05,Chapters/Chapter06,Chapters/Chapter0A,FrontBackmatter/Bibliography}
 
@@ -130,7 +151,6 @@
 %\notableofcontents
 \nolistoftables
 \nolistoffigures
-
 
 %{
 %\typeout{:?000000000} % Don't bother with over/under-full boxes
@@ -273,6 +293,8 @@ Es un falacia creer que existe alguna actividad en nuestra vida que la hacemos s
 \listoffigures
 \addcontentsline{toc}{chapter}{List of Figures}
 
+\printnoidxglossary[type=symbols,style=long,title={List of Symbols}]
+%$\gls{F}$, $\gls{t}$, $\gls{x}$, $\gls{v}$, $\gls{a}$.
 
 \afterpreface
 \linespread{1.5}
