@@ -10,21 +10,21 @@ This chapter describes the procedure to plot an image from the digital EEG signa
 
 \section{Electroencephalographic Plotting}
 
-The plotting of the EEG is intrinsically mixed with the nuisances of the electroencephalography itself.  Plotting proceed by using a chart recorded with a single pen~\cite{Jestico1977}.   Voltages are represented on a vertical axis while time is represented on the horizontal axis, in a Cartesian arrangement. 
+The plotting of the EEG is intrinsically mixed with the nuisances of the electroencephalography itself.  Plotting proceed by using a chart recorded with a single pen~\cite{Jestico1977}.   Voltages are represented on a vertical axis while time is represented on the horizontal axis, in a Cartesian arrangement.  The most salient characteristics of a plot are:
 
 \begin{enumerate}
 \item Sensitivity: also termed gain due the amplification procedure.  Its units are $ \frac{mV}{mm}$.  In the digital form, it is $\frac{\mu V}{pixel}$.
 \item Epoch/Paper speed: the time span that is represented in a single screen.  For paper strips it is usually $10s$.  In its digital counterpart is $ \frac{w}{pixel}$ with $w$ being the length in milliseconds of the signal segment.
 \end{enumerate}
 
-On analog plotting, montage is essential, but digital plotting allows flexible configuration.  Montage can be monopolar or bipolar.  On monopolar montages each electrode obtains the potential difference against a common reference, and with bipolar montages, electrodes are paired, eventually in chained configurations. The potential difference is obtained between each pair of electrodes~\cite{EEGIntro}.
+Additionally, on analog plotting montage is essential, though digital plotting allows flexible montage configuration from software.  Montage can be monopolar or bipolar.  On monopolar montages each electrode obtains the potential difference against a common reference. With bipolar montages, electrodes are paired, eventually in chained configurations, and the potential difference is obtained between each pair of electrodes~\cite{EEGIntro}.
 
 %Logarithmic plotting, montage, calibration (cite Electroencphalograpy for empilepsy society)
 
 \begin{story}[Neuroimaging]
 With the advent of digital computers and the digital revolution, plotting has become imaging.  Neuroimaging~\cite{Freeman2013} means mapping activity or structure to neuroanatomical regions.
 
-There are currently three categories of neuroimaging: \textit{structural} includes CT (Computed Tomography), MRI (Magnetic Resonance Imaging) and DTI (Diffusion Tensor Imaging), \textit{functional}, which encompass EEG, MEG (Magnetoencephalography), fMRI (functional MRI) PET (Positron Emission Tomography), SPECT (Single Positron Emission Computed Tomography), NIRS (Near-Infrared Spectroscopy) and \textit{chemical} which involves special dyes which are sensible to neuron firing.
+There are currently three categories of neuroimaging: \textit{structural} which includes CT (Computed Tomography), MRI (Magnetic Resonance Imaging) and DTI (Diffusion Tensor Imaging), \textit{functional}, which encompass EEG, MEG (Magnetoencephalography), fMRI (functional MRI) PET (Positron Emission Tomography), SPECT (Single Positron Emission Computed Tomography), NIRS (Near-Infrared Spectroscopy) and \textit{chemical} which involves special dyes which are sensible to neuron firing.
 \end{story}
 
 \section{Signal to Image transformation}
@@ -36,18 +36,18 @@ The EEG signal is represented by
 \label{eq:zerolevel}
 \end{equation}
 
-\noindent where $n$ are sample points digitalized at sampling frequency $F_s$.  This is a multichannel signal, for $c$ varying between  $1 \leq c \leq C$.  Each one of this channels is assigned a name according to the 10-20 international system, and there are $C$ available channels. The sample index $n$ varies between $1$ and $N$.  The span of the signal $\lambda$ is the length in milliseconds of the waveform under study. When the segment encompass the entire waveform and it is 1s length, this is the inverse of the sampling frequency.
+\noindent where $n$ are sample points digitalized at sampling frequency $F_s$.  This is a multichannel signal, for $c$ varying between  $1 \leq c \leq C$.  Each one of this channels is assigned a name according to the 10-20 international system, and there are $C$ available channels. The sample index $n$ varies between $1$ and $N$.  The span of the signal $\lambda$ is the length in milliseconds of the waveform under study. 
 
-The length of segment in sample units, the sampling frequency and the segment length in \si{\ms} are related by
+The length of segment $\gls{N}$ in sample units, the sampling frequency $\gls{Fs}$ in \si{\hertz} and the segment length $\gls{w}$ in \si{\ms} are related by
 
 \begin{equation}
-N = \left\lfloor F_s \; w \right\rfloor
+N = \left\lfloor F_s \; w \right\rfloor.
 \label{eq:segmentlength}
 \end{equation}
 
 \vspace{3pt}
 
-To extract features from an image, we first construct an image which represents the underlying signal.  The straightforward way to do it, reproducing the traditional analog or digital EEG, is to draw a line on a contrast background.  This line represents the voltage amplitude of the corresponding channel in relation to a zero-level $z(c)$, with a positive deflection going upwards (towards the zero value in the image coordinate system) and downwards for negative deflection.  Figure \ref{fig:plottingsample} shows an example of an EEG signal segment plot.  If only two colors are used, this image is a black-and-white binary image.  The color selection is arbitrary (white for the line, black for the background), but it has some implications in terms of the feature extraction procedure that we will describe later.
+To extract features from an image, we should first construct one.  The straightforward way to do it, reproducing the traditional analog or digital EEG plotting, is to draw a line on a contrast background.  This line represents the voltage amplitude of the corresponding channel in relation to a zero-level $z(c)$, with a positive deflection going upwards and downwards for negative deflection.  Figure \ref{fig:plottingsample} shows an example of an EEG signal segment plot.  This image is a black-and-white binary image.  The color selection is arbitrary (white for the line, black for the background), but it has some implications in terms of the feature extraction procedure that we will described in Chapter \ref{chapter:two}.
 
 \begin{figure}[]
 \centering
@@ -76,7 +76,7 @@ This chapter mostly deal with the coordinates transformation that need to be enf
 In order to convert the EEG original signal $x(n,c)$ into an image $I(z_1,z_2)$, the following six alternatives can be used.
 
 \begin{itemize}
-\item Channel by Channel binary image
+\item Channel-by-channel binary image
 
 The standard plotting, on a black-and-white image with lines representing voltage amplitude.
 
@@ -88,9 +88,9 @@ I(z_1,z_2) = \left\{ \begin{array}{rl}
 \label{eq:images}
 \end{equation}
 
-\item Channel by channel grey color image
+\item Channel-by-channel greyscale image
 
-The voltage amplitudes are represented by grey scale colors, that could range between 0 and 255.  The function $\phi( \cdot )$ is a bounded linear mapping.
+The voltage amplitudes are represented in greyscale, that could range between 0 and 255.  The function $\phi( \cdot )$ is a bounded linear mapping.
 
 \begin{equation}
 I(z_1,z_2) = \left\{ \begin{array}{rl}
@@ -100,9 +100,9 @@ I(z_1,z_2) = \left\{ \begin{array}{rl}
 \label{eq:images}
 \end{equation}
 
-\item Multichannel Full grey color image
+\item Multichannel full greyscale image
 
-The image is grey-scale. Voltage amplitudes are represented by the pixel content and each channel is represented on the vertical axis.  The height of the signal is equal to the number of channels.   This is used in Neuroimaging plots of ERP events.
+The image is greyscale. Voltage amplitudes are represented by the pixel content and each channel is represented on the vertical axis.  The height of the signal is equal to the number of channels.   This is used in Neuroimaging plots of ERP events.
 
 \begin{equation}
 I(z_1,z_2) = \left\{ \begin{array}{rl} \phi(x(n,c))  & \text{if} \,  z_1 = n; \; z_2 = c \end{array}\right.
@@ -110,7 +110,7 @@ I(z_1,z_2) = \left\{ \begin{array}{rl} \phi(x(n,c))  & \text{if} \,  z_1 = n; \;
 \end{equation}
 
 
-\item Multichannel Stationary Binary image
+\item Multichannel stationary binary image
 
 The horizontal axis of the image is not time, but it is channels instead.   In this representation different contributions from different channels can be explored at the same time, but time dynamics is lost.  
 
@@ -124,7 +124,7 @@ I(z_1,z_2) = \left\{ \begin{array}{rl}
 
 \item Multichannel Stationary Grey-scale image
 
-This is a variant of the previous one, where the horizontal axis represent the channel.   In this form, the intensity of the contribution of each channel is represented by the grey-scale pixel value.  Combined with head models and forward projection solutions this is the approach used to represent scalp heatmaps~\cite{Gramfort2013}.
+This is a variant of the previous one, where the horizontal axis represent the channel.   In this form, the intensity of the contribution of each channel is represented by the grey-scale pixel value.  Combined with head models and forward projection solutions this is the methodology used to represent scalp heatmaps~\cite{Gramfort2013}.
 
 \begin{equation}
 I(z_1,z_2) = \left\{ \begin{array}{rl}
@@ -135,7 +135,7 @@ I(z_1,z_2) = \left\{ \begin{array}{rl}
 \end{equation}
 
 
-\item Channel by channel full grey color image
+\item Channel by channel full greyscale image
 
 This is similar to a raster plot but the greyscale image representing voltages in pixel intensities is repeated $H$ times, which is the height of the image.  The selection of this value is arbitrary.
 
@@ -160,15 +160,15 @@ I^{(c)}(z_1,z_2) = \left\{ \begin{array}{rl}
 \label{eq:images}
 \end{equation}
 
-\noindent with $255$ being white and representing the signal's voltage and $0$ for black which is the background contrast, conforming a black-and-white plot of the signal.  Pixel arguments $ (z_1,z_2) \in \mathbb{N} \times \mathbb{N}$ iterate over the width and height of the image plot with $1 \leq n \leq N$ and $1 \leq c \leq C$.  There is one image per channel.  The parameters $\gamma$ and $\gamma_t$ are the scaling factors in sample points and in amplitude.  They are used to determine the image size and at the same time the image resolution.
+\noindent with $255$ being white and representing the signal's voltage in relation to the zero-level $z(c)$, and $0$ for black which is the background contrast. This scheme produces a black-and-white plot of the signal.  Pixel arguments $ (z_1,z_2) \in \mathbb{N} \times \mathbb{N}$ iterate over the width and height of the image plot with $1 \leq n \leq N$ and $1 \leq c \leq C$.  There is one image per channel.  The parameters $\gamma$ and $\gamma_t$ are the scaling factors in sample points and in amplitude.  They are used to determine the image size and at the same time the image resolution.
 
-To analyze effectively an EEG signal, many signal segments are produced.  Hence, the transformation from signal to image is continuously repeated, and many images need to be produced for each segment of the EEG signal under analysis.  How to determine the size of all the images so that they can be effectively compared automatically ?  The first way is to regularize the signal and fit in an equal size for all of them.  An alternative choice is to autoscale every image according to the zero-level position.  Figure \ref{fig:plottingscheme} shows two sample impulse signals and their two alternative representations into images.
+To analyze effectively an EEG signal, many signal segments must be produced.  Hence, the transformation from signal to image is continuously repeated, and many images need to be produced for the EEG signal under analysis.  How to determine the size of all the images so that they can be effectively compared between them ?  The first option is to regularize the signal and fit in an equal size for all of them.  An alternative choice is to autoscale every image according to the zero-level position.  Figure \ref{fig:plottingscheme} shows two sample artificial impulse signals and their  alternative transformation into images.
 
 \subsection{Standardized plotting}
 
-There are many ways to regularize the signal, but the \textit{z-score} is widely used to perform this operation~\cite{Zhang2013}.
+The \textit{z-score} is a widely used method to regularize a signal~\cite{Zhang2013}.
 
-The standardization is defined for  $1 \leq n \leq N$ and $1 \leq c \leq C$ by doing
+This standardization procedure is defined for  $1 \leq n \leq N$ and $1 \leq c \leq C$ by doing
 
 \begin{equation}
 \tilde{x}(n,c) =  \frac{( x(n,c) - \bar{x}(c)  )}{ \hat{\sigma}(c) } 
@@ -176,16 +176,6 @@ The standardization is defined for  $1 \leq n \leq N$ and $1 \leq c \leq C$ by d
 \end{equation}
 
 \noindent  where $ x(n,c) $ is the multichannel EEG signal segment for the sample point $n$ and for channel $c$. The values $$\bar{x}(c) =\frac{1}{N}\sum_{n=1}^{N}x(n,c)$$ and $$ \hat{\sigma}(c) = (\frac{1}{N-1}\sum_{n=1}^{N}(x(n,c)-\bar{x}(c))^2 )^{\frac{1}{2}}$$ are the mean and estimated standard deviation of $x(n,c), 1 \leq n \leq N$, for each channel $c$.
-
-The zero-level $z(c)$ is the image vertical position where the signal's zero value has to be situated in order to fit the entire signal within the image for each channel c:
-
-\begin{equation}
-z(c) = \left \lfloor{ \frac{\max_{n} \tilde{x}(n,c)  - \min_{n} \tilde{x}(n,c) }{2} }\right \rfloor -   \left \lfloor{ \frac{\max_{n} \tilde{x}(n,c)  + \min_{n} \tilde{x}(n,c)}{ 2} }\right \rfloor
-\label{eq:zerolevel}
-\end{equation}
-
-\noindent where the minimization and maximization are carried out for $n$ varying between ${1 \leq n\leq N}$, and $ \lfloor \cdot  \rfloor $ denote the rounding to the smaller nearest integer of the number.  This value represents the vertical location on the image where the signal goes to zero.  Figure \ref{fig:plottingscheme}(a) shows an impulse signal and their standardized representation.
-
 
 \subsection{Autoscaled plotting}
 
@@ -196,7 +186,7 @@ This plotting scheme allows each image to adapt to the underlying signal.  The h
 \label{eq:autoscaled}
 \end{equation}
 
-Figure \ref{fig:plottingscheme}(b) shows the results of the plotting for an impulse signal.
+Figure \ref{fig:plottingscheme}(b) shows the results of the plotting for an impulse signal.  Equation~\ref{eq:autoscaled} has the advantage that any low frequency component, particularly the EEG DC drift is eliminated, due to the fact that plot of the signal is always centered on each image.
 
 \begin{figure}[htb]
 \centering
@@ -206,6 +196,17 @@ Figure \ref{fig:plottingscheme}(b) shows the results of the plotting for an impu
 \caption[Signal plot of an impulse response]{Signal plotting schemes.}
 \label{fig:plottingscheme}
 \end{figure}
+
+\subsection{Zero-Level}
+
+The zero-level $z(c)$ is the image vertical position where the signal's zero value has to be situated in order to fit the entire signal within the image for each channel c:
+
+\begin{equation}
+z(c) = \left \lfloor{ \frac{\max_{n} \tilde{x}(n,c)  - \min_{n} \tilde{x}(n,c) }{2} }\right \rfloor -   \left \lfloor{ \frac{\max_{n} \tilde{x}(n,c)  + \min_{n} \tilde{x}(n,c)}{ 2} }\right \rfloor
+\label{eq:zerolevel}
+\end{equation}
+
+\noindent where the minimization and maximization are carried out for $n$ varying between ${1 \leq n\leq N}$, and $ \lfloor \cdot  \rfloor $ denote the rounding to the smaller nearest integer of the number.  This value represents the vertical location on the image where the signal goes to zero.  Figure \ref{fig:plottingscheme}(a) shows an impulse signal and their standardized representation.
 
 \subsection{Image Size}
 
@@ -236,47 +237,31 @@ W_x = \gamma_t  N
 \end{equation}
 
 
-\subsection{Pixelation}
-
-EEG time-series are floating-point numbers and the image is constructed based on discrete and integer pixels.  Image's pixel values $(z_1,z_2)$ are obtained according to Equation~\ref{eq:images}.  Thus, on the horizontal axis, $z_1$, no discretization is needed because time is already digitalized in sample units. 
-
-\begin{equation}
-z_1 = \gamma_t  \; n.
-\label{eq:horizontalpixelation}
-\end{equation}
-
-On the other hand, on the vertical axis, pixels are discretized according to
-
-\begin{equation}
-z_2 = \left \lfloor{ \gamma  \; \tilde{x}(n,c)  }\right \rceil
-\label{eq:verticalpixelation}
-\end{equation}
-
-\noindent where $\gamma$ is the scale amplitude factor parameter, which also affects the height of the image in Equation \ref{eq:height}.
-
 \subsection{Interpolation}
 
-Equation \ref{eq:images} produces a set of isolated pixels over the image.  To produce the plot $I^{(c)}$, the Bresenham \cite{Bresenham1965,Ramele2016} algorithm is used to interpolate straight lines between each pair of consecutive pixels.
+Equation \ref{eq:images} produces a set of isolated pixels over the image.  To produce the plot $I^{(c)}$, the Bresenham \cite{Bresenham1965,Ramele2016} algorithm is used to digitally interpolate straight lines between each pair of consecutive pixels.  Figure~\ref{fig:interpolation}(a) shows an image plot constructed by only using the sample points, while (b) shows the digital interpolation produced by the Bresenham algorithm.
 
 \begin{figure}[h!]
 \centering
 \subfigure[Sample points are located on the image according to Equation \ref{eq:images}. ]
-{\includegraphics[height=5cm,width=15cm]{images/samplepoints.eps}}
+{\includegraphics[height=4cm,width=15cm]{images/samplepoints.eps}}
 \subfigure[Sample points are linearly interpolated in a discrete procedure using the Bresenham algorithm.]
-{\includegraphics[height=5cm,width=15cm]{images/bresenham.eps}}
+{\includegraphics[height=4cm,width=15cm]{images/bresenham.eps}}
+\subfigure[The digital signal is scaled 4 times ($\gamma_t=4$) and the generated sample points are interpolated using the Bresenham algorithm.]
+{\includegraphics[height=4cm,width=15cm]{images/upscaled.eps}}
 \subfigure[The digital signal is upsampled 4 times and the generated sample points are interpolated using the Bresenham algorithm.]
-{\includegraphics[height=5cm,width=15cm]{images/upsample.eps}}
+{\includegraphics[height=4cm,width=15cm]{images/upsample.eps}}
 \caption[Signal Plotting: Interpolation]{Generated images based on different interpolation schemes.}
 \label{fig:interpolation}
 \end{figure}
 
-However, as seen in Figure, it can lead to very sharp edges around sample pixels.  This can lead to a quantization of histogram gradients. The alternative is to use a smoothing interpolated using splines.  Instead of just skipping time points values, these values are interpolated according to a linear quadratic or cubic interpolation, which smooths the curve around each point.  This procedure can be implemented by the Matlab function \textbf{resample} which applies an antialiasing FIR lowpass filter.
+On Figure~\ref{fig:interpolation}(c) the same signal can be observed produced when the time scaling factor $\gls{gammat}$ is increased to $4$. However,it also shows that there are very sharp edges around sample pixels.  This can lead to a quantization of histogram gradients that will be discussed in the next Chapter. The alternative is to use a smoothing interpolation of the signal $\tilde{x}(n,c)$ using splines.  Instead of just skipping time points values, intermediate values are produced according to a linear quadratic or cubic interpolation, which smooths the curve around each point.  This procedure can be implemented by the Matlab function \textbf{resample} which applies an antialiasing FIR lowpass filter.
 
-Special care must be taken to avoid artifacts around the edges of the signal, so a windowing procedure is also necessary to avoid this (e.g. Hamming).
+Special care must be taken to avoid artifacts around the edges of the signal, and as those regions are artificially produced, should be excluded from the image analysis.
 
-\subsection{Resolution}
+\subsection{Resolution and Precision}
 
-According to the plotting scheme, a resolution is established between pixel images and signal properties.
+According to the plotting scheme, a resolution~\cite{Cohen2014} is established between pixel images and signal properties.
 
 On the horizontal axis of the image, one pixel is equivalent to 
 
@@ -295,6 +280,22 @@ Consistently, on the vertical axis, one pixel is analogous to
 \end{equation}
 
 \noindent where $\gamma$ is the signal scale.  As EEG time-series are digitalized in $\si\mu{V}$, this the unit of choice.  In Figure \ref{fig:imagecoordinatesystem}, $1$ vertical pixel represents exactly $1 \mu V$.
+
+EEG time-series are floating-point numbers and the image is constructed based on discrete and integer pixels.  Image's pixel values $(z_1,z_2)$ are obtained according to Equation~\ref{eq:images}.  Thus, on the horizontal axis, $z_1$, no discretization is needed because time is already digitalized in sample units. 
+
+\begin{equation}
+z_1 = \gamma_t  \; n.
+\label{eq:horizontalpixelation}
+\end{equation}
+
+On the other hand, on the vertical axis, pixels are discretized according to
+
+\begin{equation}
+z_2 = \left \lfloor{ \gamma  \; \tilde{x}(n,c)  }\right \rceil
+\label{eq:verticalpixelation}
+\end{equation}
+
+\noindent where $\gamma$ is the scale amplitude factor parameter, which also affects the height of the image in Equation \ref{eq:height}.
 
 \section{Mapping}
 

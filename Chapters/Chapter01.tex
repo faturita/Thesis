@@ -61,15 +61,15 @@ Quoting experts in the field,
 
 \vspace{10px}
 
-\textit{"We yet have an impractical and inaccessible exotica for very specific user groups" (Allison 2010)\cite{Allison2010}}
+\textit{"We yet have an impractical and inaccessible exotica for very specific user groups" (Allison 2010)}
 
 \vspace{10px}
 
-\textit{"Effectiveness of non-invasive BCI systems remain limited…" (Wolpaw 2011) \cite{Wolpaw and Wolpaw2011}}
+\textit{"Effectiveness of non-invasive BCI systems remain limited…" (Wolpaw 2011)}
 
 \vspace{10px}
 
-\textit{"…to ponder if BCIs are really promising and helpful, or if they are simple a passing rod, reinforced by their sci-fi side..." (Lotte 2016)\cite{Lotte2016}}
+\textit{"…to ponder if BCIs are really promising and helpful, or if they are simple a passing rod, reinforced by their sci-fi side..." (Lotte 2016)}
 
 \vspace{10px}
 
@@ -183,7 +183,7 @@ Recent years have seen an incredible advance of Passive BCI, pBCI \cite{Zander20
 
 Above all, Electroencephalography (EEG), is the most widespread method to gather information from the CNS in a non-invasive way. They are of particular interest in BCI mainly because of their non-invasiveness, their optimal time resolution and acceptable spatial resolution. Moreover, they are portable, cheap, wearable and can be more easily integrated into fashionable designs aimed for real users, which prefer cap-like devices~\cite{Huggins2015}. 
 
-The Electroencephalography consists on the measurement of small variations of electrical currents over the scalp.  This represents the summed activity of post-synaptic potentials PSPs of pyramidal neurons located perpendicular to the scalp~\cite{Nam2018}. Only one percent of synchronized activity of pyramidal neurons are stronger that the remaining desynchronized neurons~\cite{Nunez} and explain ninety-nine percent of the signals obtained from EEG.  This brain imaging technology is one of the most widespread used methods to capture brain signals and was initially developed by Hans Berger in 1924 and has been extensively used for decades to diagnose neural diseases and other medical conditions.
+The Electroencephalography consists on the measurement of small variations of electrical currents over the scalp.  This represents the summed activity of post-synaptic potentials PSPs of pyramidal neurons located perpendicular to the scalp~\cite{Nam2018}. Only one percent of synchronized activity of pyramidal neurons are stronger that the remaining desynchronized neurons~\cite{Schomer2010} and explain ninety-nine percent of the signals obtained from EEG.  This brain imaging technology is one of the most widespread used methods to capture brain signals and was initially developed by Hans Berger in 1924 and has been extensively used for decades to diagnose neural diseases and other medical conditions.
 
 %Routinely physicians explore morphologically these raw EEG signals scavenging for signs of disease or irregular patterns and they have been doing this since almost the dawn of the technology at the hands of Hans Berger. Sleep spindles, Lambda waves, K-Complexes, Vertex waves, Positive Occipital Sharp Transients and more visual features had been identified with relevant clinical characterizations [16]. Even within the BCI community, visually extracting artifacts for offline processing is a common and well known practice [1,11]. 
 
@@ -203,7 +203,7 @@ The EEG signal is a highly complex multi-channel time-series.  It can be modeled
 \begin{figure}[]
 \centering
 \includegraphics[height=6cm,width=14cm]{images/sampleeeg.eps}
-\caption{Sample EEG signal obtained from (g.Nautilus, g.Tec, Austria). Time axis is in seconds and five seconds are displayed.  The eight channels provided by this device are shown.}
+\caption[Sample Multichannel EEG signal]{Sample EEG signal obtained from (g.Nautilus, g.Tec, Austria). Time axis is in seconds and five seconds are displayed.  The eight channels provided by this device are shown.}
 \label{fig:sampleeeg}
 \end{figure}
 
@@ -309,13 +309,13 @@ The most relevant features used in BCI are:
 \item Statistical: AR parameters, covariances matrix.
 \end{itemize}
 
-The most successfull used and verified classification methods for BCI \cite{Lotte2007} can be described as linear versions of popular Machine Learning tools.  Particularly, Support Vector Machines SVM, Linear Discriminant Analysis LDA and its variant SWLDA.  This one was also relevant for two reasons:  the first is that the stepwise identification of features improves the selection criteria and also the spatial filter that this procedure encompass.  Additionally, and more from a more pragmatic perspective, this method was included in the popular BCI2000~\cite{bci2000} package and was the default option for anyone doing ERP identification.  Spatial Filters have also being incorporated and have shown substantial improvement in classification accuracies.  The now classical Common Spatial Patterns CSP for the identification of Motor Imagery as well as the xDAWN algorithm for P300 identification.
+The most successfull used and verified classification methods for BCI \cite{Lotte2007} can be described as linear versions of popular Machine Learning tools.  Particularly, Support Vector Machines SVM, Linear Discriminant Analysis LDA and its variant SWLDA.  This one was also relevant for two reasons:  the first is that the stepwise identification of features improves the selection criteria and also the spatial filter that this procedure encompass.  Additionally, and more from a more pragmatic perspective, this method was included in the popular BCI2000~\cite{Schalk2004} package and was the default option for anyone doing ERP identification.  Spatial Filters have also being incorporated and have shown substantial improvement in classification accuracies.  The now classical Common Spatial Patterns CSP for the identification of Motor Imagery as well as the xDAWN algorithm for P300 identification.
 
 Recent years (circa 2018) have seen the evolution of the methodology but the focus was not centered on any particular classification algorithm.  Instead how they are used became much more important~\cite{Lotte2018}.
 
 \begin{itemize}
-\item Ensemble Classifiers: SVM ensembles~\cite{Rakotomamonjy2008} and variants of Random Forest~\cite{Steryl2014}.  Features are segmented and divided and the forest performs a classification step on each part and maximizes classification accuracies.
-\item Cross-Paradigm BCI: the use of Reinforced Signal RS with ErrP feedback or the use of SSVEP in combination with P300 detection~\cite{aca}.
+\item Ensemble Classifiers: SVM ensembles~\cite{Rakotomamonjy2008} and variants of Random Forest~\cite{Steyrl2015}.  Features are segmented and divided and the forest performs a classification step on each part and maximizes classification accuracies.
+\item Cross-Paradigm BCI: the use of Reinforced Signal RS with ErrP feedback or the use of SSVEP in combination with P300 detection~\cite{Lotte2018}.
 \item Adaptive Classifiers: the parameters of the classifiers are adapted continuously and online adapting to the natural variation of the EEG signals~\cite{Lotte2018}.
 \item Transfer Learning: transfer the calibration information obtained by users to new subjects.  This aims to eases the issue of the intra-subject variability in BCI .
 \item RGC: Rienmann Geometry Classifiers
@@ -503,7 +503,7 @@ A related method is Slope Horizontal Chain Code and Slope Chain Code (SCC)~\cite
 %
 %Moreover, EEG markers~\cite{Clerc} that can be used to  transmit volitional information are limited, and each one of them has a particular combination of appropriate methods to decode them. Inevitably, it is necessary to implement  distinct and specialized algorithmic methods, to filter the signal, enhance its Signal to Noise Ratio (SNR), and try to determine some meaning out of it.  
 
-All these methods provide a feature that can be used as a template, whereas all of them are based on metrics that can be extracted from the shape of the signal.  These features can be used to create dictionaries or template databases.  These templates provide the basis for the pattern matching algorithm and offline classification.
+Similar to this proposal, all these methods provide a feature that can be used as a template, whereas all of them are based on metrics that can be extracted from the shape of the signal.  These features can be used to create dictionaries or template databases.  These templates provide the basis for the pattern matching algorithm and offline classification.
 
 
 
