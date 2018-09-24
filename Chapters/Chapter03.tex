@@ -63,6 +63,107 @@ Fig.~\ref{fig:sampledescriptor} shows an example of a patch and a scheme of the 
 
 \section{Mapping Functions}
 
+
+$\gls{N}$, 
+$\gls{lambda}$
+$\gls{Fs}$
+$\gls{Deltas}$
+$\gls{DeltamuV}$
+$\gls{gamma}$
+$\gls{gammat}$
+$\gls{Hy}$
+$\gls{Wx}$
+$\gls{St}$
+$\gls{Sv}$
+$\gls{Sy}$
+$\gls{Sx}$
+$\gls{w}$
+$\gls{kp}$
+$\gls{P}$
+
+The initial parameters are $N$,$F_s$ and $\lambda$.  The unit length of the patch is $\Delta_s = \sqrt{2} \; 15$.  The peak-to-peak amplitude of the waveform to study is $ \Delta \mu V $.
+
+Amplitude scale factor
+
+\begin{equation}
+\gamma \equiv \frac{H_y}{\Delta \mu V}  
+\label{eq:gammadefinition}
+\end{equation}
+
+Time scale factor
+
+\begin{equation}
+\gamma_t \equiv \frac{W_x}{F_s \; w}  
+\label{eq:gammatdefinition}
+\end{equation}
+
+%\begin{equation}
+%s_x = \frac{ \gamma \;  \lambda \  F_s}{12}
+%\label{eq:mapping2}
+%\end{equation}
+%
+%\begin{equation}
+%s_y= \frac{\gamma \; \Delta \mu V}{12} 
+%\label{eq:mapping1}
+%\end{equation}
+
+Restriction on the waveform time scale
+
+\begin{equation}
+\frac{W_x-1}{\sqrt{2} \; 15}  \geq S_t 
+\label{eq:restriction1}
+\end{equation}
+
+Restriction on the waveform amplitude scale
+
+\begin{equation}
+\frac{H_y-1}{\sqrt{2} \; 15}  \geq S_v 
+\label{eq:restriction2}
+\end{equation}
+
+Waveform time scale
+
+\begin{equation}
+S_t = \frac{ \lambda \;  \  F_s \ \gamma_t }{\Delta_s}
+\label{eq:mapping2}
+\end{equation}
+
+Waveform amplitude scale
+
+\begin{equation}
+S_v= \frac{\Delta \mu V \ \gamma}{\Delta_s} 
+\label{eq:mapping1}
+\end{equation}
+
+Time to sample point conversion
+
+\begin{equation}
+n = \left\lfloor F_s \ \Delta_t \right\rfloor \ \gamma_t
+\label{eq:mapping1}
+\end{equation}
+
+Horizontal Patch scale
+
+\begin{equation}
+\mathbf{S}_x = \Delta_s \; S_t + 1
+\label{eq:mapping2}
+\end{equation}
+
+Vertical Patch scale
+
+\begin{equation}
+\mathbf{S}_y = \Delta_s \; S_v + 1
+\label{eq:mapping1}
+\end{equation}
+
+Span of a Patch
+
+\begin{equation}
+\Delta_t = \frac{S_t \ \Delta_s}{F_s \ \gamma_t} 
+\label{eq:mapping1}
+\end{equation}
+
+
 \section{Implementation}
 
 \subsection{Matlab}

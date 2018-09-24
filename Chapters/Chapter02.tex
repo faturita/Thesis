@@ -122,9 +122,9 @@ I(z_1,z_2) = \left\{ \begin{array}{rl}
 \label{eq:images}
 \end{equation}
 
-\item Multichannel Stationary Grey-scale image
+\item Multichannel stationary greyscale image
 
-This is a variant of the previous one, where the horizontal axis represent the channel.   In this form, the intensity of the contribution of each channel is represented by the grey-scale pixel value.  Combined with head models and forward projection solutions this is the methodology used to represent scalp heatmaps~\cite{Gramfort2013}.
+This is a variant of the previous one, where the horizontal axis represent the channel.   In this form, the intensity of the contribution of each channel is represented by the greyscale pixel value.  Combined with head models and forward projection solutions this is the methodology used to represent scalp heatmaps~\cite{Gramfort2013}.
 
 \begin{equation}
 I(z_1,z_2) = \left\{ \begin{array}{rl}
@@ -137,7 +137,7 @@ I(z_1,z_2) = \left\{ \begin{array}{rl}
 
 \item Channel by channel full greyscale image
 
-This is similar to a raster plot but the greyscale image representing voltages in pixel intensities is repeated $H$ times, which is the height of the image.  The selection of this value is arbitrary.
+This is similar to a raster plot but the greyscale image representing voltages in pixel intensities is repeated $H$ times, the height of the image.  The selection of this value is arbitrary.
 
 \begin{equation}
 I(z_1,z_2) = \left\{ \begin{array}{rl} \phi(x(n,c_i))  & \text{if} \,  z_1 = n; \; z_2 = H \end{array}\right.
@@ -160,9 +160,9 @@ I^{(c)}(z_1,z_2) = \left\{ \begin{array}{rl}
 \label{eq:images}
 \end{equation}
 
-\noindent with $255$ being white and representing the signal's voltage in relation to the zero-level $z(c)$, and $0$ for black which is the background contrast. This scheme produces a black-and-white plot of the signal.  Pixel arguments $ (z_1,z_2) \in \mathbb{N} \times \mathbb{N}$ iterate over the width and height of the image plot with $1 \leq n \leq N$ and $1 \leq c \leq C$.  There is one image per channel.  The parameters $\gamma$ and $\gamma_t$ are the scaling factors in sample points and in amplitude.  They are used to determine the image size and at the same time the image resolution.
+\noindent with $255$ being white and representing the signal's voltage in relation to the zero-level $z(c)$, and $0$ for black which is the background contrast. This scheme produces a black-and-white plot of the signal.  Pixel arguments $ (z_1,z_2) \in \mathbb{N} \times \mathbb{N}$ iterate over the width and height of the image plot with $1 \leq n \leq N$ and $1 \leq c \leq C$.  There is one image per channel.  The parameters $\gamma$ and $\gamma_t$ are the amplitude and time scaling factors.  They are used to determine the image size and at the same time the image resolution.
 
-To analyze effectively an EEG signal, many signal segments must be produced.  Hence, the transformation from signal to image is continuously repeated, and many images need to be produced for the EEG signal under analysis.  How to determine the size of all the images so that they can be effectively compared between them ?  The first option is to regularize the signal and fit in an equal size for all of them.  An alternative choice is to autoscale every image according to the zero-level position.  Figure \ref{fig:plottingscheme} shows two sample artificial impulse signals and their  alternative transformation into images.
+To analyze effectively an EEG signal, many signal segments must be produced.  Hence, the transformation from signal to image is continuously repeated, and many images need to be crafted for the EEG signal under analysis.  How to determine the size of all the images so that they can be effectively compared between them ?  The first option is to regularize the signal and fit in an equal size for every image.  An alternative choice is to autoscale every image according to the zero-level position.  Figure \ref{fig:plottingscheme} shows two sample artificial impulse signals and their  alternative transformation into images.
 
 \subsection{Standardized plotting}
 
@@ -175,7 +175,7 @@ This standardization procedure is defined for  $1 \leq n \leq N$ and $1 \leq c \
 \label{eq:standarizedaverages}
 \end{equation}
 
-\noindent  where $ x(n,c) $ is the multichannel EEG signal segment for the sample point $n$ and for channel $c$. The values $$\bar{x}(c) =\frac{1}{N}\sum_{n=1}^{N}x(n,c)$$ and $$ \hat{\sigma}(c) = (\frac{1}{N-1}\sum_{n=1}^{N}(x(n,c)-\bar{x}(c))^2 )^{\frac{1}{2}}$$ are the mean and estimated standard deviation of $x(n,c), 1 \leq n \leq N$, for each channel $c$.
+\noindent  where $ x(n,c) $ is the multichannel EEG signal segment for the sample point $n$ and for channel $c$. The values $$\bar{x}(c) =\frac{1}{N}\sum_{n=1}^{N}x(n,c)$$ and $$ \hat{\sigma}(c) = (\frac{1}{N-1}\sum_{n=1}^{N}(x(n,c)-\bar{x}(c))^2 )^{\frac{1}{2}}$$ are the mean and estimated standard deviation of $x(n,c), 1 \leq n \leq N$, for each channel $c$. Figure~\ref{fig:plottingscheme}(a) shows an impulse signal and their standardized representation.
 
 \subsection{Autoscaled plotting}
 
@@ -206,7 +206,7 @@ z(c) = \left \lfloor{ \frac{\max_{n} \tilde{x}(n,c)  - \min_{n} \tilde{x}(n,c) }
 \label{eq:zerolevel}
 \end{equation}
 
-\noindent where the minimization and maximization are carried out for $n$ varying between ${1 \leq n\leq N}$, and $ \lfloor \cdot  \rfloor $ denote the rounding to the smaller nearest integer of the number.  This value represents the vertical location on the image where the signal goes to zero.  Figure \ref{fig:plottingscheme}(a) shows an impulse signal and their standardized representation.
+\noindent where the minimization and maximization are carried out for $n$ varying between ${1 \leq n\leq N}$, and $ \lfloor \cdot  \rfloor $ denote the rounding to the smaller nearest integer of the number.  This value represents the vertical location on the image where the signal goes to zero.  
 
 \subsection{Image Size}
 
@@ -255,22 +255,22 @@ Equation \ref{eq:images} produces a set of isolated pixels over the image.  To p
 \label{fig:interpolation}
 \end{figure}
 
-On Figure~\ref{fig:interpolation}(c) the same signal can be observed produced when the time scaling factor $\gls{gammat}$ is increased to $4$. However,it also shows that there are very sharp edges around sample pixels.  This can lead to a quantization of histogram gradients that will be discussed in the next Chapter. The alternative is to use a smoothing interpolation of the signal $\tilde{x}(n,c)$ using splines.  Instead of just skipping time points values, intermediate values are produced according to a linear quadratic or cubic interpolation, which smooths the curve around each point.  This procedure can be implemented by the Matlab function \textbf{resample} which applies an antialiasing FIR lowpass filter.
+On Figure~\ref{fig:interpolation}(c) the same signal can be observed produced when the time scaling factor $\gls{gammat}$ is increased to $4$. However,it also shows that there are very sharp edges around sample pixels.  This can lead to a quantization of histogram gradients that will be discussed in the next Chapter. The alternative is to use a smoothing interpolation of the signal $\tilde{x}(n,c)$ using splines.  Instead of just skipping time points values, intermediate values are produced according to a linear quadratic or cubic interpolation, which smooths the curve around each point.  This procedure is similar to what the Matlab's \textbf{resample} function does which also includes an antialiasing FIR lowpass filter.
 
-Special care must be taken to avoid artifacts around the edges of the signal, and as those regions are artificially produced, should be excluded from the image analysis.
+Special care must be taken by the presence of artifacts around the signal endpoints, at the edges of the image. Those regions are excluded from further analysis.
 
 \subsection{Resolution and Precision}
 
-According to the plotting scheme, a resolution~\cite{Cohen2014} is established between pixel images and signal properties.
+The resolution~\cite{Cohen2014} of the image transformation can be determined based on the characteristics of the digital signal and the parameter selection.
 
 On the horizontal axis of the image, one pixel is equivalent to 
 
 \begin{equation}
-1 P_x \equiv \frac{1}{F_s \; w \; \gamma_t}  [\si{s}]
+1 P_x \equiv \frac{1}{F_s  \; \gamma_t}  [\si{s}]
 \label{eq:resolutionx}
 \end{equation}
 
-\noindent where $F_s$ is the sampling frequency in Hertz, $w$ is the length of the signal segment (in milliseconds), and $\gamma_t$ is the scale factor.  This gives a value in seconds.  For example, for Figure \ref{fig:imagecoordinatesystem}, the sampling frequency is $200 Hz$, the length is $0.65 s$ and $\gamma_t = 1$, which gives a resolution of $1 P_x \equiv 0.0077 s$. 
+\noindent where $F_s$ is the sampling frequency in Hertz, and $\gamma_t$ is the time scale factor.  This gives a value in seconds.  For example, for Figure \ref{fig:imagecoordinatesystem}, the sampling frequency is $200 Hz$, the length is $0.65 s$ and $\gamma_t = 1$, which gives a resolution of $1 P_x \equiv 0.0077 s$. 
 
 Consistently, on the vertical axis, one pixel is analogous to 
 
@@ -279,9 +279,9 @@ Consistently, on the vertical axis, one pixel is analogous to
 \label{eq:resolutiony}
 \end{equation}
 
-\noindent where $\gamma$ is the signal scale.  As EEG time-series are digitalized in $\si\mu{V}$, this the unit of choice.  In Figure \ref{fig:imagecoordinatesystem}, $1$ vertical pixel represents exactly $1 \mu V$.
+\noindent where $\gamma$ is the amplitdue scale factor.  As EEG time-series are digitalized in $\si\mu{V}$, this the unit of choice.  In Figure \ref{fig:imagecoordinatesystem}, $1$ vertical pixel represents exactly $1 \mu V$.
 
-EEG time-series are floating-point numbers and the image is constructed based on discrete and integer pixels.  Image's pixel values $(z_1,z_2)$ are obtained according to Equation~\ref{eq:images}.  Thus, on the horizontal axis, $z_1$, no discretization is needed because time is already digitalized in sample units. 
+Regarding the \textit{Precision}, EEG time-series are floating-point numbers and the image is constructed based on discrete and integer pixels.  Image's pixel values $(z_1,z_2)$ are obtained according to Equation~\ref{eq:images}.  Thus, on the horizontal axis, $z_1$, no discretization is needed because time is already digitalized in sample units. Hence, there is no loss of precision in time from the one generated by the digital device.
 
 \begin{equation}
 z_1 = \gamma_t  \; n.
@@ -295,104 +295,22 @@ z_2 = \left \lfloor{ \gamma  \; \tilde{x}(n,c)  }\right \rceil
 \label{eq:verticalpixelation}
 \end{equation}
 
-\noindent where $\gamma$ is the scale amplitude factor parameter, which also affects the height of the image in Equation \ref{eq:height}.
+\noindent where $\gamma$ is the scale amplitude factor parameter, which also affects the height of the image in Equation \ref{eq:height}.  Hence, precision is lost on the voltage amplitude. Additionally, the dynamic range of the digital capturing device is reduced to what is actually needed for each segment.  Table~\ref{tab:precision} show some reference values.
 
-\section{Mapping}
-
-$\gls{N}$, 
-$\gls{lambda}$
-$\gls{Fs}$
-$\gls{Deltas}$
-$\gls{DeltamuV}$
-$\gls{gamma}$
-$\gls{gammat}$
-$\gls{Hy}$
-$\gls{Wx}$
-$\gls{St}$
-$\gls{Sv}$
-$\gls{Sy}$
-$\gls{Sx}$
-$\gls{w}$
-
-The initial parameters are $N$,$F_s$ and $\lambda$.  The unit length of the patch is $\Delta_s = \sqrt{2} \; 15$.  The peak-to-peak amplitude of the waveform to study is $ \Delta \mu V $.
-
-\paragraph{Resolution}
-
-\begin{equation}
-1 P_x \equiv \frac{1}{F_s \; w \; \gamma_t}  [\si{s}]
-\label{eq:resolutionx}
-\end{equation}
-
-\begin{equation}
-1 P_y \equiv \frac{1}{\gamma}  [\si\mu{V}]
-\label{eq:resolutiony}
-\end{equation}
-
-\begin{equation}
-\gamma \equiv \frac{H_y}{\Delta \mu V}  
-\label{eq:gammadefinition}
-\end{equation}
-
-\begin{equation}
-\gamma_t \equiv \frac{W_x}{F_s \; w}  
-\label{eq:gammatdefinition}
-\end{equation}
-
-\begin{equation}
-s_x = \frac{ \gamma \;  \lambda \  F_s}{12}
-\label{eq:mapping2}
-\end{equation}
-
-\begin{equation}
-s_y= \frac{\gamma \; \Delta \mu V}{12} 
-\label{eq:mapping1}
-\end{equation}
-
-
-\begin{equation}
-\frac{W_x-1}{\sqrt{2} \; 15}  \geq S_t 
-\label{eq:restriction1}
-\end{equation}
-
-\begin{equation}
-\frac{H_y-1}{\sqrt{2} \; 15}  \geq S_v 
-\label{eq:restriction2}
-\end{equation}
-
-\begin{equation}
-S_t = \frac{ \lambda \;  \  F_s \ \gamma_t }{\Delta_s}
-\label{eq:mapping2}
-\end{equation}
-
-\begin{equation}
-S_v= \frac{\Delta \mu V \ \gamma}{\Delta_s} 
-\label{eq:mapping1}
-\end{equation}
-
-
-
-\begin{equation}
-n = \left\lfloor F_s \ \Delta_t \right\rfloor \ \gamma_t
-\label{eq:mapping1}
-\end{equation}
-
-
-
-\begin{equation}
-\mathbf{S}_x = \Delta_s \; S_t + 1
-\label{eq:mapping2}
-\end{equation}
-
-\begin{equation}
-\mathbf{S}_y = \Delta_s \; S_v + 1
-\label{eq:mapping1}
-\end{equation}
-
-
-Length of a Patch
-
-\begin{equation}
-\Delta_t = \frac{S_t \ \Delta_s}{F_s \ \gamma_t} 
-\label{eq:mapping1}
-\end{equation}
-
+\begin{table}[htb]
+\caption[Reference Values for Precision and Resolution]{Reference Values for Precision and Resolution}
+\centering
+%% \tablesize{} %% You can specify the fontsize here, e.g.  \tablesize{\footnotesize}. If commented out \small will be used.
+\begin{tabular}{c|c|c||c|c|c}
+\toprule
+\textbf{$\gamma$}	&  $1 P_x$ 	&  Decimal Precision & \textbf{$\gamma_t$}	&  $1 P_y$  \\
+\midrule
+1     &     $1 \si\mu{V}$   &  $NN$                               & 1    &     $\frac{1}{\gls{Fs}} \si{s}$    \\
+2    &     $\frac{1}{2} \si\mu{V}$   &  $NN \pm 0.5$  & 2    &     $\frac{1}{2} \; \frac{1}{\gls{Fs}} \si{s}$    \\
+3     &     $\frac{1}{3} \si\mu{V}$   &  $NN\pm 0.3$  & 3    &     $\frac{1}{3} \;  \frac{1}{\gls{Fs}} \si{s}$    \\
+10     &     $\frac{1}{10} \si\mu{V}$   &  $NN.N$        & 10   &     $\frac{1}{10} \; \frac{1}{\gls{Fs}} \si{s}$    \\
+100     &     $\frac{1}{100} \si\mu{V}$   &  $NN.NN$ & 100 &     $\frac{1}{100} \; \frac{1}{\gls{Fs}} \si{s}$    \\
+\bottomrule
+\end{tabular}
+\label{tab:precision}
+\end{table}
