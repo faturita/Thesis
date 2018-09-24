@@ -5,8 +5,7 @@
 %Mental Chrometry and averaging 
 %https://www.ncbi.nlm.nih.gov/pmc/articles/PMC548951/
 
-A regular practice in image processing is to analyze images as bidimensional signals.  We do here the opposite and analyze signals based on images.
-This chapter describes the procedure to plot an image from the digital EEG signal.  This image is used to extract a feature which represents the waveform, the structure of the signal on a plot.  By analyzing this feature, we hypothesize that the underlying cognitive process can be detected and it can be used to implement a brain-computer communication device.
+A regular practice in image processing is to analyze images as bidimensional signals.  In this Thesis the opposite is done and signals are studied by how the are represented on images. This chapter describes the procedure to plot an image from the digital EEG signal.  This image is used to extract a feature which represents the waveform, the structure of the signal on a plot.  By analyzing this feature, we hypothesize that the underlying cognitive process can be detected and it can be used to implement a brain-computer communication device.
 
 \section{Electroencephalographic Plotting}
 
@@ -47,12 +46,12 @@ N = \left\lfloor F_s \; w \right\rfloor.
 
 \vspace{3pt}
 
-To extract features from an image, we should first construct one.  The straightforward way to do it, reproducing the traditional analog or digital EEG plotting, is to draw a line on a contrast background.  This line represents the voltage amplitude of the corresponding channel in relation to a zero-level $z(c)$, with a positive deflection going upwards and downwards for negative deflection.  Figure \ref{fig:plottingsample} shows an example of an EEG signal segment plot.  This image is a black-and-white binary image.  The color selection is arbitrary (white for the line, black for the background), but it has some implications in terms of the feature extraction procedure that we will described in Chapter \ref{chapter:two}.
+To extract features from an image, it should be first constructed.  The straightforward way to do it, replicating the analog or digital EEG plotting, is to draw a line on a contrast background.  This line represents the voltage amplitude of a channel $c$ in relation to a reference zero-level $z(c)$, with a positive deflection going upwards and downwards for negative deflection.  Figure \ref{fig:plottingsample} shows an example of an EEG signal segment plot.  This image is a black-and-white binary image.  The color selection is arbitrary (white for the line, black for the background), but it has some implications in terms of the feature extraction procedure that we will described in Chapter \ref{chapter:two}.
 
 \begin{figure}[]
 \centering
 \includegraphics[scale=1.5]{images/plottingsample.png}
-\caption[EEG Signal Mapping to Images]{Sample EEG signal plotting.  For this sample image, the length of the signal is 1s, which is 250 sample points.  The height of the image is 73 pixels, which is the peak-to-peak amplitude of the signal segment.  Channel Oz of baseline EEG activity is being shown.}
+\caption[EEG Signal Mapping to Images]{Sample EEG signal plot.  For this sample image, the length of the signal is 1s, which is 250 sample points.  The height of the image is 73 pixels, which is the peak-to-peak amplitude of the signal segment.  Channel Oz of baseline EEG activity is being shown.}
 \label{fig:plottingsample}
 \end{figure}
 
@@ -61,7 +60,7 @@ This chapter mostly deal with the coordinates transformation that need to be enf
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=1.2]{images/imagecoordinatesystem.pdf}
-\caption[Image Coordinate System]{The image coordinate system and the mapping from the signal segment.  The origin is the $(0,0)$ position at the upper-left corner of the image.  Time is represented as sample points on the horizontal axis and the amplitude in $\mu V$ is shown on the vertical axis. Image height $H_y$ and width $W_x$ are obtained based on signal parameters.  The signal's zero-level $z(c)$ is the vertical location where the signal zero value is located. The plot of the signal is obtained by first setting the sample points on the predetermined image locations according to equation \ref{eq:images} and then applying a discrete interpolation algorithm to connect them with straight lines. }
+\caption[Image Coordinate System]{The image coordinate system and the mapping from the signal segment.  The origin is the $(0,0)$ position at the upper-left corner of the image.  Time is represented as sample points on the horizontal axis, and the amplitude in $\mu V$ is shown on the vertical axis. Image height $H_y$ and width $W_x$ are obtained based on signal parameters.  The signal's zero-level $z(c)$ is the vertical location where the signal zero value is located. The plot of the signal is obtained by first setting the sample points on the predetermined image locations according to equation \ref{eq:images} and then applying a discrete interpolation algorithm to connect them with straight lines. }
 \label{fig:imagecoordinatesystem}
 \end{figure}
 
@@ -75,7 +74,7 @@ This chapter mostly deal with the coordinates transformation that need to be enf
 
 In order to convert the EEG original signal $x(n,c)$ into an image $I(z_1,z_2)$, the following six alternatives can be used.
 
-\begin{itemize}
+\begin{enumerate}
 \item Channel-by-channel binary image
 
 The standard plotting, on a black-and-white image with lines representing voltage amplitude.
@@ -146,7 +145,7 @@ I(z_1,z_2) = \left\{ \begin{array}{rl} \phi(x(n,c_i))  & \text{if} \,  z_1 = n; 
 
 %This last representation has the important property that $ LoG(I(x,0)) = LoG(x(n,c)) $.
 
-\end{itemize}
+\end{enumerate}
 
 \section{EEG Signal Plot}
 
@@ -255,7 +254,7 @@ Equation \ref{eq:images} produces a set of isolated pixels over the image.  To p
 \label{fig:interpolation}
 \end{figure}
 
-On Figure~\ref{fig:interpolation}(c) the same signal can be observed produced when the time scaling factor $\gls{gammat}$ is increased to $4$. However,it also shows that there are very sharp edges around sample pixels.  This can lead to a quantization of histogram gradients that will be discussed in the next Chapter. The alternative is to use a smoothing interpolation of the signal $\tilde{x}(n,c)$ using splines.  Instead of just skipping time points values, intermediate values are produced according to a linear quadratic or cubic interpolation, which smooths the curve around each point.  This procedure is similar to what the Matlab's \textbf{resample} function does which also includes an antialiasing FIR lowpass filter.
+On Figure~\ref{fig:interpolation}(c) the same signal can be observed produced when the time scaling factor $\gls{gammat}$ is increased to $4$. It can be observer that there are very sharp edges around sample pixels.  This can lead to a quantization of histogram gradients that will be discussed in the next Chapter. To reduce this sharpness of the signal on the plot, an alternative is to use a smoothing interpolation of the signal $\tilde{x}(n,c)$ using splines.  Instead of just situating time point values at a bigger step according to Equation~\ref{eq:images}, intermediate values are produced according to a linear quadratic or cubic interpolation, which smooths the curve around each point.  This procedure is similar to what the Matlab's \textbf{resample} function does which also includes an antialiasing FIR lowpass filter.
 
 Special care must be taken by the presence of artifacts around the signal endpoints, at the edges of the image. Those regions are excluded from further analysis.
 
@@ -279,7 +278,7 @@ Consistently, on the vertical axis, one pixel is analogous to
 \label{eq:resolutiony}
 \end{equation}
 
-\noindent where $\gamma$ is the amplitdue scale factor.  As EEG time-series are digitalized in $\si\mu{V}$, this the unit of choice.  In Figure \ref{fig:imagecoordinatesystem}, $1$ vertical pixel represents exactly $1 \mu V$.
+\noindent where $\gamma$ is the amplitude scale factor.  As EEG time-series are digitalized in $\si\mu{V}$, this the unit of choice.  In Figure \ref{fig:imagecoordinatesystem}, $1$ vertical pixel represents exactly $1 \mu V$.
 
 Regarding the \textit{Precision}, EEG time-series are floating-point numbers and the image is constructed based on discrete and integer pixels.  Image's pixel values $(z_1,z_2)$ are obtained according to Equation~\ref{eq:images}.  Thus, on the horizontal axis, $z_1$, no discretization is needed because time is already digitalized in sample units. Hence, there is no loss of precision in time from the one generated by the digital device.
 
@@ -295,7 +294,7 @@ z_2 = \left \lfloor{ \gamma  \; \tilde{x}(n,c)  }\right \rceil
 \label{eq:verticalpixelation}
 \end{equation}
 
-\noindent where $\gamma$ is the scale amplitude factor parameter, which also affects the height of the image in Equation \ref{eq:height}.  Hence, precision is lost on the voltage amplitude. Additionally, the dynamic range of the digital capturing device is reduced to what is actually needed for each segment.  Table~\ref{tab:precision} show some reference values.
+\noindent where $\gamma$ is the scale amplitude factor parameter, which also affects the height of the image in Equation \ref{eq:height}. A rounding operation $\lfloor  \cdot \rceil$ is applied to obtain an integer value.  Hence, precision is lost on the voltage amplitude. Additionally, the dynamic range of the digital capturing device is reduced to what is actually needed for each segment.  Table~\ref{tab:precision} show some reference values.
 
 \begin{table}[htb]
 \caption[Reference Values for Precision and Resolution]{Reference Values for Precision and Resolution}
