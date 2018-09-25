@@ -55,6 +55,23 @@ Lastly, the fixed value of $ 3 $ is a magnification factor which corresponds to 
 
 Fig.~\ref{fig:sampledescriptor} shows an example of a patch and a scheme of the histogram computation. In (A) a plot of the signal and the patch centered around the keypoint is shown. In (B) the possible orientations on each patch are illustrated.  Only the upper-left four blocks are visible.  The first eight orientations of the first block, are labeled from $1$ to $8$ clockwise. The orientations of the second block $ B_{1,2} $ are labeled from $9$ to $16$.  This labeling continues left-to-right, up-down until the eight orientations for all the sixteen blocks are assigned. They form the corresponding $\mathbf{kp}$-descriptor of $128$ coordinates. Finally, in (C) an enlarged image plot is shown where the oriented gradient vector for each pixel can be seen.
 
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=1.2]{images/sift-conv-vlfeat.png}
+\caption[SIFT Patches]{fdsfdfsfs }
+\label{fig:siftpatch}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\subfigure[10-Fold Cross-validated accuracies values for subject number 12, using Runs 1 and 2 of the Alphanet Dataset.]
+{\includegraphics[width=7.5cm, height=5cm]{images/sift-conv-vlfeat.png}}
+\subfigure[10-Fold Cross-validated accuracies for O1, Oz, O2 and Iz channels for 25 subjects of the Alphanet Dataset.]
+{\includegraphics[width=7.5cm, height=5cm]{images/DatasetPhysionetBoxPlots}}
+\caption[Alpha Waves Classification]{Classification Accuracy for discriminating windows of 1s (160 samples) of EEG for Alpha Waves differences between subjects with eyes opened and closed. The descriptor size is 12x12 pixels. (Left) 10-Fold cross validated accuracies for one subject.  (Right) Average accuracy levels for 25 subjects for the occipital channels. Medians were above $75\%$.}
+\label{fig:alpharesults}
+\end{figure}
+
 \section{Keypoint Location}
 
 \section{Oscillatory Processes}
@@ -171,3 +188,22 @@ Span of a Patch
 \section{Classification}
 
 NBNN
+
+\begin{figure}[h!]
+\centering
+\subfigure[Classification Method, first step. ]
+{\includegraphics[height=4cm,width=4cm]{images/NBNNMethod1.png}}
+\subfigure[Classification Method, first step. ]
+{\includegraphics[height=4cm,width=4cm]{images/NBNNMethod2.png}}
+\subfigure[Classification Method, first step. ]
+{\includegraphics[height=4cm,width=4cm]{images/NBNNMethod3.png}}
+\subfigure[Classification Method, first step. ]
+{\includegraphics[height=4cm,width=4cm]{images/NBNNMethod4.png}}
+\subfigure[Classification Method, first step. ]
+{\includegraphics[height=4cm,width=4cm]{images/NBNNMethod5.png}}
+\caption[NBNN Classification]{Classification Method.}
+\label{fig:nbnnclassification}
+\end{figure}
+
+
+
