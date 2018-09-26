@@ -2,27 +2,27 @@
 \label{chapter:four}
 \epigraph{The electroencephalogram represents a continuous curve with continuous oscillations in which... one can distinguish larger first order waves with an average duration of 90 milliseconds...}{Berger}
 
-This Chapter describes the experiments performed over a well-established but still mysterious EEG cognitive signal: The Berger Rhythm or Visual Occipital Alpha Waves.  An own dataset of resting subjects while maintaining their eyes open and closed is produced and the details of their generation are outlined.  Additionally, an experiment on a public Dataset is also detailed.  Conclusions and discussion is described in the last section.
+This Chapter describes the experiments performed over a well-established but still mysterious EEG cognitive signal: The Berger Rhythm or Visual Occipital Alpha Waves.  An own dataset of resting subjects while maintaining their eyes open and closed is produced and the details of their generation are outlined.  Additionally, an experiment on a public Dataset is also detailed.  Conclusions and discussion are described in the last section.
 
 \section{Introduction}
 
 %We gather the first dataset  using the EEG EPOC Emotiv Headset and we  access the raw signals using its C++ SDK provided by the manufacturer.  The device sends wirelessly  digitalized 128 Hz sampled EEG information as discrete packets.  Every packet is numbered and the electronic impedance is constantly measured, and delivered as part of the packet information. The wireless transmitter connects to a standard RF dongle which receives the information from  14 channels and forwards it into the PC, particularly to a custom C++ EEG Datalogger program that was developed in-house.  The program is waiting passively until a new packet is received from the dongle, verifying the packet numbering and controlling that the impedance is bellow a certain level, according to the device's documentation \cite{c11}. 
 
-Alpha Waves were the first signals ever spotted from the Electroencephalography.  They are very well characterized as 10 Hz signals, physiologically consistent across subjects, and they are associated with synchronous inhibitory processes and attention shifting~\cite{c3}. They tend to be more prominent while subject's eyes are closed and appear stronger in occipital regions, around $O_1$ and $O_2$~\cite{c6,c11}. It is also called the Posterior Dominant Rhythm due to their pervasiveness in EEG~\cite{Schomer2010}.
+Alpha Waves were the first signals ever spotted from the Electroencephalography.  They are regularly characterized as $10\si{Hz}$, or more broadly between the frequency band of $8$-$12$ $\si{Hz}$. They are physiologically consistent across subjects, though there are inter- and intra- variations with functional cognitive implications~\cite{Haegens2014}.   Moreover, they are associated with synchronous inhibitory processes and attention shifting~\cite{c3}. They tend to be more prominent while subject's eyes are closed and appear stronger in occipital regions, around $O_1$ and $O_2$~\cite{c6,c11}. It is also called the Prominent Posterior Alpha or Posterior Dominant Rhythm due to their pervasiveness in EEG~\cite{Schomer2010,Haegens2014}.
 
-Figure~\ref{fig:alphawavessignals} shows two records of 8 channels signals.  The signals in Figure ~\ref{fig:alphawavessignals}(a) contains the registered alpha waves with open eyes while the (b) contains the same information with their eyes closed.  The characteristic pattern of wiggles can be spotted in the Figure ~\ref{fig:alphawavessignals}(b).
+Figure~\ref{fig:alphawavessignals} shows two records of 8 channels signals.  The signals in Figure ~\ref{fig:alphawavessignals}(a) contains the registered alpha waves of a subject with their eyes open while the (b) contains the same information with their eyes closed.  The characteristic pattern of wiggles can be spotted in the latter, while their absence entails the blocking of alpha waves in the former~\cite{Basar2012}.
 
 \begin{figure}[h!]
 \centering
 \subfigure[EEG signals of a relaxed healthy subject with their eyes open.]
 {\includegraphics[height=5cm,width=7.5cm]{images/eeglab1.jpg}}
-\subfigure[EEG signals of the same relaxed subject sit in front of the Computer Monitor with his eyes closed. Alpha Waves wiggles can be spotted since the first second.]
+\subfigure[EEG signals of the same relaxed subject with their eyes closed. Alpha Waves wiggles can be spotted since the first second.]
 {\includegraphics[height=5cm,width=7.5cm]{images/eeglab2.jpg}}
 \caption[Alpha Waves Wiggles]{Five seconds of EEG signals obtained from the Emotiv EPOC device.  Fourteen channels are shown.}
 \label{fig:alphawavessignals}
 \end{figure}
 
-This important rhythm is an oscillatory process.  As such, it is understood and studied in the frequency-domain.   Figure~\ref{fig:alphaspectrum} show the results of applying the Fast Fourier Transform to two different segments of $10\si{\second}$ length.  For each segment, the Power Spectral Density is calculated and their values are shown on the vertical axis.  Frequency values are shown on the horizontal axis.   On Figure (a) no particular frequency component can be spotted.  However, on Figure (b) the prevalence of the 10 \si{\hertz} alpha wave component can be observed.   
+This important rhythm is an oscillatory process.  As such, it is understood and studied in the frequency-domain.   Figure~\ref{fig:alphaspectrum} show the results of applying the Fast Fourier Transform to two different segments of $10\si{\second}$ length.  For each segment, the Power Spectral Density is calculated and their values are shown on the vertical axis.  Frequency values are shown on the horizontal axis.   On Figure (a) no particular frequency component can be spotted.  However, on Figure (b) the prevalence of the 10-\si{\hertz} alpha wave component can be observed.   
  
 %As can be seen in Fig. , if we process the Drowsiness dataset with a 8-12Hz band-pass filter and calculate the average power spectral density across subjects and for each channel, we can see how clearly the value corresponding to class 2 (eyes closed) is always higher than the value for class 1 (eyes open), confirming the expected result.  This also verifies how the differentiation information is contained mostly in the frequency-domain.
 
@@ -52,15 +52,41 @@ This important rhythm is an oscillatory process.  As such, it is understood and 
    
 \section{Materials and Methods}
 
-This experiments consist in performing a binary classifying of EEG signal segments between the two defined classes.  This will allow to discriminate and identify segments containing significant alpha waves (i.e. eyes closed) from those where these signals are blocked (i.e. eyes open).
+These experiments consist in performing a binary classifying of EEG signal segments between the two defined classes.  This allows to discriminate and identify segments containing significant alpha waves (i.e. eyes closed) from those where these signals are blocked (i.e. eyes open).
 
 
-\subsection{Emotiv EPOC alpha waves own dataset}
-We gather the first dataset using the EEG EPOC Emotiv Headset using the C++ SDK library provided by the manufacturer and an in-house developed software program. The device has 14 channels, and a sampling rate of 128 \si{Hz}\cite{c11}. Ten healthy subjects between ages 20-50 are recruited and they accept to wear the device and to participate in the experiments.  A 30 minutes procedure is required to adjust the headset to each user, in order to decrease the impedance on each electrode (bellow $5 \si{\kilo\ohm}$).  Once the set up is finished, each subject is instructed to sit in a relaxed position. Subsequently, she/he is commanded to watch the screen for 15 seconds, trying to avoid, as much as possible, to abruptly move its body or head.  During that time, a single-trial of 10 seconds-length window of EEG signals data is transferred to a PC and logged into standard binary files. After a 5 minutes pause, the subject is asked to close the eyes avoiding any movement while keeping the same pose for another batch of 15 seconds.  Again, 10 seconds of EEG information are transferred and logged into the PC. This finally produce a sample of 10 subjects,  2 trial per subject, one for each class, composed of 14 channels, 10-seconds length or 1280 samples per window. 
+\subsection{Dataset I - Emotiv EPOC alpha waves own dataset}
+The first dataset is gathered using the EEG EPOC Emotiv Headset.  This is a commercial device, which provide an excellent cost-quality relation and that has been used to investigate basic EEG processes~\cite{Debener2012,DeVos2014}. In order to obtain the multichannel raw EEG signal, a C++ SDK library provided by the manufacturer is used and an in-house software program was developed. This device has 14 channels, and a sampling rate of 128 \si{Hz}\cite{c11}. Ten healthy subjects between ages 20-50 are recruited and they accept to wear the device and to participate in the experiments.  A 30 minutes procedure is required to adjust the headset to each user, in order to decrease the impedance on each electrode (bellow $5 \si{\kilo\ohm}$).  Once the set up is finished, each subject is instructed to sit in a relaxed position. Subsequently, she/he is commanded to watch the screen for 15 seconds, trying to avoid, as much as possible, to abruptly move its body or head.  During that time, a single-trial of 10 seconds-length window of EEG signals data is transferred to a PC and logged into standard binary files. After a 5 minutes pause, the subject is asked to close the eyes avoiding any movement while keeping the same pose for another batch of 15 seconds.  Again, 10 seconds of EEG information are transferred and logged into the PC. This finally produce a sample of 10 subjects,  2 classes per subject, composed of 14 channels, 10-seconds length or 1280 samples per window. 
 
-For this dataset, 10 signal segments of 1s for each class were gathered from 10 healthy subjects.  Descriptors were extracted from all the generated images, from both classes, and they were used to classify images from the same set.       
+%\begin{figure}[thpb]
+%\centering
+%\setlength\fboxsep{0pt}
+%\setlength\fboxrule{0.5pt}
+%\fbox{\includegraphics[width=3.5cm, height=2.5cm]{images/emotivlarge.png}}
+%\fbox{\includegraphics[width=3.5cm, height=2.5cm]{images/emotivpositions.png}}
+%\fbox{\includegraphics[width=3.5cm, height=2.5cm]{images/emotivcalibration.png}}
+%\fbox{\includegraphics[width=3.5cm, height=2.5cm]{images/emotivdatasetsubject.jpg}}
+%\caption[Classification Accuracy of Alpha Waves]{}
+%\label{figure1}
+%\end{figure}   
+   
+\begin{figure}[h!]
+\centering
+\subfigure[]
+{\includegraphics[width=3.5cm, height=2.5cm]{images/emotivlarge.png}}
+\subfigure[]
+{\includegraphics[width=3.5cm, height=2.5cm]{images/emotivpositions.png}}
+\subfigure[]
+{\includegraphics[width=3.5cm, height=2.5cm]{images/emotivcalibration.png}}
+\subfigure[]
+{\includegraphics[width=3.5cm, height=2.5cm]{images/emotivdatasetsubject.jpg}}
+\caption[EPOC Emotiv Alpha Waves Dataset]{(a)EPOC Emotiv consumer-grade 14-channels Wireless EEG}
+\label{fig:alpharesults}
+\end{figure}
+
+Descriptors are extracted from all the generated images, from both classes, and they are used to classify images from the same set.       
       
-\subsection{AlphaNet Dataset}
+\subsection{Dataset II - AlphaNet Dataset}
 Additionally, we tested the method against the public dataset of the AlphaNet effort published by Schwartz group.
 
 
@@ -75,7 +101,7 @@ This dataset was recorded from a healthy subject during a no-feedback session. S
 
 \section{Results}
 
-As can be seen in Fig. \ref{psd}, if we process the Drowsiness dataset with a 8-12Hz band-pass filter and calculate the average power spectral density across subjects and for each channel, we can see how clearly the value corresponding to class 2 (eyes closed) is always higher than the value for class 1 (eyes open), confirming the expected result.  This also verifies how the differentiation information is contained mostly in the frequency-domain.
+As can be seen in Fig. \ref{psd}, if we process the Dataset with a 8-12Hz band-pass filter and calculate the average power spectral density across subjects and for each channel, we can see how clearly the value corresponding to class 2 (eyes closed) is always higher than the value for class 1 (eyes open), confirming the expected result.  This also verifies how the differentiation information is contained mostly in the frequency-domain.
 
 We process this Dataset with a 8-12 Hz band-pass filter, and calculate the Power Spectral Density across subjects for each channel.  In Fig. \ref{psd} it can be seen that the PSD value is greater for the class 2 (eyes closed), showing also that the differentiation information is contained mostly in the frequency-domain.
 
@@ -88,6 +114,7 @@ The results of applying a 8-12 Hz band-pass filter and calculating the Power Spe
       \label{psd}
    \end{figure}
    
+
    
 \begin{figure}[h!]
 \centering
