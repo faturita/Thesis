@@ -134,6 +134,7 @@ Gel-based active electrodes (g.LADYbird, g.Tec, Austria) are used on the same po
 
 %8 gel-based active electrodes (g.LADYbird) + g.LADYbird (GND) + g.GAMMAearclip (REF) C3, Cz, C4, CPz, P3, Pz, P4, POz, GND: AFz, REF: right ear
 
+
 \subsubsection{Parameters}
 
 The patch size is $X_P = 12s \times 12s$ pixels, where $s$ is the scale of the local patch and it is an input parameter of the algorithm. The P300 event can have a span of $400$ ms and its amplitude can reach $ 10 \mu V $~\cite{Rao2013}.  Hence it is necessary to utilize a signal segment of size $t_{max} = 1$ second and a size patch $X_P$ that could capture an entire transient event. With this purpose in consideration, the $s$ value election is essential.
@@ -337,12 +338,6 @@ Additionally, it can be used for artifact removal which is performed on many occ
 \label{fig:classification}
 \end{figure}
 
-\begin{figure}[h!]
-\centering
-\includegraphics[width=16cm]{images/gradients.png}\label{samplegradients}
-\caption[Histogram of Gradient Orientations for ERP]{ (A) Example of a plot of the signal, a keypoint and the corresponding patch. (B) A scheme of the orientation's histogram computation.  Only the upper-left four blocks are visible.  The first eight orientations of the first block, are labeled from $1$ to $8$ clockwise. The orientation of the second block $ B_{1,2} $ is labeled from $9$ to $16$.  This labeling continues left-to-right, up-down until the eight orientations for all the sixteen blocks are assigned. They form the corresponding descriptor of $128$ coordinates.  The length of each arrow represent the value of the histogram on each direction for each block. (C) Vector field of oriented gradients.  Each pixel is assigned an orientation and magnitude calculated  using finite differences. }
-\label{fig:sampledescriptor}
-\end{figure}
 
 \begin{figure}[h!]
 \centering

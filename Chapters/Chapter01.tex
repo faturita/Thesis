@@ -505,5 +505,167 @@ A related method is Slope Horizontal Chain Code and Slope Chain Code (SCC)~\cite
 
 Similar to this proposal, all these methods provide a feature that can be used as a template, whereas all of them are based on metrics that can be extracted from the shape of the signal.  These features can be used to create dictionaries or template databases.  These templates provide the basis for the pattern matching algorithm and offline classification.
 
+Details for these methods are provided in the following sections
+
+\subsubsection{Matching Pursuit - MP 1 and MP 2}
+
+\textit{Pursuit} algorithms refer, in their many variants, as blind source separation \cite{Vincent2010} techniques that assume the EEG signal as a linear combination of different sparse sources extracted from a template's dictionaries.  Matching Pursuit \textit{MP}~\cite{Mallat1993}, the most representative of these algorithms, is a greedy variant that decomposes a signal into a linear combination of waveforms, called atoms, that are well localized in time and frequency \cite{ChandranKS2016}.  Given a signal, this optimization technique, tries to find the indexes of $m$ atoms and their weights (contributions) that minimize,
+
+
+\begin{equation}
+\varepsilon =  \left\lVert   x(n) - \sum_{i=1}^{m} w_i g_{i}(n)   \right\rVert
+\label{eq:mperror}
+\end{equation}
+
+\noindent which is the error between the signal and its approximation constructed by the weighted $w_i$ atoms $g_{i}$, and calculating the euclidean norm ${\left\lVert \cdot \right\rVert}_{2}$.  The algorithm goes by first setting the approximating signal $\tilde{x}_{0}$  as the original signal itself,  
+
+\begin{equation}
+\tilde{x}_{0}(n) = x(n)
+\label{eq:mp2}
+\end{equation}
+
+\noindent and setting the iterative counter $k$ as $1$. Hence, it searches recurrently the best template out of the dictionary  that matches current approximation.  
+
+\begin{equation}
+g_{k} = \arg \max_{g_{i}} \left\lvert  \sum_{n=1}^{N} \tilde{x}_{k-1}(n) \; g_{i}(n) \right\rvert 
+\label{eq:mp3}
+\end{equation}
+
+\noindent where $g_{i}$ are all the available scaled, translated and modulated atoms from the dictionary.  The operation $\left\lvert \cdot \right\rvert$ corresponds to the absolute value of the inner product.  This step determines the atom selection process, and their contribution is calculated based on 
+
+%The operation $\left\lvert < \cdot,\cdot > \right\rvert$ corresponds to the absolute value of the inner product. 
+
+
+\begin{equation}
+w_{k} =  \frac{\sum_{n=1}^{N} \tilde{x}_{k-1}(n) \; g_{k}(n)}{  {\left\lVert  g_{k} \right\rVert}^{2} }
+\label{eq:mp4}
+\end{equation}
+
+\noindent with $k$ representing the index of the selected atom $g_{k}$ and $\left\lVert \cdot \right\rVert$ its euclidean norm.  Finally the contribution of each atom is subtracted from the next approximation~\cite{Cohen2014,Sanei2007, Mallat1993}
+
+\begin{equation}
+\tilde{x}_{k}(n)=  \tilde{x}_{k-1}(n) - w_{k} g_{k} (n)
+\label{eq:mp5}
+\end{equation}
+
+The stopping criteria can be established based on a limiting threshold on Equation \ref{eq:mperror} or based on a predetermined number of steps and selected atoms.  Two variants of this algorithm are evaluated. In \textit{MP 1} the dictionary is constructed with the normalized templates directly extracted from the real signal segments which is a straightforward implementation of the pattern matching technique.  In \textit{MP 2} the coefficients of Daubechies least-asymetric wavelet with 2 vanishing moments atoms are used to construct the dictionary~\cite{Vareka2012}.  For the first version, the matching against the template is evaluated according to Equation \ref{eq:mperror} directly, whereas for the latter each feature is crafted by decomposing the signal in its coefficients and building, an eventually sparse, vector with them:
+
+\begin{equation}
+f =  {\bigg \{ w_{i} \bigg \}}_{1}^{D} 
+\label{eq:mp6}
+\end{equation}
+
+\noindent where $D$ is the size of the dictionary.  
+
+%On the other hand, Morphological Component Analysis is a variant form of Blind Source Separation which can be considered the extension of Matching Pursuit algorithm. (cita a esa parte del paper).
+
+
+\subsubsection{Permutation Entropy - PE}
+
+Bond and Pompe Permutation Entropy has been extensively used in EEG processing, with applications on Anesthesia, Sleep Stage evaluation and increasingly for Epilepsy pre-ictal detection \cite{Bandt2002}.  This method generates a code based on the orderly arrangement of sequential samples, and then derives a metric which is based on the number of times each sequence is found along the signal.  This numeric value can be calculated as information entropy~\cite{Nicolaou2010}. Let's consider a signal on a window of length $W$ represented by the sample points
+
+\begin{equation}
+(x_1,x_2,...,x_{W})
+\label{eq:pesignal}
+\end{equation}
+
+\noindent and resampled by $\tau$ intervals, starting from the sampling point $n$, doing
+
+\begin{equation}
+(x_n,x_{n+\tau},x_{n+2 \tau}...,x_{n+(m-1)\tau}).
+\label{eq:pe2}
+\end{equation}
+
+This sequence is of order $m$, which is the number of sample points used to derive the ordinal element called $\pi$. There are $m!$ ways in which this sequence can be orderly arranged, according to the position that each sample point holds within the sequence in a strict order relationship.  For example if $m=3$, and the first sample point is the bigger, the second is the smaller and the third one is in the middle, the ordinal element $\pi$ corresponds to $(3,1,2)$. Thus, along the signal window there can be at most $k$ different ordinal (and overlapping) elements $\pi_{s}$
+
+\begin{equation}
+(\pi_{1},\pi_{2},...,\pi_{k})
+\label{eq:pe3}
+\end{equation}
+
+\noindent with $k = W-(m-1) \tau$.  The probability density function \textit{pdf} for all the available permutations of order $m$ should be $ \textbf{p} = (p_1,p_2,...,p_{m!}) $ with $ \sum_{i=1}^{m!} p_{i} = 1 $.
+
+Hence, the time series window is mapped to a new set of $k$ ordinal elements, and the \textit{pdf} can be calculated by the empirical permutation entropy,
+
+\begin{equation}
+p_i = \frac{1}{k} \sum_{s=1}^{k} \left[ \pi_{s} = \pi_{i} \right]
+\label{eq:pe4}
+\end{equation}
+
+\noindent with $1 \leq i \leq m!$. The Iverson Bracket $ \left[ \cdot \right] $ resolves to $1$ when their logical proposition argument is true, $0$ otherwise. Therefore, for each $i$ only those ordinal elements $\pi_{s}$ that were effectively found along the signal are counted to estimate $p_i$, and zero elsewhere.  The empirical permutation entropy can be calculated from the histogram as,
+
+\begin{equation}
+H(\textbf{p}) = \sum_{i=1}^{m!} p_{i} \; log \frac{1}{p_{i}}.
+\label{eq:pe5}
+\end{equation}
+
+The implemented code was derived from~\cite{Unakafova2013}, and the model description from \cite{Berger2017}.  This procedure produces a scalar number for the given signal window of size $W$.  To derive a feature, a sliding window procedure must be implemented to cover an entire segment of length $N$.  Thus, the length of the feature is $N - (W + \tau (m - 1))$.
+
+\begin{equation}
+f =  {\bigg \{ H(\textbf{p})_{u} \bigg \}}_{W + \tau  m}^{N}.
+\label{eq:pe6}
+\end{equation}
+
+\noindent with $u$ varying on a sample by sample basis along the signal, starting from the specified index.
+
+\subsubsection{Slope Horizontal Chain Code - SHCC}
+
+This algorithm~\cite{Alvarado-Gonzalez2016} proceeds by generating a coding scheme from a sequence of sample points. This encoding is based on the angle between the horizontal line on a 2D-plane and any segment produced by two consecutive sample points, regarding them as coordinates on that plane.  
+
+A signal of length $N$, can be represented by a list of ordered-pairs $e$,
+
+\begin{equation}
+e = \left[ (x,y)_{1}, (x,y)_{2}, ..., (x,y)_{N} \right]
+\label{eq:shccdelta}
+\end{equation}
+
+\noindent and it can be divided into $G$ different blocks.  These blocks are obtained by resampling the original signal from the index 
+
+\begin{equation}
+G = \lfloor n + ( m \Delta ) + 0.5 \rfloor
+\label{eq:shcc2}
+\end{equation}
+
+\noindent with $n$ being the original sampling index on $ 1 \leq n \leq N $ and $\lfloor \cdot \rfloor$ being the floor operation, i.e. rounding of the number argument to the closest smaller integer number.  On the other hand, $\Delta$ can be obtained by
+
+\begin{equation}
+\Delta = \bigg \lceil \frac{N}{G+1} \bigg \rceil
+\label{eq:shcc3}
+\end{equation}
+
+\noindent with $ G < N $ and using instead $\lceil \cdot \rceil$ as the ceil operation, the rounding to the closest bigger integer number. Lastly, the value $m$ can be derived from
+
+\begin{equation}
+m = sign \bigg (  \frac{N-1}{\Delta} \bigg )  \bigg \lfloor \left\lvert \frac{N-1}{\Delta} \right\lvert \bigg \rfloor.
+\label{eq:shcc4}
+\end{equation}
+
+This resampling produces a new sequence of values,
+
+\begin{equation}
+e' = \left[ (x',y')_{1}, ...,(x',y')_{s}, ..., (x',y')_{G} \right].
+\label{eq:shcc5}
+\end{equation}
+
+The next step is the normalization of each ordered-pair as vectors $\textbf{x'} = (x'_{1},...,x'_{G})$ and $\textbf{y'} = (y'_{1},...,y'_{G})$ according to
+
+\begin{equation}
+\hat{\textbf{x}} = \frac{\textbf{x'} - \min(\textbf{x'}) \textbf{1} }{\max(\textbf{x'}) - \min(\textbf{x'})} 
+\label{eq:shcc6}
+\end{equation}
+
+\begin{equation}
+\hat{\textbf{y}} = \frac{ \textbf{y'} - \min(\textbf{y'}) \textbf{1}}{\max(\textbf{y'}) - \min(\textbf{y'})} 
+\label{eq:shcc7}
+\end{equation}
+
+\noindent with $\textbf{1}$ being the vector of length $G$ with all their components equal to $1$.  Hence, the scalar components $\hat{x}_{s}$ of $\hat{\textbf{x}}$, and $\hat{y}_{s}$ of $\hat{\textbf{y}}$, with $s$ varying between $1$ and $G$ are effectively normalized to $\hat{x}_{s},\hat{y}_{s} \in [0,1]$. \\
+
+Finally, the feature is constructed by calculating the point-to-point slope against the horizontal plane,
+
+\begin{equation}
+f = \bigg \{  \frac{\hat{y}_{s}-\hat{y}_{s-1}}{\hat{x}_{s}-\hat{x}_{s-1}}  \bigg \}_{2}^{G} 
+\label{eq:shcc8}
+\end{equation}
 
 

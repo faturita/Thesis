@@ -46,7 +46,7 @@ N = \left\lfloor F_s \; w \right\rfloor.
 
 \vspace{3pt}
 
-To extract features from an image, it should be first constructed.  The straightforward way to do it, replicating the analog or digital EEG plotting, is to draw a line on a contrast background.  This line represents the voltage amplitude of a channel $c$ in relation to a reference zero-level $z(c)$, with a positive deflection going upwards and downwards for negative deflection.  Figure \ref{fig:plottingsample} shows an example of an EEG signal segment plot.  This image is a black-and-white binary image.  The color selection is arbitrary (white for the line, black for the background), but it has some implications in terms of the feature extraction procedure that we will described in Chapter \ref{chapter:two}.
+To extract features from an image, it should be first constructed.  The straightforward way to do it, replicating the analog or digital EEG plotting, is to draw a line on a contrast background.  This line represents the voltage amplitude of a channel $c$ in relation to a reference zero-level $z(c)$, with a positive deflection going upwards and downwards for negative deflection.  Figure \ref{fig:plottingsample} shows an example of an EEG signal segment plot.  This image is a black-and-white binary image.  The color selection is arbitrary (white for the line, black for the background), but it has some implications in terms of the feature extraction procedure that will described in Chapter \ref{chapter:two}.
 
 \begin{figure}[]
 \centering
@@ -80,7 +80,7 @@ In order to convert the EEG original signal $x(n,c)$ into an image $I(z_1,z_2)$,
 The standard plotting, on a black-and-white image with lines representing voltage amplitude.
 
 \begin{equation}
-I(z_1,z_2) = \left\{ \begin{array}{rl}
+I^{(c)}(z_1,z_2)= \left\{ \begin{array}{rl}
 255 & \text{if} \,  z_1 =  n; \; z_2 = x(n,c) + z(c) \\
 0   & \mbox{otherwise}
 \end{array}\right.
@@ -92,7 +92,7 @@ I(z_1,z_2) = \left\{ \begin{array}{rl}
 The voltage amplitudes are represented in greyscale, that could range between 0 and 255.  The function $\phi( \cdot )$ is a bounded linear mapping.
 
 \begin{equation}
-I(z_1,z_2) = \left\{ \begin{array}{rl}
+I^{(c)}(z_1,z_2)= \left\{ \begin{array}{rl}
 \phi(x(n,c)) & \text{if} \,  z_1 = n; \; z_2 = z(c) \\
 0   & \mbox{otherwise}
 \end{array}\right.
@@ -114,7 +114,7 @@ I(z_1,z_2) = \left\{ \begin{array}{rl} \phi(x(n,c))  & \text{if} \,  z_1 = n; \;
 The horizontal axis of the image is not time, but it is channels instead.   In this representation different contributions from different channels can be explored at the same time, but time dynamics is lost.  
 
 \begin{equation}
-I(z_1,z_2) = \left\{ \begin{array}{rl}
+I^{(n)}(z_1,z_2) = \left\{ \begin{array}{rl}
 255 & \text{if} \,  z_1 = c; \; z_2 =  x(n,c) + z(n) \\
 0   & \mbox{otherwise}
 \end{array}\right.
@@ -126,7 +126,7 @@ I(z_1,z_2) = \left\{ \begin{array}{rl}
 This is a variant of the previous one, where the horizontal axis represent the channel.   In this form, the intensity of the contribution of each channel is represented by the greyscale pixel value.  Combined with head models and forward projection solutions this is the methodology used to represent scalp heatmaps~\cite{Gramfort2013}.
 
 \begin{equation}
-I(z_1,z_2) = \left\{ \begin{array}{rl}
+I^{(n)}(z_1,z_2)= \left\{ \begin{array}{rl}
 \phi(x(n,c)) & \text{if} \,  z_1 = c; \; z_2 =  z(n) \\
 0   & \mbox{otherwise}
 \end{array}\right.
@@ -139,7 +139,7 @@ I(z_1,z_2) = \left\{ \begin{array}{rl}
 This is similar to a raster plot but the greyscale image representing voltages in pixel intensities is repeated $H$ times, the height of the image.  The selection of this value is arbitrary.
 
 \begin{equation}
-I(z_1,z_2) = \left\{ \begin{array}{rl} \phi(x(n,c_i))  & \text{if} \,  z_1 = n; \; z_2 = H \end{array}\right.
+I^{(c)}(z_1,z_2) = \left\{ \begin{array}{rl} \phi(x(n,c_i))  & \text{if} \,  z_1 = n; \; z_2 = H \end{array}\right.
 \label{eq:images}
 \end{equation}
 
