@@ -31,7 +31,7 @@ There are currently three categories of neuroimaging: \textit{structural} which 
 The EEG signal is represented by
 
 \begin{equation}
-\mathbf{x}(n) = x(n,c)
+x(n,c)
 \label{eq:zerolevel}
 \end{equation}
 
@@ -84,19 +84,19 @@ I^{(c)}(z_1,z_2)= \left\{ \begin{array}{rl}
 255 & \text{if} \,  z_1 =  n; \; z_2 = x(n,c) + z(c) \\
 0   & \mbox{otherwise}
 \end{array}\right.
-\label{eq:images}
+\label{eq:image1}
 \end{equation}
 
 \item Channel-by-channel greyscale image
 
-The voltage amplitudes are represented in greyscale, that could range between 0 and 255.  The function $\phi( \cdot )$ is a bounded linear mapping.
+The voltage amplitudes are represented in greyscale, that could range between 0 and 255.  The function $\phi( \cdot )$ is a bounded linear mapping between $\left[ 0,255 \right]$
 
 \begin{equation}
 I^{(c)}(z_1,z_2)= \left\{ \begin{array}{rl}
 \phi(x(n,c)) & \text{if} \,  z_1 = n; \; z_2 = z(c) \\
 0   & \mbox{otherwise}
 \end{array}\right.
-\label{eq:images}
+\label{eq:image2}
 \end{equation}
 
 \item Multichannel full greyscale image
@@ -105,7 +105,7 @@ The image is greyscale. Voltage amplitudes are represented by the pixel content 
 
 \begin{equation}
 I(z_1,z_2) = \left\{ \begin{array}{rl} \phi(x(n,c))  & \text{if} \,  z_1 = n; \; z_2 = c \end{array}\right.
-\label{eq:images}
+\label{eq:image3}
 \end{equation}
 
 
@@ -118,29 +118,29 @@ I^{(n)}(z_1,z_2) = \left\{ \begin{array}{rl}
 255 & \text{if} \,  z_1 = c; \; z_2 =  x(n,c) + z(n) \\
 0   & \mbox{otherwise}
 \end{array}\right.
-\label{eq:images}
+\label{eq:image4}
 \end{equation}
 
 \item Multichannel stationary greyscale image
 
-This is a variant of the previous one, where the horizontal axis represent the channel.   In this form, the intensity of the contribution of each channel is represented by the greyscale pixel value.  Combined with head models and forward projection solutions this is the methodology used to represent scalp heatmaps~\cite{Gramfort2013}.
+This is a variant of the previous one, where the horizontal axis also represent the channel.   In this form, the intensity of the contribution of each channel is represented by the greyscale pixel value.  Combined with head models and forward projection solutions this is the methodology used to represent scalp heatmaps~\cite{Gramfort2013}.
 
 \begin{equation}
 I^{(n)}(z_1,z_2)= \left\{ \begin{array}{rl}
 \phi(x(n,c)) & \text{if} \,  z_1 = c; \; z_2 =  z(n) \\
 0   & \mbox{otherwise}
 \end{array}\right.
-\label{eq:images}
+\label{eq:image5}
 \end{equation}
 
 
 \item Channel by channel full greyscale image
 
-This is similar to a raster plot but the greyscale image representing voltages in pixel intensities is repeated $H$ times, the height of the image.  The selection of this value is arbitrary.
+This is similar to a raster plot~\cite{Cohen2014} but the greyscale image representing voltages in pixel intensities can be replicated or epoched $H$ times, the height of the image.  The selection of this value is arbitrary.
 
 \begin{equation}
-I^{(c)}(z_1,z_2) = \left\{ \begin{array}{rl} \phi(x(n,c_i))  & \text{if} \,  z_1 = n; \; z_2 = H \end{array}\right.
-\label{eq:images}
+I^{(c)}(z_1,z_2) = \left\{ \begin{array}{rl} \phi(x(n,c))  & \text{if} \,  z_1 = n; \; z_2 = H \end{array}\right.
+\label{eq:image6}
 \end{equation}
 
 %This last representation has the important property that $ LoG(I(x,0)) = LoG(x(n,c)) $.
@@ -149,17 +149,17 @@ I^{(c)}(z_1,z_2) = \left\{ \begin{array}{rl} \phi(x(n,c_i))  & \text{if} \,  z_1
 
 \section{EEG Signal Plot}
 
-A binary image plot $I^{(c)}$ can be constructed according to
+A binary image $\mathcal{I}^{(c)}$ can be constructed from a variant of the method especified in \ref{eq:image1} according to
 
 \begin{equation}
-I^{(c)}(z_1,z_2) = \left\{ \begin{array}{rl}
+\mathcal{I}^{(c)}(z_1,z_2) = \left\{ \begin{array}{rl}
 255 & \text{if} \,  z_1 = \gamma_{t} \  n; \! z_2 = \left\lfloor \gamma \; \tilde{x}(n,c) \right\rceil + z(c) \\
 0   & \mbox{otherwise}
 \end{array}\right.
 \label{eq:images}
 \end{equation}
 
-\noindent with $255$ being white and representing the signal's voltage in relation to the zero-level $z(c)$, and $0$ for black which is the background contrast. This scheme produces a black-and-white plot of the signal.  Pixel arguments $ (z_1,z_2) \in \mathbb{N} \times \mathbb{N}$ iterate over the width and height of the image plot with $1 \leq n \leq N$ and $1 \leq c \leq C$.  There is one image per channel.  The parameters $\gamma$ and $\gamma_t$ are the amplitude and time scaling factors.  They are used to determine the image size and at the same time the image resolution.
+\noindent with $255$ being white and representing the signal's voltage in relation to the zero-level $z(c)$, and $0$ for black which is the background contrast. This scheme produces a black-and-white plot of the signal.  Pixel arguments $ (z_1,z_2) \in \mathbb{N} \times \mathbb{N}$ iterate over the width $\gls{Wx}$ and height $\gls{Hy}$  of the image plot with $1 \leq n \leq N$ and $1 \leq c \leq C$.  There is one image per channel.  The parameters $\gamma$ and $\gamma_t$ are the amplitude and time scaling factors.  They are used to determine the image size and at the same time the image resolution.
 
 To analyze effectively an EEG signal, many signal segments must be produced.  Hence, the transformation from signal to image is continuously repeated, and many images need to be crafted for the EEG signal under analysis.  How to determine the size of all the images so that they can be effectively compared between them ?  The first option is to regularize the signal and fit in an equal size for every image.  An alternative choice is to autoscale every image according to the zero-level position.  Figure \ref{fig:plottingscheme} shows two sample artificial impulse signals and their  alternative transformation into images.
 
@@ -171,11 +171,11 @@ The \textit{z-score} is a widely used method to regularize a signal~\cite{Zhang2
 This standardization procedure is defined for  $1 \leq n \leq N$ and $1 \leq c \leq C$ by doing
 
 \begin{equation}
-\tilde{x}(n,c) =  \frac{( x(n,c) - \bar{x}(c)  )}{ \hat{\sigma}(c) } 
+\tilde{x}(n,c) =  \frac{ x(n,c) - \bar{x}(c) }{ \hat{\sigma}(c) } 
 \label{eq:standarizedaverages}
 \end{equation}
 
-\noindent  where $ x(n,c) $ is the multichannel EEG signal segment for the sample point $n$ and for channel $c$. The values $$\bar{x}(c) =\frac{1}{N}\sum_{n=1}^{N}x(n,c)$$ and $$ \hat{\sigma}(c) = (\frac{1}{N-1}\sum_{n=1}^{N}(x(n,c)-\bar{x}(c))^2 )^{\frac{1}{2}}$$ are the mean and estimated standard deviation of $x(n,c), 1 \leq n \leq N$, for each channel $c$. Figure~\ref{fig:plottingscheme}(a) shows an impulse signal and their standardized representation.
+\noindent  where $ x(n,c) $ is the multichannel EEG signal segment for the sample point $n$ and for channel $c$. The values $$\bar{x}(c) =\frac{1}{N}\sum_{n=1}^{N}x(n,c)$$ and $$ \hat{\sigma}(c) =   \bigg \{ \frac{1}{N-1}\sum_{n=1}^{N} { \left[ x(n,c)-\bar{x}(c) \right]  }^2 \bigg \}^{\frac{1}{2}}$$ are the mean and estimated standard deviation of $x(n,c), 1 \leq n \leq N$, for each channel $c$. Figure~\ref{fig:plottingscheme}(a) shows an impulse signal and their standardized representation.
 
 \subsection{Autoscaled plotting}
 \label{autoscaled}
@@ -191,7 +191,7 @@ Figure \ref{fig:plottingscheme}(b) shows the results of the plotting for an impu
 
 \begin{figure}[htb]
 \centering
-\subfigure[An artificial signal pulse and their plotting representation. The signal is standardized and the height of the image is determined according to the peak-to-peak amplitude, which is constant for every image and equal to $\gamma$. ]
+\subfigure[An artificial signal pulse and their plotting representation. The signal is standardized and the height of the image is determined according to the peak-to-peak amplitude, which the same for every image and equal to $\gamma$. ]
 {\includegraphics[height=5cm,width=15cm]{images/signalplot1.eps}}
 \subfigure[The plotted image height is twice the zero-level. In this case, the height is also determined according to the peak-to-peak amplitude of each segment, proportional to $\gamma$, and not constant. Transformed images do not have the same height, but the zero-level is always located at half the height of the image.]{\includegraphics[height=5cm,width=15cm]{images/signalplot2.eps}}
 \caption[Signal plot of an impulse response]{Signal plotting schemes.}
@@ -256,7 +256,7 @@ Equation \ref{eq:images} produces a set of isolated pixels over the image.  To p
 \label{fig:interpolation}
 \end{figure}
 
-On Figure~\ref{fig:interpolation}(c) the same signal can be observed produced when the time scaling factor $\gls{gammat}$ is increased to $4$. It can be observer that there are very sharp edges around sample pixels.  This can lead to a quantization of histogram gradients that will be discussed in the next Chapter. To reduce this sharpness of the signal on the plot, an alternative is to use a smoothing interpolation of the signal $\tilde{x}(n,c)$ using splines.  Instead of just situating time point values at a bigger step according to Equation~\ref{eq:images}, intermediate values are produced according to a linear quadratic or cubic interpolation, which smooths the curve around each point.  This procedure is similar to what the Matlab's \textbf{resample} function does which also includes an antialiasing FIR lowpass filter.
+On Figure~\ref{fig:interpolation}(c) the same signal can be observed produced when the time scaling factor $\gls{gammat}$ is increased to $4$. It can be observer that there are very sharp edges around sample pixels.  This can lead to a quantization of histogram gradients that will be discussed in the next Chapter. To reduce this sharpness of the signal on the plot, an alternative is to use a smoothing interpolation of the signal $\tilde{x}(n,c)$ using splines.  Instead of just situating time point values at a bigger step according to Equation~\ref{eq:images}, intermediate values are produced according to a linear quadratic or cubic interpolation, hence smoothing the curve around each point.  This procedure is similar to what the Matlab's \textbf{resample} function does which also includes an antialiasing FIR lowpass filter.
 
 Special care must be taken by the presence of artifacts around the signal endpoints, at the edges of the image. Those regions are excluded from further analysis.
 
@@ -264,14 +264,14 @@ Special care must be taken by the presence of artifacts around the signal endpoi
 
 The resolution~\cite{Cohen2014} of the image transformation can be determined based on the characteristics of the digital signal and the parameter selection.
 
-On the horizontal axis of the image, one pixel is equivalent to 
+On the horizontal axis of the image, one pixel is equivalent $\equiv$ to 
 
 \begin{equation}
 1 P_x \equiv \frac{1}{F_s  \; \gamma_t}  [\si{s}]
 \label{eq:resolutionx}
 \end{equation}
 
-\noindent where $F_s$ is the sampling frequency in Hertz, and $\gamma_t$ is the time scale factor.  This gives a value in seconds.  For example, for Figure \ref{fig:imagecoordinatesystem}, the sampling frequency is $200 Hz$, the length is $0.65 s$ and $\gamma_t = 1$, which gives a resolution of $1 P_x \equiv 0.0077 s$. 
+\noindent where $F_s$ is the sampling frequency in Hertz, and $\gamma_t$ is the time scale factor.  This gives a value in seconds.  For example, for Figure \ref{fig:plottingsample}, the sampling frequency is $200 Hz$, the length is $0.65 s$ and $\gamma_t = 1$, which gives a resolution of $1 P_x \equiv 0.0077 s$. 
 
 Consistently, on the vertical axis, one pixel is analogous to 
 
