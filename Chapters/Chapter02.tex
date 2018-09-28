@@ -164,6 +164,7 @@ I^{(c)}(z_1,z_2) = \left\{ \begin{array}{rl}
 To analyze effectively an EEG signal, many signal segments must be produced.  Hence, the transformation from signal to image is continuously repeated, and many images need to be crafted for the EEG signal under analysis.  How to determine the size of all the images so that they can be effectively compared between them ?  The first option is to regularize the signal and fit in an equal size for every image.  An alternative choice is to autoscale every image according to the zero-level position.  Figure \ref{fig:plottingscheme} shows two sample artificial impulse signals and their  alternative transformation into images.
 
 \subsection{Standardized plotting}
+\label{standardized}
 
 The \textit{z-score} is a widely used method to regularize a signal~\cite{Zhang2013}.
 
@@ -177,6 +178,7 @@ This standardization procedure is defined for  $1 \leq n \leq N$ and $1 \leq c \
 \noindent  where $ x(n,c) $ is the multichannel EEG signal segment for the sample point $n$ and for channel $c$. The values $$\bar{x}(c) =\frac{1}{N}\sum_{n=1}^{N}x(n,c)$$ and $$ \hat{\sigma}(c) = (\frac{1}{N-1}\sum_{n=1}^{N}(x(n,c)-\bar{x}(c))^2 )^{\frac{1}{2}}$$ are the mean and estimated standard deviation of $x(n,c), 1 \leq n \leq N$, for each channel $c$. Figure~\ref{fig:plottingscheme}(a) shows an impulse signal and their standardized representation.
 
 \subsection{Autoscaled plotting}
+\label{autoscaled}
 
 This plotting scheme allows each image to adapt to the underlying signal.  The height is set at twice the value of the zero-level, and the signal mean is subtracted from the signal, producing a vertical displacement.
 

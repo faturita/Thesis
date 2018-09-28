@@ -64,16 +64,56 @@ Fig.~\ref{fig:sampledescriptor} shows an example of a patch and a scheme of the 
 %\label{fig:siftpatch}
 %\end{figure}
 
+
 \section{Keypoint Location}
+
+The keypoint $\gls{kp}$ location must be accurate specified in order to establish which is the region from the signal where the waveform is located and from where the descriptor to map the waveform will be obtained.
+
+For the horizontal position, the localization of the keypoint is based on a priori information, based on the characteristics of the event under study.  For instance certain ERP have a specific timing that can be explored to understand in which place the expected signal pattern will be generated.
+
+But the main answer to respond is how many descriptors, and this also leads to density of descriptors.  How many per pixel or per sample point.
 
 \begin{figure}[h!]
 \centering
 \subfigure[]
 {\includegraphics[width=6cm, height=6cm]{images/KeypointLocations.eps}}
 \subfigure[]
+{\includegraphics[width=6cm, height=6cm]{images/KeypointLocations.eps}}
+\subfigure[]
+{\includegraphics[width=6cm, height=6cm]{images/KeypointLocations.eps}}
+\subfigure[]
 {\includegraphics[width=6cm, height=6cm]{images/SignalWithFullDescriptors.png}}
 \caption[Keypoint Locations]{}.
 \label{fig:alpharesults}
+\end{figure}
+
+For the Vertical Location, there are two options.  The first one is along the signal, exactly on the sample points calculated by the Equation \ref{eq:images}.  The second is on a fixed position which can be the zero-level as described by \ref{eq:zerolevel}.
+
+\section{Patch Geometry}
+
+The Horizontal Patch Scale $\gls{Sx}$ determines the size of the patch on the image horizontal axis, and it is related to the span $\gls{lambda}$ of the waveform to analyze according to
+
+\begin{equation}
+S_t = \frac{ \lambda \;  \  F_s \ \gamma_t }{\Delta_s}
+\label{eq:horizontalpatchscale}
+\end{equation}
+
+\noindent where ....... 
+
+On the other hand, on the vertical axis, the vertical patch scale depends on the peak-to-peak amplitude $\gls{DeltamuV}$.
+
+\begin{equation}
+S_v= \frac{\Delta \mu V \ \gamma}{\Delta_s} 
+\label{eq:mapping1}
+\end{equation}
+
+The vertical scale can be fixed.  This is more appropiate if the underlying signal is bounded which is the case if the standardized procedure described in \ref{standardized} is applied.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=10cm]{images/patchgeometry.pdf}
+\caption[Patch Geometry]{The scale of local patch is selected in order to capture the whole transient event.  The size of the patch is $X_p \times X_p$ pixels. The vertical size consists of $4$ blocks of size $3 s_y$ pixels which is high enough as to contain the signal $\Delta  \mu V $, the peak-to-peak amplitude of the transient event. The horizontal size includes $4$ blocks  of $3 s_x$ and covers the entire duration in seconds of the transient signal event, $ \lambda $.   }
+\label{fig:patchgeometry}
 \end{figure}
 
 \subsection{Oscillatory Processes}
@@ -147,14 +187,14 @@ Restriction on the waveform amplitude scale
 \label{eq:restriction2}
 \end{equation}
 
-Waveform time scale
+Horizontal Patch scale
 
 \begin{equation}
 S_t = \frac{ \lambda \;  \  F_s \ \gamma_t }{\Delta_s}
 \label{eq:mapping2}
 \end{equation}
 
-Waveform amplitude scale
+Vertical Patch scale
 
 \begin{equation}
 S_v= \frac{\Delta \mu V \ \gamma}{\Delta_s} 
@@ -168,14 +208,14 @@ n = \left\lfloor F_s \ \Delta_t \right\rfloor \ \gamma_t
 \label{eq:mapping1}
 \end{equation}
 
-Horizontal Patch scale
+Horizontal Patch size in pixels
 
 \begin{equation}
 \mathbf{S}_x = \Delta_s \; S_t + 1
 \label{eq:mapping2}
 \end{equation}
 
-Vertical Patch scale
+Vertical Patch Size in pixels
 
 \begin{equation}
 \mathbf{S}_y = \Delta_s \; S_v + 1
@@ -236,19 +276,20 @@ Figure~\ref{fig:classification} shows a scheme of this process.
 
 \begin{figure}[h!]
 \centering
-\subfigure[Two Dictionaries contain templates descriptors for two different classes. A set of query descriptors are extracted from a new image that needs to be categorized.]
-{\includegraphics[height=6cm,width=4cm]{images/NBNNMethod1.png}}
-\subfigure[Distances from every descriptor $di$ is calculated against the closest one from the Dictionary of Class 2.  Distances are accumulated. ]
-{\includegraphics[height=6cm,width=4cm]{images/NBNNMethod2.png}}
-\subfigure[Distances from every descriptor $di$ is calculated against the closest one from the Dictionary of Class 1.  Distances are accumulated. ]
-{\includegraphics[height=6cm,width=4cm]{images/NBNNMethod3.png}}
-\subfigure[The two different values are compared.]
-{\includegraphics[height=6cm,width=4cm]{images/NBNNMethod4.png}}
-\subfigure[The summation that achieved the lesser value is the one that more closely resemble the set of templates, thus is the one predicted by the classification algorithm. ]
-{\includegraphics[height=6cm,width=4cm]{images/NBNNMethod5.png}}
-\caption[NBNN Classification]{Classification Method.}
+\subfigure[]
+{\includegraphics[scale=0.25]{images/NBNNMethod1.png}}
+\subfigure[]
+{\includegraphics[scale=0.25]{images/NBNNMethod2.png}}
+\subfigure[]
+{\includegraphics[scale=0.25]{images/NBNNMethod3.png}}
+\subfigure[]
+{\includegraphics[scale=0.25]{images/NBNNMethod4.png}}
+\subfigure[ ]
+{\includegraphics[scale=0.25]{images/NBNNMethod5.png}}
+\caption[NBNN Classification]{(a) Two Dictionaries contain templates descriptors for two different classes. A set of query descriptors are extracted from a new image that needs to be categorized.(b) Distances from every descriptor $di$ is calculated against the closest one from the Dictionary of Class 2.  Distances are accumulated.(c) Distances from every descriptor $di$ is calculated against the closest one from the Dictionary of Class 1.  Distances are accumulated. (d) The two different values are compared.(e) The summation that achieved the lesser value is the one that more closely resemble the set of templates, thus is the one predicted by the classification algorithm.}
 \label{fig:nbnnclassification}
 \end{figure}
 
 
 
+Agregar tambien las pruebas sobre rootsift y que la distancia mejor es la coseno demostrar justamente haciendo una prueba sobre EEGWave.
