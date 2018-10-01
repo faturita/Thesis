@@ -11,7 +11,7 @@ This method was verified on EEG oscillatory processes.  An experiment with 10 su
 
 The applicability of the method was extended to study transient signals.  Due to the their importance, and widespread adoption in BCI, the P300 ERP was studied.  We developed a method to effectively use this procedure to extract ERP waveform from EEG signals and to recognize it by analyzing their waveform shape.  An additional experiment on 8 healthy subjects was performed but using a research-grade EEG device, specifically designed to detect for this discipline.  The procedure was tested against the obtained dataset and usable level of accuracy were obtained.  A BCI simulation was also implemented against a public dataset of ALS patients where it was verified that the waveform of the P300 was stable regardless of their disease, offering an alternative method to study waveform stability.  A pseudo-real dataset was created to test and control for regular issues with ERP extraction procedures and the method proposed here was also contrasted against a set of other four alternative methods which are also inspired in analyzing EEG waveforms.  It was found that this method achieved higher or equal accuracy values than the other methods.
 
-Two important problems stay remains,
+There are two issues of this methodology that need to be addressed:
 
 \textbf{Keypoint localization}: the descriptor obtained from the Histogram of Gradient Orientations is sensitive to the keypoint localization.  The SIFT Detector proved to be unable to capture an invariant keypoint from a very sparse image as the one that was generated here.  In order to improve the efficiency of the proposal presented in this thesis, an improved version of the SIFT Detector aimed for this kind of images of plots should be considered.  Moreover, for oscillatory processes finding a clever way to localize descriptors will also easy and facilitate their lay out along signals trace. Current configuration generates too many descriptors that produces a computational burden.
 
@@ -21,7 +21,7 @@ Two important problems stay remains,
 %More importantly, as with any other BCI technique, assessment on the prospects and usefulness of this procedure on the golden standard of online validation must be performed to avoid the MMLD dilemma [16].
 
 \begin{story}[To keep in mind]
-Among other applications of Brain Computer Interfaces, the goal of the discipline is to provide communication assistance to people affected by neuro-degenerative diseases, who are the most likely population to benefit from BCI systems and EEG processing and analysis.
+Among other applications of Brain Computer Interfaces, the goal of the discipline is to provide communication assistance to people affected by neuro-degenerative diseases, who are the most likely population to benefit from BCI systems and EEG processing and analysis~\cite{WolpawJonathanR2012}.
 \end{story}
 
 This technique has the following benefits,
@@ -41,7 +41,7 @@ Another benefit of these methodologies is that they have a potential universal a
 Descriptors are a direct representation of the shape of signal waveforms. Hence,  they can be used to build databases~\cite{Chavarriaga2017} of quantitative descriptions of known waveforms and improve atlases~\cite{Hartman2005}, which are currently based on qualitative descriptions of signal shapes.
 
 \textbf{Foster clinical collaboration}
-In our opinion, the best benefit of the presented method is that a closer collaboration of the field of BCI with physicians can be fostered \cite{Chavarriaga2017}, since this procedure intent to imitate human visual observation, after all analyzing waveforms by their waveform shapes is a established procedure of the clinical EEG community. One of the main goals of the BCI discipline is to provide assistance to patients and to provide alternative tools to be used in diagnostics and rehabilitation procedure.  This requires a clinical focus which is often neglected in BCI research~\cite{Chavarriaga2017}.  
+In our opinion, the best benefit of the presented method is that a closer collaboration of the field of BCI with physicians can be fostered \cite{Chavarriaga2017}, since this procedure intent to imitate human visual observation, after all analyzing waveforms by their waveform shapes is a established procedure of the clinical EEG community. One of the main goals of the BCI discipline is to provide assistance to patients and to provide alternative tools to be used in diagnostics and rehabilitation procedure.  This requires a clinical focus which is often neglected in BCI research~\cite{Chavarriaga2017}.  Validation and dissemination of BCI.
 
 \textbf{Clinical tool-making}
 We are currently working in unpublished material analyzing K-Complex components that could eventually provide  assistance to physicians to locate these EEG patterns, specially in long recording periods, frequent in sleep research~\cite{Michel2012}.  %Long Term recording
