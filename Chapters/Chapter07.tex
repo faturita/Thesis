@@ -1,28 +1,22 @@
 \chapter{Conclusions and Future Work}
 \label{chapter:seven}
 
-A method to analyze EEG signals which is based on the waveform characterization is presented. 
+%This thesis humbly offers a method and framework to study EEG brain signal waveforms.  
 
-This thesis humbly offers a method and framework to study EEG brain signal waveforms.  The presented procedure transform the signal into an image, plot the signal on it, and analyze their local structure using the Histogram of Gradient Orientations.
+Among other applications of Brain Computer Interfaces, the goal of the discipline is to provide communication assistance to people affected by neuro-degenerative diseases, who are the most likely population to benefit from BCI systems and EEG processing and analysis~\cite{WolpawJonathanR2012}.
 
-Aiming to offer a BCI implementation, the proposed method is adapted to perform a feature extraction procedure.  An additional classification scheme is also proposed.
+A method to analyze EEG signals which is based on the waveform characterization, is presented.  It offers a method and a framework to study these signal waveforms. The presented procedure transform the signal into an image, plot the signal on it, and analyze their local structure using the Histogram of Gradient Orientations.   Aiming to offer a BCI implementation, the proposed method is adapted to perform a feature extraction procedure.  And finally an additional classification scheme is also outlined.
 
-This method was verified on EEG oscillatory processes.  An experiment with 10 subjects and using a commercial-grade device was implemented.  The application of the method effectively detected Alpha Waves from these signals differentiating two different mental states.  It was also proved on a public dataset which contains the same information.  The prevalence of this signals in occipital areas was also determined by the higher accuracy obtained for these brain regions.
+This method is verified on EEG oscillatory processes.  An experiment with ten subjects and using a commercial-grade device, is conducted.  The application of the method effectively detects Alpha Waves from these signals differentiating two different mental states.  It is also proved on a public dataset which contains the same information.  The prevalence of this signals in occipital areas is determined as well by a higher accuracy obtained for these brain regions.
 
-The applicability of the method was extended to study transient signals.  Due to the their importance, and widespread adoption in BCI, the P300 ERP was studied.  We developed a method to effectively use this procedure to extract ERP waveform from EEG signals and to recognize it by analyzing their waveform shape.  An additional experiment on 8 healthy subjects was performed but using a research-grade EEG device, specifically designed to detect for this discipline.  The procedure was tested against the obtained dataset and usable level of accuracy were obtained.  A BCI simulation was also implemented against a public dataset of ALS patients where it was verified that the waveform of the P300 was stable regardless of their disease, offering an alternative method to study waveform stability.  A pseudo-real dataset was created to test and control for regular issues with ERP extraction procedures and the method proposed here was also contrasted against a set of other four alternative methods which are also inspired in analyzing EEG waveforms.  It was found that this method achieved higher or equal accuracy values than the other methods.
-
-There are two issues of this methodology that need to be addressed:
-
-\textbf{Keypoint localization}: the descriptor obtained from the Histogram of Gradient Orientations is sensitive to the keypoint localization.  The SIFT Detector proved to be unable to capture an invariant keypoint from a very sparse image as the one that was generated here.  In order to improve the efficiency of the proposal presented in this thesis, an improved version of the SIFT Detector aimed for this kind of images of plots should be considered.  Moreover, for oscillatory processes finding a clever way to localize descriptors will also easy and facilitate their lay out along signals trace. Current configuration generates too many descriptors that produces a computational burden.
-
-\textbf{Multichannel}: the second problem, and which is also hardest to fix due to the true nature of this proposal is that in order to increase performance of an automated version, it is necessary to use the a feature which can capture the multichannel nature of an EEG signal.
+The applicability of the method is extended to study transient signals, particularly the P300 ERP,  due to the their importance, and widespread adoption in BCI.  Moreover, a method to  extract the ERP waveform is expounded and used to recognize it from EEG signals by analyzing their waveform shape.  An additional experiment on eight healthy subjects is performed but using a research-grade EEG device, specifically designed for this discipline.  The procedure is tested against the obtained dataset and usable level of accuracy is obtained.  A BCI simulation is also implemented against a public dataset of ALS patients where it is verified that the waveform of the P300 is stable regardless of the health condition, offering an alternative method to study waveform stability.  A pseudo-real dataset is created to test and control for regular issues with ERP extraction procedures and the method proposed here is also contrasted against a set of other four alternative methods which are inspired in analyzing EEG waveforms.  It is found that this method achieved higher or equal accuracy values than the other methods.
 
 %\textbf{Multichannel}
 %More importantly, as with any other BCI technique, assessment on the prospects and usefulness of this procedure on the golden standard of online validation must be performed to avoid the MMLD dilemma [16].
 
-\begin{story}[To keep in mind]
-Among other applications of Brain Computer Interfaces, the goal of the discipline is to provide communication assistance to people affected by neuro-degenerative diseases, who are the most likely population to benefit from BCI systems and EEG processing and analysis~\cite{WolpawJonathanR2012}.
-\end{story}
+%\begin{story}[To keep in mind]
+%Among other applications of Brain Computer Interfaces, the goal of the discipline is to provide communication assistance to people affected by neuro-degenerative diseases, who are the most likely population to benefit from BCI systems and EEG processing and analysis~\cite{WolpawJonathanR2012}.
+%\end{story}
 
 This technique has the following benefits,
 
@@ -63,6 +57,7 @@ We believe that the adoption of a \textit{hybrid} methodology which can process 
 Regarding future work, 
 
 \begin{enumerate}
+\item Multichannel Extension
 \item Scale space analysis on EEG for keypoint localization
 %\item Usage to determine trial to trial variability (using general orientation)
 \item Imaging
@@ -71,8 +66,15 @@ Regarding future work,
 \item Other areas
 \end{enumerate}
 
+\textbf{Multichannel Extension}
+The methods described in section~\ref{waveformalgorithms} and the one proposed here analyze the waveform of a single channel.
+The nature of the proposal is to analyze the shape of single waveforms obtained from just one channel.  To study the graphoelements.
+However, for automatic interpretation of the signal it is known that multichannel extension is necessary.  Hence, a multichannel extension should likely be beneficial to the usage of the proposed methodology.
+
 \textbf{Scale space analysis on EEG for keypoint localization}
 This work focused on the waveform representation but another important area is waveform detection.  The theory of Scale Space developed for the SIFT Detector is an important are for future study.
+
+%\textbf{Keypoint localization}: the descriptor obtained from the Histogram of Gradient Orientations is sensitive to the keypoint localization.  The SIFT Detector proved to be unable to capture an invariant keypoint from a very sparse image as the one that was generated here.  In order to improve the efficiency of the proposal presented in this thesis, an improved version of the SIFT Detector aimed for this kind of images of plots should be considered.  Moreover, for oscillatory processes finding a clever way to localize descriptors will also easy and facilitate their lay out along signals trace. Current configuration generates too many descriptors that produces a computational burden.
 
 \textbf{Imaging}
 Many tools for CV are being used and exported to Neuroscience to impemement meaningfull methods to devise what is happening in the brain.  This method could also be explored from the same perspective.

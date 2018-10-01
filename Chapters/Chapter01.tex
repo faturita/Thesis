@@ -1,6 +1,8 @@
-\chapter{The Brain, The Computer and The Interface}
+\chapter{Interface between the Computer and The Brain}
 \label{chapter:one}
-\epigraph{Deus ex machina!}{Aeschylus}
+%\epigraph{Deus ex machina!}{Aeschylus}
+
+\epigraph{...the brain is not a passive decoder of information but a dynamic and distributed modeler of a reality...}{Nicolelis,2011}
 
 %\quotation{ \textit{...the brain is not a passive decoder of information but a dynamic and distributed modeler of a reality comprised of a multitude of feedback, local, modulatory, and feedforward neural pathways conjuring a vast and elaborate organic spatiotemporal grid \cite{nicolelis2011beyond}} } 
 
@@ -425,6 +427,7 @@ Moreover, EEG data acquisition is a key procedure during the assessment of patie
 % Waveform characterization, on the other hand, has been extensively used in artifact detection and averaging.
 
 \subsection{EEG Waveform Analysis Algorithms}
+\label{waveformalgorithms}
 
 Shape or waveform analysis methods are considered as nonparametric (in opposition to statistical or dynamical models).  They explore signal's time-domain metrics or even derive more complex indexes from it \cite{Thakor2009}. 
 
@@ -503,9 +506,13 @@ A related method is Slope Horizontal Chain Code and Slope Chain Code (SCC)~\cite
 %
 %Moreover, EEG markers~\cite{Clerc} that can be used to  transmit volitional information are limited, and each one of them has a particular combination of appropriate methods to decode them. Inevitably, it is necessary to implement  distinct and specialized algorithmic methods, to filter the signal, enhance its Signal to Noise Ratio (SNR), and try to determine some meaning out of it.  
 
-Similar to this proposal, all these methods provide a feature that can be used as a template, whereas all of them are based on metrics that can be extracted from the shape of the signal.  These features can be used to create dictionaries or template databases.  These templates provide the basis for the pattern matching algorithm and offline classification.
+Likewise this proposal, all these methods provide a feature that can be used as a template, whereas all of them are based on metrics that can be extracted from the shape of the signal.  The notation $f=\{f_i\}_{1}^{n} $ or $f=\{f_i\}_{i \in J}^{} $  will be used to describe the concatenation of scalar values to form a multidimensional feature vector $f=\{f_1,f_2,...,f_n\}$. These features can be used to create dictionaries or template databases.  These templates provide the basis for the pattern matching algorithm and offline classification. 
 
-Details for these methods are provided in the following sections
+\vspace{8pt}
+
+Details for these methods are provided in the following sections.  
+
+%All these methods provide a feature $ f $~\footnote{The notation $f=\{f_i\}_{1}^{n} $ or $f=\{f_i\}_{i \in J}^{} $  will be used to describe the concatenation of scalar values to form a multidimensional feature vector $f=\{f_1,f_2,...,f_n\}$.}  that can be used as a template. These algorithms are based on metrics that are extracted from the shape of the single channel digital EEG signal $x(n)$, with $n$ varying from $1$ to the length $N$ of the EEG segment in sample points.  These features are used to create dictionaries or template databases.  Finally, these templates provide the basis for the pattern matching algorithm and offline classification. 
 
 \subsubsection{Matching Pursuit - MP 1 and MP 2}
 

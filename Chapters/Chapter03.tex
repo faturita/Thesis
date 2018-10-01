@@ -123,7 +123,7 @@ On the other hand, on the vertical axis, the vertical patch scale depends on the
 
 \begin{equation}
 \gls{Sv} = \frac{\gls{St} \ \gls{gamma}}{\gls{Deltas}} 
-\label{eq:mapping1}
+\label{eq:verticalpathscale}
 \end{equation}
 
 The vertical scale can be dynamically adjusted according to the peak-to-peak amplitude of each segment, or it can be set fixed.  This is more appropiate if the underlying signal is bounded which is the case if the standardized procedure described in \ref{standardized} is applied.
@@ -180,7 +180,7 @@ Additionally, for autoscale plotting, the zero level can be used to localize key
 \section{Classification}
 \label{nbnn}
 
-A discriminative~\cite{WolpawJonathanR2012} semi-supervised classification method based on Naive Bayes Nearest Neighbor~\cite{Boiman2008} was applied to classify EEG signals using the features provided by the calculated descriptors.
+A discriminative~\cite{WolpawJonathanR2012} semi-supervised classification method based on Naive Bayes Nearest Neighbor~\cite{Boiman2008} is applied to classify EEG signals using the features provided by the calculated descriptors.
 One problem that frequently arises when using local features is how to go back from the classification of those local characteristics to the image where those descriptors came from.
 The NBNN technique overcomes this problem by comparing each image against a whole label class which is characterized by the set of descriptors that are closest to each one of the descriptors of the query image. This algorithm is very easy to implement, and is based on the following Equation:
 
@@ -189,7 +189,7 @@ The NBNN technique overcomes this problem by comparing each image against a whol
 \label{eq:classification}
 \end{equation}
 
-The estimated class $\hat{C}$ of a query image is calculated as the class $C$ that minimize the summation of the distance between each descriptor $\mathbf{d_i}^{(c)}$ that belongs to the query image and its corresponding near neighbot $N_T(\mathbf{d}^{(bpc)})$  descriptor for each class.
+The estimated class label $\hat{L}$ of a query image is calculated as the class label $L$ that minimize the summation of the distance between each descriptor $\mathbf{d_i}^{(c)}$ that belongs to the query image and its corresponding near neighbor $N_T(\mathbf{d}^{(bpc)})$  descriptor for each class.
 
 
 \begin{figure}[h!]
@@ -222,6 +222,9 @@ Hence, given a new unlabeled signal segment, an image plot is generated as well,
 \subsection{Software}
 
 The implemented code is published in \url{https://bitbucket.org/itba/hist/} by using Matlab, python and the VLFeat library.
+These algorithm were implemented on MATLAB 2014a (Mathworks Inc., Natick, MA, USA).  To maintain reproducibility, the data and the source code has been made available in the online repository of the Code Ocean platform under the name \textit{EEGWave}.
+
+The algorithm is implemented using  VLFeat~\cite{Vedaldi2010} Computer Vision libraries on MATLAB V2014a (Mathworks Inc., Natick, MA, USA). Furthermore, in order to enhance the impact of our paper and for a sake of reproducibility, the code of the algorithm has been made available at: https://bitbucket.org/itba/hist.
 
 %TODO add the data and also the code ocean repository.  Also add my own repositories.
 
@@ -251,17 +254,15 @@ $\gls{P}$
 
 Amplitude scale factor
 
-\begin{equation}
+\begin{align*}
 \gamma \equiv \frac{H_y}{\Delta \mu V}  
-\label{eq:gammadefinition}
-\end{equation}
+\end{align*}
 
 Time scale factor
 
-\begin{equation}
+\begin{align*}
 \gamma_t \equiv \frac{W_x}{F_s \; w}  
-\label{eq:gammatdefinition}
-\end{equation}
+\end{align*}
 
 %\begin{equation}
 %s_x = \frac{ \gamma \;  \lambda \  F_s}{12}
@@ -275,56 +276,48 @@ Time scale factor
 
 Restriction on the waveform time scale
 
-\begin{equation}
+\begin{align*}
 \frac{W_x-1}{\sqrt{2} \; 15}  \geq S_t 
-\label{eq:restriction1}
-\end{equation}
+\end{align*}
 
 Restriction on the waveform amplitude scale
 
-\begin{equation}
+\begin{align*}
 \frac{H_y-1}{\sqrt{2} \; 15}  \geq S_v 
-\label{eq:restriction2}
-\end{equation}
+\end{align*}
 
 Horizontal Patch scale
 
-\begin{equation}
+\begin{align*}
 S_t = \frac{ \lambda \;  \  F_s \ \gamma_t }{\Delta_s}
-\label{eq:mapping2}
-\end{equation}
+\end{align*}
 
 Vertical Patch scale
 
-\begin{equation}
+\begin{align*}
 S_v= \frac{\Delta \mu V \ \gamma}{\Delta_s} 
-\label{eq:mapping1}
-\end{equation}
+\end{align*}
 
 Time to sample point conversion
 
-\begin{equation}
+\begin{align*}
 n = \left\lfloor F_s \ \Delta_t \right\rfloor \ \gamma_t
-\label{eq:mapping1}
-\end{equation}
+\end{align*}
 
 Horizontal Patch size in pixels
 
-\begin{equation}
+\begin{align*}
 \mathbf{S}_x = \Delta_s \; S_t + 1
-\label{eq:mapping2}
-\end{equation}
+\end{align*}
 
 Vertical Patch Size in pixels
 
-\begin{equation}
+\begin{align*}
 \mathbf{S}_y = \Delta_s \; S_v + 1
-\label{eq:mapping1}
-\end{equation}
+\end{align*}
 
 Span of a Patch
 
-\begin{equation}
+\begin{align*}
 \Delta_t = \frac{S_t \ \Delta_s}{F_s \ \gamma_t} 
-\label{eq:mapping1}
-\end{equation}
+\end{align*}
