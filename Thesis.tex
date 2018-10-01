@@ -94,7 +94,8 @@
 \glsxtrnewsymbol[description={Patch Width}]{Sx}{\ensuremath{\mathbf{S}_x}}
 \glsxtrnewsymbol[description={Keypoint}]{kp}{\ensuremath{\mathbf{kp}}}
 \glsxtrnewsymbol[description={Pixel}]{P}{\ensuremath{\mathbf{p}}}
-
+\glsxtrnewsymbol[description={Descriptor}]{d}{\ensuremath{\mathbf{d}}}
+\glsxtrnewsymbol[description={Keypoint Density}]{sd}{\ensuremath{\mathbf{d}}}
 
 %$\gls{N}$, $\gls{\lambda}$, $\gls{F_s}$, $\gls{\Delta_s}$, $\gls{\Delta \mu V}$.
 
@@ -260,9 +261,9 @@ Esta tesis propone un método y un marco para analizar las formas de las señale
 
 El método propuesto puede resumirse en 5 pasos, (1) preprocesamiento de la señal cruda, (2) segmentación de la señal, (3) obtención de una gráfica blanco y negro de la señal canal por canal, (4) asignación de una localización dentro de la imagen para posicionar un parche de un determinado tamaño y escala dependiendo del fenómeno cognitivo en estudio, y (5) cálculo del histograma de los gradientes orientados de la intensidades de los pixeles usando diferencias finitas.  Este mecanismo genera un vector de 128 dimensiones, que se utiliza para comparar los segmentos de señales entre sí, y que permite entonces analizar el fenómeno cognitivo subyacente.
 
-La validez del método se verifica estudiando tres patrones cognitivos.  Primero se analizan las ondas alfa de la corteza visual occipital sobre dos conjuntos de registros: uno obtenido a partir de la aplicación de un protocolo experimental y mediante la utilización de un dispositivo electroencefalográfico digital de uso comercial, y otro obtenido de una base de datos pública de registros electroencefalográficos. Segundo, se analiza otro tipo de onda oscilatoria conocida como ritmo mu correspondiente a la corteza motora que puede ser también activada si el sujeto imagina una actividad motora.  Se reporta la efectividad del método para discriminar entre la actividad de la corteza motora derecha e izquierda en base al estudio de otro conjunto de registros público de pacientes sanos.  Los resultados son reportados y publicados.
+La validez del método se verifica estudiando tres patrones cognitivos.  Primero se analizan las ondas alfa de la corteza visual occipital sobre dos conjuntos de registros: uno obtenido a partir de la aplicación de un protocolo experimental y mediante la utilización de un dispositivo electroencefalográfico digital de uso comercial, y otro obtenido de una base de datos pública de registros electroencefalográficos. Segundo, se analiza otro tipo de onda oscilatoria conocida como ritmo Mu correspondiente a la corteza motora que puede ser también activada si el sujeto imagina una actividad motora.  Se reporta la efectividad del método para discriminar entre la actividad de la corteza motora derecha e izquierda en base al estudio de otro conjunto de registros públicos de pacientes sanos.  Los resultados son reportados y publicados.
 
-Finalmente, el método propuesto se utiliza para estudiar eventos transitorios, particularmente, el potencial evocado P300.  La eficiencia del sistema es verificada mediante el procesamiento de un conjunto de registros público de pacientes con esclerosis lateral amiotrófica, y corroborada contra un conjunto de registros de sujetos sanos obtenidos de manera experimental, replicando el mismo protocolo. Para ambos conjuntos de registros, se realiza una descripción detallada de cómo extraer este potencial de la señal de EEG, y se implementa un procesador de texto basado en P300 para comparar el desempeño del método propuesto respecto de otros citados en la bibliografía.
+Finalmente, el método propuesto se utiliza para estudiar eventos transitorios, particularmente, el potencial evocado P300.  La eficiencia del sistema es verificada mediante el procesamiento de un conjunto de registros públicos de pacientes con esclerosis lateral amiotrófica, y corroborada contra un conjunto de registros de sujetos sanos obtenidos de manera experimental, replicando el mismo protocolo. Para ambos conjuntos de registros, se realiza una descripción detallada de cómo extraer este potencial de la señal de EEG, y se implementa un procesador de texto basado en P300 para comparar el desempeño del método propuesto respecto de otros citados en la bibliografía.
 
 Los beneficios de esta propuesta se resumen en, (1) tiene una aplicación potencialmente universal, debido  que el mismo tipo de metodología puede ser aplicada para detectar cualquier tipo de patrón obtenido en la señal de EEG con potenciales aplicaciones a BCI, y (2) ofrece la posibilidad de incentivar la colaboración y utilización de estas técnicas en la clínica médica especializada en electroencefalografía ya que esta perspectiva basada en el estudio de las formas de onda de las señales, es un procedimiento conocido y ya establecido por esa comunidad.
 
@@ -379,7 +380,7 @@ Es un falacia creer que existe alguna actividad en nuestra vida que la hacemos s
 \include{Chapters/Chapter0A}
 %\include{Chapters/Chapter0B}
 %\include{Chapters/Chapter0C}
-
+%\include{Chapters/Chapter0D}
 
 
 % ------------------------------------------------------------------------
