@@ -1,25 +1,114 @@
-\chapter{Legal and Ethical Implications}
+\chapter{Conclusions and Future Work}
+\label{chapter:seven}
 
-BCI Security (IEEE Paper Life Science)
+%This thesis humbly offers a method and framework to study EEG brain signal waveforms.  
+
+Among other applications of Brain Computer Interfaces, the goal of the discipline is to provide communication assistance to people affected by neuro-degenerative diseases, who are the most likely population to benefit from BCI systems and EEG processing and analysis~\cite{WolpawJonathanR2012}.
+
+A method to analyze EEG signals which is based on the waveform characterization, is presented.  It offers a method and a framework to study these signal waveforms. The presented procedure transform the signal into an image, plot the signal on it, and analyze their local structure using the Histogram of Gradient Orientations.   Aiming to offer a BCI implementation, the proposed method is adapted to perform a feature extraction procedure.  And finally an additional classification scheme is also outlined.
+
+This method is verified on EEG oscillatory processes.  An experiment with ten subjects and using a commercial-grade device, is conducted.  The application of the method effectively detects Alpha Waves from these signals differentiating two different mental states.  It is also proved on a public dataset which contains the same information.  The prevalence of this signals in occipital areas is determined as well by a higher accuracy obtained for these brain regions.
+
+The applicability of the method is extended to study transient signals, particularly the P300 ERP,  due to the their importance, and widespread adoption in BCI.  Moreover, a method to  extract the ERP waveform is expounded and used to recognize it from EEG signals by analyzing their waveform shape.  An additional experiment on eight healthy subjects is performed but using a research-grade EEG device, specifically designed for this discipline.  The procedure is tested against the obtained dataset and usable level of accuracy is obtained.  A BCI simulation is also implemented against a public dataset of ALS patients where it is verified that the waveform of the P300 is stable regardless of the health condition, offering an alternative method to study waveform stability.  A pseudo-real dataset is created to test and control for regular issues with ERP extraction procedures and the method proposed here is also contrasted against a set of other four alternative methods which are inspired in analyzing EEG waveforms.  It is found that this method achieved higher or equal accuracy values than the other methods.
+
+%\textbf{Multichannel}
+%More importantly, as with any other BCI technique, assessment on the prospects and usefulness of this procedure on the golden standard of online validation must be performed to avoid the MMLD dilemma [16].
+
+%\begin{story}[To keep in mind]
+%Among other applications of Brain Computer Interfaces, the goal of the discipline is to provide communication assistance to people affected by neuro-degenerative diseases, who are the most likely population to benefit from BCI systems and EEG processing and analysis~\cite{WolpawJonathanR2012}.
+%\end{story}
+
+This technique has the following benefits,
+
+\begin{enumerate}
+\item Universal Applicability
+\item Objective Waveform Metric
+\item Foster clinical interaction.
+\item Clinical-Tool Making
+\item Intelligible Property and BCI Reliability
+\end{enumerate}
+
+\textbf{Universal Applicability}
+Another benefit of these methodologies is that they have a potential universal applicability. It has a universal applicability because the same basic methodology can be applied to detect different patterns in EEG signals with applications to BCI.   The search for meaningfull or cognitive waveforms, or \textit{cognemes} is very important issue in BCI, Neuroscience Research and Neurophysiology. Automatic classification of patterns in EEG that are specifically identified by their shapes like K-Complex, Vertex Waves, Positive Occipital Sharp Transient~\cite{Hartman2005} are a prospect future work to be considered. 
+
+\textbf{Objective Waveform Metric}
+Descriptors are a direct representation of the shape of signal waveforms. Hence,  they can be used to build databases~\cite{Chavarriaga2017} of quantitative descriptions of known waveforms and improve atlases~\cite{Hartman2005}, which are currently based on qualitative descriptions of signal shapes.
+
+\textbf{Foster clinical collaboration}
+In our opinion, the best benefit of the presented method is that a closer collaboration of the field of BCI with physicians can be fostered \cite{Chavarriaga2017}, since this procedure intent to imitate human visual observation, after all analyzing waveforms by their waveform shapes is a established procedure of the clinical EEG community. One of the main goals of the BCI discipline is to provide assistance to patients and to provide alternative tools to be used in diagnostics and rehabilitation procedure.  This requires a clinical focus which is often neglected in BCI research~\cite{Chavarriaga2017}.  Validation and dissemination of BCI.
+
+\textbf{Clinical tool-making}
+We are currently working in unpublished material analyzing K-Complex components that could eventually provide  assistance to physicians to locate these EEG patterns, specially in long recording periods, frequent in sleep research~\cite{Michel2012}.  %Long Term recording
+Additionally, it can be used for artifact removal which is performed on many occasions by visually inspecting signals. 
+
+%BCI Security (IEEE Paper Life Science)
+
+\textbf{Intelligible Property and BCI Reliability}
+BCI reliability is yet an unfulfilled goal in this discipline~\cite{WolpawJonathanR2012}. The convenience of analyzing or including metrics about the shape of the EEG, is that clinical EEG diagnosis may support a vast set of already understood knowledge which is based on identifying EEG patterns by their shape and that can steer towards a more robust implementation of BCI devices.  No method will be reliable and widespread adopted until it is clear how any decision was coined. And at the same time, a method which is good enough but can be easily understood may be tide-turning in clinical acceptance.
+
+The conventional clinical method of observing the waveform is understood to be subjective and laborious because results depend on the technicians' experience and expertise.   At the same time, it is a subjective time-consuming task, with long-learning curves, requires specialized personnel, and it has significant error rates~\cite{Tjepkema-Cloostermans2018}.  These problems has pushed for the adoption of more automated means of decoding the signals~\cite{Thakor2004}.   This trend pointed to the initial development of quantitative EEG, which however didn't replaced clinically the traditional approach which is still widespread: the Gold standard in clinical EEG is still \textit{Eye Ball}~\cite{Wulsin2011,Tjepkema-Cloostermans2018}.  
+
+We believe that the adoption of a \textit{hybrid} methodology which can process the signal automatically, but at the same time, maintains an inherent intelligible property~\cite{j2018challenge} that can be mapped to existing procedures, and above all, can maintain the clinician trust on the system behavior is beneficial to Clinical Practice, Neuroscience and BCI research. 
+
+% This is an important area for future study.
+
+%=======================================
+
+Regarding future work, 
+
+\begin{enumerate}
+\item Multichannel Extension
+\item Scale space analysis on EEG for keypoint localization
+%\item Usage to determine trial to trial variability (using general orientation)
+\item Imaging
+\item Ensembles tendency
+\item Computer Vision interdeisciplinary work
+\item Other areas
+\end{enumerate}
+
+\textbf{Multichannel Extension}
+The methods described in section~\ref{waveformalgorithms} and the one proposed here analyze the waveform of a single channel.
+The nature of the proposal is to analyze the shape of single waveforms obtained from just one channel.  To study the graphoelements.
+However, for automatic interpretation of the signal it is known that multichannel extension is necessary.  Hence, a multichannel extension should likely be beneficial to the usage of the proposed methodology~~\cite{Gribonval2008}.
+
+\textbf{Scale space analysis on EEG for keypoint localization}
+This work focused on the waveform representation but another important area is waveform detection.  The theory of Scale Space developed for the SIFT Detector is an important are for future study.
+
+%\textbf{Keypoint localization}: the descriptor obtained from the Histogram of Gradient Orientations is sensitive to the keypoint localization.  The SIFT Detector proved to be unable to capture an invariant keypoint from a very sparse image as the one that was generated here.  In order to improve the efficiency of the proposal presented in this thesis, an improved version of the SIFT Detector aimed for this kind of images of plots should be considered.  Moreover, for oscillatory processes finding a clever way to localize descriptors will also easy and facilitate their lay out along signals trace. Current configuration generates too many descriptors that produces a computational burden.
+
+\textbf{Imaging}
+Many tools for CV are being used and exported to Neuroscience to impemement meaningfull methods to devise what is happening in the brain.  This method could also be explored from the same perspective.
 
 
+\textbf{Ensembles Tendency}
+These methods have the advantage that they can map a visual component with a clinical meaning to a feature with an objective representation. Compound classifiers or ensemble of features can be explored.  Successful approaches in Computer Vision or Pattern Recognition in other areas use them~\cite{Criminisi2013} with a significant enhancement of the classification performances~\cite{Gu2012}.
 
-Sleep staging is one of the most important steps in sleep analysis. It is
-a very time consuming task consisting of classifying all 30 second pieces
-of an approximately eight hour recording into one of six sleep stages:
-wakefulness, S1 (light sleep), S2, S3, S4 (deep sleep), REM (rapid eye
-movement) sleep. A sleep recording is made with a minimum setting
-of four channels: electro-encephalogram (EEG) from electrodes C3 and
-C4 1, electro-myogram (EMG) and electro-oculogram (EOG). 
 
-In order
-to classify each 30 second segment of sleep according to the classical
-[Rechtschaen  Kales 1968] (RK) rules, the human scorer looks for
-defined patterns of waveforms in the EEG, for rapid eye movements in
-the EOG and for EMG level. It is therefore a valuable goal to try and
-automate this process and quite some work has already been done in
-trying to replicate RK sleep staging with diverse automatic methods (see
-[Hasan 1983] and [Penzel et al. 1991] for overviews). There is however a
-considerable dissatisfaction within the sleep research community concerning
-the very basis of RK sleep staging [Penzel et al. 1991]: RK is based on
-a predened set of rules leaving much room for sub jective interpretation;
+\textbf{Computer Vision interdisciplinary work}
+Furthermore, the extensive body of research on SIFT provides a fruitful path to explore in order to achieve faster and improved algorithms to automatically detect EEG char- acteristics which are suitable for classification. Other image processing feature extraction methods like SURF, GLOH, RANSAC could also be considered [10].
+
+\textbf{Other areas}
+As they are only analyzing waveform, they can be explored in other disciplines where the structure or shape of the waveform is of relevance.  Analyzing signals by their waveforms is relative common in chemical analysis~\cite{Skoog2000}, seismic analysis in Geology~\cite{Owens1984}, and quantitative financial analysis.  Electrocardiogram EKG, on the other hand, has been extensively processed and studied analyzing the waveform structure~\cite{Stockman1976}.
+%compact form of SIFT descriptors
+
+%Provide tools to clinicians !!!!!
+
+
+%Sleep staging is one of the most important steps in sleep analysis. It is
+%a very time consuming task consisting of classifying all 30 second pieces
+%of an approximately eight hour recording into one of six sleep stages:
+%wakefulness, S1 (light sleep), S2, S3, S4 (deep sleep), REM (rapid eye
+%movement) sleep. A sleep recording is made with a minimum setting
+%of four channels: electro-encephalogram (EEG) from electrodes C3 and
+%C4 1, electro-myogram (EMG) and electro-oculogram (EOG). 
+%
+%In order to classify each 30 second segment of sleep according to the classical
+%[Rechtschaen  Kales 1968] (RK) rules, the human scorer looks for
+%defined patterns of waveforms in the EEG, for rapid eye movements in
+%the EOG and for EMG level. It is therefore a valuable goal to try and
+%automate this process and quite some work has already been done in
+%trying to replicate RK sleep staging with diverse automatic methods (see
+%[Hasan 1983] and [Penzel et al. 1991] for overviews). There is however a
+%considerable dissatisfaction within the sleep research community concerning
+%the very basis of RK sleep staging [Penzel et al. 1991]: RK is based on
+%a predened set of rules leaving much room for sub jective interpretation;

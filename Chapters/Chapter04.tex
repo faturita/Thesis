@@ -1,189 +1,315 @@
-\chapter{Alpha Wave: inhibition signal}
-\label{chapter:four}
-\epigraph{The electroencephalogram represents a continuous curve with continuous oscillations in which... one can distinguish larger first order waves with an average duration of 90 milliseconds...}{Berger}
+\chapter{The Histogram of Gradient Orientations of Signal Plots}
+\label{chapter:three}
 
-This Chapter describes the experiments performed over a well-established but still mysterious EEG cognitive signal: The Berger Rhythm or Visual Occipital Alpha Waves.  An own dataset of resting subjects with and without alpha blocking is produced and the details of their generation are outlined.  Additionally, an experiment on a public Dataset is also delineated.  Conclusions and discussion are described in the last section.
+This Chapter introduces the EEG feature extraction procedure based on the Histogram of Gradient Orientations.  This method is grounded on an extension and modification of the SIFT~\cite{Lowe2004} Descriptor which is used in Computer Vision to extract and map local regions of an image.  At the same time, this Chapter brings to completion the previous one, describing how to mine the information from the Plot and build a feature out of it.
 
 \section{Introduction}
 
-%We gather the first dataset  using the EEG EPOC Emotiv Headset and we  access the raw signals using its C++ SDK provided by the manufacturer.  The device sends wirelessly  digitalized 128 Hz sampled EEG information as discrete packets.  Every packet is numbered and the electronic impedance is constantly measured, and delivered as part of the packet information. The wireless transmitter connects to a standard RF dongle which receives the information from  14 channels and forwards it into the PC, particularly to a custom C++ EEG Datalogger program that was developed in-house.  The program is waiting passively until a new packet is received from the dongle, verifying the packet numbering and controlling that the impedance is bellow a certain level, according to the device's documentation \cite{c11}. 
+%sinuplot, spectrogram, scalogram
 
-Alpha Waves were the first signals ever spotted from the Electroencephalography.  They are regularly characterized as $10\si{Hz}$, or more broadly between the frequency band of $8$-$12$ $\si{Hz}$. They are physiologically consistent across subjects, though it has been reported inter- and intra- variations with functional cognitive implications~\cite{Haegens2014}.   Moreover, they are associated with synchronous inhibitory processes and attention shifting~\cite{c3}. They tend to be more prominent while subject's eyes are closed and appear stronger in occipital regions, around $O_1$ and $O_2$~\cite{c6,c11}. These waves are also called Prominent Posterior Alpha or Posterior Dominant Rhythm due to their pervasiveness in EEG~\cite{Schomer2010,Haegens2014}.
+The work of Edelman, Intrator and Poggio~\cite{cogprints561} on how the visual cortex sense features was the inspiration to the development of an algorithm to identify and decode salient local information from image regions.  The Scale Invariant Feature Transform (SIFT) method is composed of two parts, the SIFT Detector and the SIFT Descriptor.  The first is the procedure to identify relevant areas of an image.  The second is the procedure to describe and characterize a region of an image using the Histogram of Gradient Orientations~\footnote{It should not to be confused with HOG~\cite{Dalal2005}, the Histogram Of Gradients which is another method from Computer Vision based on similar ideas.  Actually, the descriptor part of the SIFT Method has no specific name, but as it is based on building a histogram of gradient orientations, that is the reason why it is described here in that way. }.  The SIFT algorithm is biomimetically inspired in how the visual cortex detects shapes by analyzing orientations~\cite{cogprints561}.  The patch description is also based on the Theory of Receptive Fields and other related ideas~\cite{Lindeberg2013}.
 
-Figure~\ref{fig:alphawavessignals} shows two records of 8-channels signals.  Figure ~\ref{fig:alphawavessignals}(a) contains the registered alpha waves of a subject with their eyes open while the (b) contains the same information with their eyes closed.  The characteristic pattern of wiggles can be spotted in the latter, while their absence entails the blocking of alpha waves in the former~\cite{Basar2012}.
+\section{Feature Extraction: Histogram of Gradient Orientations}
+\label{SIFT}
 
-\begin{figure}[h!]
-\centering
-\subfigure[EEG signals of a relaxed healthy subject with their eyes open.]
-{\includegraphics[height=5cm,width=7.5cm]{images/eeglab1.jpg}}
-\subfigure[EEG signals of the same relaxed subject with their eyes closed. Alpha Waves wiggles can be spotted since the first second.]
-{\includegraphics[height=5cm,width=7.5cm]{images/eeglab2.jpg}}
-\caption[Alpha Waves Wiggles]{Five seconds of EEG signals obtained from the Emotiv EPOC device.  Fourteen channels are shown.}
-\label{fig:alphawavessignals}
-\end{figure}
+The basic procedure is composed of,
 
-This important rhythm is an oscillatory process.  As such, it is understood and studied in the frequency-domain.   Figure~\ref{fig:alphaspectrum} show the results of applying the Fast Fourier Transform to two different segments of $10\si{\second}$ length.  For each segment, the Power Spectral Density is calculated and their values are shown on the vertical axis.  Frequency values are shown on the horizontal axis.   On Figure (a) no particular frequency component can be spotted.  However, on Figure (b) the prevalence of the 10-\si{\hertz} alpha wave component can be observed.   
+\begin{enumerate}
+\item Keypoints $\gls{kp}$ are located on an image of a signal plot.
+\item A region of an image, a patch, is located using keypoints as centers.  Each patch has a horizontal $\gls{St}$ and vertical scale $\gls{Sv}$, which determines the size in pixels $\gls{Sx}$ and $\gls{Sy}$,  along the horizontal and vertical axis respectively. 
+\item Form each patch, a descriptor $\gls{d}$ is derived which is used as a representation of the graphical information contained within the patch.
+\end{enumerate}
+
+On the image generated by the procedure detailed in previous Chapter, a keypoint $\gls{kp}$ is placed on a pixel $(x_{kp}, y_{kp})$ over the image plot and a window around the keypoint is considered. A local image patch of size $\gls{Sx} \times \gls{Sy}$ pixels is constructed by dividing the window in $16$ blocks. It is arranged in a $4 \times 4$ grid and the pixel $\gls{kp}$ is the patch center.  Figure~\ref{fig:sampledescriptor}(a) shows a plot of a signal, a keypoint in red at the center and the surrounding patch.
+
+%TODO Check appendix for details on the modification of the SIFT method.
+
+A local representation of the signal shape within the patch can be described by obtaining the gradient orientations on each of the $16$ blocks and creating a histogram of gradients.  In order to calculate the histogram, the interval $[0-360]$ of possible angles is divided in $8$ bins, each one at $45$ degrees.
+
+Hence, for each spacial bin $ i,j = \{0,1,2,3\} $, corresponding to the indexes of each block $B_{i,j}$,  the orientations are accumulated in a  $3$-dimensional histogram $h$ through the following equation: 
  
-%As can be seen in Fig. , if we process the Drowsiness dataset with a 8-12Hz band-pass filter and calculate the average power spectral density across subjects and for each channel, we can see how clearly the value corresponding to class 2 (eyes closed) is always higher than the value for class 1 (eyes open), confirming the expected result.  This also verifies how the differentiation information is contained mostly in the frequency-domain.
 
+\begin{equation}
+ h(\theta,i,j) = \sum_{\mathbf{p}} \omega_\mathrm{ang}(\angle J(\mathbf{p}) - \theta)\, \omega_{ij}\left(\mathbf{p} - \mathbf{kp} \right)\, |J(\mathbf{p})|
+\label{eq:histogram}
+\end{equation}
 
-%(Kamiya 1968) Neurofeedback controlling voluntarily.
+\noindent  where $\mathbf{p}$ is a pixel from within the patch,  $\theta$ is the angle bin with $ \theta \in \{0, 45, 90, 135, 180, 225, 270, 315\} $,  $ |J(\mathbf{p})| $ is the norm of the gradient vector in the pixel $\mathbf{p}$ and it is computed using finite differences and $\angle J(\mathbf{p}) $ is the angle of the gradient vector.  The scalar $ \omega_\mathrm{ang}(\cdot) $  and vector $ \omega_{ij}(\cdot) $ functions are linear interpolations used by~\cite{Lowe2004} and \cite{Vedaldi2010} to provide a weighting contribution to eight adjacent bins.  They are calculated as  
+
+\begin{equation}
+ \omega_{ij}(\mathbf{v}) = \omega( \frac{v_x - x_i}{3 \; \sqrt{2} \; \gls{St}} ) \omega( \frac{v_y - y_i}{3 \; \sqrt{2} \; \gls{Sv}} ) 
+\label{eq:ij}
+\end{equation}
+
+\begin{equation}
+ \omega_\mathrm{ang}(\alpha) = \sum_{r=-1}^{1} \omega( \frac{8\alpha}{2\pi} + 8r)
+\label{eq:wang}
+\end{equation}
+
+\noindent where $x_i$ and $y_i$ are the spatial bin centers located in $ x_i,y_i = \{-\frac{3}{2},-\frac{1}{2},\frac{1}{2},\frac{3}{2}\} $. The function parameter $\mathbf{v} = ( v_x, v_y ) $ is a vector variable and $\alpha$ a scalar variable.  On the other hand, $r$ is an integer that can vary freely between $\left[ -1,1  \right] $ and allows the argument $\alpha$ to be unconstrained in terms of its values in radians. The interpolating function $\omega(\cdot)$ is defined as:
+
+\begin{equation}
+\omega(z) = \max(0,|z|-1).
+\label{eq:weighting}
+\end{equation}
+
+These binning functions conform a trilinear interpolation that has a combined effect of sharing the contribution of each oriented gradient between their eight adjacent bins in a tridimensional cube in the histogram space, and zero everywhere else.
+
+Lastly, the fixed value of $ 3 $ on Equation~\ref{eq:ij} is a magnification factor, a fixed parameter.  The multiplication by $\sqrt{2}$ on the same equation is related to the unit length of the patch $\gls{Deltas}$ which is described in the section~\ref{patchgeometry}.   As the patch has  $16$ blocks and  $8$ bin angles are considered, a feature $\gls{d}$ called \textit{descriptor} of $128$ dimension is obtained. This technique is a modification of Lowe's SIFT Descriptor method.
+%It can be observed that the histogram is computed by multiplying by $ |J(\mathbf{p})| $, so the method considers both, the magnitude and the orientation of the gradient vector. 
+
+Figure~\ref{fig:sampledescriptor} shows an example of a patch and a scheme of the histogram computation. In (A) a plot of the signal and the patch centered around the keypoint is shown. In (B) the possible orientations on each patch are illustrated.  Only the upper-left four blocks are visible.  The first eight orientations of the first block, are labeled from $1$ to $8$ clockwise. The orientations of the second block $ B_{1,2} $ are labeled from $9$ to $16$.  This labeling continues left-to-right, up-down until the eight orientations for all the sixteen blocks are assigned. They form the corresponding $\mathbf{kp}$-descriptor of $128$ coordinates. Finally, in (C) an enlarged image plot is shown where the oriented gradient vector for each pixel can be seen.
 
 \begin{figure}[h!]
 \centering
-\subfigure[Subject was sit, relaxed in front of the Computer Monitor with his eyes open.]
-{\includegraphics[height=5cm,width=7.5cm]{images/spectrumeyesopenO2.jpg}}
-\subfigure[Subject was sit, relaxed in front of the Computer Monitor with his eyes closed. A strong $10 \si{Hz}$ component can be observed.]
-{\includegraphics[height=5cm,width=7.5cm]{images/spectrumeyesclosedO2.jpg}}
-\caption[Spectrum components obtained by the FFT of Alpha Waves]{Spectrum components of a $10 \si{s}$ signal segment of a subject with their eyes open. Horizontal axis shows different frequencies while the vertical axis represents the PSD.  In both diagrams a $50 \si{Hz}$ line component can be visualized.} 
-\label{fig:alphaspectrum}
+\includegraphics[width=16cm]{images/gradients.png}\label{samplegradients}
+\caption[Histogram of Gradient Orientations for ERP]{ (A) Example of a plot of the signal, a keypoint and the corresponding patch. (B) A scheme of the orientation's histogram computation.  Only the upper-left four blocks are visible.  The first eight orientations of the first block, are labeled from $1$ to $8$ clockwise. The orientation of the second block $ B_{1,2} $ is labeled from $9$ to $16$.  This labeling continues left-to-right, up-down until the eight orientations for all the sixteen blocks are assigned. They form the corresponding descriptor of $128$ coordinates.  The length of each arrow represent the value of the histogram on each direction for each block. (C) Vector field of oriented gradients.  Each pixel is assigned an orientation and magnitude calculated  using finite differences. }
+\label{fig:sampledescriptor}
 \end{figure}
 
-
-%   \begin{figure}[thpb]
-%      \centering
-%      \setlength\fboxsep{0pt}
-%	  \setlength\fboxrule{0.5pt}
-%      \fbox{\includegraphics[width=2.5cm, height=1.8cm]{images/PSDExperiment1VsExperiment5.png}}
-%      \fbox{\includegraphics[width=2cm, height=1.8cm]{images/s_1_e_1_c_7_4.png}}
-%      \caption[Power Spectral Density of Alpha Waves]{PSD values for every channel (x-axis) are being shown for class 1, dashed line, and class 2, solid line, for Dataset I (left). Sample EEG plot image corresponding to the subject 1 (center) for class 1 (eyes open), for the channel 7 ($ O_1 $) }
-%      \label{figure1}
-%   \end{figure}
-   
-\section{Materials and Methods}
-
-These experiments consist in performing a binary classification of EEG signal segments between the two defined classes.  Class 2 is assigned to segments containing significant alpha waves (i.e. eyes closed), whereas class 1 identifies those where these signals are blocked (i.e. eyes open).
-
-
-\subsection{Dataset I - Emotiv EPOC alpha waves own dataset}
-\label{dataset1}
-The first dataset is gathered using the EEG EPOC Emotiv Headset.  Although this is a commercial-grade device, it provides an acceptable price-performance ratio and it has been used to investigate basic EEG processes~\cite{Debener2012,DeVos2014}. In order to obtain the multichannel raw EEG signal, a C++ SDK library provided by the manufacturer is used and an in-house software program is developed. This device has 14 channels, and a sampling rate of 128 \si{Hz}\cite{c11}. Available channels are AF3, F7, F3, FC5, T7, P7, O1, O2, P8, T8,  FC6, F4, F8, AF4.  Ten healthy subjects between ages 20-50 are recruited and they accept to wear the device and to participate in the experiments.  
-
-A 30 minutes procedure is required to adjust the headset to each user, in order to decrease the impedance on each electrode (bellow $5 \si{\kilo\ohm}$).  
-This is achieved by physically adjusting the headset position over the scalp, and by embedding each electrode electrode pad in saline solution.
-Once the set up is finished, each subject is instructed to sit in a relaxed position. Subsequently, she/he is commanded to watch the screen for 15 seconds, trying to avoid, as much as possible, to abruptly move its body or head.  During that time, a single-trial of 10 seconds-length window of EEG signals data is transferred to a PC and logged into standard binary files. After a 5 minutes pause, the subject is asked to close the eyes avoiding any movement while keeping the same pose for another batch of 15 seconds.  Again, 10 seconds of EEG information are transferred and logged into the PC. This finally produce a dataset of 10 subjects,  2 classes per subject, composed of 14 channels, 10-seconds length or 1280 samples per window.  These windows are further divided into 10 segments per class and per subject.
-
-%\begin{figure}[thpb]
+%\begin{figure}[h!]
 %\centering
-%\setlength\fboxsep{0pt}
-%\setlength\fboxrule{0.5pt}
-%\fbox{\includegraphics[width=3.5cm, height=2.5cm]{images/emotivlarge.png}}
-%\fbox{\includegraphics[width=3.5cm, height=2.5cm]{images/emotivpositions.png}}
-%\fbox{\includegraphics[width=3.5cm, height=2.5cm]{images/emotivcalibration.png}}
-%\fbox{\includegraphics[width=3.5cm, height=2.5cm]{images/emotivdatasetsubject.jpg}}
-%\caption[Classification Accuracy of Alpha Waves]{}
-%\label{figure1}
-%\end{figure}   
-   
-\begin{figure}[h!]
-\centering
-\subfigure[]
-{\includegraphics[width=3.5cm, height=3cm]{images/emotivlarge.png}}
-\subfigure[]
-{\includegraphics[width=3.5cm, height=3cm]{images/emotivpositions.png}}
-\subfigure[]
-{\includegraphics[width=3.5cm, height=3cm]{images/emotivcalibration.png}}
-\subfigure[]
-{\includegraphics[width=3.5cm, height=3cm]{images/emotivdatasetsubject.jpg}}
-\caption[EPOC Emotiv Alpha Waves Dataset]{(a)EPOC Emotiv consumer-grade 14-channels Wireless EEG.(b) This device has a fixed set of positions according to the 10-20 International System.(c) While resting and sitting confortable in a chair, subjects had to fixate their sight to the center of this image which was being displayed on a computer monitor, 1 \si{meter} away from the subject.(d) Subject performing the experiment described to produce the Dataset described in \ref{dataset1}}.
-\label{fig:alpharesults}
-\end{figure}
-
-      
-\subsection{Dataset II - AlphaNet Dataset}
-Additionally, the performance of HIST was tested against the public dataset EEG Motor Movement/Imagery Dataset of the PhysioNet effort published and mantained by the NHS~\cite{Schalk2004,Goldberger2000}.  
-
-Baseline records and motor/imagery tasks were performed by 109 healthy volunteers, using the BCI2000 system~\cite{Schalk2004}.  At the same time 64-channel EEG records were registered where each subject completed 14 tasks, called Runs.  The first two are the baseline calibration tasks, of relevance for this Chapter.  These Runs 1 and 2 are each one-minute records of resting subjects with eyes open and eyes closed.  From these records, 60 segments of 1-second length are further extracted per subject. Class labeling is the same as Dataset I.  The experiment was performed on 25 of the 109 subjects.
+%\includegraphics[scale=0.6]{images/KeypointLocations.eps}
+%\caption[SIFT Patches]{fdsfdfsfs }
+%\label{fig:siftpatch}
+%\end{figure}
 
 
-%This dataset
+\section{Keypoint Location}
+
+%TODO Vertidal: Along the signal or zero level.
+% Horizontal: based on a cognitive event, one or many.
 %
-%Subjects performed different motor/imagery tasks while 64-channel EEG were recorded using the BCI2000 system (http://www.bci2000.org). Each subject performed 14 experimental runs: two one-minute baseline runs (one with eyes open, one with eyes closed), and three two-minute runs of each of the four following tasks:
-%
-%A target appears on either the left or the right side of the screen. The subject opens and closes the corresponding fist until the target disappears. Then the subject relaxes.
-%A target appears on either the left or the right side of the screen. The subject imagines opening and closing the corresponding fist until the target disappears. Then the subject relaxes.
-%A target appears on either the top or the bottom of the screen. The subject opens and closes either both fists (if the target is on top) or both feet (if the target is on the bottom) until the target disappears. Then the subject relaxes.
-%A target appears on either the top or the bottom of the screen. The subject imagines opening and closing either both fists (if the target is on top) or both feet (if the target is on the bottom) until the target disappears. Then the subject relaxes.
 
 
-\subsection{Parameters}
+The keypoint $\gls{kp}$ location must be accurately specified in order to establish the region from the signal where the waveform is located.
 
-Descriptors are extracted from all the generated images, from both classes, and they are used to classify images from the same set. 
-Keypoint localization is determined by following the trace of the signal, as detailed in section 3 of Chapter 3.  The classification method is what is described in section 2 of Chapter 3.  The parameters $\gls{gamma}$ is set to $1$, as well as $\gls{gammat}$.  
+For the horizontal position, the localization of the keypoint is based on a priori information, based on the characteristics of the event under study.  For instance, ERPs have a specific timing that can be explored to elucidate in which position the expected signal pattern will be generated.
 
-%For the first two datasets, as the sampling frequency of both datasets is similar, Image and SIFT Descriptor Scale were adjusted to delta and gamma to 1.
-
-%\subsection{Dataset III - BCI Competition 2003 IV \textit{self-paced 1s}}
-%We validated our method against the "BCI Competition 2003, dataset IV \textit{self-paced 1s}" \cite{c51}. This dataset is composed of 28 channels, in 416 epochs of 50 samples per epoch (500 ms length at 100 Hz) each one with the corresponding label, where subjects were asked to type at will a letter on a keyboard with the right or left index finger.  It is based on the Bereitschaftspotential \cite{c52}, which is a Slow Cortical Potential, particularly a slow change in voltages towards a negative potential drift, around 1000-500 ms before the onset of the self-initiated movement.  In this case, the information lies strongly on the time-domain.
-%
-%This dataset was recorded from a healthy subject during a no-feedback session. She/he sat in a normal chair with relaxed arms resting on the table and fingers in the standard typing position at the computer keyboard. The task was to press with the index and little fingers the corresponding keys in a self-chosen order and timing 'self-paced key typing'. The experiment consisted of 3 sessions of 6 minutes each. All sessions were conducted on the same day with some minutes break in-between. Typing was done at an average speed of 1 key per second.  
-
-\section{Results}
-
-Dataset I was controlled and verified by processing it with a 8-12Hz band-pass filter, and calculating the average power spectral density across subjects for each channels.  It can be observed on Figure \ref{fig:psd}(a)  that values corresponding to class 2 (eyes closed) are always higher than the values obtained for class 1 (eyes open). On the other hand, for the sake of illustration, a scatter plot of the obtained segment's PSD for O1 vs O2 for Subject 2 is shown, where a clear separation of classes can be devised.  In brief, there is discriminative information in the frequency-domain.
-
-
+Additionally, there can be more than just one keypoint and patch located over the signal plot.  This is particular important for oscillatory processes where many waveforms are contained within the same signal segment.  This needs to be addresses by defining a keypoint density parameter $\gls{kpd}$.
 
 \begin{figure}[h!]
 \centering
-\subfigure[PSD averaged across 10 subjects for each channel. Values for Class 2 (red) are always higher than values for Class 1 (blue).]
-{\includegraphics[width=7.5cm, height=5cm]{images/PSDExperiment1VsExperiment5.png}}
-\subfigure[Scatterplot of PSD for the channel O1 vs O2.  There is a separation of classes between the red (class 2) and blue(Class 1) dots.]
-{\includegraphics[width=7.5cm, height=5cm]{images/alphawavesscatterpsd.png}}
-\caption[Power Spectral Density of the Dataset I]{Verification and control of the obtained Dataset I.}
-\label{fig:psd}
+\subfigure[Fixed size patches are located all along the EEG signal trace at a given keypoint density $\gls{kpd}$.]
+{\includegraphics[width=6cm, height=6cm]{images/SignalWithFullDescriptors3.png}}
+\subfigure[A patch is used to map an artificial signal using an autoscale plotting scheme, and mapping the entire waveform within the patch. The keypoint is located on the zero-level $z(c)$ value.]
+{\includegraphics[width=6cm, height=6cm]{images/EasyDescriptorSample3.png}}
+\subfigure[Only one fixed size patches are used on a very specific position of the signal trace.]
+{\includegraphics[width=6cm, height=6cm]{images/SignalWithDescriptorSample1.png}}
+\subfigure[An entire signal is mapped with fixed size patches with a very high keypoint density $\gls{kpd}$.]
+{\includegraphics[width=6cm, height=6cm]{images/SignalWithFullDescriptors2.png}}
+\caption[Keypoint Locations]{Four different alternatives of keypoint locations and patch geometry.}.
+\label{fig:keypointlocations}
 \end{figure}
-   
-Results of applying a 10-Fold Cross Validation procedure on the entire set of labeled descriptors is shown on Figure~\ref{fig:alpharesultsdataseti}.  Descriptors from different subjects were used as part of the different training set to classify unknown images, so the obtained accuracy level was subject-independent.  Moreover, a classification level with average above $70\%$ was obtained in Occipital channels.
-   
+
+Regarding the Vertical Location, there are two options.  The first one is along the signal, exactly on the sample points calculated by the Equation \ref{eq:images}.  The second is on a fixed position over the zero-level as described by \ref{eq:zerolevel}.  Figure~\ref{fig:keypointlocations}(a) show the former while on (b) the latter can be spotted.
+
+\section{Patch Geometry}
+\label{patchgeometry}
+
+%TODO Vertical size: Fixed for autoscaled and variable.
+% Horizontal: based on a priori information
+
+The Horizontal Patch Scale $\gls{St}$ determines the size of the patch on the image horizontal axis, and it is related to the span $\gls{lambda}$ of the waveform to analyze according to
+
+\begin{equation}
+\gls{St} = \frac{ \gls{lambda} \;  \  \gls{Fs} \ \gls{gammat} }{\gls{Deltas}}
+\label{eq:horizontalpatchscale}
+\end{equation}
+
+\noindent where $\gls{Fs}$ is the sample frequency, $\gls{gammat}$ is the time scale factor and $\gls{Deltas}$ is the unit length of the patch which determines the pixel conversion factor.  This value depends on the actual implementation of the Histogram of Gradient Orientations of the SIFT method. In this case, its value is $\gls{Deltas} = \sqrt{2} \; 3 \; 5$, where $3$ is a fixed magnification factor.  
+
+On the other hand, on the vertical axis, the vertical patch scale depends on the peak-to-peak amplitude $\gls{DeltamuV}$, and the amplitude scale factor $\gls{gamma}$, as
+
+\begin{equation}
+\gls{Sv} = \frac{\gls{DeltamuV} \ \gls{gamma}}{\gls{Deltas}}.
+\label{eq:verticalpathscale}
+\end{equation}
+
+The vertical scale can be dynamically adjusted according to the peak-to-peak amplitude of each segment, or it can be set fixed.  This is more appropiate if the underlying signal is bounded which is the case if the standardized procedure described in \ref{standardized} is applied.
+
 \begin{figure}[h!]
 \centering
-\subfigure[10-Fold Cross-validated accuracy values for 10 subjects.  Descriptors were mixed for all the subjects.]
-{\includegraphics[width=7.5cm, height=5cm]{images/Dataset1AccuracyPerChannel}}
-\subfigure[Sample Descriptor patch located on one of the images generated for one 1-second long segment of this Dataset.]
-{\includegraphics[width=7.5cm, height=5cm]{images/AlphaWaveSampleEEG.png}}
-\caption[Dataset I Classification Rate]{The classification accuracy is maximum on occipital channels O1 and O2. The descriptor size is 12x12 pixels which corresponds to a variation of $\gls{DeltamuV} = 12$ microvolts in the signal amplitude during $\gls{lambda}=0.09$ $\si{seconds}$.}
-\label{fig:alpharesultsdataseti}
+\includegraphics[width=10cm]{images/patchgeometry.pdf}
+\caption[Patch Geometry]{The scale of local patch is selected in order to capture the whole transient event.  The size of the patch is $\gls{Sy} \times \gls{Sx}$ pixels. The vertical size consists of $4$ blocks of size $\gls{Sy}$ pixels which should be high enough as to contain the signal $\gls{DeltamuV}$, the peak-to-peak amplitude of the signal component. The horizontal size includes $4$ blocks up to $\gls{Sx}$ and should covert the entire duration in seconds of the signal waveform, $ \gls{lambda} $.   }
+\label{fig:patchgeometry}
 \end{figure}
 
-% Hay que traducir todo eso a los nuevos simbolos.
-   
+Figure~\ref{fig:patchgeometry} shows the different parameters of the patch and how they are related to the underlying signal. Once these parameters are set, the size in pixels of the patch can be obtained in both dimensions.  Hence, the Horizontal Patch Size in pixels is
 
-%  \begin{figure}[thpb]
-%      \centering
-%      \setlength\fboxsep{0pt}
-%	  \setlength\fboxrule{0.5pt}
-%      \fbox{\includegraphics[width=7.5cm, height=5cm]{images/DatasetPhysionetAccuracyPerChannel}}
-%      \fbox{\includegraphics[width=7.5cm, height=5cm]{images/DatasetPhysionetBoxPlots}}
-%      \caption[Classification Accuracy of Alpha Waves]{}
-%      \label{figure1}
-%   \end{figure}   
-   
+\begin{equation}
+\gls{Sx} = \gls{Deltas} \; \gls{St} + 1.
+\label{eq:sx}
+\end{equation}
+
+On the other hand, the vertical patch size in pixels can be calculated from
+
+\begin{equation}
+\gls{Sy} = \gls{Deltas} \; \gls{Sv} + 1
+\label{eq:sy}
+\end{equation}
+
+\noindent where $\gls{Deltas}$ being the unit length of the patch. The parameters $\gls{St}$  and $\gls{Sv}$ are the horizontal and vertical patch scale. This region is arranged in a $4 \times 4$ grid and the pixel $\gls{kp}$ is the patch center.   For instance, for a given set of values of $\gls{Sv} = 1$ and $\gls{St} = 1$, the patch is a squared region on the image of size $22$ pixels.
+
+The patch size cannot be bigger than the image itself, whose width is $\gls{Wx}$ and its height is $\gls{Hy}$ .  This is reflected by the following two inequalities that restrict the size of the patch according to 
+
+\begin{equation}
+\frac{\gls{Wx}-1}{\gls{Deltas}}  \geq \gls{St} ,
+\label{eq:restriction1}
+\end{equation}
+
+\noindent on the horizontal axis, and on the vertical axis, 
+
+\begin{equation}
+\frac{\gls{Hy}-1}{\gls{Deltas}}  \geq \gls{Sv}.
+\label{eq:restriction2}
+\end{equation}
+
+\subsection{Oscillatory Processes}
+
+For these patterns, the central idea is to locate keypoints, and their patches, all along the signal trace, filling the entire signal segments with all the possible patches.  In this case, the keypoint density $\gls{kpd} $ determines the step at which a keypoint is located along the trace of the signal, unit sample after unit sample. Care must be taken close to the margins, where there should be a gap to avoid locating incomplete patches.  This can be observed in Figure~\ref{fig:keypointlocations}(a).
+
+\subsection{Transient Events}
+
+For transient events, descriptors are treated as representatives of the single transient waveform.  This lead to usually just one keypoint that is located in a meaningful position along the horizontal axis.  Additionally, for autoscale plotting, the zero level can be used to localize keypoints.
+
+\section{Classification}
+\label{nbnn}
+
+A discriminative~\cite{WolpawJonathanR2012} semi-supervised classification method based on Naive Bayes Nearest Neighbor (NBNN)~\cite{Boiman2008} is applied to classify EEG signals using the features provided by the calculated descriptors.
+One problem that frequently arises when using local features is how to go back from the classification of those local characteristics to the image where those descriptors come from.
+The NBNN technique overcomes this problem by comparing each image against a whole label class which is characterized by the set of descriptors $q$ that are closest to each one of the descriptors of the query image $\gls{d}_i$. This algorithm is very easy to implement, and is based on the following Equation:
+
+\begin{equation}
+\hat{L} = \arg \min_{L} \sum_{\mathbf{d_i}^{(bpc)}} \sum_{q \in N_T(\mathbf{d_i}^{(bpc)})}^{} {\left\lVert q -  \mathbf{d_i}^{(bpc)} \right\rVert}  ^{2} .
+\label{eq:classification}
+\end{equation}
+
+The estimated class label $\hat{L}$ of a query image is calculated as the class label $L$ that minimize the summation of the distance between each descriptor $\mathbf{d_i}^{(bpc)}$ that belongs to the query image and its corresponding near neighbor $N_T(\mathbf{d}^{(bpc)})$  descriptor for each class. Figure~\ref{fig:nbnnclassification} show a scheme of how this classification method works.
+
+The $\gls{bpc}$ is the Best Performing Channel.  This value is determined in the calibration step of the BCI algorithm when the spatial performance is assessed to determine on which channel the performance is maximized~\cite{Chavarriaga2017}.
+
 \begin{figure}[h!]
 \centering
-\subfigure[10-Fold Cross-validated accuracies for O1, Oz, O2 and Iz channels for 25 subjects of the Alphanet Dataset. Medians are above $75\%$.]
-{\includegraphics[width=7.5cm, height=5cm]{images/DatasetPhysionetBoxPlots}}
-\subfigure[10-Fold Cross-validated accuracies values for subject number 12, using Runs 1 and 2 of the Alphanet Dataset.]
-{\includegraphics[width=7.5cm, height=5cm]{images/DatasetPhysionetAccuracyPerChannel}}
-\caption[PhysioNet Dataset Classification Rate]{Classification Accuracy for discriminating windows of 1s ($\gls{N} = 160$) of EEG for Alpha Waves differences between subjects with eyes opened and closed.}
-\label{fig:alpharesultsdatasetii}
+\subfigure[]
+{\includegraphics[scale=0.25]{images/NBNNMethod1.png}}
+\subfigure[]
+{\includegraphics[scale=0.25]{images/NBNNMethod2.png}}
+\subfigure[]
+{\includegraphics[scale=0.25]{images/NBNNMethod3.png}}
+\subfigure[]
+{\includegraphics[scale=0.25]{images/NBNNMethod4.png}}
+\subfigure[ ]
+{\includegraphics[scale=0.25]{images/NBNNMethod5.png}}
+\caption[NBNN Classification]{(a) Two Dictionaries contain templates descriptors for two different classes. A set of query descriptors are extracted from a new image that needs to be categorized.(b) Distances from every descriptor $\gls{d}_i$ are calculated against the closest one from the Dictionary of Class 2.  Distances summations are accumulated.(c) Distance values from every descriptor $\gls{d}_i$ are calculated against the closest one from the Dictionary of Class 1.  Distances summations are accumulated. (d) The two different summation values are compared against each other.(e) The summation that achieved the lesser value is the one that more closely resembles the set of templates, thus is the one predicted by the classification algorithm.}
+\label{fig:nbnnclassification}
 \end{figure}
 
+%TODO:Agregar tambien las pruebas sobre rootsift y que la distancia mejor es la coseno demostrar justamente haciendo una prueba sobre EEGWave.
+%TODO:Agregar que el experimento dio perfecto cuando no se controla la varianza.
 
-For the Dataset II, an accuracy median higher than $70\%$ for 25 subjects, also on occipital channels O1, Oz, O2 and Iz (numbered 61 to 64) is obtained while discriminating Runs 1 and 2 (Baseline eyes open vs Baseline eyes closed).  This information can be devised on Figure~\ref{fig:alpharesultsdatasetii}   (a) where boxplots of the averaged classification accuracies for all the subjects are represented.  On the other hand, Figure~\ref{fig:alpharesultsdatasetii}(b) shows the 10-Fold Validated Accuracy for one random subject. A higher accuracy in the classification of the signals can also be seen over occipital channels.
+\section{BCI Algorithm}
 
-\section{Conclusion}
+In brief, based on segmented signals from at least two labeled classes, a set of images is first generated.  For each image, keypoints are localized and descriptors are extracted during the training or calibration step of a BCI procedure and they are grouped in KD-tree~\cite{Lowe2004} structures for each one of the classes.  Additionally, the spatial performance is evaluated and the $\gls{bpc}$ value is computed.
 
-It is known and it was verified here that the discriminative information in EEG alpha waves is mostly contained in the frequency-domain.  In spite of this,  there is enough discriminative information to classify alpha waves signals solely on the information contained on the wiggles of the plot that is captured by the HIST method presented in this Thesis.  Offline Alpha Waves presence was detected from plots of single segments of EEG signals with an accuracy level 10-fold cross validated of 70\%.
+Hence, given a new unlabeled signal segment, an image plot is generated as well, their keypoints localized and their descriptors extracted.  They are fed into Equation~\ref{eq:classification} in order to determine the class which minimizes the summation and thus provide the information bit to the BCI controller.  
 
-It was also showed and proved here that there is information within the plot of a signal related to 8-12 Hz oscillatory alpha waves is higher around the occipital region and that an automated procedure which analyze visually the image structure can detect them. This important oscillatory rhythm has many connections with shifting of attention and with volitional changes and is of quite relevance in BCI research.  Particularly, the BCI paradigm of Covert Spatial Visual Attention is a further area of research for this method due to the fact that it is entirely based on analyzing alpha waves. Moreover, the posterior rythm has many implications outside the field of BCI and is very important to assess healthy EEG patterns. The exact meaning of alpha waves is still debated\cite{Ahn2013} and this basic procedure can open the possibility to explore it under a different perspective and verify if they can be effectively tied to some unexpected form of volitional control which may be effective for BCI understanding and improvement.
-
-%The key here is the classification algorithm that was used across this thesis.  This is because the local information obtained from each descriptor "help" to balance a tendency of how the synchronous waves all behave, and that information get loaded into the class structure that is later exploited by the classification method.
+%\section{Implementation}
 %
-%This results was surprassing.  We are using a method which is based on the waveform do detect a process which happens to be more prominent in spectrum.  But this shows at the same time the complex relationshipt between time and frequency.  The shape in time of a an oscilatory process prominent in frequency is clearly evident.  This goes in line with the fact that alpha waves can be seen in the EEG, and are basic tools of clinical diagnosis.
+%\subsection{Software}
+%
+%The implemented code is published in \url{https://bitbucket.org/itba/hist/} by using Matlab, python and the VLFeat library.
+%These algorithm were implemented on MATLAB 2014a (Mathworks Inc., Natick, MA, USA).  To maintain reproducibility, the data and the source code has been made available in the online repository of the Code Ocean platform under the name \textit{EEGWave}.
+%
+%The algorithm is implemented using  VLFeat~\cite{Vedaldi2010} Computer Vision libraries on MATLAB V2014a (Mathworks Inc., Natick, MA, USA). Furthermore, in order to enhance the impact of our paper and for a sake of reproducibility, the code of the algorithm has been made available at: https://bitbucket.org/itba/hist.
 
-%Although EPOC Emotiv is a commercial device, more apt as HCI tool, it is possible to detect fairly some BCI components.
+%TODO add the data and also the code ocean repository.  Also add my own repositories.
 
+\section{Implementation Summary}
 
+This section provides a mapping cheat-sheet to convert and obtain the parameters of the algorithm for a given set of signal parameters.
 
+The input signal parameters are $N$,$F_s$, $\lambda$ and the peak-to-peak amplitude $\gls{DeltamuV}$ of the waveform to study. The unit length of the patch is $\Delta_s = \sqrt{2} \; 15$ and as has been earlier mentioned, depends on the particular SIFT implementation.
 
+Output parameters are: 
+$\gls{gamma}$
+$\gls{gammat}$
+$\gls{Hy}$
+$\gls{Wx}$
+$\gls{St}$
+$\gls{Sv}$
+$\gls{Sy}$
+$\gls{Sx}$
+$\gls{kp}$
+
+Mappings:\\
+
+Amplitude scale factor
+
+\begin{align*}
+\gamma \equiv \frac{H_y}{\Delta \mu V}  
+\end{align*}
+
+Time scale factor
+
+\begin{align*}
+\gamma_t \equiv \frac{W_x}{F_s \; w}  
+\end{align*}
+
+%\begin{equation}
+%s_x = \frac{ \gamma \;  \lambda \  F_s}{12}
+%\label{eq:mapping2}
+%\end{equation}
+%
+%\begin{equation}
+%s_y= \frac{\gamma \; \Delta \mu V}{12} 
+%\label{eq:mapping1}
+%\end{equation}
+
+Restriction on the waveform time scale
+
+\begin{align*}
+\frac{W_x-1}{\sqrt{2} \; 15}  \geq S_t 
+\end{align*}
+
+Restriction on the waveform amplitude scale
+
+\begin{align*}
+\frac{H_y-1}{\sqrt{2} \; 15}  \geq S_v 
+\end{align*}
+
+Horizontal Patch scale
+
+\begin{align*}
+S_t = \frac{ \lambda \;  \  F_s \ \gamma_t }{\Delta_s}
+\end{align*}
+
+Vertical Patch scale
+
+\begin{align*}
+S_v= \frac{\Delta \mu V \ \gamma}{\Delta_s} 
+\end{align*}
+
+Time to sample point conversion
+
+\begin{align*}
+n = \left\lfloor F_s \ \Delta_t \right\rfloor \ \gamma_t
+\end{align*}
+
+Horizontal Patch size in pixels
+
+\begin{align*}
+\mathbf{S}_x = \Delta_s \; S_t + 1
+\end{align*}
+
+Vertical Patch Size in pixels
+
+\begin{align*}
+\mathbf{S}_y = \Delta_s \; S_v + 1
+\end{align*}
+
+Span of a Patch
+
+\begin{align*}
+\Delta_t = \frac{S_t \ \Delta_s}{F_s \ \gamma_t} 
+\end{align*}
