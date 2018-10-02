@@ -15,6 +15,7 @@
 
 \usepackage{graphicx}
 \usepackage{color}
+\usepackage{float}
 
 \usepackage[symbols,nogroupskip,nonumberlist,sort=use]{glossaries-extra}
 
@@ -189,7 +190,7 @@ This thesis propose a method and framework to analyze the waveform, the shape of
 
 This technique can be outlined in five steps, (1) signal preprocessing, (2) signal segmentation, (3) transformation on a channel by channel basis of each signal segment into a binary image of a signal plot, (4) assignment of keypoint location on a position over the newly created image depending on the physiological phenomena under study and finally (5) the calculation of the histogram of gradient orientations using finite differences from the image around this keypoint. This method generates a feature, a normalized 128-dimension descriptor. This feature is used to compare the signal segments that were used to generate them, hence to analyze the underlying cognitive phenomena. 
 
-The validity of the method is verified by studying three cognitive patterns.  First, Visual Occipital Alpha Waves are analyzed.  An experimental protocol is designed and a dataset is produced using a commercial-grade EEG device.  Additionally, the ability of the method to capture oscillatory processes is verified by analyzing a public dataset. Moreover, this methodology is extended to study a related oscillatory process: Motor Imagery Rolandic Mu rhythms.  The performance of the method to discriminate right vs left motor imagery against a public dataset of healthy subjects, is verified.  Results are informed and reported. 
+The validity of the method is verified by studying three cognitive patterns.  First, Visual Occipital Alpha Waves are analyzed.  An experimental protocol is designed and a dataset is produced using a commercial-grade EEG device.  Additionally, the ability of the method to capture oscillatory processes is verified by analyzing a public dataset. Moreover, this methodology is extended to study a related oscillatory process: Motor Imagery Rolandic Mu rhythms.  The performance of the method to discriminate right vs left motor imagery against a public dataset of healthy subjects, is verified.  Results are reported. 
 
 Finally, the method is modified to capture transient events, particularly the P300 Event Related Potential (ERP).  A description on how to extract the ERP from the EEG segment is offered, and a detailed depiction of how to implement a P300-Based BCI Speller application is outlined.  Its performance is verified by processing a public dataset of Amiotrophic Lateral Sclerosis (ALS) patients and contrasted against an own dataset produced in-house replicating the same experimental conditions.  Results are compared against other methods referenced in the bibliography
 
@@ -277,23 +278,38 @@ Los beneficios de esta propuesta se resumen en, (1) tiene una aplicación potenc
 
 \begin{listofpubs}
 %Lo reportado en las siguientes publicaciones conforma la base de la presente tesis.
-The following publications are the basis of this thesis
+%\vspace{2pt}
+
+\vspace{-\baselineskip}
+\vspace{-\baselineskip}
+
+
+Conference Proceedings,
 
 \begin{itemize}
 \item Ramele, R., A.J.Villar, and J.M.Santos."A Brain Computer Interface Classification Method Based on SIFT Descriptors." VI Latin American Congress on Biomedical Engineering CLAIB 2014, Paraná, Argentina 29,30,31 October 2014. Springer International Publishing, 2015.
 \item Ramele, R., A. J. Villar, and J. M. Santos. "A Brain Computer Interface Classification Method Based on Signal Plots." 4th Winter Conference on Brain Computer Interfaces, Yongpyong, Korea, February 2016. IEEE Signal and Processing, 2016. 
+\end{itemize}
+
+%\vspace{2pt}
+Peer-reviewed Journals,
+
+\begin{itemize}
 \item Ramele, R., A. J. Villar, and J. M. Santos. "Histogram of Gradient Orientations of Signal Plots applied to P300 Detection", Frontiers in Neuroscience, Special Issue:"Computational Methodologies in Brain Imaging and Connectivity: EEG and MEG Applications" (Under Review)
 \item Ramele, R., A. J. Villar, and J. M. Santos. "EEG Waveform Analysis of P300 ERP with applications to Brain Computer Interfaces", MDPI Brain Sciences Journal, Special Issue:"Brain-Computer Interfaces for Human Augmentation" (Under Review)
 \end{itemize}
 
-The work or part of it was also presented in
+
+%\vspace{2pt}
+Poster Presentations,
 
 \begin{itemize}
-\item Ramele, R., A. J. Villar, and J. M. Santos. Poster Presentation:"Histogram of Gradient Orientations of Signal Plots applied to Brain Computer Interfaces", BCI Society Conference "BCIs: Not Getting Lost in Translation", CA, USA, May 21-25 2018
+\item Ramele, R., A. J. Villar, and J. M. Santos. Poster Presentation: "Assistive Brain Computer Interfaces", HYPER Workshop 2011, La Alberca, Salamanca, Spain, Sept 18-23, 2011.
+\item Ramele, R., A. J. Villar, and J. M. Santos. Poster Presentation: "Towards a Cognitive Monitoring BCI Application for Assistive Robotics", COGCOMP 2013, Stirling, Scotland, UK, Aug 25-30, 2013.
+\item Ramele, R., A. J. Villar, and J. M. Santos. Poster Presentation: "Histogram of Gradient Orientations of Signal Plots applied to Brain Computer Interfaces", BCI Society Conference "BCIs: Not Getting Lost in Translation", Asilomar, CA, USA, May 21-25, 2018.
 \end{itemize}
 
 \end{listofpubs}
-
 
 
 
