@@ -256,6 +256,13 @@ Lastly, the number of channels $C$ is equal to $8$ for the first three datasets 
 
 Table~\ref{tab:resultsals} shows the results of applying the Histogram of Gradient Orientations (HIST) algorithm to the subjects of the public dataset of ALS patients. The percentage of correctly spelled letters is calculated while performing an offline BCI Simulation.  From the seven words for each subject, the first three are used for calibration, and the remaining four are used for testing.  The best performing channel  $\gls{bpc}$ is informed as well. The target ratio is $1:36$; hence theoretical chance level is $2.8\%$. It can be observed that the best performance of the letter identification method is reached in a dissimilar channel depending on the subject being studied.  Table~\ref{tab:resultsals} and~\ref{tab:resultsown} show for comparison the obtained performance rates using single-channel signals with the Support Vector Machine (SVM)~\cite{Scholkopf2001} classifier.  This method is configured to use a linear kernel.  The best performing channel $\gls{bpc}$, where the best letter identification rate was achieved, is also depicted.
 
+\begin{figure}[htb]
+\centering
+\includegraphics[width=10cm]{images/performance.eps}
+\caption[ALS Patients Dataset P300 Performance Curves]{Performance curves for the eight subjects included in the dataset of ALS patients.  Three out of eight subjects achieved the necessary performance to implement a valid P300 speller.}
+\label{fig:performance}
+\end{figure}
+
 
 \begin{table}[h!]
 \caption[Single Channel Character Recognition Rates for ALS patient's Dataset]{Character recognition rates for the public dataset of ALS patients using the Histogram of Gradient (HIST) calculated from  single-channel plots.  Performance rates using single-channel signals with the SVM classifier are shown for comparison.  The best performing channel $bpc$ for each method is visualized}
@@ -304,14 +311,6 @@ Table~\ref{tab:resultsals} shows the results of applying the Histogram of Gradie
 \end{table}
 
 % Agregar la clasificacion perfecta en base a que no considerabamos la varianza de la senial graficada
-
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=10cm]{images/performance.eps}
-\caption[P300 Performance Curves]{Performance curves for the eight subjects included in the dataset of ALS patients.  Three out of eight subjects achieved the necessary performance to implement a valid P300 speller.}
-\label{fig:performance}
-\end{figure}
 
 
 \begin{figure}[h!]
@@ -395,7 +394,7 @@ The P300 ERP  consists of two overlapping components: the P3a and P3b, the forme
 
 As subjects have varying \textit{latencies} and \textit{amplitudes} of their P300 components, they also have a varying stability of the \textit{shape} of the generated ERP \cite{Nam2010}.  Figure~\ref{fig:p300templates} shows 10 sample P300 templates patches for patients 8 and 3 from the dataset of ALS patients. It can be discerned that in coincidence with the performance results, the P300 signature is more clear and consistent for subject 8 (A) while for subject 3 (B) the characteristic pattern is more difficult to perceive.
 
-\begin{figure}[h!]
+\begin{figure}[]
 \centering
 \includegraphics[width=15cm]{images/subject.png}\label{subject8}
 \caption[Sample P300 Patches]{Ten sample P300 template patches for subjects 8 (A) and 3 (B) of the ALS Dataset.  Downward deflection is positive polarity. }

@@ -7,7 +7,7 @@ This Chapter introduces the EEG feature extraction procedure based on the Histog
 
 %sinuplot, spectrogram, scalogram
 
-The work of Edelman, Intrator and Poggio~\cite{cogprints561} on how the visual cortex sense features was the inspiration to the development of an algorithm to identify and decode salient local information from image regions.  The Scale Invariant Feature Transform (SIFT) method is composed of two parts, the SIFT Detector and the SIFT Descriptor.  The first is the procedure to identify relevant areas of an image.  The second is the procedure to describe and characterize a region of an image using the Histogram of Gradient Orientations~\footnote{It should not to be confused with HOG~\cite{Dalal2005}, the Histogram Of Gradients which is another method from Computer Vision based on similar ideas.  Actually, the descriptor part of the SIFT Method has no specific name, but as it is based on building a histogram of gradient orientations, that is the reason why it is described here in that way. }.  The SIFT algorithm is biomimetically inspired in how the visual cortex detects shapes by analyzing orientations~\cite{cogprints561}.  The patch description is also based on the Theory of Receptive Fields and other related ideas~\cite{Lindeberg2013}.
+The work of Edelman, Intrator and Poggio~\cite{Edelman1997} on how the visual cortex sense features was the inspiration to the development of an algorithm to identify and decode salient local information from image regions.  The Scale Invariant Feature Transform (SIFT) method is composed of two parts, the SIFT Detector and the SIFT Descriptor.  The first is the procedure to identify relevant areas of an image.  The second is the procedure to describe and characterize a region of an image using the Histogram of Gradient Orientations~\footnote{It should not to be confused with HOG~\cite{Dalal2005}, the Histogram Of Gradients which is another method from Computer Vision based on similar ideas.  Actually, the descriptor part of the SIFT Method has no specific name, but as it is based on building a histogram of gradient orientations, that is the reason why it is described here in that way. }.  The SIFT algorithm is biomimetically inspired in how the visual cortex detects shapes by analyzing orientations~\cite{Edelman1997}.  The patch description is also based on the Theory of Receptive Fields and other related ideas~\cite{Lindeberg2013}.
 
 \section{Feature Extraction: Histogram of Gradient Orientations}
 \label{SIFT}
@@ -76,6 +76,7 @@ Figure~\ref{fig:sampledescriptor} shows an example of a patch and a scheme of th
 
 
 \section{Keypoint Location}
+\label{keypointlocation}
 
 %TODO Vertidal: Along the signal or zero level.
 % Horizontal: based on a cognitive event, one or many.
@@ -117,7 +118,7 @@ The Horizontal Patch Scale $\gls{St}$ determines the size of the patch on the im
 \label{eq:horizontalpatchscale}
 \end{equation}
 
-\noindent where $\gls{Fs}$ is the sample frequency, $\gls{gammat}$ is the time scale factor and $\gls{Deltas}$ is the unit length of the patch which determines the pixel conversion factor.  This value depends on the actual implementation of the Histogram of Gradient Orientations of the SIFT method. In this case, its value is $\gls{Deltas} = \sqrt{2} \; 3 \; 5$, where $3$ is a fixed magnification factor.  
+\noindent where $\gls{Fs}$ is the sample frequency, $\gls{gammat}$ is the time scale factor and $\gls{Deltas}$ is the unit length of the patch which determines the pixel conversion factor.  This value depends on the actual implementation of the Histogram of Gradient Orientations of the SIFT method. In this case, its value is $\gls{Deltas} = \sqrt{2} \; 3 \; 5$, where $3$ is the fixed magnification factor.  
 
 On the other hand, on the vertical axis, the vertical patch scale depends on the peak-to-peak amplitude $\gls{DeltamuV}$, and the amplitude scale factor $\gls{gamma}$, as
 
@@ -171,7 +172,7 @@ For these patterns, the central idea is to locate keypoints, and their patches, 
 
 \subsection{Transient Events}
 
-For transient events, descriptors are treated as representatives of the single transient waveform.  This lead to usually just one keypoint that is located in a meaningful position along the horizontal axis.  Additionally, for autoscale plotting, the zero level can be used to localize keypoints.
+For transient events, descriptors are treated as representatives of the single transient waveforms.  This lead to usually just one keypoint that is located in a meaningful position along the horizontal axis.  Additionally, for autoscale plotting, the zero level can be used to localize keypoints.
 
 \section{Classification}
 \label{nbnn}
