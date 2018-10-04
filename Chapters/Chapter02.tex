@@ -235,7 +235,7 @@ Overall, EEG signals can be described by their phase, amplitude,  frequency and 
 \begin{itemize}
 \item Artifacts:  These are signal sources which are not generated from the CNS, but can be detected from the EEG signal.  They are called endogeneous or physiological when they are generated from a biological source like muscles, ocular movements, etc., and exogeneous or non-physiological when they have an external electromagnetic source like line induced currents or electromagnetic noise\cite{Weeda2012}.  Ambulatory studies or out-of-the lab studies introduces artifacts that are derived from the person movement from the FES and also from other devices in hybrid BCI, or multi-modal BCIs.
 \item Non-Stationarity: the statistical parameters that describe the EEG as a random process are not conserved through time, i.e. its mean and variance, and any other higher-order moments are not time-invariant \cite{Jansen1991}.
-\item DC drift and trending: in EEG jargon, which is derived from concepts of electrical amplifiers theory, Direct Current (DC) refers to very low frequency components of the EEG signal which varies around a common center, usually the zero value.  DC drift means that this center value drifts in time.  Although sometimes considered as a nuisance that needs to get rid of, it is known that very important cognitive phenomena like Slow Cortical Potentials or Slow Activity Transients in infants do affect the drift and can be used to understand some particular brain functioning \cite{Schomer2010}.
+\item DC drift and trending: in EEG jargon, which is derived from concepts of electrical amplifiers theory, Direct Current (DC) refers to very low frequency components of the EEG signal which varies around a common center, usually the zero value.  DC drift means that this center value drifts in time.  Although sometimes considered as a nuisance that needs to get rid of, it is known that very important cognitive phenomena like Slow Cortical Potentials or Slow Activity Transients in infants do affect the drift and can be used to understand some particular brain functioning \cite{Vanhatalo2005,Schomer2010}.
 \item Basal EEG activity: the EEG is the compound summation of myriads of electrical sources from the CNS.  These sources generate a baseline EEG which shows continuous activity with a small or null relation with any concurrent cognitive activity or task.
 \item Inter-subject and intra-subject variability: EEG can be affected by the person's behavior like sleep hygiene, caffeine intake, smoking habit or alcohol intake previously to the signal measuring procedure \cite{Farzan2017}.
 \end{itemize}
@@ -253,16 +253,18 @@ Regarding how the EEG activity can be related to an external stimulus that is af
 \item Rhythmic: EEG activity consisting in waves of approximately constant frequency.  It is often abbreviated RA (regular rythmic activity). They are loosely classified by their frequencies, and their naming convention was derived from the original naming used by Hans Berger himself:
 
 \begin{itemize}
-\item Alpha Waves (10 Hz)
 \item Delta (0-4 Hz)
 \item Theta (4-8 Hz)
+\item Alpha Waves (10 Hz)
 \item Sigma (12-16 Hz)
 \item Beta (12-30 Hz)
 \item Gamma (30-100 Hz)
 \item Omega (60-120 Hz)
 \item Rho (250 Hz) hippocampal
-\item Sigma Thalamocortical burst (600 Hz)
+\item Sigma Thalamocortical burst (600 Hz)~\cite{Fedele2012}.
 \end{itemize}
+
+The last three are hardly encountered in conventional EEG~\cite{Vanhatalo2005}. 
 
 \item Arrhythmic: EEG activity in which no stable rhythms are present.  
 \item Dysrhythmic: Rhythms and/or patterns of EEG activity that characteristically appear in patient groups and rarely seen in healthy subjects.
@@ -311,7 +313,7 @@ The most relevant features used in BCI are:
 \item Statistical: AR parameters, covariances matrix.
 \end{itemize}
 
-The most successfull used and verified classification methods for BCI \cite{Lotte2007} can be described as linear versions of popular Machine Learning tools.  Particularly, Support Vector Machines SVM, Linear Discriminant Analysis LDA and its variant SWLDA.  This one was also relevant for two reasons:  the first is that the stepwise identification of features improves the selection criteria and also the spatial filter that this procedure encompass.  Additionally, and more from a more pragmatic perspective, this method was included in the popular BCI2000~\cite{Schalk2004} package and was the default option for anyone doing ERP identification.  Spatial Filters have also being incorporated and have shown substantial improvement in classification accuracies.  The now classical Common Spatial Patterns CSP for the identification of Motor Imagery as well as the xDAWN algorithm for P300 identification.
+The most successfull used and verified classification methods for BCI \cite{Lotte2007} can be described as linear versions of popular Machine Learning tools.  Particularly, Support Vector Machines SVM, Linear Discriminant Analysis LDA and its variant SWLDA.  This one was also relevant for two reasons:  the first is that the stepwise identification of features improves the selection criteria and also the spatial filter that this procedure encompass.  Additionally, from a pragmatic perspective, this method was included in the popular BCI2000~\cite{Schalk2004} package and was the default option for the identification of Event Related Potentials.  Spatial Filters have also being incorporated and have shown substantial improvements in classification accuracies: the canonical Common Spatial Patterns CSP for the identification of Motor Imagery as well as the xDAWN algorithm for P300 identification.
 
 Recent years (circa 2018) have seen the evolution of the methodology but the focus was not centered on any particular classification algorithm.  Instead how they are used became much more important~\cite{Lotte2018}.
 
@@ -431,7 +433,7 @@ Moreover, EEG data acquisition is a key procedure during the assessment of patie
 \subsection{EEG Waveform Analysis Algorithms}
 \label{waveformalgorithms}
 
-Shape or waveform analysis methods are considered as nonparametric (in opposition to statistical or dynamical models).  They explore signal's time-domain metrics or even derive more complex indexes from it \cite{Thakor2009}. 
+Shape or waveform analysis methods are considered as nonparametric methods.  They explore signal's time-domain metrics or even derive more complex indexes or features from it \cite{Thakor2009}. 
 
 One of the earliest approach to automatically process EEG data is the Peak Picking method.  Although of limited usability, peak picking has been used to determine latency of transient events in EEG \cite{Jaskowski2000,Zhang2011}.  Straightforward in its implementation, it consists in selecting a component, a simple component based on the expected location of its more prominent deflection \cite{Ouyang2017}.  Evoked Potentials (EPs) and Event Related Potentials (ERPs) are transient component that may arise as a brain response to an external visual, tactile or auditory stimulus.  Particularly, EPs are regularly used to assess auditory response in infants. ERPs are precisely characterized in this manner, where the name of many of the EEG features evoke directly a peak within the component, e.g. P300 or P3a, P3b or N100.  This leads to a natural procedure to classify them visually by selecting appropriate peaks and matching their positions and amplitudes in an orderly manner.  The letter provides the polarity (Positive or Negative) and the numbering shows the time referencing the stimulus onset, or the ordinal position of each peak (first, second, etc).   
 
