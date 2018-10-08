@@ -295,52 +295,48 @@ The number of electrodes and their positions over the scalp determines a spatial
 
 %Due to their popularity ($71.2\%$ of the BCI projects submitted to BCI Award 2016 were with EEG) BCI based on EEG are 
 
-\textit{BCI Paradigms} are referred to noninvasive EEG-based BCI configurations that can be used to transmit volitional information.  The popularity of EEG ($71.2\%$ of the BCI projects submitted to BCI Award 2016 were with EEG)~\cite{Guger2017} pushed the adoption of paradigms exclusively for noninvasive BCI.   Their chronology can be found at the beginning of the Chapter. They can be roughly described as~\cite{Chaudhary2016}:
+\textit{BCI Paradigms} are referred to noninvasive EEG-based BCI configurations that can be used to transmit volitional information.  The popularity of EEG ($71.2\%$ of the BCI projects submitted to BCI Award 2016 were with EEG)~\cite{Guger2017} pushed the adoption of paradigms exclusively for noninvasive BCI.   Their chronology can be found at the beginning of the Chapter. They can be roughly~\cite{Chaudhary2016} described as:
 
 %TODO Comentar cada una a que se refiere.
 
 \begin{enumerate}
-\item Steady State Visual Evoked Potentials
-\item Bereitschaftspotentials, Readiness Potential or Movement-Related Potentials
-\item Motor Imagery
-\item ERD/ERS: Event Related
-\item Selective Attention
-\item P300
-\item N400
-\item Mental Tasks
-\item Operant Conditioning
-\item Slow Cortical Potentials
-\item Wadsworth BCI
-\item Graz BCI
-\item Berlin BCI
+\item Steady State Evoked Potentials: the basis for this paradigm is that when a subject attends certain stimulus, the dominant frequency component contained in the stimulus source can be found in the brain waves.  When stimulus sources are light, this is called SSVEP and the signals are prominent in occipital regions.  A similar process can be obtained with auditory stimulus, in which case they are called SSAEPs, or with somatosensory stimulation (i.e. tactile) and it is called SSSEP.  By using different stimulus sources with different frequencies the one that is \textbf{selectively attended} by a subject can be inferred based on the main frequency component found on the EEG trace.
+\item Bereitschaftspotentials, Readiness Potential or Movement-Related Potentials: these signals are slow cortical potential that can appear when a subject is just about to engage in a movement related activity.  They are related to a general desynchronization prior to movement onset.  They are used in BCI as triggering markers.
+\item Motor Imagery ERD/ERS: the imagery, i.e. the mental visualization of movement without actually performing it, triggers a neurophysiological response which is very similar to the one obtained when the movement is physically performed. Frequencies on the $\alpha$ range of EEG are desynchronized prior to movement imagery, and synchronized afterwards. At the same time, $\beta$ frequencies are resynchronized and increase in power after motor imagery. A subject can learn to think about moving a feet or moving a limb, and transfer a bit from this thinking patterns. This paradigm requires intensive training from subjects.  This is further explained in Chapter~\ref{chapter:five}.
+\item P300: the positive deflection at 300 \si{\ms} is activated by a cognitive experiment called the oddball paradigm and can be used to detect which symbol a subject is paying attention on a flickering matrix.  By exploiting this information, a speller application can be implemented. This important signal is explained in details in Chapter~\ref{chapter:six}.
+%\item N400: this pattern is related to speech processing.  A negative signal around 400 \si{\ms} appears every time a missmatch concept is found in a sequence of similar concepts.  Novel BCI systems can be implemented from this.
+\item Mental Tasks: mental tasks like rotation 3D objects in the head, or calculating arithmetic operations can be used to generate signals that can be detected and used to transfer a bit.
+\item Slow Cortical Potentials: these are very slow shifts in the electrical activity found in the cortex, of a very low frequency.  They can be modulated by \textbf{operand conditioning} protocols.
+\item Error Potentials: when a person recognizes that an error was committed during a task, a recognizable signal called ErrP can be detected along the EEG trace, time-locked to the onset when the error information is fed back to the person.  This very important potential is used in BCI applications to enhance the identification of false positives and to improve the overall interaction between the subject and the computer.
 \end{enumerate}
+
+These paradigms have been exploited in the most popular BCI configurations, the Wadsworth BCI, the Graz BCI, the Berlin BCI and the Tübingen BCI.  These platforms introduced pragmatic enhancements and solutions to use these paradigms to implement more practical devices~\cite{Nam2018} \cite{Schomer2010}.
+
 
 
 \section{State of the Art of BCI Algorithms for EEG processing}
 
-According to general layout of any BCI, Figure \ref{fig:bciblockdiagram}, specific algorithms or techniques are derived for both the Feature extraction and classification step.
-
-The most relevant features used in BCI are:
+According to general layout of a BCI system, Figure \ref{fig:bciblockdiagram}, specific algorithms or techniques are required for both the feature extraction and classification step.  The most relevant features used nowadays in BCI are:
 
 \begin{itemize}
 \item Time points:  the sequence of time series, often, concatenated in time or space.
 \item Band Power: frequency based features.
-\item Complexity:  based on complexity measurements like entropy, fractal.
+\item Complexity:  based on complexity measurements like entropy, or fractal.
 \item Statistical: Auto-regressive parameters or covariances matrix.
 \end{itemize}
 
-The most successfull used and verified classification methods for BCI \cite{Lotte2007} can be described as linear versions of Machine Learning tools.  Particularly, Support Vector Machines SVM, Linear Discriminant Analysis LDA and its variant SWLDA.  This one was also relevant for two reasons:  the first is that the stepwise identification of features improves the selection criteria and also the spatial filter that this procedure encompass.  Additionally, from a pragmatic perspective, this method was included in the popular BCI2000~\cite{Schalk2004} package and was the default option for the identification of Event Related Potentials.  Spatial Filters have also being incorporated and have shown substantial improvements in classification accuracies: the canonical Common Spatial Patterns CSP for the identification of Motor Imagery as well as the xDAWN algorithm for P300 identification.
+The most successfull used and verified classification methods for BCI \cite{Lotte2007} can be described as linear versions of machine learning tools.  Particularly, Support Vector Machines SVM, Linear Discriminant Analysis LDA and its variant SWLDA.  SWLDA is relevant for two reasons:  the first is that the stepwise identification of features improves the selection criteria and also the spatial filter that this procedure encompass.  Additionally, from a pragmatic perspective, this method is included in the popular BCI2000~\cite{Schalk2004} package and is the default option for the identification of event related potentials.  Spatial filters have also being incorporated and have shown substantial improvements in classification accuracies: the canonical Common Spatial Patterns CSP for the identification of Motor Imagery as well as the xDAWN algorithm for P300 identification.
 
-In recent years (circa 2018) classification methodologies used in BCI have improved but the focus was not centered on any particular classification algorithm.  Instead, the contributions focused on how these algoritms were used~\cite{Lotte2018}.  Recent contributions can be detailed as:
+In recent years (circa 2018) classification accuracies in BCI have improved but the focus was not centered on any particular classification algorithm.  Instead, current contributions concentrate their efferts on how these algoritms are used~\cite{Lotte2018}.  Recent works can be described as:
 
 \begin{itemize}
-\item Ensemble Classifiers: SVM ensembles~\cite{Rakotomamonjy2008} and variants of Random Forest~\cite{Steyrl2015}.  Features are segmented and divided and the forest performs a classification step on each part and maximizes classification accuracies.
-\item Cross-Paradigm BCI: the use of Reinforced Signal RS with ErrP feedback or the use of SSVEP in combination with P300 detection~\cite{Lotte2018}.
-\item Adaptive Classifiers: the parameters of the classifiers are adapted continuously and online adapting to the natural variation of the EEG signals~\cite{Lotte2018}.
-\item Transfer Learning: transfer the calibration information obtained by users to new subjects.  This aims to eases the issue of the intra-subject variability in BCI .
-\item RGC: Rienmann Geometry Classifiers
-\item Tensor-based BCI
-\item Deep Learning: heavily tried but without significant success.
+\item Ensemble classifiers: SVM ensembles~\cite{Rakotomamonjy2008} and variants of random forest~\cite{Steyrl2015}.  Features are segmented and divided and the forest performs a classification step on aggregated parts, maximizes classification accuracies.
+\item Cross-paradigm BCI: the use of a reinforced signal with ErrP feedback or the use of SSVEP in combination with P300 detection~\cite{Lotte2018}.
+\item Adaptive classifiers: the parameters of the classifiers are adapted continuously and online adapting to the natural variation of the EEG signals~\cite{Lotte2018}.
+\item Transfer learning: transfer the calibration information obtained by users to new subjects.  This aims to eases the issue of the intra-subject variability in BCI, and to reduce the set-up and calibration times of a BCI system.
+\item RGC Rienmann Geometry Classifiers: the EEG stream is directly mapped onto a geometrical space equipped with a suitable Riemannian metric.  Hence, further data manipulation is carried out following principles of Riemannian geometry which yields very good results in terms of accuracies.
+\item Tensor-based BCI~\cite{Cichocki2008}:  the EEG data is viewed as a multidimensional matrix, a tensor.  The BCI problem is considered as an optimization problem that can be solved with sparsity and nonnegativity constraints. 
+\item Deep learning~\cite{Tjepkema-Cloostermans2018}: deep learning is a very successful technique driven by the increased computational power of current computer devices.  Deep learning techniques have also being applied to BCI applications.
 \end{itemize}
 
 %What if we can find an automatic system to identify, search, and even classify EEG signals based on the morphological visual structure of the signal, mimicking what the physician does, but using automated tools to do so?
