@@ -190,21 +190,67 @@ The estimated class label $\hat{L}$ of a query image is calculated as the class 
 
 The $\gls{bpc}$ is the Best Performing Channel.  This value is determined in the calibration step of the BCI algorithm when the spatial performance is assessed to determine on which channel the performance is maximized~\cite{Chavarriaga2017}.
 
+
+%\begin{figure}[h!]
+%\centering
+%\subfigure[]
+%{\includegraphics[scale=0.7]{images/ClassificationFull.pdf}}
+%\caption[NBNN Classification]{(a) Two Dictionaries contain templates descriptors for two different classes. A set of query descriptors are extracted from a new image that needs to be categorized.(b) Distances from every descriptor $\gls{d}_i$ are calculated against the closest one from the Dictionary of Class 2.  Distances summations are accumulated.(c) Distance values from every descriptor $\gls{d}_i$ are calculated against the closest one from the Dictionary of Class 1.  Distances summations are accumulated. (d) The two different summation values are compared against each other.(e) The summation that achieved the lesser value is the one that more closely resembles the set of templates, thus is the one predicted by the classification algorithm.}
+%\label{fig:nbnnclassification}
+%\end{figure}
+
 \begin{figure}[h!]
 \centering
-\subfigure[]
-{\includegraphics[scale=0.25]{images/NBNNMethod1.png}}
-\subfigure[]
-{\includegraphics[scale=0.25]{images/NBNNMethod2.png}}
-\subfigure[]
-{\includegraphics[scale=0.25]{images/NBNNMethod3.png}}
-\subfigure[]
-{\includegraphics[scale=0.25]{images/NBNNMethod4.png}}
-\subfigure[ ]
-{\includegraphics[scale=0.25]{images/NBNNMethod5.png}}
-\caption[NBNN Classification]{(a) Two Dictionaries contain templates descriptors for two different classes. A set of query descriptors are extracted from a new image that needs to be categorized.(b) Distances from every descriptor $\gls{d}_i$ are calculated against the closest one from the Dictionary of Class 2.  Distances summations are accumulated.(c) Distance values from every descriptor $\gls{d}_i$ are calculated against the closest one from the Dictionary of Class 1.  Distances summations are accumulated. (d) The two different summation values are compared against each other.(e) The summation that achieved the lesser value is the one that more closely resembles the set of templates, thus is the one predicted by the classification algorithm.}
-\label{fig:nbnnclassification}
+\subfigure[Two Dictionaries contain templates descriptors for two different classes. A set of query descriptors are extracted from a new image that needs to be categorized. ]
+{\includegraphics[scale=0.7]{images/Classification1.pdf}}
+\subfigure[Distances from every descriptor $\gls{d}_i$ are calculated against the closest one from the Dictionary of Class 2.  Distances summations are accumulated.]
+{\includegraphics[scale=0.7]{images/Classification2.pdf}}
+
+\caption[NBNN Classification]{NBNN Classification Scheme}
+\label{fig:nbnnclassification1}
 \end{figure}
+
+\begin{figure}[h!]
+\centering
+\subfigure[Distance values from every descriptor $\gls{d}_i$ are calculated against the closest one from the Dictionary of Class 1.  Distances summations are accumulated. ]
+{\includegraphics[scale=0.7]{images/Classification3.pdf}}
+\subfigure[The two different summation values are compared against each other. The summation that achieved the lesser value is the one that more closely resembles the set of templates, thus is the one predicted by the classification algorithm.]
+{\includegraphics[scale=0.7]{images/Classification4.pdf}}
+\caption[NBNN Classification]{NBNN Classification Scheme}
+\label{fig:nbnnclassification2}
+\end{figure}
+
+
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[scale=0.5]{images/Classification1.pdf}
+%\caption[Patch Geometry]{(a) Two Dictionaries contain templates descriptors for two different classes. A set of query descriptors are extracted from a new image that needs to be categorized.   }
+%\label{fig:nbnnclassification1}
+%\end{figure}
+%
+%
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[scale=0.5]{images/Classification2.pdf}
+%\caption[Patch Geometry]{(b) Distances from every descriptor $\gls{d}_i$ are calculated against the closest one from the Dictionary of Class 2.  Distances summations are accumulated.  }
+%\label{fig:nbnnclassification2}
+%\end{figure}
+%
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[scale=0.5]{images/Classification3.pdf}
+%\caption[Patch Geometry]{(c) Distance values from every descriptor $\gls{d}_i$ are calculated against the closest one from the Dictionary of Class 1.  Distances summations are accumulated.   }
+%\label{fig:nbnnclassification3}
+%\end{figure}
+%
+%
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[scale=0.5]{images/Classification4.pdf}
+%\caption[Patch Geometry]{(d) The two different summation values are compared against each other. The summation that achieved the lesser value is the one that more closely resembles the set of templates, thus is the one predicted by the classification algorithm.  }
+%\label{fig:nbnnclassification4}
+%\end{figure}
+
 
 %TODO:Agregar tambien las pruebas sobre rootsift y que la distancia mejor es la coseno demostrar justamente haciendo una prueba sobre EEGWave.
 %TODO:Agregar que el experimento dio perfecto cuando no se controla la varianza.

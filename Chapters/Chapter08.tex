@@ -1,22 +1,21 @@
-\chapter{Conclusions and Future Work}
+\chapter{Epilogue}
 \label{chapter:seven}
 
 %This thesis humbly offers a method and framework to study EEG brain signal waveforms.  
 
-In the first Chapter, this question was posed:  is it possible to analyze and discriminate Electroencephalographic signals by automatic processing the shape of the waveforms using the Histogram of Gradient Orientations ?
+In the first Chapter, the following question was posed:  is it possible to analyze and discriminate Electroencephalographic signals by automatic processing the shape of the waveforms using the Histogram of Gradient Orientations ? \\ 
 
-Que es diferente en mundo de EEG y BCI a partir de esta tesis?
-lo que es diferente es que se puede implementar un metodo que toma una metrica objetiva de la forma de la se;al antes no existia bien
-esta tesis fomenta esa conexion, que puede ser provechosa por facotres que se discutiran luego
-se ofrece un marco general para abordar este estudio que puede luego explotarse desde otras sdisciplinas similares.  Nos queda la sensacion de muchos cabos a futuro que explotar y esta conclusion y este capitulo justamente abordara esos temas
+%Que es diferente en mundo de EEG y BCI a partir de esta tesis?
+%lo que es diferente es que se puede implementar un metodo que toma una metrica objetiva de la forma de la se;al antes no existia bien
+%esta tesis fomenta esa conexion, que puede ser provechosa por facotres que se discutiran luego
+%se ofrece un marco general para abordar este estudio que puede luego explotarse desde otras sdisciplinas similares.  Nos queda la sensacion de muchos cabos a futuro que explotar y esta conclusion y este capitulo justamente abordara esos temas
 
-We conclude affirmatively,  but we ask a different question now,
+We conclude affirmatively, and remark the following points:
 
-\textbf{What is different in the world after the submission of this Thesis?}
-
-A framework and a method to analyze objectively the waveform of an EEG signal is now proposed.
-Additionally a general framework to study waveforms is proposed.  We have the feeling that there is threads to pull out of this work, and there are many areas that could be beneficed from this work and extensions.  This is the topic of this last final, and conclusive, Chapter.
-
+%\textbf{What is different in the world after the submission of this Thesis?}
+%
+%A framework and a method to analyze objectively the waveform of an EEG signal is now proposed.
+%Additionally a general framework to study waveforms is proposed.  We have the feeling that there is threads to pull out of this work, and there are many areas that could be beneficed from this work and extensions.  This is the topic of this last final, and conclusive, Chapter.
 
 \begin{itemize}
 \item EEG Waveforms can be analyzed by this method.
@@ -24,7 +23,9 @@ Additionally a general framework to study waveforms is proposed.  We have the fe
 \item The stability of ERP components can be studied objectively with HIST.
 \end{itemize}
 
+The scientific or technological endeavor has been enlighten many times by the connection of initially unrelated topics.  At the conclusion of this work, we have the feeling that there are many potential benefits from the application of this technique and that there are many areas that could be improved from this work and extensions.   This is the topic of this last, final, and conclusive, Chapter.
 
+\section{Conclusion}
 Among other applications of Brain Computer Interfaces, the goal of the discipline is to provide communication assistance to people affected by neuro-degenerative diseases, who are the most likely population to benefit from BCI systems and EEG processing and analysis~\cite{WolpawJonathanR2012}.
 
 A method to analyze EEG signals based on the waveform characterization, is presented. The proposed procedure transforms the signal into an image, plots the signal on it, and analyzes their local structure using the Histogram of Gradient Orientations.   Aiming to offer a BCI implementation, this technique is adapted to perform a feature extraction procedure.  Finally an additional classification scheme is outlined.
@@ -84,24 +85,26 @@ We believe that the adoption of a \textit{hybrid} methodology which can process 
 
 \vspace{7pt}
 
+\section{Future Work}
+
 Regarding future work, there are potential areas that could be improved upon the presented methodology:
 
 \begin{enumerate}
-\item Multichannel Extension
+\item Multichannel extension
 \item Scale space analysis on EEG for keypoint localization
 %\item Usage to determine trial to trial variability (using general orientation)
 \item Neuroimaging
-\item Ensemble Classifiers
-\item Computer Vision interdeisciplinary work
+\item Ensemble classifiers
+\item Computer vision interdisciplinary work
 \item Other areas
 \end{enumerate}
 
-\textbf{Multichannel Extension}
+\textbf{Multichannel extension}
 The methods described in section~\ref{waveformalgorithms} and the one proposed here analyze the waveform of a single channel.
 The nature of the proposal is to analyze the shape of single waveforms obtained from just one channel.  %To study the graphoelements.
 However, for automatic interpretation of the signal it is known that multichannel extension is necessary.  Hence, a multichannel extension should likely be beneficial to the usage of the proposed methodology~~\cite{Gribonval2008}.
 
-\textbf{Scale space analysis on EEG for keypoint localization}
+\textbf{Scale space analysis of EEG for keypoint localization}
 This work focused on the waveform representation but another important area is waveform detection.  The theory of Scale Space developed for the SIFT Detector is an important are for future study that has not been explored thoughtfully in the EEG or BCI literature.
 
 %\textbf{Keypoint localization}: the descriptor obtained from the Histogram of Gradient Orientations is sensitive to the keypoint localization.  The SIFT Detector proved to be unable to capture an invariant keypoint from a very sparse image as the one that was generated here.  In order to improve the efficiency of the proposal presented in this thesis, an improved version of the SIFT Detector aimed for this kind of images of plots should be considered.  Moreover, for oscillatory processes finding a clever way to localize descriptors will also easy and facilitate their lay out along signals trace. Current configuration generates too many descriptors that produces a computational burden.
@@ -109,7 +112,7 @@ This work focused on the waveform representation but another important area is w
 \textbf{Neuroimaging}
 Many tools for Computer Vision are being used in Neuroscience to devise methods to understand brain function.  The Histogram of Gradient Orientations can be explored from this same perspective due to their visually relevant nature.
 
-\textbf{Ensemble Classifier}
+\textbf{Ensemble classifiers}
 The Histogram of Gradient Orientations method has the advantage that they can map a visual component with a clinical meaning to a feature with an objective representation. Thus, compound classifiers or ensemble of features can be further explored to improve accuracies.  Successful approaches in Computer Vision or Pattern Recognition in other areas use them~\cite{Criminisi2013} with a significant enhancement of the classification performances~\cite{Gu2012}.
 
 \textbf{Computer Vision interdisciplinary work}
