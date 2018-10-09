@@ -174,7 +174,7 @@
 %
 %Electroencephalography (EEG) is the most widespread method to gather information from the CNS in a non-invasive way.  Clinical EEG has traditionally focused on temporal waveforms, but signal analysis methods which follow this path has been overshadow in BCI research. 
 %
-%This thesis propose a method and framework to analyze the waveform, the shape of the EEG signal, using the histogram of gradient orientations, a fruitful technique from Computer Vision which is used to depict image local characteristics. This method generates a feature, a 128-dimension descriptor, that  is used to to analyze the underlying cognitive phenomena. Inspiration comes from what traditionally electroencephalographers have been doing for almost a century: visually inspecting raw EEG signal plots. 
+%This Thesis propose a method and framework to analyze the waveform, the shape of the EEG signal, using the histogram of gradient orientations, a fruitful technique from Computer Vision which is used to depict image local characteristics. This method generates a feature, a 128-dimension descriptor, that  is used to to analyze the underlying cognitive phenomena. Inspiration comes from what traditionally electroencephalographers have been doing for almost a century: visually inspecting raw EEG signal plots. 
 %
 %The validity of the method is verified by identifying Visual Occipital Alpha Waves and Motor Imagery Rolandinc Mu rhythms. It is also applied on P300 ERP detection and used to implement a P300-Based Visual Speller application. Experimental protocols to produce these cognitive patterns were designed and own datasets produced and published using both commercial-grade and research-grade EEG devices.  Obtained results on public and own datasets are outlined, and comparisons performed against similar procedures.
 %
@@ -188,7 +188,7 @@ Brain Computer Interface (BCI) or Brain Machine Interfaces (BMI), has proved the
 
 Electroencephalography (EEG) is the most widespread method to gather information from the CNS in a non-invasive way.  Clinical EEG has traditionally focused on temporal waveforms, but signal analysis methods which follow this path has been overshadow in BCI research. 
 
-This thesis propose a method and framework to analyze the waveform, the shape of the EEG signal, using the histogram of gradient orientations, a fruitful technique from Computer Vision which is used to characterize image local features. Inspiration comes from what traditionally electroencephalographers have been doing for almost a century: visually inspecting raw EEG signal plots. 
+This Thesis propose a method and framework to analyze the waveform, the shape of the EEG signal, using the histogram of gradient orientations, a fruitful technique from Computer Vision which is used to characterize image local features. Inspiration comes from what traditionally electroencephalographers have been doing for almost a century: visually inspecting raw EEG signal plots. 
 
 This technique can be outlined in five steps, (1) signal preprocessing, (2) signal segmentation, (3) transformation on a channel by channel basis of each signal segment into a binary image of a signal plot, (4) assignment of keypoint location on a position over the newly created image depending on the physiological phenomena under study and finally (5) the calculation of the histogram of gradient orientations using finite differences from the image around this keypoint. This method generates a feature, a normalized 128-dimension descriptor. This feature is used to compare the signal segments that were used to generate them, hence to analyze the underlying cognitive phenomena. 
 
@@ -209,7 +209,7 @@ The benefits of the approach presented here are twofold, (1) it has a universal 
 %
 %%Few works have investigated the idea of exploiting signal waveforms to analyze the EEG signal on BCI applications. The seminal work of Bandt-Pompe Permutation Entropy [3] explores succinctly this concept and in [4] an approach based on Slope Horizontal Chain Code is presented. A similar methodology is implemented in [5] based on Mathematical Morphological Analysis. 
 %
-%This thesis propose a method and framework to analyze the waveform, the shape of the EEG signal, using the histogram of gradient orientations, a fruitful technique from Computer Vision which is used to characterize image local features. Inspiration comes from what traditionally electroencephalographers have been doing for almost a century: visually inspecting raw EEG signal plots. 
+%This Thesis propose a method and framework to analyze the waveform, the shape of the EEG signal, using the histogram of gradient orientations, a fruitful technique from Computer Vision which is used to characterize image local features. Inspiration comes from what traditionally electroencephalographers have been doing for almost a century: visually inspecting raw EEG signal plots. 
 %
 %%The validity of the method is verified by identifying and detecting Visual Occipital Alpha Waves and Motor Imagery Rolandinc Mu rhythms. It is also applied on P300 ERP detection and used to implement a P300-Based Visual Speller application.  Obtained results on public and own datasets are outlined and described. 
 %
@@ -234,7 +234,7 @@ The benefits of the approach presented here are twofold, (1) it has a universal 
 %Significance: A method to analyze EEG signals which is based on the waveform characterization is presented. The benefits of the proposed approach are twofold, (1) it has a universal applicability because the same basic methodology can be applied to detect different patterns in EEG signals with applications to BCI and (2) it has the potential to foster close collaboration with physicians and electroencephalograph technicians because the approach follows the established procedure of the clinical EEG community of analyzing waveforms by their shapes.
 
 
-%This thesis is a proposal of a new method to analyze and classify EEG (Electroencephalography) signals based on the extraction of characteristics based on the signal's waveform structure obtained from images of signal plots.  
+%This Thesis is a proposal of a new method to analyze and classify EEG (Electroencephalography) signals based on the extraction of characteristics based on the signal's waveform structure obtained from images of signal plots.  
 %This procedure has the advantage that the features which are used to classify are visually relevant and meaningful to a human observer, particularly to a physician, improving close collaboration and clinical adoption.  
 %Moreover, this may allow to tackle this demanding technology from a different perspective and improve the prospects of the BNCI, Brain Neural Computer Interaction field. 
 
@@ -332,6 +332,9 @@ Es un falacia creer que existe alguna actividad en nuestra vida que la hacemos s
 
 \printnoidxglossary[type=symbols,style=long,title={List of Symbols}]
 %$\gls{F}$, $\gls{t}$, $\gls{x}$, $\gls{v}$, $\gls{a}$.
+
+\include{Chapters/Notation}
+\addcontentsline{toc}{chapter}{Notation}
 
 \afterpreface
 \linespread{1.5}

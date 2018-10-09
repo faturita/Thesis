@@ -20,19 +20,22 @@ We conclude affirmatively, and remark the following points:
 \begin{itemize}
 \item EEG Waveforms can be analyzed by this method.
 \item Oscillatory processes can be studied by the shape of the plots.
-\item The stability of ERP components can be studied objectively with HIST.
+\item The stability of ERP components can be studied objectively with the proposed method.
 \end{itemize}
 
-The scientific or technological endeavor has been enlighten many times by the connection of initially unrelated topics.  At the conclusion of this work, we have the feeling that there are many potential benefits from the application of this technique and that there are many areas that could be improved from this work and extensions.   This is the topic of this last, final, and conclusive, Chapter.
+%The scientific or technological endeavor has been enlighten many times by the connection of initially unrelated topics.  
+At the conclusion of this work, we think that there are many potential benefits from the application of this technique and that there are many areas that could be improved from this work and extensions.   
+%This is the topic of this last, final, and conclusive, Chapter.
 
-\section{Conclusion}
-Among other applications of Brain Computer Interfaces, the goal of the discipline is to provide communication assistance to people affected by neuro-degenerative diseases, who are the most likely population to benefit from BCI systems and EEG processing and analysis~\cite{WolpawJonathanR2012}.
+\section{Conclusions}
 
-A method to analyze EEG signals based on the waveform characterization, is presented. The proposed procedure transforms the signal into an image, plots the signal on it, and analyzes their local structure using the Histogram of Gradient Orientations.   Aiming to offer a BCI implementation, this technique is adapted to perform a feature extraction procedure.  Finally an additional classification scheme is outlined.
+%Among other applications of Brain Computer Interfaces, the goal of the discipline is to provide communication assistance to people affected by neuro-degenerative diseases, who are the most likely population to benefit from BCI systems and EEG processing and analysis~\cite{WolpawJonathanR2012}.
+
+In this Thesis, a method to analyze EEG signals based on the waveform characterization, is presented. The proposed procedure transforms the signal into an image, plots the signal on it, and analyzes their local structure using the Histogram of Gradient Orientations.   Aiming to offer a BCI implementation, this technique is adapted to perform a feature extraction procedure.  Finally a classification scheme is outlined.
 
 This method is verified on EEG oscillatory processes.  An experiment with ten subjects and using a commercial-grade device, is conducted.  The application of the method effectively detects Alpha Waves from signals, differentiating two mental states.  It is also proved on a public dataset.  The prevalence of these signals in occipital areas is determined by a higher accuracy obtained for those brain regions.
 
-The applicability of the method is extended to study transient signals, particularly the P300 ERP,  due to the their importance, and widespread adoption in BCI.  Moreover, a method to  extract the ERP waveform is expounded and used to recognize it from EEG signals by analyzing their waveform shape.  An additional experiment on eight healthy subjects is performed but using a research-grade EEG device, specifically designed for this discipline.  The procedure is tested against the produced dataset and, a usable level of accuracy is obtained.  A BCI simulation is also implemented against a public dataset of ALS patients where it is verified that the waveform of the P300 is stable regardless of the health condition, offering an alternative method to study waveform stability.  A pseudo-real dataset is created to test and control for regular issues with ERP extraction procedures and the method proposed here is additionally contrasted against a set of other four alternative methods which are inspired in analyzing EEG waveforms.  It is found that this method achieved higher or equal performance values than the other methods.
+The applicability of the method is extended to study transient signals, particularly the P300 ERP,  due to the their importance, and widespread adoption in BCI.  A method to  extract the ERP waveform is expounded and used to recognize it from EEG signals by analyzing their waveform shape.  An additional experiment on eight healthy subjects is performed but using a research-grade EEG device, specifically designed for this discipline.  The procedure is tested against the produced dataset and a usable level of accuracy, is obtained.  A BCI simulation is also implemented against a public dataset of ALS patients where it is verified that the waveform of the P300 is stable regardless of the health condition, offering an alternative method to study waveform stability.  A pseudo-real dataset is created to test for regular issues with ERP extraction procedures and the method proposed here is additionally contrasted against a set of other four alternative methods which are inspired in analyzing EEG waveforms.  It is found that this method achieved higher or equal performance values than the other methods.
 
 %\textbf{Multichannel}
 %More importantly, as with any other BCI technique, assessment on the prospects and usefulness of this procedure on the golden standard of online validation must be performed to avoid the MMLD dilemma [16].
@@ -46,36 +49,37 @@ The applicability of the method is extended to study transient signals, particul
 This technique has the following benefits,
 
 \begin{enumerate}
-\item Universal Applicability
-\item Objective Waveform Metric
+\item Universal applicability
+\item Objective waveform metric
 \item Foster clinical interaction.
-\item Clinical-Tool Making
-\item Intelligible Property and BCI Reliability
+\item Clinical-tool making
+\item Intelligible property and BCI reliability
 \end{enumerate}
 
-\textbf{Universal Applicability}
-The Histogram of Gradient Orientation method has a potential universal applicability, because the same basic methodology can be applied to detect different patterns in EEG signals with applications to BCI.   The search for meaningfull or cognitive waveforms, or \textit{cognemes} is a very important issue in BCI, Neuroscience Research and Neurophysiology. Automatic classification of patterns in EEG that are specifically identified by their shapes like K-Complex, Vertex Waves, Positive Occipital Sharp Transient~\cite{Hartman2005} are a prospect future work to be considered. 
+\textbf{Universal applicability:}
+The Histogram of Gradient Orientation method has a potential universal applicability, because the same basic methodology can be applied to detect different patterns in EEG signals with applications to BCI.   The search for meaningfull or cognitive waveforms, or \textit{cognemes} is a very important issue in BCI, neuroscience research and neurophysiology. Automatic classification of patterns in EEG that are specifically identified by their shapes like K-Complex, Vertex Waves, Positive Occipital Sharp Transient~\cite{Hartman2005} are a prospect future work to be considered. 
 
 % Alpha waves references.
 
-\textbf{Objective Waveform Metric}
+\textbf{Objective waveform metric:}
 Descriptors are a direct representation of the shape of signal waveforms. Hence,  they can be used to build databases of quantitative descriptions of known waveforms and improve atlases, which are currently based on qualitative descriptions of signal shapes.
 
-\textbf{Foster clinical collaboration}
+\textbf{Foster clinical collaboration:}
 In our opinion, the best benefit of the presented method is that a closer collaboration of the field of BCI with physicians can be fostered, since this procedure intent to imitate human visual observation. After all analyzing waveforms by their waveform shapes is a established procedure of the clinical EEG community. One of the main goals of the BCI discipline is to provide assistance to patients and to provide alternative tools to be used in diagnostics and rehabilitation procedure.  This requires a clinical focus which is often neglected in BCI research. 
 
-\textbf{Clinical tool-making}
-The method presented in this thesis offers the ability to identify waveforms shapes in an exhaustive manner.  This can eventually provide assistance to physicians to localize EEG patterns, specially in long recordings periods, frequent in clinical sleep studies or Neonatal ICU.  Additionally, it can be used for artifact removal which is performed on many occasions by visually inspecting signals. %Long Term recording ~\cite{Michel2012}
+\textbf{Clinical tool-making:}
+The method presented in this Thesis offers the ability to identify waveforms shapes in an exhaustive manner.  This can eventually provide assistance to physicians to localize EEG patterns, specially in long recordings periods, frequent in clinical sleep studies or neonatal ICU.  Additionally, it can be used for artifact removal which is performed on many occasions by visually inspecting signals. %Long Term recording ~\cite{Michel2012}
 
 % \cite{Temko2016}.  SDA
 %BCI Security (IEEE Paper Life Science)
 
-\textbf{Intelligible Property and BCI Reliability}
+\textbf{Intelligible property and BCI reliability:}
 BCI reliability is yet an unfulfilled goal in this discipline~\cite{WolpawJonathanR2012}. The convenience of analyzing or including metrics about the shape of the EEG, is that clinical EEG diagnosis may support a vast set of already understood knowledge which is based on identifying EEG patterns by their shape and that can steer towards a more robust implementation of BCI devices.  
 
 %No method will be reliable and widespread adopted until it is clear how any decision was coined. And at the same time, a method which is good enough but can be easily understood may be tide-turning in clinical acceptance.
 
-Moreover, this conventional clinical method of observing the waveform is understood to be subjective and laborious because results depend on the technicians' experience and expertise.   At the same time, it is a subjective time-consuming task, with long-learning curves, requires specialized personnel, and it has significant error rates~\cite{Tjepkema-Cloostermans2018}.  These problems has pushed for the adoption of more automated means of decoding the signals~\cite{Thakor2004}.   This trend pointed to the initial development of quantitative EEG, which however didn't replaced clinically the traditional approach which is still widespread: the Gold standard in clinical EEG is still \textit{Eye Ball}~\cite{Wulsin2011,Tjepkema-Cloostermans2018}.  
+Moreover, this conventional clinical method of observing the waveform is understood to be subjective and laborious because results depend on the technicians' experience and expertise.   At the same time, it is a subjective time-consuming task, with long-learning curves, requires specialized personnel, and it has significant error rates~\cite{Tjepkema-Cloostermans2018}.  These problems has pushed for the development of quantitative EEG, to automate the decoding of brain signals~\cite{Thakor2004}.  In spite of this, the clinical conventional practice has not been replaced and it is still widespread: the gold standard in clinical EEG is still \textit{Eye Ball}.
+ %~\cite{Wulsin2011,Tjepkema-Cloostermans2018}.  
 
 We believe that the adoption of a \textit{hybrid} methodology which can process the signal automatically, but at the same time, maintains an inherent intelligible property~\cite{j2018challenge} that can be mapped to existing procedures, and above all, can maintain the clinician trust on the system behavior, is beneficial to Clinical Practice, Neuroscience and BCI research. 
 
@@ -83,11 +87,9 @@ We believe that the adoption of a \textit{hybrid} methodology which can process 
 
 %=======================================
 
-\vspace{7pt}
-
 \section{Future Work}
 
-Regarding future work, there are potential areas that could be improved upon the presented methodology:
+There are potential areas that could be improved upon the presented methodology:
 
 \begin{enumerate}
 \item Multichannel extension
@@ -96,30 +98,30 @@ Regarding future work, there are potential areas that could be improved upon the
 \item Neuroimaging
 \item Ensemble classifiers
 \item Computer vision interdisciplinary work
-\item Other areas
+\item Extension to other disciplines
 \end{enumerate}
 
-\textbf{Multichannel extension}
-The methods described in section~\ref{waveformalgorithms} and the one proposed here analyze the waveform of a single channel.
-The nature of the proposal is to analyze the shape of single waveforms obtained from just one channel.  %To study the graphoelements.
-However, for automatic interpretation of the signal it is known that multichannel extension is necessary.  Hence, a multichannel extension should likely be beneficial to the usage of the proposed methodology~~\cite{Gribonval2008}.
+\textbf{Multichannel extension:}
+The methods described in section~\ref{waveformalgorithms} and the one proposed here analyze the waveform on single channels.
+Indeed, the nature of the proposal is to analyze the shape of single waveforms obtained from just one channel.  %To study the graphoelements.
+However, for automatic interpretation of the signal it is known that multichannel extension is necessary.  Hence, a multichannel extension should likely be beneficial to the usage of the proposed methodology~\cite{Gribonval2008}.
 
-\textbf{Scale space analysis of EEG for keypoint localization}
-This work focused on the waveform representation but another important area is waveform detection.  The theory of Scale Space developed for the SIFT Detector is an important are for future study that has not been explored thoughtfully in the EEG or BCI literature.
+\textbf{Scale space analysis of EEG for keypoint localization:}
+This Thesis emphasizes waveform representation but another important area is waveform detection.  The theory of Scale Space developed for the SIFT Detector is an important area for future study that has not been explored thoughtfully in the EEG or BCI literature.
 
-%\textbf{Keypoint localization}: the descriptor obtained from the Histogram of Gradient Orientations is sensitive to the keypoint localization.  The SIFT Detector proved to be unable to capture an invariant keypoint from a very sparse image as the one that was generated here.  In order to improve the efficiency of the proposal presented in this thesis, an improved version of the SIFT Detector aimed for this kind of images of plots should be considered.  Moreover, for oscillatory processes finding a clever way to localize descriptors will also easy and facilitate their lay out along signals trace. Current configuration generates too many descriptors that produces a computational burden.
+%\textbf{Keypoint localization}: the descriptor obtained from the Histogram of Gradient Orientations is sensitive to the keypoint localization.  The SIFT Detector proved to be unable to capture an invariant keypoint from a very sparse image as the one that was generated here.  In order to improve the efficiency of the proposal presented in this Thesis, an improved version of the SIFT Detector aimed for this kind of images of plots should be considered.  Moreover, for oscillatory processes finding a clever way to localize descriptors will also easy and facilitate their lay out along signals trace. Current configuration generates too many descriptors that produces a computational burden.
 
-\textbf{Neuroimaging}
-Many tools for Computer Vision are being used in Neuroscience to devise methods to understand brain function.  The Histogram of Gradient Orientations can be explored from this same perspective due to their visually relevant nature.
+\textbf{Neuroimaging:}
+Many tools for Computer Vision are being used in neuroscience to devise methods to understand brain function.  The Histogram of Gradient Orientations can be explored from this same perspective due to their visually relevant nature.
 
-\textbf{Ensemble classifiers}
-The Histogram of Gradient Orientations method has the advantage that they can map a visual component with a clinical meaning to a feature with an objective representation. Thus, compound classifiers or ensemble of features can be further explored to improve accuracies.  Successful approaches in Computer Vision or Pattern Recognition in other areas use them~\cite{Criminisi2013} with a significant enhancement of the classification performances~\cite{Gu2012}.
+\textbf{Ensemble classifiers:}
+Compound classifiers or ensemble of features can be further explored to improve accuracies.  Successful approaches in Computer Vision or Pattern Recognition in other areas use them~\cite{Criminisi2013} with a significant enhancement of the classification performances~\cite{Gu2012}.
 
-\textbf{Computer Vision interdisciplinary work}
-Furthermore, the extensive body of research from Computer Vision on SIFT provides a fruitful path to explore in order to achieve faster and improved algorithms to automatically detect EEG characteristics which are suitable for classification. Other image processing feature extraction methods like SURF, GLOH, RANSAC could also be considered.
+\textbf{Computer Vision interdisciplinary work:}
+The extensive body of research from Computer Vision on SIFT provides a fruitful path to explore in order to achieve faster and improved algorithms to automatically detect EEG characteristics. Other image processing feature extraction methods like SURF, GLOH, RANSAC could also be considered.
 
-\textbf{Other areas}
-The HIST method, after all, is solely analyzing waveforms, so they can be explored in other disciplines where the structure or shape of the waveform is of relevance.  Analyzing signals by their waveforms is relative common in chemical analysis~\cite{Skoog2000}, seismic analysis in Geology~\cite{Owens1984}, and quantitative financial analysis.  Electrocardiogram EKG, on the other hand, has been extensively processed and studied analyzing the waveform structure~\cite{Stockman1976}.
+\textbf{Extensions to other disciplines:}
+The method of Histogram of Gradient Orientations, after all, is solely based on analyzing waveforms. Hence, it can be extended into other disciplines where the structure or shape of the waveform is of relevance.  Analyzing signals by their waveforms is relative common in chemical analysis~\cite{Skoog2000}, seismic analysis in geology~\cite{Owens1984}, and quantitative financial analysis.  Electrocardiogram EKG, on the other hand, has been extensively processed and studied analyzing the waveform structure~\cite{Stockman1976}.
 %compact form of SIFT descriptors
 
 %Provide tools to clinicians !!!!!
