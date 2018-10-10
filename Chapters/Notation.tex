@@ -1,7 +1,29 @@
 \chapter*{Notation}
 
 \begin{itemize}
+\item $X$ -  a multichannel digital signal $X \in \mathbb{R}^{C \times N}$, with $N$ being the length of the digitalized signal in sample points, and $C$ is the number of available channels.  
+\item $\mathbf{x}(n)$ vector column of EEG matrix is a vector for a sample point $n$ in digital time for every available channel.  
+\item $x(n,c)$ - a multichannel digital signal as a scalar time-series for a particular channel $c$.  
+\item $x(n)$ - a multichannel digital signal as a scalar time-series emphasizing a single-channel processing scheme, for any $c$.
 \item $\lfloor \cdot \rfloor$ - Floor operation, rounding of the number argument to the closest smaller integer number.
 \item $\lceil \cdot \rceil$ - Ceil operation, rounding to the closest bigger integer number.
 \item $\lfloor \cdot \rceil$ - Rounding operations to the closest number.
+\item $f=\{f_i\}_{1}^{n} $ or $f=\{f_i\}_{i \in J}^{} $ - Concatenation of scalar values to form a multidimensional feature vector $f=\{f_1,f_2,...,f_n\}$.
 \end{itemize}
+
+
+%Let $X$ be a multichannel digital signal $X \in \mathbb{R}^{C \times N}$,  with $N$ being the length of the digitalized signal in sample points, and $C$ is the number of available channels.  This signal matrix is 
+%
+%\begin{equation}
+%X = \left[
+%\begin{matrix} 
+%X(1,1)  & \cdots & X(n,1) & \cdots & X(N,1) \\
+%\vdots &             & \vdots &            & \vdots \\
+%X(1,c)  & \cdots & X(n,c) & \cdots & X(N,c) \\
+%\vdots &             & \vdots &            & \vdots \\
+%X(1,C)  & \cdots & X(n,C) & \cdots & X(N,C) \\
+%\end{matrix}
+%\right]   .
+%\end{equation}
+%
+%The n-column $\mathbf{x}(n)$ of this matrix is a vector for a sample point $n$ in digital time for every available channel.  Additionally, $x(n,c)$  is a c-row with the multichannel signal as a scalar time-series for a particular channel $c$.  When the particular channel is not important, the notation $x(n)$ is using to emphasize a single-channel processing scheme.
