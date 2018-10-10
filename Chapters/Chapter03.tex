@@ -21,10 +21,10 @@ Additionally, on analog plotting montage is essential, though digital plotting a
 %Logarithmic plotting, montage, calibration (cite Electroencphalograpy for empilepsy society)
 
 \begin{story}[Neuroimaging]
-With the advent of digital computers and the digital revolution, plotting has become imaging.  Neuroimaging~\cite{Freeman2013} means mapping activity or structure to neuroanatomical regions.
-
-There are currently three categories of neuroimaging: \textit{structural} which includes CT (Computed Tomography), MRI (Magnetic Resonance Imaging) and DTI (Diffusion Tensor Imaging), \textit{functional}, which encompass EEG, MEG (Magnetoencephalography), fMRI (functional MRI) PET (Positron Emission Tomography), SPECT (Single Positron Emission Computed Tomography), NIRS (Near-Infrared Spectroscopy) and \textit{chemical} which involves special dyes which are sensible to neuron firing.
+With the advent of digital computers and the digital revolution, plotting has became imaging.  Medical imaging is defined as the making of a visual representation of an organ with a detector or sensor.  However, the concept has extended and brain imaging modalities is  synonym of brain measuring devices.  Neuroimaging~\cite{Freeman2013} entails image mapping activity or structure to neuroanatomical regions.  There are currently three categories of neuroimaging: \textit{structural} which includes Computed Tomography (CT), Magnetic Resonance Imaging (MRI) and Diffusion Tensor Imaging (DTI), \textit{functional}, which encompass EEG, MEG, fMRI, PET, Single Positron Emission Computed Tomography (SPECT), NIRS and \textit{chemical} which involves special dyes which are sensible to neuron firing.  Indeed, analyzing image plots is a form of brain imaging.
 \end{story}
+
+% Brain imaging modalities.
 
 \section{Signal to Image transformation}
 
@@ -35,7 +35,7 @@ x(n,c)
 \label{eq:eegdefinition}
 \end{equation}
 
-\noindent where $n$ are sample points digitalized at sampling frequency $F_s$.  This is a multichannel signal, for $c$ varying between  $1 \leq c \leq C$.  Each one of this channels is assigned a name according to the 10-20 international system (see Figure \ref{fig:electrodelocations}), and there are $C$ available channels. The sample index $n$ varies between $1$ and $N$.  The span of the signal $\lambda$ is the length in milliseconds of the waveform under study. 
+\noindent where $n$ are sample points digitalized at sampling frequency $\gls{Fs}$.  This is a multichannel signal, for $c$ varying between  $1 \leq c \leq \gls{C}$.  Each one of this channels is assigned a name according to the 10-20 international system (see Figure \ref{fig:electrodelocations}), and there are $\gls{C}$ available channels. The sample index $n$ varies between $1$ and $\gls{N}$.  The span of the signal $\lambda$ is the length in milliseconds of the waveform under study. 
 
 The length of segment $\gls{N}$ in sample units, the sampling frequency $\gls{Fs}$ in \si{\hertz} and the segment length $\gls{w}$ in seconds are related by
 
@@ -55,7 +55,7 @@ To extract features from an image, it should be first constructed.  The straight
 \label{fig:plottingsample}
 \end{figure}
 
-This chapter mostly deal with the coordinates transformation that need to be enforced while converting the signal into a plot.  Figure \ref{fig:imagecoordinatesystem} shows the image coordinate system where the $(z_1,z_2)$ represents the horizontal and vertical location, and the $(0,0)$ value is the upper-left position of the image.
+This chapter mostly deal with the coordinates transformation that need to be enforced while converting the signal into a plot.  Figure \ref{fig:imagecoordinatesystem} shows the image coordinate system where the $(z_1,z_2)$, with  $z_1,z_2 \in \mathbb{N}^0 \times \mathbb{N}^0$, represent the horizontal and vertical location, and the $(0,0)$ value is the upper-left position of the image. 
 
 \begin{figure}[h!]
 \centering
@@ -71,7 +71,7 @@ This chapter mostly deal with the coordinates transformation that need to be enf
 %\label{fig:mappingimages}
 %\end{figure}
 
-Let $c_i$ be a given constant channel, and $n_i$ be a constant sample point in digital time,  the values of $I(z_1,z_2)$ are obtained for $n$ varying between $1$ and $N$ or $c$ varying between $1$ and $C$.   In order to convert the EEG original signal $x(n,c)$ into the image $I(z_1,z_2)$, the following six alternatives can be used:
+Let $c_i$ be a given constant channel, and $n_i$ be a constant sample point in digital time,  the values of $\mathcal{I}(z_1,z_2)$ are obtained for $n$ varying between $1$ and $N$ or $c$ varying between $1$ and $C$.   In order to convert the EEG original signal $x(n,c)$ into a time-domain image $\mathcal{I}(z_1,z_2)$ representation, the following six alternatives can be used:
 
 \begin{enumerate}
 \item Channel-by-channel binary image
@@ -79,7 +79,7 @@ Let $c_i$ be a given constant channel, and $n_i$ be a constant sample point in d
 The standard plotting, on a black-and-white image with lines representing voltage amplitude.
 
 \begin{equation}
-I^{(c_i)}(z_1,z_2)= \left\{ \begin{array}{rl}
+\mathcal{I}^{(c_i)}(z_1,z_2)= \left\{ \begin{array}{rl}
 255 & \text{if} \,  z_1 =  n; \; z_2 = x(n,c_i) + z(c_i) \\
 0   & \mbox{otherwise}.
 \end{array}\right.
@@ -93,7 +93,7 @@ The signal plotted by this procedure is inverted on the image.  So it is necessa
 The voltage amplitudes are represented in greyscale, that could range between 0 and 255.  The function $\phi( \cdot )$ is a bounded linear mapping between $\left[ 0,255 \right]$
 
 \begin{equation}
-I^{(c_i)}(z_1,z_2)= \left\{ \begin{array}{rl}
+\mathcal{I}^{(c_i)}(z_1,z_2)= \left\{ \begin{array}{rl}
 \phi(x(n,c_i)) & \text{if} \,  z_1 = n; \; z_2 = z(c_i) \\
 0   & \mbox{otherwise}.
 \end{array}\right.
@@ -105,7 +105,7 @@ I^{(c_i)}(z_1,z_2)= \left\{ \begin{array}{rl}
 The image is greyscale. Voltage amplitudes are represented by the pixel content and each channel is represented on the vertical axis.  The height of the signal is equal to the number of channels.   This is used in Neuroimaging~\cite{Freeman2013} plots of ERP events.
 
 \begin{equation}
-I(z_1,z_2) = \left\{ \begin{array}{rl} \phi(x(n,c))  & \text{if} \,  z_1 = n; \; z_2 = c \end{array}\right. .
+\mathcal{I}(z_1,z_2) = \left\{ \begin{array}{rl} \phi(x(n,c))  & \text{if} \,  z_1 = n; \; z_2 = c \end{array}\right. .
 \label{eq:image3}
 \end{equation}
 
@@ -115,7 +115,7 @@ I(z_1,z_2) = \left\{ \begin{array}{rl} \phi(x(n,c))  & \text{if} \,  z_1 = n; \;
 The horizontal axis of the image is not time, but it is the number of the channel instead.   In this representation different contributions from different channels can be explored at the same time, but time dynamics is lost.  
 
 \begin{equation}
-I^{(n_i)}(z_1,z_2) = \left\{ \begin{array}{rl}
+\mathcal{I}^{(n_i)}(z_1,z_2) = \left\{ \begin{array}{rl}
 255 & \text{if} \,  z_1 = c; \; z_2 =  x(n_i,c) + z(n_i) \\
 0   & \mbox{otherwise}.
 \end{array}\right.
@@ -129,7 +129,7 @@ In this case, the vertical position where the signal's zero value is located, $z
 This is a variant of the previous one, where the horizontal axis also represent the channel, and the zero-level is also calculated for a fixed sample point.   In this form, the intensity of the contribution of each channel is represented by the greyscale pixel value.  Combined with head models and forward projection solutions this is the methodology used to represent scalp heatmaps~\cite{Gramfort2013}.
 
 \begin{equation}
-I^{(n_i)}(z_1,z_2)= \left\{ \begin{array}{rl}
+\mathcal{I}^{(n_i)}(z_1,z_2)= \left\{ \begin{array}{rl}
 \phi(x(n_i,c)) & \text{if} \,  z_1 = c; \; z_2 =  z(n_i) \\
 0   & \mbox{otherwise}.
 \end{array}\right.
@@ -142,7 +142,7 @@ I^{(n_i)}(z_1,z_2)= \left\{ \begin{array}{rl}
 This is similar to a raster plot~\cite{Cohen2014} but the greyscale image representing voltages in pixel intensities can be replicated or epoched $H$ times, which at the same time is the height of the image.  The selection of this value depends on the number of epochs or repetitions to show.  In this case, the mapping is
 
 \begin{equation}
-I^{(c_i)}(z_1,z_2) = \left\{ \begin{array}{rl} \phi(x(n,c_i))  & \text{if} \,  z_1 = n; \; z_2 = H \end{array}\right. .
+\mathcal{I}^{(c_i)}(z_1,z_2) = \left\{ \begin{array}{rl} \phi(x(n,c_i))  & \text{if} \,  z_1 = n; \; z_2 = H \end{array}\right. .
 \label{eq:image6}
 \end{equation}
 
@@ -268,6 +268,8 @@ Special care must be taken by the presence of artifacts around the signal endpoi
 
 \section{Resolution and Precision}
 
+The image creation and signal plotting is a digitalization process as well~\cite{Schomer2010}.  Any digitalization process is defined by their Dynamic Range, Resolution and Precision.
+
 The resolution~\cite{Cohen2014} of the image transformation can be determined based on the characteristics of the digital signal and the parameter selection.
 
 On the horizontal axis of the image, one pixel is equivalent $\equiv$ to 
@@ -304,21 +306,45 @@ z_2 = \left \lfloor{ \gamma  \; \tilde{x}(n,c)  }\right \rceil
 
 \noindent where $\gamma$ is the amplitude scale factor parameter, which also affects the height of the image in Equation \ref{eq:height}. A rounding operation $\lfloor  \cdot \rceil$ is applied to obtain an integer representation.  Hence, precision is lost on the voltage amplitude. Additionally, the dynamic range of the digital capturing device is reduced to what is actually needed for each segment.  Table~\ref{tab:precision} show some reference values.
 
+This also determines the highest frequency that can be captured by the plotting scheme.  Half the number of pixels per seconds which is exactly equal to the Nyquist Frequency when the relation between pixels and time points is 1 to 1.
+
 \begin{table}[htb]
-\caption[Reference Values for Precision and Resolution]{Reference Values for Precision and Resolution}
+\caption[Reference Values for Horizontal Precision and Resolution]{Reference Values for Precision and Resolution}
 \centering
-\vspace{4pt}
+\vspace{8pt}
 %% \tablesize{} %% You can specify the fontsize here, e.g.  \tablesize{\footnotesize}. If commented out \small will be used.
-\begin{tabular}{c|c|c||c|c|c}
+\begin{tabular}{|c|c|c|}
 \toprule
-\textbf{$\gamma$}	&  $1 P_x$ 	&  Decimal Precision & \textbf{$\gamma_t$}	&  $1 P_y$  \\
+\textbf{$\gamma$}	&  $1 P_x$ 	&  Decimal Precision   \\
 \midrule
-1     &     $1 \si\mu{V}$   &  $NN$                               & 1    &     $\frac{1}{\gls{Fs}} \si{s}$    \\
-2    &     $\frac{1}{2} \si\mu{V}$   &  $NN \pm 0.5$  & 2    &     $\frac{1}{2} \; \frac{1}{\gls{Fs}} \si{s}$    \\
-3     &     $\frac{1}{3} \si\mu{V}$   &  $NN\pm 0.3$  & 3    &     $\frac{1}{3} \;  \frac{1}{\gls{Fs}} \si{s}$    \\
-10     &     $\frac{1}{10} \si\mu{V}$   &  $NN.N$        & 10   &     $\frac{1}{10} \; \frac{1}{\gls{Fs}} \si{s}$    \\
-100     &     $\frac{1}{100} \si\mu{V}$   &  $NN.NN$ & 100 &     $\frac{1}{100} \; \frac{1}{\gls{Fs}} \si{s}$    \\
+1     &     $1 \si\mu{V}$   &  $0$                                      \\
+2    &     $\frac{1}{2} \si\mu{V}$   &  $0.5$         \\
+3     &     $\frac{1}{3} \si\mu{V}$   &  $0.3$   \\
+10     &     $\frac{1}{10} \si\mu{V}$   &  $1$         \\
+100     &     $\frac{1}{100} \si\mu{V}$   &  $10$    \\
 \bottomrule
 \end{tabular}
-\label{tab:precision}
+\label{tab:precisionx}
 \end{table}
+
+
+\begin{table}[htb]
+\caption[Reference Values for Vertical Resolution]{Reference Values for Vertical Resolution}
+\centering
+\vspace{8pt}
+%% \tablesize{} %% You can specify the fontsize here, e.g.  \tablesize{\footnotesize}. If commented out \small will be used.
+\begin{tabular}{|c|c|}
+\toprule
+\textbf{$\gamma_t$}	&  $1 P_y$  \\
+\midrule
+ 1    &     $1 \; \frac{1}{\gls{Fs}} \si{s}$    \\
+ 2    &     $\frac{1}{2} \; \frac{1}{\gls{Fs}} \si{s}$    \\
+ 3    &     $\frac{1}{3} \;  \frac{1}{\gls{Fs}} \si{s}$    \\
+ 10   &     $\frac{1}{10} \; \frac{1}{\gls{Fs}} \si{s}$    \\
+ 100 &     $\frac{1}{100} \; \frac{1}{\gls{Fs}} \si{s}$    \\
+\bottomrule
+\end{tabular}
+\label{tab:precisiony}
+\end{table}
+
+The minimum recomended resolution for an EEG device is around 0.5 micorvolts.
