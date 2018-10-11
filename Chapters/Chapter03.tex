@@ -46,7 +46,7 @@ N = \left\lfloor F_s \; w \right\rfloor.
 
 \vspace{3pt}
 
-To extract features from an image, it should be first constructed.  The straightforward way to do it, replicating the analog or digital EEG plotting, is to draw a line on a contrast background.  This line represents the voltage amplitude of a channel $c$ in relation to a reference zero-level $z(c)$, with a positive deflection going upwards and downwards for negative deflection.  Figure \ref{fig:plottingsample} shows an example of an EEG signal segment plot.  This image is a black-and-white binary image.  The color selection is arbitrary (white for the line, black for the background), but it has some implications in terms of the feature extraction procedure that will described in Section~\ref{SIFT}.
+To extract features from an image, an image should be first constructed.  The straightforward way to do it, replicating the analog or digital EEG plotting, is to draw a line on a contrast background.  This line represents the voltage amplitude of a channel $c$ in relation to a reference zero-level $z(c)$, with a positive deflection going upwards and downwards for negative deflection.  Figure \ref{fig:plottingsample} shows an example of an EEG signal segment plot.  This image is a black-and-white binary image.  The color selection is arbitrary (white for the line, black for the background), but it has some implications in terms of the feature extraction procedure that will described in Section~\ref{SIFT}.
 
 \begin{figure}[]
 \centering
@@ -55,7 +55,7 @@ To extract features from an image, it should be first constructed.  The straight
 \label{fig:plottingsample}
 \end{figure}
 
-This chapter mostly deal with the coordinates transformation that need to be enforced while converting the signal into a plot.  Figure \ref{fig:imagecoordinatesystem} shows the image coordinate system where the $(z_1,z_2)$, with  $z_1,z_2 \in \mathbb{N}^0 \times \mathbb{N}^0$, represent the horizontal and vertical location, and the $(0,0)$ value is the upper-left position of the image. 
+This chapter mostly deal with the coordinates transformation that need to be enforced while converting the signal into a plot.  Figure \ref{fig:imagecoordinatesystem} shows the image coordinate system where the $(z_1,z_2)$, with  $z_1,z_2 \in \mathbb{N}^0 \times \mathbb{N}^0$, represent the horizontal and vertical locations, and the $(0,0)$ value is the upper-left position of the image. 
 
 \begin{figure}[h!]
 \centering
@@ -86,7 +86,7 @@ The standard plotting, on a black-and-white image with lines representing voltag
 \label{eq:image1}
 \end{equation}
 
-The signal plotted by this procedure is inverted on the image.  So it is necessary to multiply $x(n,c_i)$ by $(-1)$ to invert it before plotting.
+Due to the coordinates transformation, the signal plotted by this procedure is inverted on the image.  Thus, it is necessary to multiply $x(n,c_i)$ by $(-1)$ to invert it before plotting.
 
 \item Channel-by-channel greyscale image
 
@@ -156,9 +156,7 @@ To analyze effectively an EEG signal, many signal segments must be produced.  He
 \section{Standardized plotting}
 \label{standardized}
 
-The \textit{z-score} is a widely used method to regularize a signal~\cite{Zhang2013}.
-
-This standardization procedure is defined for  $1 \leq n \leq N$ and $1 \leq c \leq C$ by doing
+The \textit{z-score} is a widely used method to regularize a signal~\cite{Zhang2013}. This standardization procedure is defined for  $1 \leq n \leq N$ and $1 \leq c \leq C$ by doing
 
 \begin{equation}
 \tilde{x}(n,c) =  \frac{ x(n,c) - \bar{x}(c) }{ \hat{\sigma}(c) } 
@@ -181,10 +179,11 @@ Figure \ref{fig:plottingscheme}(b) shows the results of the plotting for an impu
 
 \begin{figure}[htb]
 \centering
-\subfigure[An artificial signal pulse and their plotting representation. The signal is standardized and the height of the image is determined according to the peak-to-peak amplitude, which is the same for every image and equal to $\gamma$. ]
-{\includegraphics[height=5cm,width=15cm]{images/signalplot1.eps}}
-\subfigure[The plotted image height is twice the zero-level. In this case, the height is also determined according to the peak-to-peak amplitude of each segment, proportional to $\gamma$, and not constant. Transformed images do not have the same height, but the zero-level is always located at half the height of the image.]{\includegraphics[height=5cm,width=15cm]{images/signalplot2.eps}}
-\caption[Signal plot of an impulse response]{Signal plotting schemes.}
+\subfigure[Standardized: The signal is standardized and the height of the image is determined according to the peak-to-peak amplitude, which is similar for every image.]
+{\includegraphics[height=5cm,width=7.5cm]{images/standardized.eps}}
+\subfigure[Autoscaled: The plotted image height is twice the zero-level, which is also determined according to the peak-to-peak amplitude of each segment, proportional to $\gamma$, and not constant. Transformed images do not have the same height, but the zero-level is always located at half the height of the image.]
+{\includegraphics[height=5cm,width=7.5cm]{images/autoscaled.eps}}
+\caption[Signal plotting schemes]{An artificial signal pulse and its plotting representations.}
 \label{fig:plottingscheme}
 \end{figure}
 
@@ -197,7 +196,7 @@ z(c) = \left \lfloor{ \frac{\max_{n} \tilde{x}(n,c)  - \min_{n} \tilde{x}(n,c) }
 \label{eq:zerolevel}
 \end{equation}
 
-\noindent where the minimization and maximization are carried out for $n$ varying between ${1 \leq n\leq N}$, and $ \lfloor \cdot  \rfloor $ denote the rounding to the smaller nearest integer of the number.  This value represents the vertical location on the image where the signal goes to zero.  
+\noindent where the minimization and maximization are carried out for $n$ varying between ${1 \leq n\leq N}$. This value represents the vertical location on the image where the signal goes to zero.  
 
 \section{Image Size}
 
@@ -262,80 +261,41 @@ Equation \ref{eq:images} produces a set of isolated pixels over the image $\math
 \label{fig:interpolation}
 \end{figure}
 
-On Figure~\ref{fig:interpolation}(c) the same signal can be observed produced when the time scaling factor $\gls{gammat}$ is increased to $4$. It can be noticed that there are very sharp edges around sample pixels.  This can lead to a quantization of histogram gradients that will be discussed in the next Chapter. To reduce this sharpness of the signal on the plot, an alternative procedure is to use a smoothing interpolation of the signal $\tilde{x}(n,c)$ using splines.  Instead of just situating time point values at a bigger step according to Equation~\ref{eq:images}, intermediate values are computed according to a linear, quadratic or cubic interpolation, hence smoothing the curve around each point.  The result of this interpolation can be seen on Figure~\ref{fig:interpolation}(d), where the edges around each sample point are more rounded. This procedure is similar to what the Matlab's \textbf{resample} function does which also includes an antialiasing FIR lowpass filter.
+On Figure~\ref{fig:interpolation}(c) the same signal can be observed produced when the time scaling factor $\gls{gammat}$ is increased to $4$. It can be noticed that there are very sharp edges around sample pixels.  This can lead to a quantization of histogram gradients that will be discussed in the next Chapter. To reduce this sharpness of the signal on the plot, an alternative procedure is to use a smoothing interpolation of the signal $\tilde{x}(n,c)$ using splines.  Instead of just situating time point values at a bigger step according to Equation~\ref{eq:images}, intermediate values are computed according to a linear, quadratic or cubic interpolation, hence smoothing the curve around each point.  The result of this interpolation can be seen on Figure~\ref{fig:interpolation}(d), where the edges around each sample point are more rounded. This procedure is similar to what the Matlab's \textbf{resample} function does which also includes an antialiasing FIR lowpass filter~\cite{Oppenheim2009}.
 
 Special care must be taken by the presence of artifacts around the signal endpoints, at the edges of the image. Those regions are excluded from further analysis.
 
+\begin{figure}[htb]
+\centering
+\subfigure[Vertical axis is voltage in $\mu V$ while horizontal axis is expressed in sample points.]
+{\includegraphics[height=5cm,width=5cm]{images/plotvsimage.eps}}
+\subfigure[An image generated by the plotting algorithm for the same signal. Image height is $76$ pixels, while width is $250$. The zero-level $z(c)$ value is $32$.]
+{\includegraphics[height=5cm,width=10cm]{images/sampleplot.eps}}
+\caption[Signal and Plot]{One-second length basal EEG signal and the generated image, with $\gls{Fs} = 250$. }
+\label{fig:plotvsimage}
+\end{figure}
+
 \section{Resolution and Precision}
 
-The image creation and signal plotting is a digitalization process as well~\cite{Schomer2010}.  Any digitalization process is defined by their Dynamic Range, Resolution and Precision.
+Image creation and signal plotting is a digitalization process~\cite{Schomer2010}.  Figure~\ref{fig:plotvsimage} shows an EEG signal and their plot representation.  Any digitalization process is defined by their resolution, precision and dynamic range.
 
-The resolution~\cite{Cohen2014} of the image transformation can be determined based on the characteristics of the digital signal and the parameter selection.
-
-On the horizontal axis of the image, one pixel is equivalent $\equiv$ to 
+The resolution~\cite{Cohen2014} of the image transformation can be determined based on the characteristics of the digital signal and the parameter selection. On the horizontal axis of the image, one pixel is equivalent to 
 
 \begin{equation}
 1 P_x \equiv \frac{1}{F_s  \; \gamma_t}  [\si{s}]
 \label{eq:resolutionx}
 \end{equation}
 
-\noindent where $F_s$ is the sampling frequency in Hertz, and $\gamma_t$ is the time scale factor.  This gives a value in seconds.  For example, for Figure \ref{fig:plottingsample} where the length is $0.65 s$, the sampling frequency is $200 Hz$, and $\gamma_t = 1$, which gives a resolution of $1 P_x \equiv 0.0077 s$. 
-
-Consistently, on the vertical axis, one pixel is analogous to 
-
-\begin{equation}
-1 P_y \equiv \frac{1}{\gamma}  [\si\mu{V}]
-\label{eq:resolutiony}
-\end{equation}
-
-\noindent where $\gamma$ is the amplitude scale factor.  As EEG time-series are digitalized in $\si\mu{V}$, this the unit of choice.  In Figure \ref{fig:plottingsample}, $1$ vertical pixel represents exactly $1 \mu V$.
-
-Regarding the \textit{Precision}, discrete EEG time-series are floating-point numbers and the image is constructed based on discrete and integer pixels.  Image's pixel values $(z_1,z_2)$ are obtained according to Equation~\ref{eq:images}.  Thus, on the horizontal axis, $z_1$, no discretization is needed because time is already digitalized in sample units. Hence, there is no loss of precision in time from the one generated by the digital device.
-
-\begin{equation}
-z_1 = \gamma_t  \; n.
-\label{eq:horizontalpixelation}
-\end{equation}
-
-On the other hand, on the vertical axis, pixels are discretized according to
-
-\begin{equation}
-z_2 = \left \lfloor{ \gamma  \; \tilde{x}(n,c)  }\right \rceil
-\label{eq:verticalpixelation}
-\end{equation}
-
-\noindent where $\gamma$ is the amplitude scale factor parameter, which also affects the height of the image in Equation \ref{eq:height}. A rounding operation $\lfloor  \cdot \rceil$ is applied to obtain an integer representation.  Hence, precision is lost on the voltage amplitude. Additionally, the dynamic range of the digital capturing device is reduced to what is actually needed for each segment.  Table~\ref{tab:precision} show some reference values.
-
-This also determines the highest frequency that can be captured by the plotting scheme.  Half the number of pixels per seconds which is exactly equal to the Nyquist Frequency when the relation between pixels and time points is 1 to 1.
+\noindent where $\gls{Fs}$ is the sampling frequency in Hertz, and $\gls{gammat}$ is the time scale factor.  This gives a value in seconds.  For example, for Figure \ref{fig:plottingsample} where the length is $1 s$, the sampling frequency is $250 Hz$, and $\gls{gammat}= 1$, this gives a resolution of $1 P_x \equiv 0.0040 \si{s}$. Table~\ref{tab:precisionx} shows some reference values.
 
 \begin{table}[htb]
-\caption[Reference Values for Horizontal Precision and Resolution]{Reference Values for Precision and Resolution}
-\centering
-\vspace{8pt}
-%% \tablesize{} %% You can specify the fontsize here, e.g.  \tablesize{\footnotesize}. If commented out \small will be used.
-\begin{tabular}{|c|c|c|}
-\toprule
-\textbf{$\gamma$}	&  $1 P_x$ 	&  Decimal Precision   \\
-\midrule
-1     &     $1 \si\mu{V}$   &  $0$                                      \\
-2    &     $\frac{1}{2} \si\mu{V}$   &  $0.5$         \\
-3     &     $\frac{1}{3} \si\mu{V}$   &  $0.3$   \\
-10     &     $\frac{1}{10} \si\mu{V}$   &  $1$         \\
-100     &     $\frac{1}{100} \si\mu{V}$   &  $10$    \\
-\bottomrule
-\end{tabular}
-\label{tab:precisionx}
-\end{table}
-
-
-\begin{table}[htb]
-\caption[Reference Values for Vertical Resolution]{Reference Values for Vertical Resolution}
+\caption[Reference Values for Horizontal Resolution]{Reference values for horizontal resolution}
 \centering
 \vspace{8pt}
 %% \tablesize{} %% You can specify the fontsize here, e.g.  \tablesize{\footnotesize}. If commented out \small will be used.
 \begin{tabular}{|c|c|}
 \toprule
-\textbf{$\gamma_t$}	&  $1 P_y$  \\
+\textbf{$\gamma_t$}	&  $1 P_x$  \\
 \midrule
  1    &     $1 \; \frac{1}{\gls{Fs}} \si{s}$    \\
  2    &     $\frac{1}{2} \; \frac{1}{\gls{Fs}} \si{s}$    \\
@@ -344,7 +304,59 @@ This also determines the highest frequency that can be captured by the plotting 
  100 &     $\frac{1}{100} \; \frac{1}{\gls{Fs}} \si{s}$    \\
 \bottomrule
 \end{tabular}
+\label{tab:precisionx}
+\end{table}
+
+Consistently, on the vertical axis, one pixel is analogous to 
+
+\begin{equation}
+1 P_y \equiv \frac{1}{\gamma}  [\si\mu{V}]
+\label{eq:resolutiony}
+\end{equation}
+
+\noindent where $\gamma$ is the amplitude scale factor.  As EEG time-series are digitalized in $\si\mu{V}$, this is the unit of choice.  In Figure \ref{fig:plottingsample}, $1$ vertical pixel represents exactly $1 \mu V$.  It is important to notice that the minimum recommended resolution for an EEG device is around $0.5$ micorvolts, which is an acceptable and practical level to detect physiological meaningful signals~\cite{Schomer2010}.  This level can be reached when $\gls{gamma}$ is equal to $2$.  See Table~\ref{tab:precisiony} to see some reference values.
+
+\begin{table}[htb]
+\caption[Reference Values for Vertical Precision and Resolution]{Reference values for vertical precision and resolution}
+\centering
+\vspace{8pt}
+%% \tablesize{} %% You can specify the fontsize here, e.g.  \tablesize{\footnotesize}. If commented out \small will be used.
+\begin{tabular}{|c|c|c|}
+\toprule
+\textbf{$\gamma$}	&  $1 P_y$ 	&  Decimal Precision   \\
+\midrule
+1     &     $1 \si\mu{V}$   &  $0$                                      \\
+2    &     $\frac{1}{2} \si\mu{V}$   &  $0.5$         \\
+3     &     $\frac{1}{3} \si\mu{V}$   &  $0.3$   \\
+10     &     $\frac{1}{10} \si\mu{V}$   &  $1$         \\
+100     &     $\frac{1}{100} \si\mu{V}$   &  $10$    \\
+\bottomrule
+\end{tabular}
 \label{tab:precisiony}
 \end{table}
 
-The minimum recomended resolution for an EEG device is around 0.5 micorvolts.
+Regarding the \textit{precision}, discrete EEG time-series are floating-point numbers and the image is constructed based on discrete and integer pixels.  Image's pixel values $(z_1,z_2)$ are obtained according to Equation~\ref{eq:images}.  Thus, on the horizontal axis $z_1$, no discretization is needed because time is already digitalized in sample units. Hence, there is no loss of precision in time from the one generated by the digital device where pixel values are obtained with
+
+\begin{equation}
+z_1 = \gamma_t  \; n.
+\label{eq:horizontalpixelation}
+\end{equation}
+
+\noindent where $n$ refer to sample points. The maximum frequency that can be captured by the plotting scheme is half the number of pixels per seconds~\cite{Schomer2010}.  Equation~\ref{eq:horizontalpixelation} determines at least a $1$-to-$1$ relationship between pixels and sample points, thus the effective maximum frequency is only constrained by the Nyquist Frequency~\cite{Oppenheim2009}. 
+
+On the other hand, on the vertical axis, pixels are discretized according to
+
+\begin{equation}
+z_2 = \left \lfloor{ \gamma  \; \tilde{x}(n,c)  }\right \rceil
+\label{eq:verticalpixelation}
+\end{equation}
+
+\noindent where $\gamma$ is the amplitude scale factor parameter, which also affects the height of the image in Equation \ref{eq:height}. A rounding operation $\lfloor  \cdot \rceil$ is applied to obtain an integer representation.  This means that precision is lost on the voltage amplitude. 
+
+Finally, the dynamic range of the digital capturing device is reduced to what is actually needed for each segment, because the height of the image is adjusted dynamically to the peak-to-peak amplitude, regardless of the plotting scheme.
+
+
+
+
+
+

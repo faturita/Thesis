@@ -9,6 +9,8 @@ This Chapter introduces the EEG feature extraction procedure based on the Histog
 
 The work of Edelman, Intrator and Poggio~\cite{Edelman1997} on how the visual cortex sense features was the inspiration to the development of an algorithm to identify and decode salient local information from image regions.  The Scale Invariant Feature Transform (SIFT) method is composed of two parts, the SIFT Detector and the SIFT Descriptor.  The first is the procedure to identify relevant areas of an image.  The second is the procedure to describe and characterize a region of an image using the Histogram of Gradient Orientations~\footnote{It should not to be confused with HOG~\cite{Dalal2005}, the Histogram Of Gradients which is another method from Computer Vision based on similar ideas.  Actually, the descriptor part of the SIFT Method has no specific name, but it is based on building a histogram of gradient orientations.}.  The SIFT algorithm is biomimetically inspired in how the visual cortex detects shapes by analyzing orientations~\cite{Edelman1997}.  The patch description is also based on the Theory of Receptive Fields and other related ideas~\cite{Lindeberg2013}.
 
+\pagebreak
+
 \section{Feature Extraction: Histogram of Gradient Orientations}
 \label{SIFT}
 
@@ -168,17 +170,64 @@ The patch size cannot be bigger than the image itself, whose width is $\gls{Wx}$
 
 \subsection{Oscillatory Processes}
 
-For these patterns, the central idea is to locate keypoints, and their patches, all along the signal trace, filling the entire signal segments with all the possible patches.  In this case, the keypoint density $\gls{kpd} $ determines the step at which a keypoint is located along the trace of the signal, unit sample after unit sample. Care must be taken close to the margins, where there should be a gap to avoid locating incomplete patches.  This can be observed in Figure~\ref{fig:keypointlocations}(a).
+For these patterns, the central idea is to locate keypoints, and their patches, all along the signal trace, filling the entire signal segments with all the possible patches.  In this case, the keypoint density $\gls{kpd} $ determines the step at which a keypoint is located along the trace of the signal, sample point after sample point. Care must be taken close to the margins, where there should be a gap to avoid locating incomplete patches.  This can be observed in Figure~\ref{fig:keypointlocations}(a).
 
 \subsection{Transient Events}
 
 For transient events, descriptors are treated as representatives of the single transient waveforms.  This lead to usually just one keypoint that is located in a meaningful position along the horizontal axis.  Additionally, for autoscale plotting, the zero level can be used to localize keypoints.
 
+\section{BCI Algorithm}
 
-\section{Calibration}
+Now that we have all the ingredients for the meal, let's cook.  First,  recapitulate with all the definitions:
+
+\begin{story}[Terminology Clarification]
+\theoremstyle{definition}
+
+\begin{definition}{Keypoint:}
+\label{def:Keypoint}
+\textit{A keypoint is a specific pixel on the image.}
+\end{definition}
+
+\begin{definition}{Patch:}
+\label{def:Patch}
+\textit{An image region centered around a keypoint.  It is divided in a rectangular 4x4 grid.}
+\end{definition}
+
+\begin{definition}{Descriptor:}
+\label{def:Descriptor}
+\textit{A 128-dimensional \textit{feature} vector.  Contains the histogram of 8 directions for the 16 blocks of the patch.}
+\end{definition}
+
+\begin{definition}{Waveform}
+\label{def:Waveform}
+\textit{A signal shape, a transient component or an oscillatory wave, with a potential cognitive implication.}
+\end{definition}
+
+\begin{definition}{Signal}
+\label{def:Signal}
+\textit{The EEG Signal. We will refer interchangeably to a multidimensional signal or to a single-channel signal.}
+\end{definition}
+
+\begin{definition}{Image}
+\label{def:Image}
+\textit{The image created from equation.}
+\end{definition}
+
+\begin{definition}{Plot}
+\label{def:Plot}
+\textit{The trace of the EEG signal on the Image.}
+\end{definition}
+
+\end{story}
 
 
-\section{Classification}
+Going back to BCI model, the feature extraction procedure is implemented.  For the classification step.
+
+\subsection{Preprocessing}
+
+\subsection{Calibration}
+
+\subsection{Classification}
 \label{nbnn}
 
 A discriminative~\cite{WolpawJonathanR2012} semi-supervised classification method based on Naive Bayes Nearest Neighbor (NBNN)~\cite{Boiman2008} is applied to classify EEG signals using the features provided by the calculated descriptors.
@@ -258,10 +307,10 @@ The $\gls{bpc}$ is the Best Performing Channel.  This value is determined in the
 %\end{figure}
 
 
-%TODO:Agregar tambien las pruebas sobre rootsift y que la distancia mejor es la coseno demostrar justamente haciendo una prueba sobre EEGWave.
-%TODO:Agregar que el experimento dio perfecto cuando no se controla la varianza.
+%TODO Agregar tambien las pruebas sobre rootsift y que la distancia mejor es la coseno demostrar justamente haciendo una prueba sobre EEGWave.
+%TODO Agregar que el experimento dio perfecto cuando no se controla la varianza.
 
-\section{BCI Algorithm}
+\subsection{Algorithm}
 
 In brief, based on segmented signals from at least two labeled classes, a set of images is first generated.  For each image, keypoints are localized and descriptors are extracted during the training or calibration step of a BCI procedure and they are grouped in KD-tree~\cite{Lowe2004} structures for each one of the classes.  Additionally, the spatial performance is evaluated and the $\gls{bpc}$ value is computed.
 
@@ -368,6 +417,18 @@ Span of a Patch
 
 \begin{align*}
 \Delta_t = \frac{S_t \ \Delta_s}{F_s \ \gamma_t} 
+\end{align*}
+
+Pixel Resolution on the horizontal axis
+
+\begin{align*}
+1 P_x \equiv \frac{1}{F_s  \; \gamma_t}  [\si{s}]
+\end{align*}
+
+Pixel Resolution on the vertical axis
+
+\begin{align*}
+1 P_y \equiv \frac{1}{\gamma}  [\si\mu{V}]
 \end{align*}
 
 \end{subappendices}

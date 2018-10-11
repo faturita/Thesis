@@ -26,23 +26,24 @@ minimagesize=1;
 
 %%
 output = zeros(size(output));
-
 output(125,8) = 50;
+output = zeros(20,8);
+output(10,8) = 50;
+
  
 [eegimg, DOTS, zerolevel] = eegimage(8,output,imagescale,timescale, false,minimagesize);
 figure;imshow(eegimg);
-
-
-
-%%
+CropFigure(5);
+print('standardized','-depsc');
 % Check the influence of the scale of the image on the descriptors
 %[eegimg, DOTS, zerolevel] = eegimage(8,output,imagescale*8,timescale*2, false,minimagesize);
 
 
 [eegimg, DOTS, zerolevel, height] = eegimageinvariant(8,output,imagescale,timescale, false,minimagesize);
 figure;imshow(eegimg);
-  
-
+CropFigure(5);
+print('autoscaled','-depsc');
+fdsfds
 %%
 output = extract(data.X, ...
     (ceil(time1/downsize)), ...
@@ -51,6 +52,30 @@ output = extract(data.X, ...
 [eegimg, DOTS, zerolevel] = eegimage(8,output,imagescale,timescale, false,minimagesize);
 figure;imshow(eegimg);
 imwrite(eegimg,'plottingsample.png');
+
+
+%%
+% Genera los plots autoescalados y estandarizados del capitulo 3.
+time1=data.flash(678,1)/Fs;
+
+output = extract(data.X, ...
+    (ceil(time1/downsize)), ...
+    floor(Fs/downsize)*windowsize);
+
+
+[eegimg, DOTS, zerolevel] = eegimage(8,output,imagescale,timescale, false,minimagesize);
+figure;imshow(eegimg);
+CropFigure(3);
+print('sampleplot','-depsc');
+
+
+figure;plot(output(:,8));
+set(0, 'DefaultAxesFontSize',15);
+hy = ylabel('Voltage [microV]');
+hx = xlabel('Digital Time');
+set(hx,'fontSize',20);
+set(hy,'fontSize',20);
+print('plotvsimage','-depsc');
 fdsfdsfsd
 
 
