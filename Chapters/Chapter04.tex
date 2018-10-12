@@ -134,11 +134,11 @@ The vertical scale can be dynamically adjusted according to the peak-to-peak amp
 \begin{figure}[h!]
 \centering
 \includegraphics[width=10cm]{images/patchgeometry.pdf}
-\caption[Patch Geometry]{The scale of local patch is selected in order to capture the whole transient event.  The size of the patch is $\gls{Sy} \times \gls{Sx}$ pixels. The vertical size consists of $4$ blocks of size $\gls{Sy}$ pixels which should be high enough as to contain the signal $\gls{DeltamuV}$, the peak-to-peak amplitude of the signal component. The horizontal size includes $4$ blocks up to $\gls{Sx}$ and should covert the entire duration in seconds of the signal waveform, $ \gls{lambda} $.   }
+\caption[Patch Geometry]{The scale of local patch is selected in order to capture the whole waveform.  The size of the patch is $\gls{Sy} \times \gls{Sx}$ pixels. The vertical size consists of $4$ blocks of size $\gls{Sy}$ pixels which should be high enough as to contain the signal $\gls{DeltamuV}$, the peak-to-peak amplitude of the signal component. The horizontal size includes $4$ blocks, up to $\gls{Sx}$ pixels, and should cover the entire duration in seconds of the signal waveform, $\gls{lambda}$.   }
 \label{fig:patchgeometry}
 \end{figure}
 
-Figure~\ref{fig:patchgeometry} shows the different parameters of the patch and how they are related to the underlying signal. Once these parameters are set, the size in pixels of the patch can be obtained in both dimensions.  Hence, the Horizontal Patch Size in pixels is
+Figure~\ref{fig:patchgeometry} shows the different parameters of the patch and how they are related to the underlying signal. Once these parameters are set, the size in pixels of the patch can be obtained in both dimensions.  Hence, the horizontal patch size in pixels is
 
 \begin{equation}
 \gls{Sx} = \gls{Deltas} \; \gls{St} + 1.
@@ -216,6 +216,12 @@ Now that we have all the ingredients for the meal, let's cook.  First,  recapitu
 \begin{definition}{Plot}
 \label{def:Plot}
 \textit{The trace of the EEG signal on the Image.}
+\end{definition}
+
+
+\begin{definition}{HIST}
+\label{def:Plot}
+\textit{This the acronym that hitherto is being used to describe the feature extraction method described in this Thesis.}
 \end{definition}
 
 \end{story}
