@@ -1,4 +1,4 @@
-\chapter{Alpha Wave: Spotting Wiggles}
+\chapter{Alpha Wave: spotting wiggles}
 \label{chapter:four}
 \epigraph{The electroencephalogram represents a continuous curve with continuous oscillations in which... one can distinguish larger first order waves with an average duration of 90 milliseconds...}{Berger}
 
@@ -12,6 +12,7 @@ Alpha Waves were the first signals ever spotted from the Electroencephalography.
 
 Figure~\ref{fig:alphawavessignals} shows two records of 8-channels signals.  Figure ~\ref{fig:alphawavessignals}(a) contains the registered alpha waves of a subject with their eyes open while the (b) contains the same information with their eyes closed.  The characteristic pattern of wiggles can be spotted in the latter, while their absence entails the blocking of alpha waves in the former~\cite{Basar2012}. 
 
+
 \begin{figure}[h!]
 \centering
 \subfigure[EEG signals of a relaxed healthy subject with their eyes open.]
@@ -22,7 +23,7 @@ Figure~\ref{fig:alphawavessignals} shows two records of 8-channels signals.  Fig
 \label{fig:alphawavessignals}
 \end{figure}
 
-This important rhythm is an oscillatory process.  As such, it is understood and studied in the frequency-domain.   Figure~\ref{fig:alphaspectrum} show the results of applying the Fast Fourier Transform to two different segments of $10\si{\second}$ length.  For each segment, the Power Spectral Density is calculated and their values are shown on the vertical axis.  Frequency values are shown on the horizontal axis.   On Figure (a) no particular frequency component can be spotted.  However, on Figure (b) the prevalence of the 10-\si{\hertz} alpha wave component can be observed.   
+This important rhythm is an oscillatory process.  As such, it is understood and studied in the frequency-domain.   Figure~\ref{fig:alphaspectrum} shows the results of applying the Fast Fourier Transform to two different segments of $10\si{\second}$ length.  For each segment, the power spectral density is calculated and their values are shown on the vertical axis.  Frequency values are shown on the horizontal axis.   On Figure (a) no particular frequency component can be spotted.  However, on Figure (b) the prevalence of the 10-\si{\hertz} alpha wave component can be observed.   
  
 %As can be seen in Fig. , if we process the Drowsiness dataset with a 8-12Hz band-pass filter and calculate the average power spectral density across subjects and for each channel, we can see how clearly the value corresponding to class 2 (eyes closed) is always higher than the value for class 1 (eyes open), confirming the expected result.  This also verifies how the differentiation information is contained mostly in the frequency-domain.
 
@@ -33,9 +34,11 @@ This important rhythm is an oscillatory process.  As such, it is understood and 
 \centering
 \subfigure[Subject was sit, relaxed in front of the Computer Monitor with his eyes open.]
 {\includegraphics[height=5cm,width=7.5cm]{images/spectrumeyesopenO2.jpg}}
+%{\includegraphics[height=5cm,width=7.5cm]{images/eyesopen.eps}}
 \subfigure[Subject was sit, relaxed in front of the Computer Monitor with his eyes closed. A strong $10 \si{Hz}$ component can be observed.]
 {\includegraphics[height=5cm,width=7.5cm]{images/spectrumeyesclosedO2.jpg}}
-\caption[Spectrum components obtained by the FFT of Alpha Waves]{Spectrum components of a $10 \si{s}$ signal segment of a subject with their eyes open. Horizontal axis shows different frequencies while the vertical axis represents the power spectral density.  In both diagrams a $50 \si{Hz}$ line component can be visualized.} 
+%{\includegraphics[height=5cm,width=7.5cm]{images/eyesclosed.eps}}
+\caption[Alpha Waves Spectrum Components]{Spectrum components of a $10 \si{s}$ signal segment of a subject with their eyes open. Horizontal axis shows different frequencies while the vertical axis represents the power spectral density.  In both diagrams a $50 \si{Hz}$ line component can be visualized.} 
 \label{fig:alphaspectrum}
 \end{figure}
 
@@ -119,7 +122,7 @@ Images and plots are generated according to Section~\ref{Plot}, with an autoscal
 
 \section{Results}
 
-Dataset I was controlled and verified by processing it with a 8-12Hz band-pass filter, and calculating the average power spectral density across subjects for each channels.  It can be observed on Figure \ref{fig:psd}(a)  that values corresponding to class 2 (eyes closed) are always higher than the values obtained for class 1 (eyes open). On the other hand, for the sake of illustration, a scatter plot of the obtained segment's power spectral density for O1 vs O2 for Subject 2 is shown, where a clear separation of classes can be devised.  This proves that there is discriminative information in the frequency-domain.
+Dataset I was controlled and verified by processing it with a 8-12Hz band-pass filter, and calculating the average power spectral density across subjects for all channels.  It can be observed on Figure \ref{fig:psd}(a)  that values corresponding to class 2 (eyes closed) are always higher than the values obtained for class 1 (eyes open). On the other hand, for the sake of illustration, a scatter plot of the obtained segment's power spectral density for O1 vs O2 for Subject 2 is shown, where a separation of classes can be devised.  This proves that there is discriminative information in the frequency-domain.
 
 
 
@@ -133,7 +136,7 @@ Dataset I was controlled and verified by processing it with a 8-12Hz band-pass f
 \label{fig:psd}
 \end{figure}
    
-Results of applying the 10-fold cross validation procedure on the entire set of labeled descriptors is shown on Figure~\ref{fig:alpharesultsdataseti}.  Descriptors from different subjects were used as part of the different training set to classify unknown images, so the obtained accuracy level was subject-independent.  Moreover, a classification level with average above $70\%$ was obtained in occipital channels.
+Results of applying the 10-fold cross validation procedure on the entire set of labeled descriptors is shown on Figure~\ref{fig:alpharesultsdataseti}. Template Dictionaries for Class 1 and Class 2 are formed using training descriptors for all the subjects at the same time.  Hence, the testing step of the cross-validation procedure is implemented subject by subject, but performing a transfer learning between them. The classification is subject-independent, and an average above $70\%$ is obtained in occipital channels.
    
 \begin{figure}[h!]
 \centering
@@ -162,18 +165,18 @@ Results of applying the 10-fold cross validation procedure on the entire set of 
 \centering
 \subfigure[Ten-fold cross-validated accuracies for O1, Oz, O2 and Iz channels for 25 subjects of the Alphanet Dataset. Medians are above $75\%$.]
 {\includegraphics[width=7.5cm, height=5cm]{images/DatasetPhysionetBoxPlots}}
-\subfigure[10-Fold Cross-validated accuracies values for subject number 12, using Runs 1 and 2 of the Alphanet Dataset.]
+\subfigure[Ten-fold cross-validated accuracies values for subject number 12, using Runs 1 and 2 of the Alphanet Dataset.]
 {\includegraphics[width=7.5cm, height=5cm]{images/DatasetPhysionetAccuracyPerChannel}}
-\caption[PhysioNet Dataset Classification Rate]{Classification Accuracy for discriminating windows of 1s ($\gls{N} = 160$) of EEG for Alpha Waves differences between subjects with eyes opened and closed.}
+\caption[PhysioNet Dataset Classification Rate]{Classification Accuracy for segments of 1s ($\gls{N} = 160$) of EEG, between Class 1 and Class 2.}
 \label{fig:alpharesultsdatasetii}
 \end{figure}
 
 
-For the Dataset II, an accuracy median higher than $70\%$ for 25 subjects, also on occipital channels O1, Oz, O2 and Iz (numbered 61 to 64) is obtained while discriminating Runs 1 and 2 (Baseline eyes open vs Baseline eyes closed).  This information can be devised on Figure~\ref{fig:alpharesultsdatasetii}   (a) where boxplots of the averaged classification accuracies for all the subjects are represented.  On the other hand, Figure~\ref{fig:alpharesultsdatasetii}(b) shows the 10-fold validated accuracy for one random subject. A higher accuracy in the classification of the signals can also be seen over occipital channels.
+For the Dataset II, training and testing steps of the cross-validation procedure are implemented subject by subject.  An accuracy median higher than $70\%$ for 25 subjects, also on occipital channels O1, Oz, O2 and Iz (numbered 61 to 64) is obtained while discriminating Runs 1 and 2 (Baseline eyes open vs Baseline eyes closed).  This information can be devised on Figure~\ref{fig:alpharesultsdatasetii}(a) where boxplots of the averaged classification accuracies for all the subjects are represented.  On the other hand, Figure~\ref{fig:alpharesultsdatasetii}(b) shows the 10-fold validated accuracy for one random subject. A higher accuracy in the classification of the signals can also be seen over occipital channels.
 
 \section{Conclusion}
 
-It is known and it was verified here that the discriminative information in EEG alpha waves is mostly contained in the frequency-domain.  In spite of this,  there is enough discriminative information encoded in the wiggles to classify alpha waves solely on the \textit{features} captured by the HIST method, proposed in this Thesis.  Offline alpha waves presence was detected from plots of single segments of EEG signals with an accuracy level 10-fold cross validated of 70\%.
+It is known and it was verified here that the discriminative information in EEG alpha waves is mostly contained in the frequency-domain.  In spite of this,  there is enough information encoded in the alpha waves wiggles to classify signal segments solely on the \textit{features} captured by the HIST method, proposed in this Thesis.  
 
 It was also verified that the presence of oscillatory alpha waves is higher around occipital regions and that an automated procedure which analyze visually the image structure can detect them. This important oscillatory rhythm has many connections with shifting of attention and with volitional changes and is of quite relevance in BCI research.  Particularly, the BCI paradigm of Visual Spatial Covert Attention is a further area of research for this method due to the fact that it is entirely based on analyzing alpha waves. Moreover, the posterior rythm has many implications outside the field of BCI and is very important to assess healthy EEG patterns. The exact meaning of alpha waves is still debated\cite{Ahn2013} and this basic procedure can open the possibility to explore it under a different perspective and verify if they can be effectively tied to some unexpected form of volitional control which may be effective for BCI understanding and improvement.
 

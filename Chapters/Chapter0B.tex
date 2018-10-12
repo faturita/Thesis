@@ -2,12 +2,37 @@
 
 This is a list of noncurated things that we tested and didnt work.
 
+\section{Preprocessing}
+
+\begin{itemize}
+\item Signal filtering with ICA and PCA in different combinations. Visually inspecting components looking for artifacts and setting everything to zero.  It doesn't change too much classification performance.
+\item Different forms of decimation and downsampling.
+\end{itemize}
+
+\section{P300 Signal Averaging}
+
+\begin{itemize}
+\item Changing repetitions patterns. 
+\item Choosing templates by hand.
+\item Weighting templates.
+\item SMOTE to increase the number of samples.
+\item Instaed of using mean for averaging procedures: median, MAD, outlier robust sigmoid transform (Fulcher 2013).
+\end{itemize}
+
 \section{Plotting}
 
 Logarithmic plotting.
+\begin{itemize}
+\item Different scales.
+\item Different window sizes.
+\end{itemize}
 
 \section{Keypoint location}
 
+\begin{itemize}
+\item Using peak-picking to select keypoint location.
+\item Choosing more peaks and selecting the baricenter.
+\end{itemize}
 Keypoint location using the SIFT Detector.
 
 The reason being there are two many descriptors that are generated and the important regions on the image are not salient in terms of angles per se.
@@ -24,4 +49,8 @@ NBNN funciono barbaro como algoritmo, y tambien el uso de la distancia coseno.
 
 Varinates pesadas.  Clasificacion binaria.  SMOTE.   MAD para el averaging.   DTW para mejorar la sincronización.
 
+\begin{itemize}
+\item Radio-test combined with NBNN.
+\item Using multiple descriptors from the query image and from the Template Dictionary.
+\end{itemize}
 
