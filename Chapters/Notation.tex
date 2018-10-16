@@ -2,12 +2,13 @@
 
 \begin{itemize}
 \item $X$ -  a multichannel digital signal $X \in \mathbb{R}^{C \times N}$, with $N$ being the length of the digitalized signal in sample points, and $C$ is the number of available channels.  
-\item $\mathbf{x}(n)$ vector column of EEG matrix is a vector for a sample point $n$ in digital time for every available channel.  
+\item $\mathbf{x}(n)$ - vector column of EEG matrix; vector for a sample point $n$ in digital time for every available channel.  
 \item $x(n,c)$ - a multichannel digital signal as a scalar time-series for a particular channel $c$.  
 \item $x(n)$ - a multichannel digital signal as a scalar time-series emphasizing a single-channel processing scheme, for any $c$.
-\item $\lfloor \cdot \rfloor$ - Floor operation, rounding of the number argument to the closest smaller integer number.
+\item $\lfloor \cdot \rfloor$ - Floor operation, rounding of the numeric argument to the closest smaller integer number.
 \item $\lceil \cdot \rceil$ - Ceil operation, rounding to the closest bigger integer number.
-\item $\lfloor \cdot \rceil$ - Rounding operations to the closest number.
+\item $\lfloor \cdot \rceil$ - Rounding operation to the closest number, with $.5$ rounded to the smaller.
+\item $\left\lVert \cdot \right\rVert$ - Norm of a vector.
 \item $f=\{f_i\}_{1}^{n} $ or $f=\{f_i\}_{i \in J}^{} $ - Concatenation of scalar values to form a multidimensional feature vector $f=\{f_1,f_2,...,f_n\}$.
 \end{itemize}
 

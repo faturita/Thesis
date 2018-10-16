@@ -13,7 +13,7 @@ The plotting of the EEG is intrinsically mixed with the nuisances of the electro
 
 \begin{enumerate}
 \item Sensitivity: also termed gain due the amplification procedure.  Its units are $ \frac{mV}{mm}$.  In the digital form, it is $\frac{\mu V}{pixel}$.
-\item Epoch/Paper speed: the time span that is represented in a single screen.  For paper strips it is usually $10s$.  In its digital counterpart is $ \frac{w}{pixel}$ with $w$ being the length in milliseconds of the signal segment.
+\item Epoch/Paper speed: the time span that is represented in a single screen.  For paper strips it is usually $10s$.  In its digital counterpart is $ \frac{w}{pixel}$ with $w$ being the length in seconds of the signal segment.
 \end{enumerate}
 
 Additionally, on analog plotting montage is essential, though digital plotting allows flexible montage configuration from software.  Montage can be monopolar or bipolar.  On monopolar montages each electrode obtains the potential difference against a common reference. With bipolar montages, electrodes are paired, eventually in chained configurations, and the potential difference is obtained between each pair of electrodes~\cite{EEGIntro}.
@@ -60,7 +60,7 @@ This chapter mostly deal with the coordinates transformation that need to be enf
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=1.2]{images/imagecoordinatesystem.pdf}
-\caption[Image Coordinate System]{The image coordinate system and the mapping from the signal segment.  The origin is the $(0,0)$ position at the upper-left corner of the image.  Time is represented as sample points on the horizontal axis, and the amplitude in $\mu V$ is shown on the vertical axis. Image height $H_y$ and width $W_x$ are obtained based on signal parameters.  The signal's zero-level $z(c)$ is the vertical location where the signal zero value is located. The plot of the signal is obtained by first setting the sample points on the predetermined image locations according to equation \ref{eq:images} and then applying a discrete interpolation algorithm to connect them with straight lines. }
+\caption[Image Coordinate System]{The image coordinate system and the mapping from the signal segment.  The origin is the $(0,0)$ position at the upper-left corner of the image.  Time is represented as sample points on the horizontal axis, and the amplitude in $\mu V$ is shown on the vertical axis. Image height $H_y$ and width $W_x$ are obtained based on signal parameters.  The signal's zero-level $z(c)$ is the vertical location where the signal zero value is located. The plot of the signal is obtained by first setting the sample points on the predetermined image locations according to equation \ref{eq:images} and then applying a discrete interpolation algorithm to connect them with straight lines. The plotted waveform is a K-Complex.}
 \label{fig:imagecoordinatesystem}
 \end{figure}
 
@@ -153,10 +153,11 @@ This is similar to a raster plot~\cite{Cohen2014} but the greyscale image repres
 
 To analyze effectively an EEG signal, many signal segments must be produced.  Hence, the transformation from signal to image is continuously repeated, and many images need to be crafted for the EEG signal under analysis.  How to determine the size of all the images so that they can be effectively compared between them ?  The first option is to regularize the signal and fit in an equal size for every image.  An alternative choice is to autoscale every image according to the zero-level position.  Figure \ref{fig:plottingscheme} shows two sample artificial impulse signals and their  alternative transformation into images.
 
+%TODO hay un tercero que seria no aplicar el zscore y ajustar el tamanio a la amplitud point to point y poner el keypoint en la mitad de la senial.
 \section{Standardized plotting}
 \label{standardized}
 
-The \textit{z-score} is a widely used method to regularize a signal~\cite{Zhang2013}. This standardization procedure is defined for  $1 \leq n \leq N$ and $1 \leq c \leq C$ by doing
+The \textit{z-score} is a widely used method to regularize a signal~\cite{VandenBerg2006,Zhang2013}. This standardization procedure is defined for  $1 \leq n \leq N$ and $1 \leq c \leq C$ by doing
 
 \begin{equation}
 \tilde{x}(n,c) =  \frac{ x(n,c) - \bar{x}(c) }{ \hat{\sigma}(c) } 
@@ -168,7 +169,7 @@ The \textit{z-score} is a widely used method to regularize a signal~\cite{Zhang2
 \section{Autoscaled plotting}
 \label{autoscaled}
 
-This plotting scheme allows each image to adapt to the underlying signal.  The height is set at twice the value of the zero-level, and the signal mean is subtracted from the original signal, producing a vertical displacement, according to the following Equation,
+This plotting scheme allows each image to adapt to the underlying signal.  The signal is centered~\cite{VandenBerg2006} while the image height is autoscaled. The height is set at twice the value of the zero-level, and the signal mean is subtracted from the original signal, producing a vertical displacement, according to the following Equation,
 
 \begin{equation}
 \tilde{x}(n,c) =  x(n,c) - \bar{x}(c) 
@@ -202,7 +203,7 @@ z(c) = \left \lfloor{ \frac{\max_{n} \tilde{x}(n,c)  - \min_{n} \tilde{x}(n,c) }
 
 \subsubsection{Height}
 
-The height of the image is calculated according to the peak-to-peak amplitude of the signal segment,
+The height of the image is calculated according to the peak-to-peak amplitude of the signal segment, and proportional to the amplitude scale factor $\gls{gamma}$:
 
 \begin{equation}
 H_y = \max \left\lfloor \gamma \; \tilde{x}(n,c) \right\rceil  - \min \left\lfloor \gamma \; \tilde{x}(n,c) \right\rceil 
@@ -351,7 +352,7 @@ z_2 = \left \lfloor{ \gamma  \; \tilde{x}(n,c)  }\right \rceil
 \label{eq:verticalpixelation}
 \end{equation}
 
-\noindent where $\gamma$ is the amplitude scale factor parameter, which also affects the height of the image in Equation \ref{eq:height}. A rounding operation $\lfloor  \cdot \rceil$ is applied to obtain an integer representation.  This means that precision is lost on the voltage amplitude. 
+\noindent where $\gamma$ is the amplitude scale factor parameter, which also affects the height of the image in Equation \ref{eq:height}. A rounding operation $\lfloor  \cdot \rceil$ is applied to obtain an integer representation.  This means that precision is lost on the voltage amplitude.  Table~\ref{tab:precisiony} shows some decimal precision values for different $\gls{gamma}$.
 
 Finally, the dynamic range of the digital capturing device is reduced to what is actually needed for each segment, because the height of the image is adjusted dynamically to the peak-to-peak amplitude, regardless of the plotting scheme.
 

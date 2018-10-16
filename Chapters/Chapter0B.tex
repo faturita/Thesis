@@ -1,56 +1,98 @@
 \chapter{Negative Results}
 
-This is a list of noncurated things that we tested and didnt work.
-
-\section{Preprocessing}
+This is a list of non-curated techniques that we have tested.
 
 \begin{itemize}
-\item Signal filtering with ICA and PCA in different combinations. Visually inspecting components looking for artifacts and setting everything to zero.  It doesn't change too much classification performance.
-\item Different forms of decimation and downsampling.
+\setlength\itemsep{-0.8em}
+\item Signal plotting: reducing edge threshold and low contrast threshold.
+\item Siftmatch algorithm on Alpha Waves.
+\item Bag of Words
+\item Clustering of descriptors using kmeans, kmedoids
+\item Extended Multi Siftmatching.  Scoring of descriptors based on the matching performance.
+\item ICA + SIFT
+\item PCA + SIFT
+\tiem Applying ICA to SIFT Descriptors.
+\item Apllying PCA to SIFT Descriptors.
+\item Siftmatch on Bereitschaftspotentials.
+\item Using SURF instead of SIFT
+\item Using GLOH instead of SIFT
+\item Using HOG instead of SIFT
+\item Using PCA-SIFT instead of SIFT
+\item Using dense SIFT instead of SIFT
+\item Using Multiscale Harris Feature Detector instead of SIFT
+\item Using Local Binary Patterns instead of SIFT
+\item Siftmatching
+\item Applying NNDR: Near neighbor distance ratio
+\item Classifying through LDA/QDA/SVM
+\item SIFT Descriptors normalization
+\item Signal z-score
+\item Signal re-referencing
+\item Plotting: Logarithmic plotting, different scales and sizes.
+\item Unsupervised Clustering: Cloud of Descriptors and Bag of Descriptors
+\item Increased SIFT vector with one extra dimension (time).
+\item Classification using voting scheme on clusters:  cluster homogenization.
+\item Density Clustering: DBSCAN and OPTICS
+\item Supersymmetric Clustering (Spike Sorting)
+\teim Clustering Classification using Powel Method.
+\item Unsupervised Learning: clustering, labeling and voting.
+\item DBSCAN Cluster + Clustering Labeling based on Voting + kNN + Voting (it did not generalize well)
+\item Multidimensional Scaling SIFT Descriptors
+\item Using artificial EEG (Jensen-Ret Model)
+\item Raster SIFT Descriptors
+\item Bypass SIFT Detector: Manual keypoint localization
+\item DBSCAN Radio Problem
+\item DBSCAN + SIFT on BP
+\item Using OPTICS to solve DBSCAN radio problem
+\item Voting using weighted descriptors.
+\item Usage of Ensemble Classifiers: stacked.
+\item Clustering using DENCLUE and CLIQUE.
+\item DBSCAN + SIFT on P300/SSVEP and BP
+\item DBSCAN + SIFT on Motor Imagery (BCI Competition IV 2a)
+\item Classification using NBNN algorithm on Alpha Waves and Motor Imagery (It worked!)
+\item Channel Selection using averaging on all channels.
+\item SIFT + NBNN on P300 (BCI Competition II 2003, 2b)
+\item Preprocessing signals: different forms of decimation and downsampling.
+\item SIFT + NBNN on P300 (008-2014)
+\item Signal Averaging (DTW, Savitzky–Golay, boxcar, interleaved, MAD, median, outlier robust sigmoid transform (Fulcher 2013))
+\item Rebalance P300 dataset (Striking a balance..., Tibon2015)
+\item SIFT + NBNN on P300 (003-2015)
+\item Signal averaging, testing on single trial
+\item NBNN + NNDR
+\item Weighted NBNN
+\item SIFT + NBNN using only one keypoint/patch/descritor for image
+\item SIFT: free/fixing octave
+\item SIFT: choosing different octaves
+\item SIFT: force specific orientation
+\item SIFT: enable/disable first octave smoothing
+\item SIFT: enable/disable Gaussian weighting.
+\item SIFT: Rectangular patch
+\item Preprocessing: elimination of segments with big variances.
+\item Adaptative NBNN: weighting descriptors
+\item Plot descriptors with radar plots.
+\item Averaging across trials and channels.
+\item Segments windowing (Hamming).
+\item Baseline removal
+\item Keypoint location: locate it at half the image size (it works!)
+\item Signal Averaging (median)
+\item Decimate the signal and the image while calculating SIFT octaves.
+\item Image scaling on amplitude and time
+\item Change segment size.
+\item Standardize the signal using zscore to fix variance issue while averaging.
+\item Averaging of signals after ICA and PCA filtering
+\item Classifying P300 selecting templates by hand.
+\item Classification using Kohonen Neural Net.
+\item Different scales for the descriptor
+\item Using SMOTE to rebalance the dataset
+\item Classify the hit signal against the 6 others for row and 6 others for column, inverting the NBNN classification scheme (it works!)
+\item Changing to COSINE distance
+\item Keypoint location: varying horizontal locations, peak-picking and choosing barycenter.
+\item Changing to Hellinger distance
+\item Signal resampling
+\item NBNN: extended to K=7 neighbors (works better)
+\item Classification using SWLDA/SVM/NN
+\item Multiclass NBNN for P300
+\item SIFT + NBNN on KComplex
+\item SIFT + NBNN on SSVEP
 \end{itemize}
 
-\section{P300 Signal Averaging}
-
-\begin{itemize}
-\item Changing repetitions patterns. 
-\item Choosing templates by hand.
-\item Weighting templates.
-\item SMOTE to increase the number of samples.
-\item Instaed of using mean for averaging procedures: median, MAD, outlier robust sigmoid transform (Fulcher 2013).
-\end{itemize}
-
-\section{Plotting}
-
-Logarithmic plotting.
-\begin{itemize}
-\item Different scales.
-\item Different window sizes.
-\end{itemize}
-
-\section{Keypoint location}
-
-\begin{itemize}
-\item Using peak-picking to select keypoint location.
-\item Choosing more peaks and selecting the baricenter.
-\end{itemize}
-Keypoint location using the SIFT Detector.
-
-The reason being there are two many descriptors that are generated and the important regions on the image are not salient in terms of angles per se.
-
-Esto provoco que nos inclinacemos a eventos de BCI sincronicos.
-
-
-\section{Classification algorithms}
-
-El esquema natural con siftmatch y con el BagOfWords.
-RootSIFT
-
-NBNN funciono barbaro como algoritmo, y tambien el uso de la distancia coseno.
-
-Varinates pesadas.  Clasificacion binaria.  SMOTE.   MAD para el averaging.   DTW para mejorar la sincronización.
-
-\begin{itemize}
-\item Radio-test combined with NBNN.
-\item Using multiple descriptors from the query image and from the Template Dictionary.
-\end{itemize}
 
