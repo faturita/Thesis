@@ -351,7 +351,8 @@ Hence, given a new unlabeled signal segment, an image plot is generated as well,
 
 This section provides a mapping cheat-sheet to convert and obtain the parameters of the algorithm for a given set of signal parameters.
 
-The input signal parameters are $N$,$F_s$, $\lambda$ and the peak-to-peak amplitude $\gls{DeltamuV}$ of the waveform to study. The unit length of the patch is $\Delta_s = \sqrt{2} \; 15$ and as has been earlier mentioned, depends on the particular SIFT implementation.
+The input signal parameters are $N$,$F_s$, $\lambda$ and the peak-to-peak amplitude $\gls{DeltamuV}$ of the waveform to study. The unit length of the patch is $\Delta_s = \sqrt{2} \; 15$ and as has been earlier mentioned, depends on the particular SIFT implementation.\\
+
 
 Output parameters are: 
 $\gls{gamma}$
@@ -362,20 +363,20 @@ $\gls{St}$
 $\gls{Sv}$
 $\gls{Sy}$
 $\gls{Sx}$
-$\gls{kp}$
+$\gls{kp}$\\
 
 Mappings:\\
 
 Amplitude scale factor
 
 \begin{align*}
-\gamma \equiv \frac{H_y}{\Delta \mu V}  
+\gamma = \frac{H_y}{\Delta \mu V}  
 \end{align*}
 
 Time scale factor
 
 \begin{align*}
-\gamma_t \equiv \frac{W_x}{F_s \; w}  
+\gamma_t = \frac{W_x}{F_s \; w}  
 \end{align*}
 
 %\begin{equation}
