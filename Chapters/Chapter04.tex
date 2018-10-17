@@ -1,13 +1,13 @@
 \chapter{The Histogram of Gradient Orientations of Signal Plots}
 \label{chapter:three}
 
-This Chapter introduces the EEG feature extraction procedure based on the Histogram of Gradient Orientations.  This method is grounded on an extension and modification of the SIFT~\cite{Lowe2004} Descriptor which is used in Computer Vision to extract and map local regions of an image.  At the same time, this Chapter brings to completion the previous one, describing how to mine the information from the Plot and build a feature out of it.
+This Chapter introduces the EEG feature extraction procedure based on the Histogram of Gradient Orientations.  This method is grounded on an extension and modification of the SIFT~\cite{Lowe2004} Descriptor which is used in Computer Vision to extract and map local regions of an image.  At the same time, this Chapter brings to completion the previous one, describing how to mine the information from a plot and build a feature out of it.
 
 \section{Introduction}
 
 %sinuplot, spectrogram, scalogram
 
-The work of Edelman, Intrator and Poggio~\cite{Edelman1997} on how the visual cortex sense features was the inspiration to the development of an algorithm to identify and decode salient local information from image regions.  The Scale Invariant Feature Transform (SIFT) method is composed of two parts, the SIFT Detector and the SIFT Descriptor.  The first is the procedure to identify relevant areas of an image.  The second is the procedure to describe and characterize a region of an image using the Histogram of Gradient Orientations~\footnote{It should not to be confused with HOG~\cite{Dalal2005}, the Histogram Of Gradients which is another method from Computer Vision based on similar ideas.  Actually, the descriptor part of the SIFT Method has no specific name, but it is based on building a histogram of gradient orientations.}.  The SIFT algorithm is biomimetically inspired in how the visual cortex detects shapes by analyzing orientations~\cite{Edelman1997}.  The patch description is also based on the Theory of Receptive Fields and other related ideas~\cite{Lindeberg2013}.
+The work of Edelman, Intrator and Poggio~\cite{Edelman1997} on how the visual cortex sense features was the inspiration to the development of an algorithm to identify and decode salient local information from image regions.  The Scale Invariant Feature Transform (SIFT) method is composed of two parts, the SIFT Detector and the SIFT Descriptor.  The first is the procedure to identify relevant areas of an image.  The second is the procedure to describe and characterize a region of an image (patch) using the Histogram of Gradient Orientations~\footnote{It should not to be confused with HOG~\cite{Dalal2005}, the Histogram Of Gradients which is another method from Computer Vision based on similar ideas.  Actually, the descriptor part of the SIFT Method has no specific name, but it is based on building a histogram of gradient orientations.}.  The SIFT algorithm is biomimetically inspired in how the visual cortex detects shapes by analyzing orientations~\cite{Edelman1997}.  The patch description is also based on the Theory of Receptive Fields and other related ideas~\cite{Lindeberg2013}.
 
 \pagebreak
 
@@ -28,7 +28,7 @@ Pixel intensity gradients can be obtained from an image by applying the Sobel fi
 
 A local representation of the signal shape within the patch can be described by obtaining the gradient orientations on each of the $16$ blocks and creating a histogram of gradients.  In order to calculate the histogram, the interval $[0-360]$ of possible angles is divided in $8$ bins, each one at $45$ degrees.  Figure~\ref{fig:sampledescriptor}(d) shows a sample histogram obtained for eight orientations.
 
-Hence, for each spacial bin $ i,j = \{0,1,2,3\} $, corresponding to the indexes of each block $B_{i,j}$,  the orientations are accumulated in a  $3$-dimensional histogram $h$ through the following equation: 
+Hence, for each spatial bin $ i,j = \{0,1,2,3\} $, corresponding to the indexes of each block $B_{i,j}$,  the orientations are accumulated in a  $3$-dimensional histogram $h$ through the following equation: 
  
 
 \begin{equation}
@@ -48,7 +48,7 @@ Hence, for each spacial bin $ i,j = \{0,1,2,3\} $, corresponding to the indexes 
 \label{eq:wang}
 \end{equation}
 
-\noindent where $x_i$ and $y_i$ are the spatial bin centers located in $ x_i,y_i \in \{-\frac{3}{2},-\frac{1}{2},\frac{1}{2},\frac{3}{2}\} $. The function parameter $\mathbf{v} = ( v_x, v_y ) $ is a vector variable and $\alpha$ a scalar variable.  On the other hand, $r$ is an integer that can vary freely in the set $\{ -1, 0, 1 \} $ and allows the argument $\alpha$ to be unconstrained in terms of its values in radians. The interpolating function $\omega(\cdot)$ is defined as:
+\noindent where $x_i$ and $y_i$ are the spatial bin centers located in $ x_i,y_i \in \{-\frac{3}{2},-\frac{1}{2},\frac{1}{2},\frac{3}{2}\} $. The function parameter $\mathbf{v} = ( v_x, v_y ) $ is a vector variable and $\alpha$ a scalar variable.  The value of  $\gls{Deltas}$ is the unit length of the patch, which is described in the section~\ref{patchgeometry}.  On the other hand, $r$ is an integer that can vary freely in the set $\{ -1, 0, 1 \} $ and allows the argument $\alpha$ to be unconstrained in terms of its values in radians. The interpolating function $\omega(\cdot)$ is defined as:
 
 \begin{equation}
 \omega(z) = \max(0,|z|-1).
@@ -57,17 +57,17 @@ Hence, for each spacial bin $ i,j = \{0,1,2,3\} $, corresponding to the indexes 
 
 These binning functions conform a trilinear interpolation that has a combined effect of sharing the contribution of each oriented gradient between their eight adjacent bins in a tridimensional cube in the histogram space, and zero everywhere else.  This procedure is important to avoid quantization issues that may appear with the histogram (i.e. elimination of intermediate values).
 
-Lastly, on Equation~\ref{eq:ij} the fixed value of $ \frac{5}{\gls{Deltas}} $ allows a unit conversion from pixel to units-of-patch which goes from $-\frac{5}{2}$ to $+\frac{5}{2}$, by using the unit length of the patch $\gls{Deltas}$, which is described in the section~\ref{patchgeometry}. As the patch has  $16$ blocks and  $8$ bin angles are considered, a feature $\gls{d}$ called \textit{descriptor} of $128$ dimension is obtained. This technique is a modification of Lowe's SIFT Descriptor method.
+Lastly, on Equation~\ref{eq:ij} the fixed value of $ \frac{5}{\gls{Deltas}} $ allows a unit conversion from pixel to units-of-patch which goes from $-\frac{5}{2}$ to $+\frac{5}{2}$, by using the unit length of the patch $\gls{Deltas}$.  As the patch has  $16$ blocks and  $8$ bin angles are considered, a feature $\gls{d}$ called \textit{descriptor} of $128$ dimension is obtained. This technique is a modification of Lowe's SIFT Descriptor method.
 %It can be observed that the histogram is computed by multiplying by $ |J(\mathbf{p})| $, so the method considers both, the magnitude and the orientation of the gradient vector. 
 
-Figure~\ref{fig:sampledescriptor} shows an example of a patch and a scheme of the histogram computation. In (a) a plot of the signal and the patch centered around the keypoint is shown. In (b), the vector field of oriented gradients is shown. Finally, in (c) an enlarged image plot is shown where the oriented gradient vector for each pixel can be seen. In Figure~\ref{fig:orientationsfull} the possible orientations on each patch are illustrated.  The first eight orientations of the first block, are labeled from $1$ to $8$ clockwise. The orientations of the second block $ B_{1,2} $ are labeled from $9$ to $16$.  This labeling continues left-to-right, up-down until the eight orientations for all the sixteen blocks are assigned. They form the corresponding $\mathbf{kp}$-descriptor of $128$ coordinates.
+In Figure~\ref{fig:orientationsfull} the possible orientations on each patch are illustrated.  The first eight orientations of the first block, are labeled from $1$ to $8$ clockwise. The orientations of the second block $ B_{1,2} $ are labeled from $9$ to $16$.  This labeling continues left-to-right, up-down until the eight orientations for all the sixteen blocks are assigned. They form the corresponding $\mathbf{kp}$-descriptor of $128$ coordinates.
 
 \begin{figure}[h!]
 \centering
 \subfigure[Example of a plot of the signal, a keypoint and the corresponding patch.]
 {\includegraphics[width=7cm, height=6cm]{images/signalpatchkeypoint.png}}
 \subfigure[A Sobel filter is applied to the image and a vector field of oriented gradients is calculated for each pixel.]
-{\includegraphics[width=7cm, height=6cm]{images/gradientsdescriptors.png}}
+{\includegraphics[width=7cm, height=6.1cm]{images/gradientsdescriptors.png}}
 \subfigure[Zoomed-in vector field of oriented gradients around the signal plot.  Each pixel is assigned an orientation and magnitude.]
 {\includegraphics[width=7cm, height=6cm]{images/samplegradients.png}}
 \subfigure[Eight oriented bins are used on each block to identify the oriented gradients within each block.]

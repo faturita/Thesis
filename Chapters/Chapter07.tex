@@ -4,7 +4,7 @@
 
 \section{Introduction}
 
-The P300~\cite{Farwell1988,Knuth2006} is a positive deflection of the EEG signal which occurs around $300$ ms after the onset of a rare and deviant stimulus that the subject is expected to attend.  It is produced under the oddball paradigm~\cite{WolpawJonathanR2012} and it is consistent across different subjects. It has a lower amplitude  ($\pm 5 \mu V $) compared to basal EEG activity, reaching a Signal to Noise Ratio (SNR) of around $-15$ db estimated based on the amplitude of the P300 response signal divided by the standard deviation of the background EEG activity~\cite{Hu2010}.  
+The P300~\cite{Bashore1991,Farwell1988,Knuth2006} is a positive deflection of the EEG signal which occurs around $300$ ms after the onset of a rare and deviant stimulus that the subject is expected to attend.  It is produced under the oddball paradigm~\cite{WolpawJonathanR2012} and it is consistent across different subjects. It has a lower amplitude  ($\pm 5 \mu V $) compared to basal EEG activity, reaching a Signal to Noise Ratio (SNR) of around $-15$ db estimated based on the amplitude of the P300 response signal divided by the standard deviation of the background EEG activity~\cite{Hu2010}.  
 
 This signal can be cleverly utilized to implement a speller application by means of a Speller Matrix. Farwell and Donchin P300 Speller \cite{Farwell1988} is one the most used BCI paradigms to implement a thought translation device and to send commands to a computer in the form of selected letters, similar to typing on a virtual keyboard.  This procedure exploits this cognitive phenomena by detecting along the EEG trace of a person which is focusing on a sequence of two different visual flashing stimulus, the distinctive P300 transient component each time the expected stimulus flashes.  On the P300 Speller, rows and columns of a 6x6 matrix flash randomly but only the flashing of a column or row where the letter that a user is focusing will trigger concurrently the P300 ERP.
 
@@ -27,19 +27,16 @@ Figure~\ref{fig:p300matrix} shows an example of the Speller Matrix used in the O
 
 In this section, the signal preprocessing, the ERP Extraction, and the Speller Matrix identification are described.  Figure~\ref{fig:classification} outlines a scheme of this process. Additionally, the experiments that were conducted, are also expounded.
 
-Up to this point, EEG signals were treated in \textit{raw} form.  For the signals studied in Chapter~\ref{chapter:four} and \ref{chapter:five} no preprocessing step was necessary. The reason being, the oscillatory processes that are studied contain a waveform that is detected from raw signal plots.  Additionally, for the sake of analyzing waveforms as they are, purposely intensive preprocessing procedure are avoided.  However, this is not the case with the P300 Wave.  The preprocessing step, and more importantly an enhancement of the SNR through signal averaging, is mandatory in order to extract the ERP waveform.
-
 \subsection{Preprocessing Pipeline} \label{Pipeline}
+
+Up to this point, EEG signals were treated in \textit{raw} form.  For the signals studied in Chapter~\ref{chapter:four} and \ref{chapter:five} no preprocessing step was necessary. The reason being, the oscillatory processes that are studied contain a waveform that is detected from raw signal plots.  Additionally, for the sake of analyzing waveforms as they are, purposely intensive preprocessing procedure are avoided.  However, this is not the case with the P300 Wave.  The preprocessing step, and more importantly an enhancement of the SNR through signal averaging, is mandatory in order to extract the ERP waveform.
 
 \begin{figure}[htb]
 \centering
 \includegraphics[width=15cm]{images/classificationgraph.pdf}
-\caption[P300 Speller Matrix Letter Identification]{For each column and row, an averaged, standardized and scaled signal $\tilde{x}^l(n,c)$ is obtained from the segments $S_i^l$  corresponding to the $k_a$ intensification sequences with $ 1 \leq i \leq k_a $ and location $l$ varying between $1$ and $12$. From the averaged signal, the image $I^{(l,c)}$ of the signal plot is generated and each descriptor is computed.  By comparing each descriptor against the set of templates, the P300 ERP can be detected, and finally the desired letter from the matrix can be inferred.}
+\caption[P300 Speller Matrix Letter Identification]{For each column and row, an averaged, standardized and scaled signal $\tilde{x}^l(n,c)$ is obtained from the segments $S_i^l$  corresponding to the $\gls{ka}$ intensification sequences with $ 1 \leq i \leq k_a $ and location $l$ varying between $1$ and $12$. From the averaged signal, the image $I^{(l,c)}$ of the signal plot is generated and each descriptor is computed.  By comparing each descriptor $\mathbf{q}$  against the set of templates, the P300 ERP can be detected, and finally the desired letter from the matrix can be inferred.}
 \label{fig:classification}
 \end{figure}
-
-%A trial, as defined by the BCI2000 platform~\cite{Schalk2004}, is every attempt to select a letter from the speller. 
-%It is composed of signal segments $S_{i}^l$ corresponding to $k_a$ repetitions of flashes of 6 rows and $k_a =10$ repetitions of flashes of 6 columns of the matrix, yielding 120 repetitions. 
 
 The data obtained by the capturing device is digitalized and a multichannel EEG signal is constructed. The $6$ rows and $6$ columns of the Speller Matrix are intensified providing the visual stimulus.  The number of a row or column is a location. A sequence of twelve randomly permuted locations $l$ conform an intensification sequence. The whole set of twelve intensifications is repeated $\gls{ka}$ times.
 
@@ -52,7 +49,7 @@ The data obtained by the capturing device is digitalized and a multichannel EEG 
 \item \textbf{Signal Averaging}: \label{Average}  The P300 ERP is deeply buried under basal EEG so the standard approach to identify it is by point-to-point averaging the time-locked stacked signal segments.  Hence the values which are not related to, and not time-locked to the onset of the stimulus are canceled out~\cite{Liang2008}.  
 
 \begin{story}[Balanced Information Transfer Rate]
-The procedure described in~\ref{Average} determines the operation of any P300 Speller.  In order to obtain an improved signal in terms of its SNR,  repetitions of the sequence of row/column intensification are necessary.  And, at the same time, as long as more repetitions are needed, the ability to transfer information faster is diminished, so there is a trade-off that must be acutely determined~\cite{Krusienski2006}.
+This signal averaging procedure determines the operation of any P300 Speller.  In order to obtain an improved signal in terms of its SNR,  repetitions of the sequence of row/column intensification are necessary.  And, at the same time, as long as more repetitions are needed, the ability to transfer information faster is diminished, so there is a trade-off that must be acutely determined~\cite{Krusienski2006}.
 \end{story}
 
 In brief, the procedure to obtain the point-to-point averaged signal goes as follows:
@@ -65,13 +62,15 @@ In brief, the procedure to obtain the point-to-point averaged signal goes as fol
 x^l(n,c)= \frac{1}{k_a}\sum_{i=1}^{k_a}S_i^l(n,c) 
 \label{averaging}
 \end{equation}  
-for $1 \leq n \leq N$ and for the channels $1 \leq c \leq C$. Once this is compute,  the averaged signal $x^l(n,c)$ can be standardized using the procedure from Section~\ref{standardized}, conforming $\tilde{x}^l(n,c)$ for the twelve locations $ 1 \leq l \leq 12$.
+for $1 \leq n \leq N$ and for the channels $1 \leq c \leq C$. Once this is computed,  the averaged signal $x^l(n,c)$ can be standardized using the procedure from Section~\ref{standardized}, conforming $\tilde{x}^l(n,c)$ for the twelve locations $ 1 \leq l \leq 12$.
 \end{enumerate}
 \end{itemize}
 
 
 \subsection{Speller Matrix letter Identification}
 \label{Classification}
+
+The speller matrix operation is divided in three parts.  First, the procedure to extract the ERP from EEG signals is detailed.  These ERPs waveforms are represented as descriptors.  Second, these descriptors are used to build the template dictionary $\gls{T}$ during the calibration phase of the speller.  And finally, the spelled letter is identified by extracting descriptors from new signals, and using the classification algorithm to identify them.
 
 \subsubsection{P300 ERP Extraction}
 Segments corresponding to row flickering are labeled 1-6, whereas those corresponding to column flickering are labeled 7-12.  The extraction process has the following steps:
@@ -80,7 +79,7 @@ Segments corresponding to row flickering are labeled 1-6, whereas those correspo
 %\setcounter{enumi}{3}
 
 \item \textbf{Step A:}\label{pasoa} First highlight rows and columns from the matrix in a random permutation order and obtain the Ensemble Average as detailed in steps~\ref{paso1}, \ref{paso2} and \ref{paso3} in Section \ref{Average}.
-\item \textbf{Step B:}\label{paso4} Plot the signals $\tilde{x}^l(n,c)$,  $1 \leq n \leq n_{max}$, $1 \leq c \leq C $,  according to Section~\ref{Plot} in order to generate the images $I^{(l,c)}$ for rows and columns $1 \leq l \leq 12$.
+\item \textbf{Step B:}\label{paso4} Plot the signals $\tilde{x}^l(n,c)$,  $1 \leq n \leq N$, $1 \leq c \leq C $,  according to Section~\ref{Plot} in order to generate the images $I^{(l,c)}$ for rows and columns $1 \leq l \leq 12$.
 
 \item \textbf{Step C:} Obtain the descriptors $ \mathbf{d}^{(l,c)}$ for rows and columns from $I^{(l,c)}$  in accordance to the method described in Section~\ref{SIFT}. 
 
@@ -90,31 +89,31 @@ Segments corresponding to row flickering are labeled 1-6, whereas those correspo
 
 A trial, as defined by the BCI2000 platform~\cite{Schalk2004}, is every attempt to select just one letter from the speller.  A set of trials is used for calibration and once the calibration is complete it can be used to identify new letters from new trials.
 
-During the calibration phase, two descriptors $ \mathbf{d}^{(l,c)}$ are extracted for each available channel, corresponding to the locations $l$ of a selection of one previously instructed letter from the set of calibration trials.  These descriptors are the P300 templates, grouped together in a template set called $ T^c $.   The set is constructed using the steps described in Section \ref{Average} and the steps A, B and C of the P300 ERP extraction process.
+During the calibration phase, two descriptors $ \mathbf{d}^{(l,c)}$ are extracted for each available channel, corresponding to the locations $l$ of a selection of one previously instructed letter from the set of calibration trials.  These descriptors are the P300 templates, grouped together in the template set $ \gls{T}^c $.   This set is constructed using the steps described in Section \ref{Average} and the steps A, B and C of the P300 ERP extraction process.
 
-Additionally, the best performing channel, $\gls{bpc}$ is identified based on the the channel where the best Character Recognition Rate is obtained.
+Additionally, the best performing channel, $\gls{bpc}$ is identified based on the the channel where the best character recognition rate is obtained.
 
 \subsubsection{Letter identification}
 
-In order to identify the selected letter, the template set $T^{bpc}$ is used as a database.  Thus, new descriptors are computed and they are compared against the descriptors belonging to the calibration template set $T^{bpc}$.
+In order to identify the selected letter, the template set $T^{bpc}$ is used as a database.  Thus, new descriptors $\mathbf{q}^{(l,bpc)} $ are computed for each location $l$ and they are compared against the descriptors belonging to the calibration template set $T^{bpc}$.
 
 \begin{itemize}
 
 \item \textbf{Step D:} Match to the calibration template $T^{bpc}$ by computing  
 
 \begin{equation}
-\hat{row} = \arg \min_{l \in \{1,\dots,6\}} \sum_{q \in N_T(\mathbf{d}^{(l,bpc)})}^{} {\left\lVert q -  \mathbf{d}^{(l,bpc)} \right\rVert}  ^{2}
+\hat{row} = \arg \min_{l \in \{1,\dots,6\}} \sum_{h=1}^{\gls{k}}  {\left\lVert \mathbf{q}^{(l,bpc)} -  \mathbf{d}_{h}^{(bpc)} \right\rVert}  ^{2}
 \label{eq:multiclassificationrow}
 \end{equation}
 
 \noindent and
 
 \begin{equation}
-\hat{col} = \arg \min_{l \in \{7,\dots,12\}} \sum_{q \in N_T(\mathbf{d}^{(l,bpc)})}^{} {\left\lVert q -  \mathbf{d}^{(l,bpc)} \right\rVert} ^{2}
+\hat{col} = \arg \min_{l \in \{7,\dots,12\}} \sum_{h=1}^{\gls{k}}  {\left\lVert \mathbf{q}^{(l,bpc)} -  \mathbf{d}_{h}^{(bpc)} \right\rVert}  ^{2}
 \label{eq:multiclassificationcol}
 \end{equation}
 
-\noindent where $N_T(\mathbf{d}^{(l,bpc)})$  is defined as $N_T(\mathbf{d}^{(l,bpc)}) = \{\mathbf{d} \in T^{bpc} / $  is the k-nearest neighbor of $ \mathbf{d}^{(l,bpc)} \}$ for the best performing channel.  This set is obtained by sorting all the elements in $T^{bpc}$ based on distances between them and $\mathbf{d}^{(l,bpc)}$, choosing the $k$ with smaller values, with $k$ a parameter of the algorithm.  This procedure is an adapted version of the k-NBNN  algorithm~\cite{Boiman2008} described in Section~\ref{nbnn}, to the letter identification required in the BCI-Based P300 Speller implementation.
+\noindent with $\mathbf{d}_{h}^{(bpc)}$ belonging to the set $N_T( \mathbf{q}^{(l,bpc)}  )$, which is defined as $N_T(\mathbf{q}^{(l,bpc)} ) = \{ \mathbf{d}^{(bpc)}  / $  is the $\gls{k}$-nearest neighbor of $ \mathbf{q}^{(l,bpc)} \}$ for the best performing channel.  This procedure is an adapted version of the k-NBNN  algorithm~\cite{Boiman2008} described in Section~\ref{nbnn}, to the letter identification required in the BCI-Based P300 Speller implementation.
 
 \end{itemize}
 By computing the aforementioned equations, the letter of the matrix can be determined from the intersection of the row $ \hat{row} $ and column $ \hat{col} $. 
@@ -125,13 +124,13 @@ Figure~\ref{fig:classification} shows a scheme of this process.
 
 %In the following sections the characteristics of the datasets and parameters of the identification algorithm are described. 
 
-To verify the validity of the proposed framework and method over transients events, the public dataset 008-2014~\cite{Riccio2013} published on the BNCI-Horizon website~\cite{Brunner2014} by  IRCCS Fondazione Santa Lucia, is used. A BCI Simulation is performed to decode the spelled words from the provided signals.
+To verify the validity of the proposed framework and method over transients events, experiments over four different datasets are performed.  The first three datasets use a similar experimentation protocol, whereas the last one is from a BCI Competition.
+
+First, the public dataset 008-2014~\cite{Riccio2013} published on the BNCI-Horizon website~\cite{Brunner2014} by  IRCCS Fondazione Santa Lucia, is used. A BCI Simulation is performed to decode the spelled words from the provided signals.
 
 Additionally, an own dataset with the same experimental conditions is generated.  A different BCI Simulation is implemented and the decoding of letters is performed. 
 
-%Is it possible to classify and implement a P300 ERP Speller using only the waveform structure of the signal ? Which algorithm perform better at this even when segment latency variations and component amplitudes issues are present ?
-
-In order to verify how this method performs against similar methods that also use the structure of the waveform, a P300 ERP template, obtained from a ALS patients dataset, is superimposed into a distinct EEG stream.  This trace was experimentally obtained by a subject which was observing the flashing of the stimulus matrix during a P300 Speller procedure but did not engage in focusing on any letter in particular. Everything is there, except the P300 ERP component. Along the EEG stream, the markers information was used to localize the \textit{True} segments where the P300 should have been found, and those timing locations are used to superimpose the extracted ERP waveform.  By implementing this pseudo-real approach, it is possible to effectively control null-signals and to adjust the shape of this evoked potential in accordance to similar procedures used in other works \cite{Ouyang2017,Jaskowski2000,QuianQuiroga2003}.
+In order to verify how this method performs against other similar methods that also use the structure of the waveform, a pseudo-real dataset is constructed where the characteristics of the ERP are carefully adjusted simulating different cognitive mechanisms that can alter their shape.
 
 Finally, the performance of the method presented in this Thesis is tested against one of the dataset published by the BCI Competitions. 
 
@@ -174,17 +173,18 @@ Gel-based active electrodes (g.LADYbird, g.Tec, Austria) are used on the same po
 
 \subsubsection{P300 Pseudo-Real Dataset Generation}
 
-The template ERP is acquired from the Subject Number $8$ of the public dataset 008-2014  \cite{Riccio2013} published on the BNCI-Horizon website \cite{Brunner2014} by IRCCS Fondazione Santa Lucia. Segments from the EEG signal containing the ERP are extracted for the trial number $2$, and they are point-to-point coherently averaged.  This P300 ERP can be seen in Figure  \ref{fig:erptemplate1}. 
+To construct this artificial dataset, a P300 ERP template, obtained from the ALS patients dataset, is superimposed into a distinct EEG stream with null-signals.  This EEG trace was experimentally obtained by a subject which was observing the flashing of the stimulus matrix during a P300 Speller procedure but did not engage in focusing on any letter in particular. Everything is there, except the P300 ERP component. Along the EEG stream, the markers information was used to localize the \textit{True} segments where the P300 should have been found, and those timing locations are used to superimpose the extracted ERP waveform.  By implementing this pseudo-real approach, it is possible to effectively control null-signals and to adjust the shape of this evoked potential in accordance to similar procedures used in other works \cite{Ouyang2017,Jaskowski2000,QuianQuiroga2003}.
+
+The template ERP is acquired from the Subject Number $8$ of the public dataset 008-2014 of ALS patients.  Segments from the EEG signal containing the ERP are extracted for the trial number $2$, and they are point-to-point coherently averaged.  This P300 ERP can be seen in Figure~\ref{fig:erptemplate1}. 
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=12cm]{images/erptemplate1.eps}
-\caption[P300 ERP Template]{ERP Template obtained from the coherent point-to-point ensemble average from the signals of Subject Number Eight of the BNCI Horizon public dataset 008-2014. The template is $1s$ long which is 256 sample points, and the eight channels are superimposed with different colors.  The P3b component can be seen around the sample index $150$ and $200$.}
+\caption[P300 ERP Template]{ERP Template obtained from the coherent point-to-point ensemble average from the signals of Subject Eight of the BNCI Horizon public dataset 008-2014. The template is $1$-second long which is 256 sample points, and the eight channels are superimposed with different colors.  Vertical axis represents amplitude in $\mu V$ while horizontal axis reflects discrete sample points. The P3b component can be seen around the sample index $150$ and $200$.}
 \label{fig:erptemplate1}
 \end{figure}
 
-
-An EEG stream with null-P300 signal is obtained by the following procedure: 
+The EEG stream with null-P300 signal is obtained by the following procedure: 
 A subject participant is recruited voluntarily and the experiment is conducted anonymously in accordance with the Declaration of Helsinki published by the World Health Organization.  No monetary compensation is handed out and she/he agrees and signs a written informed consent.  This study is approved by the \textit{Departamento de Investigación y Doctorado, Instituto Tecnológico de Buenos Aires (ITBA)}.  The participant is healthy and have normal or corrected-to-normal vision and no history of neurological disorders. This voluntary subject is aged between 20-30 years old.  EEG data is collected in a single recording session. She/He is seated in a comfortable chair, with her/his vision aligned to a computer screen located one meter in front of her/him.  The handling and processing of the data and stimuli is conducted by the OpenVibe platform~\cite{Renard2010}.  Gel-based active electrodes (g.LADYbird, g.Tec, Austria) are used on locations Fz, Cz, Pz, Oz, P3,P4, PO7 and PO8 according to the 10-20 international system.  Reference is set to the right ear lobe and ground is preset as the AFz position.   Sampling frequency is set to 250 Hz.
 
 The participant is instructed to passively watch the flashing screen while not focusing on any particular letter.  The experimental conditions are the same as those described for previous datasets.  A questionnaire is handed out at the end of the experiment with questions about how the participant felt during it, without giving more details.  
@@ -205,7 +205,7 @@ Figure~\ref{fig:gains} shows a $5s$ sample of the EEG trace obtained with the MN
 \label{fig:gains}
 \end{figure}
 
-The following experiments are conducted with this dataset.
+Inter- and Intra-trial variability, with eventually cognitive implications, can alter the shape of the evoked P300 potential.  Hence, it is of interest to assess whether at which extend waveform-based algorithm can handle these natural variations. Using this dataset, the following experiments are conducted to simulate these known alterations over waveform components and to verify the performance of the algorithms expounded on Section~\ref{waveformalgorithms}, \textit{MP1}, \textit{MP2}, \textit{PE}, \textit{SHCC} and the one proposed by this Thesis: \textit{HIST}.
 
 \begin{itemize}
 \item Experiment 1 - Letter Identification Performance: the letter identification performance of each one of these methods on the artificially generated pseudo-real dataset.
@@ -217,11 +217,11 @@ The following experiments are conducted with this dataset.
 \begin{figure}[h!]
 \centering
 \includegraphics[width=1.0\linewidth]{images/GainCheck.eps}
-\caption[P300 Averaged Segments for a single-intensification sequence]{Point-to-point averaged signals for the first letter identification trial.  The ERP is superimposed on classes 3 and 9.  Class 3 is obtained while averaging the segments where the row of the speller matrix is intensified whereas class 9 is calculated from the intensification of the corresponding column.}
+\caption[P300 Averaged Segments for a single-intensification sequence]{Point-to-point averaged signals for the first letter identification trial.  The ERP is superimposed on locations 3 and 9.  Location $l=3$ is obtained while averaging the segments where the row of the speller matrix is intensified whereas locations 9 is calculated from the intensification of the corresponding column.}
 \label{fig:gaincheck}
 \end{figure}
 
-The classification method Support Vector Machine SVM with a linear kernel, is added for comparison as control using a feature $f$ constructed by normalizing the signal on each channel~\cite{Krusienski2006}.  This method has been proved efficient in decoding P300 in several BCI Competitions~\cite{Kaper2004}. 
+The classification method Support Vector Machine \textit{SVM} with a linear kernel, is added for comparison as control using a feature $f$ constructed by normalizing the signal on each channel~\cite{Krusienski2006}.  This method has been proved efficient in decoding P300 in several BCI Competitions~\cite{Kaper2004}. 
 
 All these experiments are executed using a Cross-Validation procedure dividing the letter to spell in two sets, preserving the structure of the letter identification trials. Spelling letters are scrambled while the order and group of each intensification sequence is preserved.
 
@@ -248,13 +248,13 @@ The P300 event can have a span $\gls{lambda}$ of $400$ ms and its peak-to-peak a
 %\label{eq:mapping1}
 %\end{equation}
 
-As the peak-to-peak amplitude is small, to have a better resolution, the amplitude scales parameter are selected to be  $ \gamma = 4 $, and $\gls{gammat} = 4$.  With this configuration, the local patch and the descriptor can identify events of 9 $ \mu V $ of amplitude, with a span of $ \lambda = 0.56$ seconds.  This also determines that $ 1 $ pixel represents $ \frac{1}{\gamma}= \frac{1}{4} \mu V $ on the vertical direction, and $\frac{1}{F_s \ \gamma}=\frac{1}{64}$ seconds on the horizontal direction. The keypoints  $\gls{kp}$  are located at $ (x_{k_p}, y_{k_p} )= ( 0.55 F_s \ \gamma, z^l(c) )= (35,  z^l(c)) $ for the corresponding channel $c$ and location $l$ (see Equation~\ref{eq:zerolevel}).   In this way the whole transient event is captured. 
+As the peak-to-peak amplitude is small, to have a better resolution, the amplitude scales parameter are selected to be  $ \gamma = 4 $, and $\gls{gammat} = 4$.  With this configuration, the local patch and the descriptor can identify events of 9 $ \mu V $ of amplitude, with a span of $ \lambda = 0.56$ seconds.  According to Equations~\ref{eq:resolutiony} and \ref{eq:resolutionx}, this also determines that $ 1 $ pixel represents $ \frac{1}{\gamma}= \frac{1}{4} \mu V $ on the vertical direction, and $\frac{1}{\gls{Fs} \ \gls{gammat} }=\frac{1}{64}$ seconds on the horizontal direction. The keypoints  $\gls{kp}$  are located at $ (x_{k_p}, y_{k_p} )= ( 0.55 \gls{Fs} \ \gls{gammat}, z^l(c) )= (35,  z^l(c)) $ for the corresponding channel $c$ and location $l$ (see Equation~\ref{eq:zerolevel}).   In this way the whole transient event is captured. 
 
-Lastly, the number of channels $C$ is equal to $8$ for the first three datasets and the number of intensification sequences $k_a$ is fixed to $10$.  The parameter $k$ used to construct the set $N_T(\mathbf{d}^{(l,c)})$ is assigned to $k=7$, which was found empirically to achieve better results.  In addition, the norm used on  Equations \ref{eq:multiclassificationrow} and \ref{eq:multiclassificationcol} is the cosine norm, and descriptors are normalized to $ \left[ -1, 1 \right] $.
+Lastly, the number of channels $C$ is equal to $8$ for the first three datasets and the number of intensification sequences $k_a$ is fixed to $10$.  The parameter $\gls{k}$ used to construct the set $N_T(\mathbf{q}^{(l,c)})$ is assigned to $k=7$, which was found empirically to achieve better results.  In addition, the norm used on  Equations \ref{eq:multiclassificationrow} and \ref{eq:multiclassificationcol} is the cosine norm, and descriptors are normalized to $ \left[ -1, 1 \right] $ (check Chapter~\ref{chapter:eleven}).
 
 \section{Results}
 
-Table~\ref{tab:resultsals} shows the results of applying the Histogram of Gradient Orientations (HIST) algorithm to the subjects of the public dataset of ALS patients. The percentage of correctly spelled letters is calculated while performing an offline BCI Simulation.  From the seven words for each subject, the first three are used for calibration, and the remaining four are used for testing.  The best performing channel  $\gls{bpc}$ is informed as well. The target ratio is $1:36$; hence theoretical chance level is $2.8\%$. It can be observed that the best performance of the letter identification method is reached in a dissimilar channel depending on the subject being studied.  Table~\ref{tab:resultsals} and~\ref{tab:resultsown} show for comparison the obtained performance rates using single-channel signals with the Support Vector Machine (SVM)~\cite{Scholkopf2001} classifier.  This method is configured to use a linear kernel.  The best performing channel $\gls{bpc}$, where the best letter identification rate was achieved, is also depicted.
+Table~\ref{tab:resultsals} shows the results of applying the Histogram of Gradient Orientations (HIST) algorithm to the subjects of the public dataset of ALS patients. The percentage of correctly spelled letters is calculated while performing an offline BCI Simulation.  From the seven words for each subject, the first three are used for calibration, and the remaining four are used for testing.  The best performing channel  $\gls{bpc}$ is informed as well. The target ratio is $1:36$; hence theoretical chance level is $2.8\%$. It can be observed that the best performance of the letter identification method is reached in a dissimilar channel depending on the subject being studied.  Table~\ref{tab:resultsals} and~\ref{tab:resultsown} show for comparison the obtained performance rates using single-channel signals with the Support Vector Machine (SVM) classifier.  This method is configured to use a linear kernel.  The best performing channel $\gls{bpc}$, where the best letter identification rate was achieved, is also depicted.
 
 
 \begin{table}[h!]
