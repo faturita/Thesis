@@ -27,7 +27,7 @@ Figure~\ref{fig:p300matrix} shows an example of the Speller Matrix used in the O
 
 In this section, the signal preprocessing, the ERP Extraction, and the Speller Matrix identification are described.  Figure~\ref{fig:classification} outlines a scheme of this process. Additionally, the experiments that were conducted, are also expounded.
 
-Up to this point, EEG signals were treated in \textit{raw} form.  For the signals studied in Chapter~\ref{chapter:four} and \ref{chapter:five} no preprocessing step was necessary. The reason being, the oscillatory processes that are studied contain a waveform that is detected from raw signal plots.  Additionally, for the sake of analyzing waveforms as they are, purposely intensive preprocessing procedure are avoided.  However, this is not the case with the P300 Wave.  The preprocessing step, and more importantly an enhancement of the SNR though signal averaging, is mandatory in order to extract the ERP waveform.
+Up to this point, EEG signals were treated in \textit{raw} form.  For the signals studied in Chapter~\ref{chapter:four} and \ref{chapter:five} no preprocessing step was necessary. The reason being, the oscillatory processes that are studied contain a waveform that is detected from raw signal plots.  Additionally, for the sake of analyzing waveforms as they are, purposely intensive preprocessing procedure are avoided.  However, this is not the case with the P300 Wave.  The preprocessing step, and more importantly an enhancement of the SNR through signal averaging, is mandatory in order to extract the ERP waveform.
 
 \subsection{Preprocessing Pipeline} \label{Pipeline}
 
@@ -41,14 +41,14 @@ Up to this point, EEG signals were treated in \textit{raw} form.  For the signal
 %A trial, as defined by the BCI2000 platform~\cite{Schalk2004}, is every attempt to select a letter from the speller. 
 %It is composed of signal segments $S_{i}^l$ corresponding to $k_a$ repetitions of flashes of 6 rows and $k_a =10$ repetitions of flashes of 6 columns of the matrix, yielding 120 repetitions. 
 
-The data obtained by the capturing device is digitalized and a multichannel EEG signal is constructed. The $6$ rows and $6$ columns of the Speller Matrix are intensified providing the visual stimulus.  The number of a row or column is a location. A sequence of twelve randomly permuted locations $l$ conform an intensification sequence. The whole set of twelve intensifications is repeated $k_a$ times.
+The data obtained by the capturing device is digitalized and a multichannel EEG signal is constructed. The $6$ rows and $6$ columns of the Speller Matrix are intensified providing the visual stimulus.  The number of a row or column is a location. A sequence of twelve randomly permuted locations $l$ conform an intensification sequence. The whole set of twelve intensifications is repeated $\gls{ka}$ times.
 
 %The multichannel EEG signal is processed on a channel by channel basis.   
 
 \begin{itemize}
-\item \textbf{Signal Enhancement}: This stage consists of the enhancement of the SNR of the P300 pattern above the level of basal EEG. The pipeline starts by applying a notch filter to the raw digital signal, a $4$th degree $10$ Hz lowpass Butterworth filter and finally a decimation with a Finite Impulse Response (FIR) filter of order $30$ from the original sampling frequency down to $16$ Hz \cite{Krusienski2006}.
+\item \textbf{Signal Enhancement}: This stage consists of the enhancement of the SNR of the P300 pattern above the level of basal EEG. The pipeline starts by applying a notch filter to the raw digital signal, a $4$th degree $10$ Hz lowpass Butterworth filter and finally a decimation with a Finite Impulse Response (FIR) filter of order $30$ from the original sampling frequency down to $16$ Hz \cite{Krusienski2006}.  Group delay is accounted for and properly corrected.
 \item \textbf{Artifact Removal}: For every complete sequence of $12$ intensifications of $6$ rows and $6$ columns, a basic artifact elimination procedure is implemented by removing the entire sequence when any signal deviates above/bellow $ \pm 70 \mu V $.
-\item \textbf{Segmentation}: For each of the $12$ intensifications of one intensification sequence,  a segment $S_{i}^l$  of a window of $t_{max} $ seconds of the multichannel signal is extracted, starting from the stimulus onset, corresponding to each row/column intensification $l$ and to the intensification sequence $i$. As intensifications are permuted in a random order, the segments are rearranged corresponding to row flickering, labeled 1-6, whereas those corresponding to column flickering are labeled 7-12.  Two of these segments should contain the P300 ERP signature time-locked to the flashing stimulus, one for the row, and one for the column.
+\item \textbf{Segmentation}: For each of the $12$ intensifications of one intensification sequence,  a segment $S_{i}^l$  of a window of $\gls{w}$ seconds of the multichannel signal is extracted, starting from the stimulus onset, corresponding to each row/column intensification $l$ and to the intensification sequence $i$. As intensifications are permuted in a random order, the segments are rearranged corresponding to row flickering, labeled 1-6, whereas those corresponding to column flickering are labeled 7-12.  Two of these segments should contain the P300 ERP signature time-locked to the flashing stimulus, one for the row, and one for the column.
 \item \textbf{Signal Averaging}: \label{Average}  The P300 ERP is deeply buried under basal EEG so the standard approach to identify it is by point-to-point averaging the time-locked stacked signal segments.  Hence the values which are not related to, and not time-locked to the onset of the stimulus are canceled out~\cite{Liang2008}.  
 
 \begin{story}[Balanced Information Transfer Rate]
@@ -59,13 +59,13 @@ In brief, the procedure to obtain the point-to-point averaged signal goes as fol
 
 \begin{enumerate}
 \item \label{paso1}Highlight randomly the rows and columns from the matrix.  There is one row and one column that should match the letter selected by the subject.
-\item  \label{paso2} Repeat step~\ref{paso1} $\gls{ka}$ times, obtaining the $1 \leq l \leq 12$ segments $S_1^l(n,c),\dots,S_{k_a}^l(n,c)$, of the EEG signal where the variables $1 \leq n \leq n_{max}$ and $1 \leq c \leq C$  correspond to sample points and channel, respectively. The parameter $\gls{C}$ is the number of available EEG channels whereas $\gls{N}$ is the segment length and $\gls{Fs}$ is the sampling frequency.  The parameter $\gls{ka}$ is the number of repetitions of intensifications and it is an input parameter of the algorithm.
+\item  \label{paso2} Repeat step~\ref{paso1} $\gls{ka}$ times, obtaining the $1 \leq l \leq 12$ segments $S_1^l(n,c),\dots,S_{k_a}^l(n,c)$, of the EEG signal where the variables $1 \leq n \leq N$ and $1 \leq c \leq C$  correspond to sample points and channel, respectively. The parameter $\gls{C}$ is the number of available EEG channels whereas $\gls{N}$ is the segment length and $\gls{Fs}$ is the sampling frequency.  The parameter $\gls{ka}$ is the number of repetitions of intensifications and it is an input parameter of the algorithm.
 \item \label{paso3} Compute the Ensemble Average by
 \begin{equation}
 x^l(n,c)= \frac{1}{k_a}\sum_{i=1}^{k_a}S_i^l(n,c) 
 \label{averaging}
 \end{equation}  
-for $1 \leq n \leq n_{max}$ and for the channels $1 \leq c \leq C$.  This provide an averaged signal $x^l(n,c)$ for the twelve locations $ 1 \leq l \leq 12$.
+for $1 \leq n \leq N$ and for the channels $1 \leq c \leq C$. Once this is compute,  the averaged signal $x^l(n,c)$ can be standardized using the procedure from Section~\ref{standardized}, conforming $\tilde{x}^l(n,c)$ for the twelve locations $ 1 \leq l \leq 12$.
 \end{enumerate}
 \end{itemize}
 

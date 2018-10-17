@@ -60,7 +60,7 @@ These binning functions conform a trilinear interpolation that has a combined ef
 Lastly, on Equation~\ref{eq:ij} the fixed value of $ \frac{5}{\gls{Deltas}} $ allows a unit conversion from pixel to units-of-patch which goes from $-\frac{5}{2}$ to $+\frac{5}{2}$, by using the unit length of the patch $\gls{Deltas}$, which is described in the section~\ref{patchgeometry}. As the patch has  $16$ blocks and  $8$ bin angles are considered, a feature $\gls{d}$ called \textit{descriptor} of $128$ dimension is obtained. This technique is a modification of Lowe's SIFT Descriptor method.
 %It can be observed that the histogram is computed by multiplying by $ |J(\mathbf{p})| $, so the method considers both, the magnitude and the orientation of the gradient vector. 
 
-Figure~\ref{fig:sampledescriptor} shows an example of a patch and a scheme of the histogram computation. In (a) a plot of the signal and the patch centered around the keypoint is shown. In (b) and (c), the vector field of oriented gradients is shown. Finally, in (c) an enlarged image plot is shown where the oriented gradient vector for each pixel can be seen. In Figure~\ref{fig:orientationsfull} the possible orientations on each patch are illustrated.  Only the upper-left four blocks are visible.  The first eight orientations of the first block, are labeled from $1$ to $8$ clockwise. The orientations of the second block $ B_{1,2} $ are labeled from $9$ to $16$.  This labeling continues left-to-right, up-down until the eight orientations for all the sixteen blocks are assigned. They form the corresponding $\mathbf{kp}$-descriptor of $128$ coordinates.
+Figure~\ref{fig:sampledescriptor} shows an example of a patch and a scheme of the histogram computation. In (a) a plot of the signal and the patch centered around the keypoint is shown. In (b), the vector field of oriented gradients is shown. Finally, in (c) an enlarged image plot is shown where the oriented gradient vector for each pixel can be seen. In Figure~\ref{fig:orientationsfull} the possible orientations on each patch are illustrated.  The first eight orientations of the first block, are labeled from $1$ to $8$ clockwise. The orientations of the second block $ B_{1,2} $ are labeled from $9$ to $16$.  This labeling continues left-to-right, up-down until the eight orientations for all the sixteen blocks are assigned. They form the corresponding $\mathbf{kp}$-descriptor of $128$ coordinates.
 
 \begin{figure}[h!]
 \centering
@@ -116,7 +116,7 @@ Additionally, there can be more than just one keypoint and patch located over th
 
 \begin{figure}[h!]
 \centering
-\subfigure[Fixed size patches are located all along the EEG signal trace at a given keypoint density $\gls{kpd}$.]
+\subfigure[Fixed size patches are located all along the EEG signal trace at a given keypoint density $\gls{kpd}$. Closed to image's margins no keypoint are located.]
 {\includegraphics[width=6cm, height=6cm]{images/SignalWithFullDescriptors3.png}}
 \subfigure[A patch is used to map an artificial signal using an autoscale plotting scheme, and mapping the entire waveform within the patch. The keypoint is located on the zero-level $z(c)$ value.]
 {\includegraphics[width=6cm, height=6cm]{images/EasyDescriptorSample3.png}}
@@ -157,7 +157,7 @@ The vertical scale can be dynamically adjusted according to the peak-to-peak amp
 \begin{figure}[h!]
 \centering
 \includegraphics[width=10cm]{images/patchgeometry.pdf}
-\caption[Patch Geometry]{The scale of local patch is selected in order to capture the whole waveform, which can be scaled in the time $\gls{gammat}$ and amplitude $\gls{gamma}$ direction.  This determines appropriate horizontal $\gls{St}$ and vertical $\gls{Sv}$ patch scales.  The size of the patch is $\gls{Sy} \times \gls{Sx}$ pixels. The vertical size consists of $4$ blocks of size $\gls{Sy}$ pixels which should be high enough as to contain the signal $\gls{DeltamuV}$, the peak-to-peak amplitude of the signal component. The horizontal size includes $4$ blocks, up to $\gls{Sx}$ pixels, and should cover the entire duration in seconds of the signal waveform, $\gls{lambda}$.   }
+\caption[Patch Geometry]{The scale of local patch is selected in order to capture the whole waveform, which can be scaled in the time $\gls{gammat}$ and amplitude $\gls{gamma}$ direction.  This determines appropriate horizontal $\gls{St}$ and vertical $\gls{Sv}$ patch scales.  The size of the patch is $\gls{Sx} \times \gls{Sy}$ pixels. The vertical size consists of $4$ blocks of size $\gls{Sy}$ pixels which should be high enough as to contain the signal $\gls{DeltamuV}$, the peak-to-peak amplitude of the signal component. The horizontal size includes $4$ blocks, up to $\gls{Sx}$ pixels, and should cover the entire duration in seconds of the signal waveform, $\gls{lambda}$.   }
 \label{fig:patchgeometry}
 \end{figure}
 
@@ -197,11 +197,11 @@ For these patterns, the strategy is to locate keypoints, and their patches, all 
 
 \subsection{Transient Events}
 
-For transient events, descriptors are treated as representatives of the single transient waveforms.  This lead to usually just one keypoint that is located in a meaningful position along the horizontal axis.  Additionally, for autoscale plotting, the zero level can be used to localize keypoints.
+For transient events, descriptors are treated as representatives of the single transient waveforms.  This leads to usually just one keypoint that is located in a meaningful position along the horizontal axis.  Additionally, for autoscale plotting, the zero level can be used to localize keypoints.
 
 \section{BCI Algorithm}
 
-Now that all the ingredients has been exposed, the general layout of the BCI algorithm can be described.  Going back to BCI model referenced in~\ref{fig:bciblockdiagram}, the following sections describe the Preprocessing, Calibration and Classification step.
+Now that all the ingredients have been exposed, the general layout of the BCI algorithm can be described.  Going back to BCI model referenced in~\ref{fig:bciblockdiagram}, the following sections describe the Preprocessing, Calibration and Classification step.
 
 \begin{story}[Terminology Clarification]
 \theoremstyle{definition}
@@ -262,25 +262,20 @@ Moreover, the calibration can be also used to identify the $\gls{bpc}$, the Best
 \subsection{Classification}
 \label{nbnn}
 
-A discriminative~\cite{WolpawJonathanR2012} semi-supervised classification method based on Naive Bayes Nearest Neighbor (NBNN)~\cite{Boiman2008} is applied to classify EEG signals using the features provided by the calculated descriptors.
-One problem that frequently arises when using local features is how to go back from the classification of those local characteristics to the image where those descriptors come from.
-The NBNN technique overcomes this problem by comparing each image against a whole label class which is characterized by the set of descriptors $q$ that are closest to each one of the descriptors of the query image $\gls{d}_i$. This algorithm is very easy to implement, and is based on the following Equation:
+A discriminative~\cite{WolpawJonathanR2012} semi-supervised classification method based on Naive Bayes Nearest Neighbor (NBNN)~\cite{Boiman2008} is applied to classify EEG signals using the features provided by the calculated descriptors. In order to classify a new image, a query image, $Q$ descriptors are extracted.  The NBNN technique allows to categorize this image to one class by comparing the set of extracted descriptors $\mathbf{q}_{i}^{(bpc)}$ to those which are more similar on each dictionary $T^{bpc}$.  This algorithm is very easy to implement, and is based on the following Equation:
 
 \begin{equation}
-\hat{L} = \arg \min_{L} \sum_{\mathbf{d_i}^{(bpc)}} \sum_{q \in N_T(\mathbf{d_i}^{(bpc)})}^{} {\left\lVert q -  \mathbf{d_i}^{(bpc)} \right\rVert}  ^{2} 
+\hat{L} = \arg \min_{L} \sum_{i=1}^{Q} \sum_{h=1}^{\gls{k}} {\left\lVert \mathbf{q}_{i}^{(bpc)} -  \mathbf{d}_{h}^{(bpc)} \right\rVert}  ^{2} 
 \label{eq:classification}
 \end{equation}
 
-\noindent where $N_T(\mathbf{d}^{(bpc)})$  is defined as $N_T(\mathbf{d}^{(bpc)}) = \{\mathbf{d} \in T^{bpc} / $  and is the k-nearest neighbor of $ \mathbf{d}^{(bpc)} \}$ for the best performing channel.  Hence, the estimated class label $\hat{L}$ of a query image is calculated as the class label $L$ that minimize the summation of the distance between each descriptor $\mathbf{d_i}^{(bpc)}$ that belongs to the query image and its corresponding near neighbor $N_T(\mathbf{d}^{(bpc)})$  descriptor for each class. Figure~\ref{fig:nbnnclassification} show a scheme of how this classification method works.
-
-%The $\gls{bpc}$ is the Best Performing Channel.  This value is determined in the calibration step of the BCI algorithm when the spatial performance is assessed to determine on which channel the performance is maximized~\cite{Chavarriaga2017}.
-
+\noindent where the $Q$ descriptors $ \mathbf{q}_{i}^{(bpc)} $ are extracted from a query image for the $\gls{bpc}$ and, the dictionary descriptors  $\mathbf{d}_{h}^{(bpc)} \in N_T(  \mathbf{q}_{i}^{(bpc)} )$ with the set $N_T(  \mathbf{q}_{i}^{(bpc)} ) $ defined as $N_T(  \mathbf{q}_{i}^{(bpc)} ) = \{ \mathbf{d}_{h}^{(bpc)} \in T_{L}^{bpc} / $ is the $\gls{k}$-nearest neighbor of $  \mathbf{q}_{i}^{(bpc)} \}$.  This set is obtained by sorting all the elements $ \mathbf{d}_{h}^{(bpc)} $ in $T_{L}^{bpc}$ based on distances between them and $\mathbf{q}_{i}^{(bpc)}$, choosing the $\gls{k}$ with smaller values.  Hence, the estimated class label $\hat{L}$ of a query image is calculated as the class label $L$ that minimize the summation of the distance between each descriptor $\mathbf{q}_{i}^{(bpc)}$ that belongs to the query image and its corresponding near neighbor $\mathbf{d}_{h}^{(bpc)} $  descriptor for each class. Figure~\ref{fig:nbnnclassification} show a scheme of how this classification method works.
 
 \begin{figure}[h!]
 \centering
 \subfigure[]
 {\includegraphics[scale=0.7]{images/ClassificationFull.pdf}}
-\caption[NBNN Classification]{Classification Algorithm: \textbf{Step 1} Two Dictionaries are created from templates descriptors obtained in a calibration session for two different classes, labeled $1$ and $2$. On the other hand, a set of query descriptors are extracted from a new image that needs to be categorized.\textbf{Step 2} Distances from every descriptor $\gls{d}_i$ are calculated against the closest one from the dictionary of class 1.  Distances summations are accumulated.\textbf{Step 3} Distance values from every descriptor $\gls{d}_i$ are calculated against the closest one from the dictionary of class 2, the other class.  Distances summations are accumulated. \textbf{Step 4 }The two summation values for each class label are compared against each other. The summation that achieved the lesser value is the one that more closely resembles the set of templates, thus is the one predicted by the classification algorithm.}
+\caption[NBNN Classification]{Classification Algorithm: \textbf{Step 1} Two Dictionaries are created from templates descriptors obtained in a calibration session for two different classes, labeled $1$ and $2$. On the other hand, a set of query descriptors are extracted from a new image that needs to be categorized. \textbf{Step 2} Distances from every descriptor $q_i$ are calculated against the closest one from the dictionary of class 1.  Distances summations are accumulated. \textbf{Step 3} Distance values from every descriptor $q_i$ are calculated against the closest one from the dictionary of class 2, the other class.  Distances summations are accumulated. \textbf{Step 4 }The two summation values for each class label are compared against each other. The summation that achieved the lesser value is the one that more closely resembles the set of templates, thus is the one predicted by the classification algorithm.}
 \label{fig:nbnnclassification}
 \end{figure}
 
