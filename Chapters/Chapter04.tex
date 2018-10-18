@@ -111,7 +111,7 @@ The keypoint $\gls{kp}$ location must be accurately specified in order to establ
 
 For the horizontal position, the localization of the keypoint is based on a priori information, based on the characteristics of the event under study.  For instance, ERPs have a specific timing that can be explored to elucidate in which position the expected signal pattern will be generated.
 
-Additionally, there can be more than just one keypoint and patch located over the signal plot.  This is particular important for oscillatory processes where many waveforms are contained within the same signal segment.  This needs to be addresses by defining a keypoint density parameter $\gls{kpd}$.
+Additionally, there can be more than just one keypoint and patch located over the signal plot.  This is particular important for oscillatory processes where many waveforms are contained within the same signal segment.  This needs to be addresses by defining a keypoint density parameter $\gls{kpd}$.  A value of $\gls{kpd}=1$ determines that keypoint are located on every sample point that is used to mark a pixel en Equation~\ref{eq:images}.  A value of $\gls{kpd}=2$ implies that keypoints are located after two sample points, and so on.  Figure~\ref{fig:keypointlocations}(a) shows keypoints being located at a keypoint density $\gls{kpd}$ equals to $10$.
 
 \begin{figure}[h!]
 \centering
@@ -200,9 +200,7 @@ For transient events, descriptors are treated as representatives of the single t
 
 \section{BCI Algorithm}
 
-Now that all the ingredients have been exposed, the general layout of the BCI algorithm can be described.  Going back to BCI model referenced in~\ref{fig:bciblockdiagram}, the following sections describe the Preprocessing, Calibration and Classification step.
-
-\pagebreak
+Now that all the ingredients have been exposed, the general layout of the BCI algorithm can be described.  Going back to BCI model referenced in~\ref{fig:bciblockdiagram}, the following sections outline the Preprocessing, Calibration and Classification step.
 
 \begin{story}[Terminology Clarification]
 \theoremstyle{definition}
@@ -252,6 +250,19 @@ Now that all the ingredients have been exposed, the general layout of the BCI al
 \subsection{Preprocessing}
 
 Signal preprocessing can be applied to $x(n,c)$ before applying the plotting scheme.  Preprocessing depends on the cognitive paradigm under study.  
+
+%TODO completar esto
+%\begin{itemize}
+%\item Notch filter
+%\item Band-pass filter
+%\item Decimation or Downsizing:
+%\item Segmentation
+%\item Baseline Removal
+%\item Artifact Rejection
+%\item Spatial Filter
+%\end{itemize}
+%
+%An excellent review can be found here~\cite{Simons2016}.
 
 \subsection{Calibration}
 \label{Calibration}

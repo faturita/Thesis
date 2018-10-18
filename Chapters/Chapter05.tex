@@ -23,7 +23,7 @@ Figure~\ref{fig:alphawavessignals} shows two records of 8-channels signals.  Fig
 \label{fig:alphawavessignals}
 \end{figure}
 
-This important rhythm is an oscillatory process.  As such, it is understood and studied in the frequency-domain.   Figure~\ref{fig:alphaspectrum} shows the results of applying the Fast Fourier Transform to two different segments of $10\si{\second}$ length.  For each segment, the power spectral density is calculated and their values are shown on the vertical axis.  Frequency values are shown on the horizontal axis.   On Figure (a) no particular frequency component can be spotted.  However, on Figure (b) the prevalence of the 10-\si{\hertz} alpha wave component can be observed.   
+This important rhythm is an oscillatory process.  As such, it is understood and studied in the frequency-domain.   Figure~\ref{fig:alphaspectrum} shows the results of applying the Fast Fourier Transform to two different segments of $10\si{\second}$ length.  For each segment, the power spectral density is calculated and their values are shown on the vertical axis.  Frequency values are shown on the horizontal axis.   On Figure~\ref{fig:alphaspectrum}(a) no particular frequency component can be spotted.  However, on Figure~\ref{fig:alphaspectrum}(b) the prevalence of the 10-\si{\hertz} alpha wave component can be observed.   
  
 %As can be seen in Fig. , if we process the Drowsiness dataset with a 8-12Hz band-pass filter and calculate the average power spectral density across subjects and for each channel, we can see how clearly the value corresponding to class 2 (eyes closed) is always higher than the value for class 1 (eyes open), confirming the expected result.  This also verifies how the differentiation information is contained mostly in the frequency-domain.
 
@@ -60,9 +60,9 @@ These experiments consist in performing a binary classification of EEG signal se
 
 \subsection{Dataset I - Emotiv EPOC alpha waves own dataset}
 \label{dataset1}
-The first dataset is gathered using the EEG EPOC Emotiv Headset.  Although this is a commercial-grade device, it provides an acceptable price-performance ratio and it has been used to investigate basic EEG processes~\cite{Debener2012,DeVos2014}. In order to obtain the multichannel raw EEG signal, a C++ SDK library provided by the manufacturer is used and an in-house software program is developed. This device has 14 channels, and a sampling rate of 128 \si{Hz}\cite{Stopczynski2014}. Available channels are AF3, F7, F3, FC5, T7, P7, O1, O2, P8, T8,  FC6, F4, F8, AF4.  Ten healthy subjects between ages 20-50 are recruited and they accept to wear the device and to participate in the experiments.  
+The first dataset is gathered using the EEG EPOC Emotiv Headset.  Although this is a commercial-grade device, it provides an acceptable price-performance ratio and it has been used to investigate basic EEG processes~\cite{Debener2012,DeVos2014}. In order to obtain the multichannel raw EEG signal, a C++ SDK library provided by the manufacturer is used and an in-house software program is developed. This device has 14 channels, and a sampling rate of 128 \si{Hz}~\cite{Stopczynski2014}. Available channels are AF3, F7, F3, FC5, T7, P7, O1, O2, P8, T8,  FC6, F4, F8, AF4.  Ten healthy subjects between ages 20-50 are recruited and they accept to wear the device and to participate in the experiments.  
 
-A 30 minutes procedure is required to adjust the headset to each user, in order to decrease the impedance on each electrode (bellow $5 \si{\kilo\ohm}$).  
+A 30 minutes procedure is required to adjust the headset to each user, in order to decrease the impedance on each electrode (below $5 \si{\kilo\ohm}$).  
 This is achieved by physically adjusting the headset position over the scalp, and by embedding each electrode electrode pad in saline solution.
 A software program developed by the manufacturer is used to obtain the measured impedance.  Once the set up is finished, each subject is instructed to sit in a relaxed position. Subsequently, she/he is commanded to watch the screen for 15 seconds, trying to avoid, as much as possible, to abruptly move its body or head.  During that time, a single-trial of 10 seconds-length window of EEG signals data is transferred to a PC and logged into standard binary files. After a 5 minutes pause, the subject is asked to close the eyes avoiding any movement while keeping the same pose for another batch of 15 seconds.  Again, 10 seconds of EEG information are transferred and logged into the PC. This finally produces a dataset of 10 subjects,  2 classes per subject, composed of 14 channels, 10-seconds length or 1280 samples per window.  These windows are further divided into 10 segments per class and per subject.
 
@@ -88,15 +88,21 @@ A software program developed by the manufacturer is used to obtain the measured 
 {\includegraphics[width=3.5cm, height=3cm]{images/emotivcalibration.png}}
 \subfigure[]
 {\includegraphics[width=3.5cm, height=3cm]{images/emotivdatasetsubject.jpg}}
-\caption[EPOC Emotiv Alpha Waves Dataset]{(a)EPOC Emotiv consumer-grade 14-channels wireless EEG.(b) This device has a fixed set of positions according to the 10-20 International System.(c) While resting and sitting confortable in a chair, subjects had to fixate their sight to the center of this image which was being displayed on a computer monitor, 1 \si{meter} away from the subject.(d) Subject performing the experiment to produce the dataset described in \ref{dataset1}}.
+\caption[EPOC Emotiv Alpha Waves Dataset]{(a) EPOC Emotiv consumer-grade 14-channels wireless EEG.(b) This device has a fixed set of positions according to the 10-20 International System.(c) While resting and sitting confortable in a chair, subjects had to fixate their sight to the center of this image which was being displayed on a computer monitor, 1 \si{meter} away from the subject.(d) Subject performing the experiment to produce the dataset described in \ref{dataset1}.}.
 \label{fig:alpharesults}
 \end{figure}
 
+\begin{story}[Measuring BCI Performance]
+Measuring the performance of the BCI system as it is described in the model of Figure~\ref{fig:bciblockdiagram} is of quite relevance in the field.  The term \textit{Accuracy} in BCI refers in general to binary classification accuracy, which means how many bit predictions between two different classes and on unlabeled data is the BCI classifier able to perform correctly.  This is the metric that is being used in this Chapter.  Other metrics include Cohen Kappa (used to measure agreements between different experts), Recall (sensitivity), Specificity, Precision and F-Score~\cite{Nicolas-Alonso2012,Chavarriaga2017,c55,WolpawJonathanR2012,Clerc2016,Nam2018}. At the same time, the theoretical chance level is a related concept that determines what will be the outcome if the classifier is just randomly selecting one choice~\cite{Nam2018}.  For binary classification this value is $50\%$ when datasets are balanced~\cite{Tibon2015}.  For unbalanced data the Receiving Operating Characteristics (ROC) curve helps to understand and compare better the predictive efficiency of the classifier~\cite{Fawcett2006}. For more practical systems, like P300-Based BCI Spellers, it is preferred a measure of the plain performance of the system to achieve the task at hand (e.g. like character recognition rates)~\cite{Krusienski2006}. When the interface aspect of the system is remarked, or when the communication speed is of relevance, the Information Transfer Rate (ITR) or Bit Transfer Rate (BTR) is used to provide a metric on the amount of bits that it is possible to extract from the BCI system to transmit information.
+
+Despite all this, the best metric is the one provided from real users using a robust system or from clinicians using a helpful tool~\cite{Huggins2015,Nijboer2009,c56}.
+
+\end{story}
       
 \subsection{Dataset II - AlphaNet Dataset}
 Additionally, the performance of HIST was tested against the public dataset EEG Motor Movement/Imagery Dataset of the PhysioNet effort published and mantained by the U.S. National Health Service~\cite{Schalk2004,Goldberger2000}.  
 
-Baseline records and motor/imagery tasks were performed by 109 healthy volunteers, using the BCI2000 system~\cite{Schalk2004} at a sampling frequency $\gls{Fs} = 160$.  At the same time 64-channel EEG records were registered where each subject completed 14 tasks, called Runs.  The first two are the baseline calibration tasks, of relevance for this Chapter.  These Runs 1 and 2 are each one-minute records of resting subjects with eyes open and eyes closed.  From these records, 60 segments of 1-second length are further extracted per subject. Class labeling is the same as Dataset I.  The experiment was performed on 25 of the 109 subjects.
+Baseline records and motor/imagery tasks were performed by 109 healthy volunteers, using the BCI2000 system~\cite{Schalk2004} at a sampling frequency $\gls{Fs} = 160$.  At the same time 64-channel EEG records were registered where each subject completed 14 tasks, called Runs.  The first two are the baseline calibration tasks, of relevance for this Chapter.  These Runs 1 and 2 are each one-minute records of resting subjects with eyes open and eyes closed.  From these records, 60 segments of 1-second length are further extracted per subject. Class labeling is the same as Dataset I.  The experiment was performed on 25 randomly selected subjects out of the 109.
 
 
 %This dataset
@@ -107,7 +113,6 @@ Baseline records and motor/imagery tasks were performed by 109 healthy volunteer
 %A target appears on either the left or the right side of the screen. The subject imagines opening and closing the corresponding fist until the target disappears. Then the subject relaxes.
 %A target appears on either the top or the bottom of the screen. The subject opens and closes either both fists (if the target is on top) or both feet (if the target is on the bottom) until the target disappears. Then the subject relaxes.
 %A target appears on either the top or the bottom of the screen. The subject imagines opening and closing either both fists (if the target is on top) or both feet (if the target is on the bottom) until the target disappears. Then the subject relaxes.
-
 
 \subsection{Parameters}
 
@@ -130,21 +135,21 @@ Dataset I was controlled and verified by processing it with a 8-12Hz band-pass f
 \centering
 \subfigure[Power spectral density averaged across 10 subjects for each channel. Values for Class 2 (red) are always higher than values for Class 1 (blue).]
 {\includegraphics[width=7.5cm, height=5cm]{images/PSDExperiment1VsExperiment5.png}}
-\subfigure[Scatterplot of power spectral density for the channel O1 vs O2.  There is a separation of classes between the red (class 2) and blue(Class 1) dots.]
+\subfigure[Scatterplot of power spectral density for the channel O1 vs O2.  There is a separation of classes between the red (class 2) and blue(class 1) dots.]
 {\includegraphics[width=7.5cm, height=5cm]{images/alphawavesscatterpsd.png}}
 \caption[Power Spectral Density of the Dataset I]{Frequency analysis of Dataset I}
 \label{fig:psd}
 \end{figure}
    
-Results of applying the 10-fold cross validation procedure on the entire set of labeled descriptors is shown on Figure~\ref{fig:alpharesultsdataseti}. Template Dictionaries for Class 1 and Class 2 are formed using training descriptors for all the subjects at the same time.  Hence, the testing step of the cross-validation procedure is implemented subject by subject, but performing a transfer learning between them. The classification is subject-independent, and an average above $70\%$ is obtained in occipital channels.
+Results of applying the 10-fold cross validation procedure on the entire set of labeled descriptors is shown on Figure~\ref{fig:alpharesultsdataseti}. Template dictionaries for class 1 and class 2 are formed using training descriptors for all the subjects at the same time.  Hence, the testing step of the cross-validation procedure is implemented subject by subject, but performing a transfer learning between subjects. The classification is subject-independent, and an averaged accuracy across all subjects is above $70\%$, obtained in occipital channels.
    
 \begin{figure}[h!]
 \centering
-\subfigure[Ten-fold cross-validated accuracy values for $10$ subjects.  Descriptors were intermixed for all the subjects.]
+\subfigure[Ten-fold cross-validated accuracy values, averaged across $10$ subjects.  Descriptors used for calibration are intermixed to create one template dictionary which is used for all subjects.]
 {\includegraphics[width=7.5cm, height=5cm]{images/Dataset1AccuracyPerChannel}}
-\subfigure[Sample descriptor patch located on one of the images generated for one 1-second long segment of this dataset.]
+\subfigure[Amplified image containing a sample patch located on one of the images generated for one 1-second long segment of this dataset. The keypoint location is on a sample point along the EEG trace.]
 {\includegraphics[width=7.5cm, height=5cm]{images/AlphaWaveSampleEEG.png}}
-\caption[Dataset I Classification Rate]{The classification accuracy is maximum on occipital channels O1 and O2. The horizontal patch scale $\gls{St}$ and the vertical patch scale $\gls{Sv}$ are set to $1$, whereas $\gls{gamma}$ and $\gls{gammat}$ are set to $2$, which corresponds to a variation of $\gls{DeltamuV} = 12$ microvolts in the signal amplitude during $\gls{lambda}=0.09$ $\si{seconds}$.}
+\caption[Dataset I Classification Rate]{Dataset I: The classification accuracy is maximum on occipital channels O1 and O2. The horizontal patch scale $\gls{St}$ and the vertical patch scale $\gls{Sv}$ are set to $1$, whereas $\gls{gamma}$ and $\gls{gammat}$ are set to $2$, which corresponds to a variation of $\gls{DeltamuV} = 10$ microvolts in the signal amplitude during $\gls{lambda}=0.08$ $\si{seconds}$.}
 \label{fig:alpharesultsdataseti}
 \end{figure}
 
@@ -163,22 +168,22 @@ Results of applying the 10-fold cross validation procedure on the entire set of 
    
 \begin{figure}[h!]
 \centering
-\subfigure[Ten-fold cross-validated accuracies for O1, Oz, O2 and Iz channels for 25 subjects of the Alphanet Dataset. Medians are above $75\%$.]
+\subfigure[Ten-fold cross-validated accuracy boxplots for O1, Oz, O2 and Iz channels, for the 25 subjects. Mean values are around $70\%$.]
 {\includegraphics[width=7.5cm, height=5cm]{images/DatasetPhysionetBoxPlots}}
-\subfigure[Ten-fold cross-validated accuracies values for subject number 12, using Runs 1 and 2 of the Alphanet Dataset.]
+\subfigure[Ten-fold cross-validated accuracies values for a randomly selected subject (number 12), using runs 1 and 2.]
 {\includegraphics[width=7.5cm, height=5cm]{images/DatasetPhysionetAccuracyPerChannel}}
-\caption[PhysioNet Dataset Classification Rate]{Classification Accuracy for segments of 1s ($\gls{N} = 160$) of EEG, between Class 1 and Class 2.}
+\caption[PhysioNet Dataset Binary Classification Accuracy]{Dataset II: Classification Accuracy for segments of 1s ($\gls{N} = 160$) of EEG, between class 1 and class 2.  In this case as the sampling frequency $\gls{Fs}$ is lower, the signal span is $\gls{lambda} = 0.06$   $\si{s}$}.
 \label{fig:alpharesultsdatasetii}
 \end{figure}
 
 
-For the Dataset II, training and testing steps of the cross-validation procedure are implemented subject by subject.  An accuracy median higher than $70\%$ for 25 subjects, also on occipital channels O1, Oz, O2 and Iz (numbered 61 to 64) is obtained while discriminating Runs 1 and 2 (Baseline eyes open vs Baseline eyes closed).  This information can be devised on Figure~\ref{fig:alpharesultsdatasetii}(a) where boxplots of the averaged classification accuracies for all the subjects are represented.  On the other hand, Figure~\ref{fig:alpharesultsdatasetii}(b) shows the 10-fold validated accuracy for one random subject. A higher accuracy in the classification of the signals can also be seen over occipital channels.
+For the Dataset II, training and testing steps of the cross-validation procedure are implemented subject by subject.  An averaged accuracy across 25 subjects of around $70\%$ is obtained, also on occipital channels O1, Oz, O2 and Iz (numbered 61 to 64) while discriminating runs 1 versus 2 (baseline eyes open vs baseline eyes closed).  This information can be devised on Figure~\ref{fig:alpharesultsdatasetii}(a) where boxplots of the accuracies for these four occipital channels and for all the 25 subjects, are represented.  On the other hand, Figure~\ref{fig:alpharesultsdatasetii}(b) shows the 10-fold validated accuracy for one random subject. A higher accuracy in the classification of the signals can also be seen over occipital channels.
 
 \section{Conclusion}
 
 It is known and it was verified here that the discriminative information in EEG alpha waves is mostly contained in the frequency-domain.  In spite of this,  there is enough information encoded in the alpha waves wiggles to classify signal segments solely on the \textit{features} captured by the HIST method, proposed in this Thesis.  
 
-It was also verified that the presence of oscillatory alpha waves is higher around occipital regions and that an automated procedure which analyze visually the image structure can detect them. This important oscillatory rhythm has many connections with shifting of attention and with volitional changes and is of quite relevance in BCI research.  Particularly, the BCI paradigm of Visual Spatial Covert Attention is a further area of research for this method due to the fact that it is entirely based on analyzing alpha waves. Moreover, the posterior rythm has many implications outside the field of BCI and is very important to assess healthy EEG patterns. The exact meaning of alpha waves is still debated\cite{Ahn2013} and this basic procedure can open the possibility to explore it under a different perspective and verify if they can be effectively tied to some unexpected form of volitional control which may be effective for BCI understanding and improvement.
+It was also verified that the presence of oscillatory alpha waves is higher around occipital regions and that an automated procedure which analyze visually the image structure can detect them. This important oscillatory rhythm has many connections with shifting of attention and with volitional changes and is of quite relevance in BCI research~\cite{Basar2012}.  Particularly, the BCI paradigm of Visual Spatial Covert Attention is a further area of research for this method due to the fact that it is entirely based on analyzing alpha waves~\cite{vanGerven2009}. Moreover, the posterior rythm has many implications outside the field of BCI and is very important to assess healthy EEG patterns. The exact meaning of alpha waves is still debated~\cite{Ahn2013} and this basic procedure can open the possibility to explore it under a different perspective and verify if they can be effectively tied to some unexpected form of volitional control which may be effective for BCI understanding and improvement.
 
 %The key here is the classification algorithm that was used across this thesis.  This is because the local information obtained from each descriptor "help" to balance a tendency of how the synchronous waves all behave, and that information get loaded into the class structure that is later exploited by the classification method.
 %
