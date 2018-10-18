@@ -37,7 +37,7 @@ x(n,c)
 
 \noindent where $n$ is the index of sample points digitalized at sampling frequency $\gls{Fs}$.  This is a multichannel signal, for $c$ varying between  $1 \leq c \leq \gls{C}$.  Each one of this channels is assigned a name according to the 10-20 international system (see Figure \ref{fig:electrodelocations}), and there are $\gls{C}$ available channels. The sample index $n$ varies between $1$ and $\gls{N}$.  The span of the signal $\lambda$ is the length in milliseconds of the waveform under study. 
 
-The length of segment $\gls{N}$ in sample units, the sampling frequency $\gls{Fs}$ in \si{\hertz} and the segment length $\gls{w}$ in seconds are related by
+The length of segment $\gls{N}$ in sample point units, the sampling frequency $\gls{Fs}$ in \si{\hertz} and the segment length $\gls{w}$ in seconds are related by
 
 \begin{equation}
 N = \left\lfloor F_s \; w \right\rfloor.
@@ -78,7 +78,7 @@ This chapter mostly deal with the coordinates transformation that need to be enf
 %\label{fig:mappingimages}
 %\end{figure}
 
-Let $c_i$ be a given constant channel, and $n_i$ be a constant sample point in digital time,  the values of $\mathcal{I}(z_1,z_2)$ are obtained for $n$ varying between $1$ and $N$ or $c$ varying between $1$ and $C$.   In order to convert the EEG original signal $x(n,c)$ into a time-domain image $\mathcal{I}(z_1,z_2)$ representation, the following six alternatives can be used:
+Let $c_i$ be a given constant channel, the values of $\mathcal{I}(z_1,z_2)$ are obtained for $n$ varying between $1$ and $N$ or $c$ varying between $1$ and $C$.   In order to convert the EEG original signal $x(n,c)$ into a time-domain image $\mathcal{I}(z_1,z_2)$ representation, the following six alternatives can be used:
 
 \begin{enumerate}
 \item Channel-by-channel binary image:
@@ -124,8 +124,8 @@ The horizontal axis of the image is not time, but it is the number of the channe
 \begin{equation}
 \mathcal{I}^{(n_i)}(z_1,z_2) = \left\{ \begin{array}{rl}
 255 & \text{if} \,  z_1 = c; \; z_2 =  x(n_i,c) + \mathtt{Z} \\
-0   & \mbox{otherwise}.
-\end{array}\right.
+0   & \mbox{otherwise}
+\end{array}\right ..
 \label{eq:image4}
 \end{equation}
 
@@ -133,7 +133,7 @@ In this case, the vertical position where the signal's zero value is located in 
 
 \item Multichannel stationary greyscale image
 
-This is a variant of the previous one, where the horizontal axis also represent the channel, and the zero-level is also calculated for a fixed sample point.   In this form, the intensity of the contribution of each channel is represented by the greyscale pixel value.  Combined with head models and forward projection solutions this is the methodology used to represent scalp heatmaps~\cite{Gramfort2013}:
+This is a variant of the previous one, where the horizontal axis also represent the channel.   In this form, the intensity of the contribution of each channel is represented by the greyscale pixel value.  Combined with head models and forward projection solutions this is the methodology used to represent scalp heatmaps~\cite{Gramfort2013}:
 
 \begin{equation}
 \mathcal{I}^{(n_i)}(z_1,z_2)= \left\{ \begin{array}{rl}
@@ -171,7 +171,7 @@ The \textit{z-score} is a widely used method to regularize a signal~\cite{Vanden
 \label{eq:standarizedaverages}
 \end{equation}
 
-\noindent  where $ x(n,c) $ is the multichannel EEG signal segment for the sample point $n$ and for channel $c$. The values $$\bar{x}(c) =\frac{1}{N}\sum_{n=1}^{N}x(n,c)$$ and $$ \hat{\sigma}(c) =   \bigg \{ \frac{1}{N-1}\sum_{n=1}^{N} { \left[ x(n,c)-\bar{x}(c) \right]  }^2 \bigg \}^{\frac{1}{2}}$$ are the mean and estimated standard deviation of $x(n,c), 1 \leq n \leq N$, for each channel $c$. Figure~\ref{fig:plottingscheme}(a) shows an impulse signal and their standardized representation.
+\noindent  where $ x(n,c) $ is the multichannel EEG signal segment for the sample point index $n$ and for channel $c$. The values $$\bar{x}(c) =\frac{1}{N}\sum_{n=1}^{N}x(n,c)$$ and $$ \hat{\sigma}(c) =   \bigg \{ \frac{1}{N-1}\sum_{n=1}^{N} { \left[ x(n,c)-\bar{x}(c) \right]  }^2 \bigg \}^{\frac{1}{2}}$$ are the mean and estimated standard deviation of $x(n,c), 1 \leq n \leq N$, for each channel $c$. Figure~\ref{fig:plottingscheme}(a) shows an impulse signal and their standardized representation.
 
 \section{Autoscaled plotting}
 \label{autoscaled}
@@ -237,7 +237,7 @@ W_x = \gamma_t  N
 \section{EEG Signal Plot}
 \label{Plot}
 
-Once the regularization procedure,  the size and the scale of the image are defined,  a binary image $\mathcal{I}^{(c)}$ can be constructed from a variant of the method specified in \ref{eq:image1} according to
+Once the regularization procedure,  the size and the scale of the image are defined,  a binary image $\mathcal{I}^{(c)}$ can be constructed from a variant of the method specified in Equation~\ref{eq:image1} according to
 
 \begin{equation}
 \mathcal{I}^{(c)}(z_1,z_2) = \left\{ \begin{array}{rl}
@@ -263,7 +263,7 @@ Equation \ref{eq:images} produces a set of isolated pixels over the image $\math
 {\includegraphics[height=4cm,width=15cm]{images/bresenham.eps}}
 \subfigure[The digital signal is scaled 4 times ($\gamma_t=4$) and the generated sample points are interpolated using the Bresenham algorithm.]
 {\includegraphics[height=4cm,width=15cm]{images/upscaled.eps}}
-\subfigure[The digital signal is upsampled 4 times with a linear interpolation with splines. The Bresenham algorithm is used to compose the plot.]
+\subfigure[The digital signal is upsampled 4 times with a linear interpolation with splines. The Bresenham algorithm is used to perform the final digital interpolation to compose the plot.]
 {\includegraphics[height=4cm,width=15cm]{images/upsample.eps}}
 \caption[Signal Plotting: Interpolation]{Generated images based on different interpolation schemes.}
 \label{fig:interpolation}
@@ -275,7 +275,7 @@ Special care must be taken by the presence of artifacts around the signal endpoi
 
 \begin{figure}[htb]
 \centering
-\subfigure[Vertical axis is voltage in $\mu V$ while horizontal axis is expressed in sample points.]
+\subfigure[Vertical axis is voltage in $\mu V$ while horizontal axis is expressed in sample points units.]
 {\includegraphics[height=5cm,width=5cm]{images/plotvsimage.eps}}
 \subfigure[An image generated by the plotting algorithm for the same signal. Image height is $76$ pixels, while width is $250$. The zero-level $z(c)$ value is $32$.]
 {\includegraphics[height=5cm,width=10cm]{images/sampleplot.eps}}

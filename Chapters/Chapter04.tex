@@ -57,10 +57,9 @@ Hence, for each spatial bin $ i,j = \{0,1,2,3\} $, corresponding to the indexes 
 
 These binning functions conform a trilinear interpolation that has a combined effect of sharing the contribution of each oriented gradient between their eight adjacent bins in a tridimensional cube in the histogram space, and zero everywhere else.  This procedure is important to avoid quantization issues that may appear with the histogram (i.e. elimination of intermediate values).
 
-Lastly, on Equation~\ref{eq:ij} the fixed value of $ \frac{5}{\gls{Deltas}} $ allows a unit conversion from pixel to units-of-patch which goes from $-\frac{5}{2}$ to $+\frac{5}{2}$, by using the unit length of the patch $\gls{Deltas}$.  As the patch has  $16$ blocks and  $8$ bin angles are considered, a feature $\gls{d}$ called \textit{descriptor} of $128$ dimension is obtained. This technique is a modification of Lowe's SIFT Descriptor method.
-%It can be observed that the histogram is computed by multiplying by $ |J(\mathbf{p})| $, so the method considers both, the magnitude and the orientation of the gradient vector. 
+Lastly, on Equation~\ref{eq:ij} the fixed value of $ \frac{5}{\gls{Deltas}} $ allows a unit conversion from pixel to units-of-patch which goes from $-\frac{5}{2}$ to $+\frac{5}{2}$.  As the patch has  $16$ blocks and  $8$ bin angles are considered, a feature $\gls{d}$ called \textit{descriptor} of $128$ dimension is obtained. This technique is a modification of Lowe's SIFT Descriptor method.
 
-In Figure~\ref{fig:orientationsfull} the possible orientations on each patch are illustrated.  The first eight orientations of the first block, are labeled from $1$ to $8$ clockwise. The orientations of the second block $ B_{1,2} $ are labeled from $9$ to $16$.  This labeling continues left-to-right, up-down until the eight orientations for all the sixteen blocks are assigned. They form the corresponding $\mathbf{kp}$-descriptor of $128$ coordinates.
+In Figure~\ref{fig:orientationsfull} the possible orientations on each patch are illustrated.  The first eight orientations of the first block $ B_{1,1} $, are labeled from $1$ to $8$ clockwise. The orientations of the second block $ B_{1,2} $ are labeled from $9$ to $16$.  This labeling continues left-to-right, up-down until the eight orientations for all the sixteen blocks are assigned. They form the corresponding $\mathbf{kp}$-descriptor of $128$ coordinates.
 
 \begin{figure}[h!]
 \centering
@@ -80,7 +79,7 @@ In Figure~\ref{fig:orientationsfull} the possible orientations on each patch are
 \begin{figure}[h!]
 \centering
 \includegraphics[width=16cm]{images/gradientorientations.pdf}
-\caption[Gradient Orientations Numbering]{A scheme of the orientation's histogram computation. The first eight orientations of the first block, are labeled from $1$ to $8$ clockwise. The orientation of the second block $ B_{1,2} $ is labeled from $9$ to $16$.  This labeling continues left-to-right, up-down until the eight orientations for all the sixteen blocks are assigned. They form the corresponding descriptor of $128$ coordinates.  The length of each arrow represent the value of the histogram on each direction for each block.}
+\caption[Gradient Orientations Numbering]{A scheme of the orientation's histogram computation. The first eight orientations of the first block $ B_{1,1} $, are labeled from $1$ to $8$ clockwise. The orientation of the second block $ B_{1,2} $ is labeled from $9$ to $16$.  This labeling continues left-to-right, up-down until the eight orientations for all the sixteen blocks are assigned. They form the corresponding descriptor of $128$ coordinates.  The length of each arrow represent the value of the histogram on each direction for each block.}
 \label{fig:orientationsfull}
 \end{figure}
 
@@ -117,18 +116,18 @@ Additionally, there can be more than just one keypoint and patch located over th
 \begin{figure}[h!]
 \centering
 \subfigure[Fixed size patches are located all along the EEG signal trace at a given keypoint density $\gls{kpd}$. Closed to image's margins no keypoint are located.]
-{\includegraphics[width=6cm, height=6cm]{images/SignalWithFullDescriptors3.png}}
+{\includegraphics[width=7.5cm, height=7cm]{images/SignalWithFullDescriptors3.png}}
 \subfigure[A patch is used to map an artificial signal using an autoscale plotting scheme, and mapping the entire waveform within the patch. The keypoint is located on the zero-level $z(c)$ value.]
-{\includegraphics[width=6cm, height=6cm]{images/EasyDescriptorSample3.png}}
-\subfigure[Only one fixed size patches are used on a very specific position of the signal trace.]
-{\includegraphics[width=6cm, height=6cm]{images/SignalWithDescriptorSample1.png}}
-\subfigure[An entire signal is mapped with fixed size patches with a very high keypoint density $\gls{kpd}$.]
-{\includegraphics[width=6cm, height=6cm]{images/SignalWithFullDescriptors2.png}}
-\caption[Keypoint Locations]{Four different alternatives of keypoint locations and patch geometry.}.
+{\includegraphics[width=7.5cm, height=7cm]{images/EasyDescriptorSample3.png}}
+%\subfigure[Only one fixed size patches are used on a very specific position of the signal trace.]
+%{\includegraphics[width=6cm, height=6cm]{images/SignalWithDescriptorSample1.png}}
+%\subfigure[An entire signal is mapped with fixed size patches with a very high keypoint density $\gls{kpd}$.]
+%{\includegraphics[width=6cm, height=6cm]{images/SignalWithFullDescriptors2.png}}
+\caption[Keypoint Locations]{Two different alternatives of keypoint locations and patch geometry.}.
 \label{fig:keypointlocations}
 \end{figure}
 
-Regarding the Vertical Location, there are two options.  The first one is along the signal, exactly on the sample points calculated by the Equation \ref{eq:images}.  The second is on a fixed position over the zero-level as described by \ref{eq:zerolevel}.  Figure~\ref{fig:keypointlocations}(a) show the former while on (b) the latter can be spotted.
+Regarding the Vertical Location, there are two options.  The first one is along the signal, exactly on the sample points calculated by the Equation \ref{eq:images}.  The second is on a fixed position over the zero-level as described by \ref{eq:zerolevel}.  Figure~\ref{fig:keypointlocations}(a) show the former while on~\ref{fig:keypointlocations}(b) the latter can be spotted.
 
 \section{Patch Geometry}
 \label{patchgeometry}
@@ -197,11 +196,13 @@ For these patterns, the strategy is to locate keypoints, and their patches, all 
 
 \subsection{Transient Events}
 
-For transient events, descriptors are treated as representatives of the single transient waveforms.  This leads to usually just one keypoint that is located in a meaningful position along the horizontal axis.  Additionally, for autoscale plotting, the zero level can be used to localize keypoints.
+For transient events, descriptors are treated as representatives of the single transient waveforms.  This leads to usually just one keypoint that is located in a meaningful position along the horizontal axis.  Additionally, for autoscale plotting, the zero level can be used to localize keypoints. Figure~\ref{fig:keypointlocations}(b) shows the plot of an artificial waveform with the corresponding patch.
 
 \section{BCI Algorithm}
 
 Now that all the ingredients have been exposed, the general layout of the BCI algorithm can be described.  Going back to BCI model referenced in~\ref{fig:bciblockdiagram}, the following sections describe the Preprocessing, Calibration and Classification step.
+
+\pagebreak
 
 \begin{story}[Terminology Clarification]
 \theoremstyle{definition}
@@ -221,27 +222,27 @@ Now that all the ingredients have been exposed, the general layout of the BCI al
 \textit{A 128-dimensional \textit{feature} vector.  Contains the histogram of 8 angular directions per each block of the 16 blocks of the patch.}
 \end{definition}
 
-\begin{definition}{Waveform}
+\begin{definition}{Waveform:}
 \label{def:Waveform}
 \textit{A signal shape, a transient component or an oscillatory wave, with a potential cognitive implication.}
 \end{definition}
 
-\begin{definition}{Signal}
+\begin{definition}{Signal:}
 \label{def:Signal}
 \textit{The EEG Signal. This Thesis refers to a multidimensional signal or to a single-channel signal. When the clarification is of relevance, it is provided.}
 \end{definition}
 
-\begin{definition}{Image}
+\begin{definition}{Image:}
 \label{def:Image}
 \textit{The \textit{canvas} with sample points created from equation~\ref{eq:images}.}
 \end{definition}
 
-\begin{definition}{Plot}
+\begin{definition}{Plot:}
 \label{def:Plot}
 \textit{The trace of the EEG signal on the Image.}
 \end{definition}
 
-\begin{definition}{HIST}
+\begin{definition}{HIST:}
 \label{def:Plot}
 \textit{This the acronym that hereafter is being used to describe the feature extraction method proposed in this Thesis.}
 \end{definition}
@@ -255,7 +256,7 @@ Signal preprocessing can be applied to $x(n,c)$ before applying the plotting sch
 \subsection{Calibration}
 \label{Calibration}
 
-The calibration step of BCI entails designing an experimental protocol or procedure to allow the computer to learn the signals that identify a cognitive pattern.  Once those patterns are learned, the BCI system tries to identify new unlabeled signals comparing them against those learned patterns.  By performing the feature extraction method outlined in this Chapter, descriptors can be extracted from images and stored in dictionary templates.  These templates are generated on a channel-by-channel basis.  Each dictionary $T^{bpc}$ is used to represent one type of signal to discriminate. The data structure proposed to store descriptors is a KD-tree~\cite{Lowe2004}.
+The calibration step of BCI entails designing an experimental protocol or procedure to allow the computer to learn the signals that identify a cognitive pattern.  Once those patterns are learned, the BCI system tries to identify new unlabeled signals comparing them against those learned patterns.  By performing the feature extraction method outlined in this Chapter, descriptors can be extracted from images and stored in template dictionaries.  These templates are generated on a channel-by-channel basis.  Each dictionary $T^{bpc}$ is used to represent one type of signal to discriminate. The data structure proposed to store descriptors is a KD-tree~\cite{Lowe2004}.
 
 Moreover, the calibration can be also used to identify the $\gls{bpc}$, the Best Performing Channel. This value is used to evaluate the spatial performance based on the electrode where the best classification accuracy is obtained~\cite{Chavarriaga2017}.
 
@@ -269,7 +270,7 @@ A discriminative~\cite{WolpawJonathanR2012} semi-supervised classification metho
 \label{eq:classification}
 \end{equation}
 
-\noindent where the $Q$ descriptors $ \mathbf{q}_{i}^{(bpc)} $ are extracted from a query image for the $\gls{bpc}$ and, the dictionary descriptors  $\mathbf{d}_{h}^{(bpc)} \in N_T(  \mathbf{q}_{i}^{(bpc)} )$ with the set $N_T(  \mathbf{q}_{i}^{(bpc)} ) $ defined as $N_T(  \mathbf{q}_{i}^{(bpc)} ) = \{ \mathbf{d}_{h}^{(bpc)} \in T_{L}^{bpc} / $ is the $\gls{k}$-nearest neighbor of $  \mathbf{q}_{i}^{(bpc)} \}$.  This set is obtained by sorting all the elements $ \mathbf{d}_{h}^{(bpc)} $ in $T_{L}^{bpc}$ based on distances between them and $\mathbf{q}_{i}^{(bpc)}$, choosing the $\gls{k}$ with smaller values.  Hence, the estimated class label $\hat{L}$ of a query image is calculated as the class label $L$ that minimize the summation of the distance between each descriptor $\mathbf{q}_{i}^{(bpc)}$ that belongs to the query image and its corresponding near neighbor $\mathbf{d}_{h}^{(bpc)} $  descriptor for each class. Figure~\ref{fig:nbnnclassification} show a scheme of how this classification method works.
+\noindent where the $Q$ descriptors $ \mathbf{q}_{i}^{(bpc)} $ are extracted from a query image for the $\gls{bpc}$ and, the dictionary descriptors  $\mathbf{d}_{h}^{(bpc)} \in N_T(  \mathbf{q}_{i}^{(bpc)} )$ with the set $N_T(  \mathbf{q}_{i}^{(bpc)} ) $ defined as $N_T(  \mathbf{q}_{i}^{(bpc)} ) = \{ \mathbf{d}_{h}^{(bpc)} \in T_{L}^{bpc} / \mathbf{d} $ is the $\gls{k}$-nearest neighbor of $  \mathbf{q}_{i}^{(bpc)} \}$.  This set is obtained by sorting all the elements $ \mathbf{d}_{h}^{(bpc)} $ in $T_{L}^{bpc}$ based on distances between them and $\mathbf{q}_{i}^{(bpc)}$, choosing the $\gls{k}$ with smaller values.  Hence, the estimated class label $\hat{L}$ of a query image is calculated as the class label $L$ that minimize the summation of the distances between descriptors $\mathbf{q}_{i}^{(bpc)}$ that belong to the query image and their corresponding near neighbor descriptors $\mathbf{d}_{h}^{(bpc)} $  for each class. Figure~\ref{fig:nbnnclassification} show a scheme of how this classification method works.
 
 \begin{figure}[h!]
 \centering
@@ -362,6 +363,18 @@ $\gls{kp}$\\
 
 Mappings:\\
 
+Time to sample point index conversion
+
+\begin{align*}
+n = \left\lfloor F_s \ \Delta_t \right\rfloor \ \gamma_t
+\end{align*}
+
+Span of a Patch
+
+\begin{align*}
+\Delta_t = \frac{S_t \ \Delta_s}{F_s \ \gamma_t} 
+\end{align*}
+
 Amplitude scale factor
 
 \begin{align*}
@@ -372,28 +385,6 @@ Time scale factor
 
 \begin{align*}
 \gamma_t = \frac{W_x}{F_s \; w}  
-\end{align*}
-
-%\begin{equation}
-%s_x = \frac{ \gamma \;  \lambda \  F_s}{12}
-%\label{eq:mapping2}
-%\end{equation}
-%
-%\begin{equation}
-%s_y= \frac{\gamma \; \Delta \mu V}{12} 
-%\label{eq:mapping1}
-%\end{equation}
-
-Restriction on the waveform time scale
-
-\begin{align*}
-\frac{W_x-1}{\sqrt{2} \; 15}  \geq S_t 
-\end{align*}
-
-Restriction on the waveform amplitude scale
-
-\begin{align*}
-\frac{H_y-1}{\sqrt{2} \; 15}  \geq S_v 
 \end{align*}
 
 Horizontal Patch scale
@@ -408,10 +399,16 @@ Vertical Patch scale
 S_v= \frac{\Delta \mu V \ \gamma}{\Delta_s} 
 \end{align*}
 
-Time to sample point conversion
+Restriction on the horizontal patch scale
 
 \begin{align*}
-n = \left\lfloor F_s \ \Delta_t \right\rfloor \ \gamma_t
+\frac{W_x-1}{\sqrt{2} \; 15}  \geq S_t 
+\end{align*}
+
+Restriction on the vertical patch scale
+
+\begin{align*}
+\frac{H_y-1}{\sqrt{2} \; 15}  \geq S_v 
 \end{align*}
 
 Horizontal Patch size in pixels
@@ -424,12 +421,6 @@ Vertical Patch Size in pixels
 
 \begin{align*}
 \mathbf{S}_y = \lfloor \Delta_s \; S_v \rfloor + 1
-\end{align*}
-
-Span of a Patch
-
-\begin{align*}
-\Delta_t = \frac{S_t \ \Delta_s}{F_s \ \gamma_t} 
 \end{align*}
 
 Pixel Resolution on the horizontal axis
