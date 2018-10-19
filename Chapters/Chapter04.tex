@@ -137,6 +137,8 @@ Regarding the Vertical Location, there are two options.  The first one is along 
 %TODO Vertical size: Fixed for autoscaled and variable.
 % Horizontal: based on a priori information
 
+The standard implementation of the SIFT Descriptor uses a squared-size patch, and there is only one scale parameter $S$.  However, this is not appropriate to capture waveforms which may expand on the horizontal axis, on the time scale.  The Histogram of Gradient Orientations on the other hand, allows to have a rectangular patch geometry which can be used to cover an entire waveform, regardless of their span $\gls{lambda}$.  The original SIFT scale, is modified in this implementation to allow two scale parameters, one per each axis.
+
 The Horizontal Patch Scale $\gls{St}$ determines the size of the patch on the image horizontal axis, and it is related to the span $\gls{lambda}$ of the waveform to analyze according to
 
 \begin{equation}
