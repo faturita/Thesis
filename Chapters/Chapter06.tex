@@ -13,7 +13,7 @@ In order to verify if this ERD/ERS could be detected by the method presented in 
 
 
 \begin{story}[BCI Simulation or Cross Validation?]
-The task of decoding information from brain signals inherits practices from Machine Learning (ML).  Cross-validation is used in ML to reduce overfitting bias and to increase the independence on the dataset that is used as calibration (see Section~\ref{Calibration}).  However, the brain data used in BCI are extracted from a person who is performing a task and whose signals are changing while trying to adapt to this operation.  Hence, mixing the dataset, shuffling the sessions and trials is at least a challenging assumption.  BCI Simulation, on the other hand, is not very well defined in BCI research, but their practice, without naming it, has been the regular approach for BCI Competitions. It consists in reproducing the operational sequence that was utilized to generate the dataset. Hence, the experiment is replicated offline using the training information to train or calibrate a classifier, and to classify the testing signals as if they were generated at that same moment.
+The task of decoding information from brain signals inherits practices from Machine Learning (ML).  Cross-validation is used in ML to reduce overfitting bias and to increase the independence on the dataset that is used as calibration (see Section~\ref{Calibration}).  However, the brain data used in BCI is extracted from a person who is performing a task and whose signals are changing while trying to adapt to this operation.  Hence, mixing the dataset, shuffling the sessions and trials is at least a challenging assumption.  BCI Simulation, on the other hand, is not very well defined in BCI research, but their practice, without naming it, has been the regular approach for BCI Competitions. It consists in reproducing the operational sequence that was utilized to generate the dataset. Hence, the experiment is replicated offline using the training information to train or calibrate a classifier, and to classify the testing signals as if they were generated at that same moment.
 
 Regardless, of any definition, the online validation with feedback of any BCI system is the unquestioned gold standard of the discipline~\cite{WolpawJonathanR2012}.
 \end{story}
@@ -31,7 +31,6 @@ Regardless, of any definition, the online validation with feedback of any BCI sy
 
 Binary classification accuracies are calculated based on the output of the BCI simulation on the remaining 3 runs for each participant, in a single-trial approach: for each sampled segment of 1-second length, classification based on the classification algorithm described in \ref{nbnn} is applied and a match or mismatch is obtained.  Results are shown in Figure~\ref{fig:miresults} where for right-hand detection \textit{RH}, average accuracies of around $70\%$ are obtained for the channel C3, the best-performing channel $\gls{bpc}$, coincidentally with the contralateral structure of the imagined movement.  On the other hand, the binary classification accuracy for feet imagery detection \textit{FM}, achieves in all the channels accuracies of just above chance level.
 
-%TODO Theoretical chance level from the NAM book of lotte.
    
 \begin{figure}[h!]
 \centering
@@ -39,11 +38,9 @@ Binary classification accuracies are calculated based on the output of the BCI s
 {\includegraphics[width=7cm, height=5cm]{images/MIinformedonpaper1.png}}
 \subfigure[]
 {\includegraphics[width=7cm, height=5cm]{images/MIinformedonpaper2.png}}
-\caption[Motor Imagery Accuracy]{Classification Accuracy for discriminating segments of 1s ($\gls{N} = 512$) of EEG for Motor Imagery detection BCI simulation. (a) Accuracy values for channels C3, Cz and C4 for the 14 participants of the described MI dataset discriminating between baseline and right-hand imagery. (b) The same procedure for feet imagery. Accuracy levels averaged to $70\%$ are obtained only for right-hand movement on the contralateral channel C3. The horizontal $\gls{St}$ and vertical $\gls{Sv}$ patch scale are adjusted to $6$.}
+\caption[Motor Imagery Accuracy]{Classification Accuracy for discriminating segments of 1s ($\gls{N} = 512$) of EEG for Motor Imagery detection BCI simulation. (a) Accuracy values for channels C3, Cz and C4 for the 14 participants of the described MI dataset discriminating between baseline and right-hand imagery. (b) The same procedure for feet imagery. Accuracy levels averaged to $70\%$ are obtained only for right-hand movement on the contralateral channel C3. The horizontal $\gls{St}$ and vertical $\gls{Sv}$ patch scale are adjusted to $6$, while the amplitude scale factor $\gls{gamma}$ and time scale factor $\gls{gammat}$ are set equal to $2$.  This gives an span $\gls{lambda} = 0.12$  $\si{s}$ and maximum peak-to-peak amplitude $\gls{DeltamuV}$ of $64 \; \mu V$.  }
 \label{fig:miresults}
 \end{figure}
-
-%TODO Agregar bien cual es la conversion en pixeles que se obtiene y probarlo.
    
 \section{Conclusion}
 

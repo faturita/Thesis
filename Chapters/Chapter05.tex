@@ -168,22 +168,22 @@ Results of applying the 10-fold cross validation procedure on the entire set of 
    
 \begin{figure}[h!]
 \centering
-\subfigure[Ten-fold cross-validated accuracy boxplots for O1, Oz, O2 and Iz channels, for the 25 subjects. Mean values are around $70\%$.]
-{\includegraphics[width=7.5cm, height=5cm]{images/DatasetPhysionetBoxPlots}}
 \subfigure[Ten-fold cross-validated accuracies values for a randomly selected subject (number 12), using runs 1 and 2.]
 {\includegraphics[width=7.5cm, height=5cm]{images/DatasetPhysionetAccuracyPerChannel}}
+\subfigure[Ten-fold cross-validated accuracy boxplots for occipital channels O1, Oz, O2 and Iz channels, for the 25 subjects. Mean values are around $70\%$.]
+{\includegraphics[width=7.5cm, height=5cm]{images/DatasetPhysionetBoxPlots}}
 \caption[PhysioNet Dataset Binary Classification Accuracy]{Dataset II: Classification Accuracy for segments of 1s ($\gls{N} = 160$) of EEG, between class 1 and class 2.  In this case as the sampling frequency $\gls{Fs}$ is lower, the signal span is $\gls{lambda} = 0.06$   $\si{s}$}.
 \label{fig:alpharesultsdatasetii}
 \end{figure}
 
 
-For the Dataset II, training and testing steps of the cross-validation procedure are implemented subject by subject.  An averaged accuracy across 25 subjects of around $70\%$ is obtained, also on occipital channels O1, Oz, O2 and Iz (numbered 61 to 64) while discriminating runs 1 versus 2 (baseline eyes open vs baseline eyes closed).  This information can be devised on Figure~\ref{fig:alpharesultsdatasetii}(a) where boxplots of the accuracies for these four occipital channels and for all the 25 subjects, are represented.  On the other hand, Figure~\ref{fig:alpharesultsdatasetii}(b) shows the 10-fold validated accuracy for one random subject. A higher accuracy in the classification of the signals can also be seen over occipital channels.
+For the Dataset II, training and testing steps of the cross-validation procedure are implemented subject by subject.  An averaged accuracy across 25 subjects of around $70\%$ is obtained, also on occipital channels O1, Oz, O2 and Iz (numbered 61 to 64) while discriminating runs 1 versus 2 (baseline eyes open vs baseline eyes closed).  Figure~\ref{fig:alpharesultsdatasetii}(a) shows the 10-fold validated accuracy for one random subject. A higher accuracy in the classification of the signals can also be seen over occipital channels.  This information can also be devised on Figure~\ref{fig:alpharesultsdatasetii}(b) where boxplots of the accuracies for these four occipital channels and for all the 25 subjects, are represented. 
 
 \section{Conclusion}
 
 It is known and it was verified here that the discriminative information in EEG alpha waves is mostly contained in the frequency-domain.  In spite of this,  there is enough information encoded in the alpha waves wiggles to classify signal segments solely on the \textit{features} captured by the HIST method, proposed in this Thesis.  
 
-It was also verified that the presence of oscillatory alpha waves is higher around occipital regions and that an automated procedure which analyze visually the image structure can detect them. This important oscillatory rhythm has many connections with shifting of attention and with volitional changes and is of quite relevance in BCI research~\cite{Basar2012}.  Particularly, the BCI paradigm of Visual Spatial Covert Attention is a further area of research for this method due to the fact that it is entirely based on analyzing alpha waves~\cite{vanGerven2009}. Moreover, the posterior rythm has many implications outside the field of BCI and is very important to assess healthy EEG patterns. The exact meaning of alpha waves is still debated~\cite{Ahn2013} and this basic procedure can open the possibility to explore it under a different perspective and verify if they can be effectively tied to some unexpected form of volitional control which may be effective for BCI understanding and improvement.
+It was also verified that the presence of oscillatory alpha waves is higher around occipital regions and that an automated procedure which analyze visually the image structure can detect them. This important oscillatory rhythm has many connections with shifting of attention and with volitional changes and is of quite relevance in BCI research~\cite{Basar2012}.  Particularly, the BCI paradigm of Visual Spatial Covert Attention is a further area of research for this method due to the fact that it is entirely based on analyzing alpha waves~\cite{vanGerven2009}. Moreover, the posterior rythm has many implications outside the field of BCI and is very important to assess healthy EEG patterns. The exact meaning of alpha waves is still debated~\cite{Ahn2013} and this basic procedure can open the possibility to explore it under a different perspective and verify if they can be robustly used for BCI control, understanding or improvement.
 
 %The key here is the classification algorithm that was used across this thesis.  This is because the local information obtained from each descriptor "help" to balance a tendency of how the synchronous waves all behave, and that information get loaded into the class structure that is later exploited by the classification method.
 %

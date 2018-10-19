@@ -57,7 +57,7 @@ Hence, for each spatial bin $ i,j = \{0,1,2,3\} $, corresponding to the indexes 
 
 These binning functions conform a trilinear interpolation that has a combined effect of sharing the contribution of each oriented gradient between their eight adjacent bins in a tridimensional cube in the histogram space, and zero everywhere else.  This procedure is important to avoid quantization issues that may appear with the histogram (i.e. elimination of intermediate values).
 
-Lastly, on Equation~\ref{eq:ij} the fixed value of $ \frac{5}{\gls{Deltas}} $ allows a unit conversion from pixel to units-of-patch which goes from $-\frac{5}{2}$ to $+\frac{5}{2}$.  As the patch has  $16$ blocks and  $8$ bin angles are considered, a feature $\gls{d}$ called \textit{descriptor} of $128$ dimension is obtained. This technique is a modification of Lowe's SIFT Descriptor method.
+Lastly, on Equation~\ref{eq:ij} the values of $ \frac{5}{\gls{Deltas} \; \gls{St}} $ and $ \frac{5}{\gls{Deltas} \; \gls{Sv}} $ allow a unit conversion from pixel to units-of-patch.  As the patch has  $16$ blocks and  $8$ bin angles are considered, a feature $\gls{d}$ called \textit{descriptor} of $128$ dimension is obtained. This technique is a modification of Lowe's SIFT Descriptor method.
 
 In Figure~\ref{fig:orientationsfull} the possible orientations on each patch are illustrated.  The first eight orientations of the first block $ B_{1,1} $, are labeled from $1$ to $8$ clockwise. The orientations of the second block $ B_{1,2} $ are labeled from $9$ to $16$.  This labeling continues left-to-right, up-down until the eight orientations for all the sixteen blocks are assigned. They form the corresponding $\mathbf{kp}$-descriptor of $128$ coordinates.
 
@@ -126,6 +126,8 @@ Additionally, there can be more than just one keypoint and patch located over th
 \caption[Keypoint Locations]{Two different alternatives of keypoint locations and patch geometry.}.
 \label{fig:keypointlocations}
 \end{figure}
+
+%TODO en realidad son tres, en el zero level a la mitad de la imagen o en el eeg trace.
 
 Regarding the Vertical Location, there are two options.  The first one is along the signal, exactly on the sample points calculated by the Equation \ref{eq:images}.  The second is on a fixed position over the zero-level as described by \ref{eq:zerolevel}.  Figure~\ref{fig:keypointlocations}(a) show the former while on~\ref{fig:keypointlocations}(b) the latter can be spotted.
 
@@ -274,14 +276,14 @@ Moreover, the calibration can be also used to identify the $\gls{bpc}$, the Best
 \subsection{Classification}
 \label{nbnn}
 
-A discriminative~\cite{WolpawJonathanR2012} semi-supervised classification method based on Naive Bayes Nearest Neighbor (NBNN)~\cite{Boiman2008} is applied to classify EEG signals using the features provided by the calculated descriptors. In order to classify a new image, a query image, $Q$ descriptors are extracted.  The NBNN technique allows to categorize this image to one class by comparing the set of extracted descriptors $\mathbf{q}_{i}^{(bpc)}$ to those which are more similar on each dictionary $T^{bpc}$.  This algorithm is very easy to implement, and is based on the following Equation:
+A discriminative~\cite{WolpawJonathanR2012} semi-supervised classification method based on Naive Bayes Nearest Neighbor (NBNN)~\cite{Boiman2008} is applied to classify EEG signals using the features provided by the calculated descriptors. In order to classify a new image, a query image, $Q$ descriptors are extracted from it.  The NBNN technique allows to categorize this image to one class by comparing the set of extracted descriptors $\mathbf{q}_{i}^{(bpc)}$ to those which are more similar on each dictionary $T^{bpc}$.  This algorithm is very easy to implement, and is based on the following Equation:
 
 \begin{equation}
 \hat{L} = \arg \min_{L} \sum_{i=1}^{Q} \sum_{h=1}^{\gls{k}} {\left\lVert \mathbf{q}_{i}^{(bpc)} -  \mathbf{d}_{h}^{(bpc)} \right\rVert}  ^{2} 
 \label{eq:classification}
 \end{equation}
 
-\noindent where the $Q$ descriptors $ \mathbf{q}_{i}^{(bpc)} $ are extracted from a query image for the $\gls{bpc}$ and, the dictionary descriptors  $\mathbf{d}_{h}^{(bpc)} \in N_T(  \mathbf{q}_{i}^{(bpc)} )$ with the set $N_T(  \mathbf{q}_{i}^{(bpc)} ) $ defined as $N_T(  \mathbf{q}_{i}^{(bpc)} ) = \{ \mathbf{d}_{h}^{(bpc)} \in T_{L}^{bpc} / \mathbf{d} $ is the $\gls{k}$-nearest neighbor of $  \mathbf{q}_{i}^{(bpc)} \}$.  This set is obtained by sorting all the elements $ \mathbf{d}_{h}^{(bpc)} $ in $T_{L}^{bpc}$ based on distances between them and $\mathbf{q}_{i}^{(bpc)}$, choosing the $\gls{k}$ with smaller values.  Hence, the estimated class label $\hat{L}$ of a query image is calculated as the class label $L$ that minimize the summation of the distances between descriptors $\mathbf{q}_{i}^{(bpc)}$ that belong to the query image and their corresponding near neighbor descriptors $\mathbf{d}_{h}^{(bpc)} $  for each class. Figure~\ref{fig:nbnnclassification} show a scheme of how this classification method works.
+\noindent where the $Q$ descriptors $ \mathbf{q}_{i}^{(bpc)} $ are extracted from a query image for the $\gls{bpc}$ and, the dictionary descriptors  $\mathbf{d}_{h}^{(bpc)} \in N_T(  \mathbf{q}_{i}^{(bpc)} )$ with the set $N_T(  \mathbf{q}_{i}^{(bpc)} ) $ defined as $N_T(  \mathbf{q}_{i}^{(bpc)} ) = \{ \mathbf{d}_{h}^{(bpc)} \in T_{L}^{bpc} / \mathbf{d} $ is the $\gls{k}$-nearest neighbor of $  \mathbf{q}_{i}^{(bpc)} \}$.  This set is obtained by sorting all the elements $ \mathbf{d}_{h}^{(bpc)} $ in $T_{L}^{bpc}$ based on distances between them and $\mathbf{q}_{i}^{(bpc)}$, choosing the $\gls{k}$ with smaller values.  Hence, the estimated class label $\hat{L}$ of a query image is calculated as the class label $L$ that minimize the summation of the distances between descriptors $\mathbf{q}_{i}^{(bpc)}$ that belong to the query image and their corresponding near neighbor descriptors $\mathbf{d}_{h}^{(bpc)} $  that belong to the template dictionary for each class. Figure~\ref{fig:nbnnclassification} show a scheme of how this classification method works.
 
 \begin{figure}[h!]
 \centering

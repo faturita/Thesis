@@ -51,7 +51,9 @@ The SIFT Detector is not being used in this implementation.  Hence, the keypoint
 
 \subsection{Patch Scale}
 
-Whereas in the standard SIFT implementation the patch is a squared region and there is only one SIFT scale parameter, in this implementation the scale is divided in two: $\gls{St}$ and $\gls{Sv}$.  This forces the frame to be also modified to incorporate one extra parameter, the extra scale.  The frame is thus composed of: $ ( x_{kp}, y_{kp}, \gls{St}, \gls{Sv}, \theta ) $.  
+Whereas in the standard SIFT implementation the patch is a squared region and there is only one SIFT scale parameter, in this implementation the scale is divided in two: $\gls{St}$ and $\gls{Sv}$.  This is a very important modification because otherwise signal plots, which may extend only on the horizontal direction, would not have been able to be mapped.  Using a rectangular frame there isn't any constraint on its size and it can be adjusted at will to map any waveform.
+
+This modification forces the frame to be also altered to incorporate one extra parameter, the extra scale.  The frame is thus composed of: $ ( x_{kp}, y_{kp}, \gls{St}, \gls{Sv}, \theta ) $.  
 
 \subsection{Patch Orientation}
 
@@ -59,11 +61,13 @@ The value $\theta$ is the patch orientation which does not provide any extra uti
 
 \subsection{Patch Size in Pixels}
 
-The nominal size of a patch in many SIFT implementations is $4 \times m \times S$, with $m$ being the magnification factor and $S$ being the SIFT scale.  In spite of this, VLFeat uses in practice a different size of the patch.  The size of the patch is indeed $\gls{Deltas} = \sqrt{2} \; m \; 5$.  The magnification factor $m$ is set as $3$ and $5$ is the result of using $4$ blocks on each direction plus half a block on each side.  For a unit scale on vertical and horizontal direction, this gives an effective patch size of $22$ pixels on both directions.
+The nominal size of a patch in many SIFT implementations is $4 \times m \times S$, with $m$ being the magnification factor and $S$ being the SIFT scale.  However due to the trilinear interpolation, pixels that are located outside the nominal patch size are also considered to calculate the histogram, and the patch boundary is loosely defined between implementations.  In this case, the waveform must be accurately delimited, hence the effective size of the patch must to be considered. This size is indeed $\gls{Deltas} = \sqrt{2} \; m \; 5$.  The magnification factor $m$ is set as $3$ and $5$ is the result of using $4$ blocks on each direction plus half a block on each side.  For a unit scale on vertical and horizontal direction, this gives an effective patch size of $22$ pixels on both directions.
+
+The VLFeat libraries in Repository~\ref{VLFeat} for Matlab that show the patch superimposed on the images are modified to account for this effective patch size.
 
 \subsection{Octave Selection}
 
-A gradient image is used to calculate the oriented gradients and reckon the histogram of gradient orientations.   SIFT calculates different octaves downsampling the original image and applying a Gaussian smoothing operation increasing the sigma parameter of the Gaussian window step by step.  SIFT calls octave to each downsampling level~\cite{Lowe2004,Rey-Otero2014}. VLFeat estimates the octave to use on the gradient image based on the image size and patch parameters.   This is modified in this implementation to use only the zero octave which means that the gradient image has the same size as the original patch, without downsampling.
+A gradient image is used to calculate the oriented gradients and reckon the histogram of gradient orientations.   SIFT calculates different octaves downsampling the original image and applying a Gaussian smoothing operation increasing the sigma parameter of the Gaussian window step by step.  SIFT calls \textit{octave} to each downsampling level~\cite{Lowe2004,Rey-Otero2014}. VLFeat estimates the octave to use on the gradient image based on the image size and patch parameters.   This is modified in this implementation to use only the zero octave which means that the gradient image has the same size as the original patch, without downsampling.
 
 \subsection{First Octave Smoothing}
 
@@ -71,7 +75,7 @@ Additionally, the VLFeat implementation performs a Gaussian blurring on the grad
 
 \subsection{Rotations}
 
-SIFT was designed to allow affine invariance, i.e. to be robust to rotations and scale modifications.  It was not found, so far, of any utility to rotate the patch to capture the signal waveform.  Nevertheless, this feature has not disabled in this implementation, due to the fact that it can be avoided by using a patch orientation equals to $0$.  This the reason why the $\sqrt{2}$ constant is kept in Equations~\ref{eq:horizontalpatchscale} and \ref{eq:verticalpatchscale}.
+SIFT was designed to allow affine invariance, i.e. to be robust to rotations and scale modifications.  It was not found, so far, of any utility to rotate the patch to capture the signal waveform.  Nevertheless, this feature has not been disabled in this implementation, due to the fact that it can be avoided by using a patch orientation equals to $0$.  This the reason why the $\sqrt{2}$ constant is kept in Equations~\ref{eq:horizontalpatchscale} and \ref{eq:verticalpatchscale}.
 
 \subsection{Gaussian Smoothing}
 
@@ -79,7 +83,7 @@ A Gaussian smoothing is performed on the SIFT patch to increase the importance o
 
 \subsection{SIFT Descriptor Values}
 
-The SIFT descriptor $\gls{d}$ is a 128-dimension feature vector~\ref{SIFT}.  Histogram values are double-precision floating point numbers, all positive, and they are accumulated on each coordinate.  Once the gradients are calculated, the following operations are performed:
+The SIFT descriptor $\gls{d}$ is a 128-dimension feature vector, as described in Section~\ref{SIFT}.  Histogram values are double-precision floating point numbers, all positive, and they are accumulated on each coordinate.  Once the gradients are calculated, the following operations are performed:
 
 \begin{itemize}
 \item The descriptor is $\ell$-2 normalized (i.e all the values are divided by the euclidean norm of the descriptor).
@@ -97,7 +101,7 @@ This generate a 128-vector of double precision floating point numbers, between $
 \end{itemize}
 
 
-\section{Public Datasets}
+\section{Published Datasets}
 
 \begin{itemize}
 \item P300-Dataset \url{https://www.kaggle.com/rramele/p300samplingdataset}, Registered as public scientific resource in the public Database SciCrunch, RRID: SCR\_015977. 
@@ -116,7 +120,7 @@ A working and executable cloud repository has been set up for this Thesis contai
 
 \section{Online P300-Based BCI Speller Application}
 
-An online P300 Speller was implemented in~\ref{GuessMe}.  This repository contains a set of OpenVibe~\cite{Renard2010} Designer programs that can be used to perform experiments to calibrate and run a P300-Based BCI Speller application.  The code in this repository offers all the utilities to stream EEG data using the LSL platform~\cite{Labstreaminglayer}, to capture P300 waveforms in template dictionaries and to implement running speller applications.
+An online P300 Speller was implemented in Repository~\ref{GuessMe}.  This repository contains a set of OpenVibe~\cite{Renard2010} Designer programs that can be used to perform experiments to calibrate and run a P300-Based BCI Speller application.  The code in this repository offers all the utilities to stream EEG data using the LSL platform~\cite{Labstreaminglayer}, to capture P300 waveforms in template dictionaries and to implement running speller applications.
 
 \section{Keypoint Localization Details}
 
@@ -125,10 +129,10 @@ This section provides results of extra experiments performed while trying to det
 Results:
 
 \begin{itemize}
-\item Effective Waveform finding is lost when the keypoint location is shifted $\frac{\gls{Sx}}{2}$ on the horizontal axis.
-\item Effective Waveform finding is lost when the keypoint location is shifted $\frac{\gls{Sy}}{4}$ on the vertical axis.
-\item Effective Waveform finding is lost when a $5 \si{db}$ additive white noise signal is superimposed on the EEG stream. 
-\item Effective Waveform finding is lost when a $5 \mu V$ signal of $10 \si{Hz}$ is superimposed on the EEG stream (e.g. $\alpha$-wave noise).
+\item Effective Waveform matching is lost when the keypoint location is shifted $\frac{\gls{Sx}}{2}$ on the horizontal axis.
+\item Effective Waveform matching is lost when the keypoint location is shifted $\frac{\gls{Sy}}{4}$ on the vertical axis.
+\item Effective Waveform matching is lost when a $5 \si{db}$ additive white noise signal is superimposed on the EEG stream. 
+\item Effective Waveform matching is lost when a $5 \mu V$ signal of $10 \si{Hz}$ is superimposed on the EEG stream (e.g. $\alpha$-wave noise).
 \item Effective Waveform finding is lost when a $8 \mu V$ signal of $20 \si{Hz}$ is superimposed on the EEG stream (e.g. $\beta$-wave noise).  
 \end{itemize}
 

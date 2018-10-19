@@ -78,7 +78,7 @@ This chapter mostly deal with the coordinates transformation that need to be enf
 %\label{fig:mappingimages}
 %\end{figure}
 
-Let $c_i$ be a given constant channel, the values of $\mathcal{I}(z_1,z_2)$ are obtained for $n$ varying between $1$ and $N$ or $c$ varying between $1$ and $C$.   In order to convert the EEG original signal $x(n,c)$ into a time-domain image $\mathcal{I}(z_1,z_2)$ representation, the following six alternatives can be used:
+Let $c_i$ be a given constant channel, the values of $\mathcal{I}(z_1,z_2)$ are obtained for $n$ varying between $1$ and $N$ or $c$ varying between $1$ and $C$.   In order to convert the EEG original signal $x(n,c)$ into a time-domain image $\mathcal{I}(z_1,z_2)$ representation, the following alternatives can be used:
 
 \begin{enumerate}
 \item Channel-by-channel binary image:
@@ -94,18 +94,6 @@ The standard plotting, on a black-and-white image with lines representing voltag
 \end{equation}
 
 Due to the coordinates transformation, the signal plotted by this procedure is inverted on the image.  Thus, it is necessary to multiply $x(n,c_i)$ by $(-1)$ to invert it before plotting.
-
-\item Channel-by-channel greyscale image
-
-The voltage amplitudes are represented in greyscale, that could range between 0 and 255.  The function $\phi( \cdot )$ is a bounded linear mapping between $\left[ 0,255 \right]$:
-
-\begin{equation}
-\mathcal{I}^{(c_i)}(z_1,z_2)= \left\{ \begin{array}{rl}
-\phi(x(n,c_i)) & \text{if} \,  z_1 = n; \; z_2 = z(c_i) \\
-0   & \mbox{otherwise}
-\end{array}\right ..
-\label{eq:image2}
-\end{equation}
 
 \item Multichannel full greyscale image
 
@@ -227,7 +215,7 @@ H_y = 2 \; z(c) .
 
 \subsubsection{Width}
 
-The width, on the other hand, is obtained based on the length of the signal segment, scaled by the $\gamma_t$  time factor,
+The width, on the other hand, is obtained based on the length of the signal segment, scaled by the $\gamma_t$  scale time factor,
 
 \begin{equation}
 W_x = \gamma_t  N
