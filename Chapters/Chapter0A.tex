@@ -124,9 +124,7 @@ An online P300 Speller was implemented in Repository~\ref{GuessMe}.  This reposi
 
 \section{Keypoint Localization Details}
 
-This section provides results of extra experiments performed while trying to determine the importance of keypoint localization.
-
-Results:
+This section provides results while analyzing the importance of keypoint localization:\\
 
 \begin{itemize}
 \item Effective Waveform matching is lost when the keypoint location is shifted $\frac{\gls{Sx}}{2}$ on the horizontal axis.
@@ -136,31 +134,31 @@ Results:
 \item Effective Waveform finding is lost when a $8 \mu V$ signal of $20 \si{Hz}$ is superimposed on the EEG stream (e.g. $\beta$-wave noise).  
 \end{itemize}
 
-\begin{figure}[h!]
-\centering
-\subfigure[]
-{\includegraphics[scale=0.6]{images/dialdescriptores1.png}}
-\caption[Waveform identification Scheme]{Upper panel shows the euclidean distance between the descriptor 1 obtained from the left patch, and descriptor 2 obtained from the right patch.  Lower panels show the signal 1, which is used to generate the first descriptor and signal 2 which is used to generate the patch from the right.  The signals are exactly the same, hence the distance between descriptors is zero at exactly the keypoint position corresponding $175$ sample point.}
-\label{fig:dialdescriptors1}
-\end{figure}
+%\begin{figure}[h!]
+%\centering
+%\subfigure[]
+%{\includegraphics[scale=0.6]{images/dialdescriptores1.png}}
+%\caption[Waveform identification Scheme]{Upper panel shows the euclidean distance between the descriptor 1 obtained from the left patch, and descriptor 2 obtained from the right patch.  Lower panels show the signal 1, which is used to generate the first descriptor and signal 2 which is used to generate the patch from the right.  The signals are exactly the same, hence the distance between descriptors is zero at exactly the keypoint position corresponding $175$ sample point.}
+%\label{fig:dialdescriptors1}
+%\end{figure}
 
 
-\begin{figure}[h!]
-\centering
-\subfigure[]
-{\includegraphics[scale=0.6]{images/dialdescriptores3.png}}
-\caption[Waveform identification under the presence of noisy signals]{In this case, the signal from the bottom panel has a superimposed additive artificial random noise of $5 \si{db}$.  Although the minimum value in the euclidean distance panel is still the correct localization of the waveform, there is a false positive which differs only $3\%$ of the real value. }
-\label{fig:dialdescriptors2}
-\end{figure}
+%\begin{figure}[h!]
+%\centering
+%\subfigure[]
+%{\includegraphics[scale=0.6]{images/dialdescriptores3.png}}
+%\caption[Waveform identification under the presence of noisy signals]{In this case, the signal from the bottom panel has a superimposed additive artificial random noise of $5 \si{db}$.  Although the minimum value in the euclidean distance panel is still the correct localization of the waveform, there is a false positive which differs only $3\%$ of the real value. }
+%\label{fig:dialdescriptors2}
+%\end{figure}
 
 
-\begin{figure}[h!]
-\centering
-\subfigure[]
-{\includegraphics[scale=0.6]{images/dialdescriptores5.png}}
-\caption[Waveform identification under patch vertical translations]{If the keypoint is vertically translated 5 pixels downward or upward, the waveform can't no longer be identified correctly.}
-\label{fig:dialdescriptors5}
-\end{figure}
+%\begin{figure}[h!]
+%\centering
+%\subfigure[]
+%{\includegraphics[scale=0.6]{images/dialdescriptores5.png}}
+%\caption[Waveform identification under patch vertical translations]{If the keypoint is vertically translated 5 pixels downward or upward, the waveform can't no longer be identified correctly.}
+%\label{fig:dialdescriptors5}
+%\end{figure}
 
 
 %\begin{figure}[h!]
@@ -172,11 +170,11 @@ Results:
 %\end{figure}
 
 
-\begin{figure}[h!]
-\centering
-\subfigure[]
-{\includegraphics[scale=0.6]{images/dialdescriptores7.png}}
-\caption[Waveform identification under the presence of a noisy $\alpha$-wave.]{With a subtle $6.5 \mu V$ noisy $10 \si{Hz}$ signal, the waveform can no longer be localized effectively.}
-\label{fig:dialdescriptors7}
-\end{figure}
+%\begin{figure}[h!]
+%\centering
+%\subfigure[]
+%{\includegraphics[scale=0.6]{images/dialdescriptores7.png}}
+%\caption[Waveform identification under the presence of a noisy $\alpha$-wave.]{With a subtle $6.5 \mu V$ noisy $10 \si{Hz}$ signal, the waveform can no longer be localized effectively.}
+%\label{fig:dialdescriptors7}
+%\end{figure}
 
