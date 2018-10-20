@@ -13,7 +13,7 @@ Figure~\ref{fig:p300matrix} shows an example of the Speller Matrix used in the O
 \begin{figure}[h!]
 \centering
 \includegraphics[width=15cm]{images/openvibep300matrix.png}
-\caption[P300 Speller Matrix]{Example of the $6 \times 6$ Speller Matrix used in the study obtained from the OpenVibe software.  Rows and columns flash in random permutations.}
+\caption[P300 Speller Matrix]{Example of the $6 \times 6$ Speller Matrix from the OpenVibe software.  Rows and columns flash in random permutations.}
 \label{fig:p300matrix}
 \end{figure}
 
@@ -25,7 +25,7 @@ Figure~\ref{fig:p300matrix} shows an example of the Speller Matrix used in the O
 
 %TODO Agregar aca que en este caso no queda otra mas que preprocesar la señal debido a que el P300 está muy embebido en la señal.  Ver la figura donde se ve esto bien con el dataset truchado.
 
-In this section, the signal preprocessing, the ERP Extraction, and the Speller Matrix identification are described.  Additionally, the experiments that were conducted, are also expounded.
+In this section, the signal preprocessing, the ERP extraction, and the speller matrix identification are described.  Additionally, the experiments that were conducted, are also expounded.
 
 \subsection{Preprocessing Pipeline} \label{Pipeline}
 
@@ -70,9 +70,7 @@ for $1 \leq n \leq N$ and for the channels $1 \leq c \leq C$. Once this is compu
 \subsection{Speller Matrix letter Identification}
 \label{Classification}
 
-The speller matrix operation is divided in three parts.  First, the EEG signal is processed and ERPs are extracted.  Second, descriptors obtained from these ERPs are used to build the template dictionary $\gls{T}$ during the calibration phase of the speller. And finally, the spelled letter is identified by extracting descriptors from new signals, and using the classification algorithm to identify them.
-
-The next sections outline details of these procedures.
+The speller matrix operation is divided in three parts.  First, the EEG signal is processed and ERPs are extracted.  Second, descriptors obtained from these ERPs are used to build the template dictionary $\gls{T}$ during the calibration phase of the speller. And finally, the spelled letter is identified by extracting descriptors from new signals, and using the classification algorithm to identify them.  The next sections outline details of these procedures.
 
 \subsubsection{P300 ERP Extraction}
 Segments corresponding to row flickering are labeled 1-6, whereas those corresponding to column flickering are labeled 7-12.  The extraction process has the following steps:
@@ -147,7 +145,7 @@ In order to assess and verify the identification of the P300 response, subjects 
 \subsubsection{Dataset II - P300 for healthy subjects}
 \label{P300healthysubject}
 
-We replicate the same experiment on healthy subjects using a wireless digital EEG device (g.Nautilus, g.Tec, Austria).  Figure~\ref{fig:gtecdevice} shows the front and back of the g.Tec head cap and two subjects performing this experiment.   The experimental conditions are the same as those used for the previous dataset, as detailed in section~\ref{ALSDataset}.  The produced dataset is available in a public online repository~\cite{owndataset}.
+We replicate the same experiment on healthy subjects using a wireless digital EEG device (g.Nautilus, g.Tec, Austria).  Figure~\ref{fig:gtecdevice} shows the front and back of the g.Tec head cap and two subjects performing this experiment.   The experimental conditions are the same as those used for the Dataset I, as detailed in section~\ref{ALSDataset}.  The produced dataset is available in a public online repository~\cite{owndataset}.
 
 Participants are recruited voluntarily and the experiment is conducted anonymously in accordance with the Declaration of Helsinki published by the World Health Organization.  No monetary compensation is handed out and all participants agree and sign a written informed consent.  This study is approved by the \textit{Departamento de Investigación y Doctorado, Instituto Tecnológico de Buenos Aires (ITBA)}.  All healthy subjects have normal or corrected-to-normal vision and no history of neurological disorders. The experiment is performed with 8 subjects, 6 males, 2 females, 6 right-handed, 2 left-handed, average age 29.00 years, standard deviation  11.56 years, range 20-56 years.
 
@@ -175,14 +173,14 @@ Gel-based active electrodes (g.LADYbird, g.Tec, Austria) are used on the same po
 
 \subsubsection{Dataset III - P300 Pseudo-Real Dataset Generation}
 
-To construct this artificial dataset, a P300 ERP template, obtained from the ALS patients dataset, is superimposed into a distinct EEG stream with null-signals.  This EEG trace was experimentally obtained by a subject which was observing the flashing of the stimulus matrix during a P300 Speller procedure but did not engage in focusing on any letter in particular. Everything is there, except the P300 ERP component. Along the EEG stream, the markers information was used to localize the \textit{True} segments where the P300 should have been found, and those timing locations are used to superimpose the extracted ERP waveform.  By implementing this pseudo-real approach, it is possible to effectively control null-signals and to adjust the shape of this evoked potential in accordance to similar procedures used in other works \cite{Ouyang2017,Jaskowski2000,QuianQuiroga2003}.
+To construct this artificial dataset, a P300 ERP template, obtained from the Dataset I of ALS patients, is superimposed into a distinct EEG stream with null-signals.  This EEG trace was experimentally obtained by a subject which was observing the flashing of the stimulus matrix during a P300 Speller procedure but did not engage in focusing on any letter in particular. Everything is there, except the P300 ERP component. Along the EEG stream, the markers information was used to localize the \textit{True} segments where the P300 should have been found, and those timing locations are used to superimpose the extracted ERP waveform.  By implementing this pseudo-real approach, it is possible to effectively control null-signals and to adjust the shape of this evoked potential in accordance to similar procedures used in other works \cite{Ouyang2017,Jaskowski2000,QuianQuiroga2003}.
 
 The template ERP is acquired from the Subject Number $8$ of the public dataset 008-2014 of ALS patients.  Segments from the EEG signal containing the ERP are extracted for the trial number $2$, and they are point-to-point coherently averaged.  This P300 ERP can be seen in Figure~\ref{fig:erptemplate1}. 
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=12cm]{images/erptemplate1.eps}
-\caption[P300 ERP Template]{ERP Template obtained from the coherent point-to-point ensemble average from the signals of Subject Number 8 of the BNCI Horizon public dataset 008-2014. The template is $1$-second long which is 256 sample points, and the eight channels are superimposed with different colors.  Vertical axis represents amplitude in $\mu V$ while horizontal axis reflects discrete sample points. The P3b component can be seen around the sample index $150$ and $200$.}
+\caption[P300 ERP Template]{ERP Template obtained from the coherent point-to-point ensemble average from the signals of Subject Number 8 of the Dataset I of ALS patients. The template is $1$-second long which is 256 sample points, and the eight channels are superimposed with different colors.  Vertical axis represents amplitude in $\mu V$ while horizontal axis reflects discrete sample points. The P3b component can be seen around the sample index $150$ and $200$.}
 \label{fig:erptemplate1}
 \end{figure}
 
@@ -193,7 +191,7 @@ The participant is instructed to passively watch the flashing screen while not f
 
 %This P300 Speller protocol consist in the flashing of 35 trails of 35 letters (7 words of 5 letter) where the intensification sequence of 6 rows and 6 columns is repeated 10 times for each letter.  More details can be found on the published work of \cite{Riccio2013}.
 
-Figure~\ref{fig:gains} shows a $5s$ sample of the EEG trace obtained with the MNE library~\cite{Gramfort2013}.  Channel $S$ represents the twelve different stimulus markers (columns or rows) while channel $L$ represent the label (\textit{True} vs \textit{False}).  Labels are represented by square signals.  \textit{False} segments are marked with single amplitude square signals while \textit{True} segments are identified by double-amplitude square signals.  Subfigure (a) shows the signals before the ERP template is superimposed while subfigure (b) shows the same signals with the superimposed ERP template.  At first-sight, differences are really hard to spot visually.  Subfigures (c) and (d) show only one second of channels Cz and L from the same segment.  The superimposed ERP can be devised enclosed by the vertical bars, around $31.5$s, where in (d) the peak is slightly bigger.  Figure~\ref{fig:gaincheck} shows the obtained ensemble average ERPs as result of superimposing the template signal into the EEG stream, time-locked to the stimulus onset.   These 12 point-to-point averaged segments correspond to the first trial of the EEG stream.
+Figure~\ref{fig:gains} shows a $5s$ sample of the EEG trace obtained with the MNE library~\cite{Gramfort2013}.  Channel $S$ represents the twelve different stimulus markers (columns or rows) while channel $L$ represent the label (\textit{True} vs \textit{False}).  Labels are represented by square signals.  \textit{False} segments are marked with single amplitude square signals while \textit{True} segments are identified by double-amplitude square signals.  Subfigure (a) shows the signals before the ERP template is superimposed while subfigure (b) shows the same signals with the superimposed ERP template.  At first-sight, differences are really hard to spot visually.  Subfigures (c) and (d) show only one second of channels Cz and L from the same segment.  The superimposed ERP can be devised enclosed by the vertical bars, around $31.5$~$\si{seconds}$, where in (d) the peak is slightly bigger.  Figure~\ref{fig:gaincheck} shows the obtained ensemble average ERPs as result of superimposing the template signal into the EEG stream, time-locked to the stimulus onset.   These 12 point-to-point averaged segments correspond to the first trial of the EEG stream.
 
 %The original signal-to-noise ratio was calculated as Hue 2010.
 
@@ -235,7 +233,7 @@ Finally the performance at letter identifications for the method proposed on thi
 
 \subsubsection{Parameters}
 
-The P300 event can have a span $\gls{lambda}$ of $400$ ms and its peak-to-peak amplitude $\gls{DeltamuV}$ can reach $ 10 \mu V $~\cite{Rao2013}.  Hence it is necessary to utilize a signal segment of size $\gls{w} = 1$ second.  In order to compute the patch parameters, Equations~\ref{eq:horizontalpatchscale} and \ref{eq:verticalpatchscale} are used to determine the value of $3$ for the horizontal patch scale $\gls{St}$ as well as the vertical patch scale $\gls{Sv}$.  It is important to remark that as it is described in Section~\ref{Pipeline} the effective sampling frequency $\gls{Fs}$ of the signal is $16\si{hertz}$.
+The P300 event can have a span $\gls{lambda}$ of $400$ ms and its peak-to-peak amplitude $\gls{DeltamuV}$ can reach $ 10 \mu V $~\cite{Rao2013}.  Hence it is necessary to utilize a signal segment of size $\gls{w} = 1$ second.  In order to compute the patch parameters, Equations~\ref{eq:horizontalpatchscale} and \ref{eq:verticalpatchscale} are used to determine the value of $3$ for the horizontal patch scale $\gls{St}$ as well as the vertical patch scale $\gls{Sv}$.  It is important to remark that as it is described in Section~\ref{Pipeline} the effective sampling frequency $\gls{Fs}$ of the signal is $16$~$\si{\hertz}$.
 
 
 %necesitamos definir el valor de s en función de los parámetros de la señal, de modo tal que el parche cubra el evento completo.  
@@ -256,11 +254,11 @@ Lastly, the number of channels $\gls{C}$ is equal to $8$ for the first three dat
 
 \section{Results}
 
-Table~\ref{tab:resultsals} shows the results of applying the Histogram of Gradient Orientations (HIST) algorithm to the subjects of the public dataset of ALS patients. The percentage of correctly spelled letters is calculated while performing an offline BCI Simulation.  From the seven words for each subject, the first three are used for calibration, and the remaining four are used for testing.  The best performing channel  $\gls{bpc}$ is informed as well. The target ratio is $1:36$; hence theoretical chance level is $2.8\%$. It can be observed that the best performance of the letter identification method is reached in a dissimilar channel depending on the subject being studied.  Moreover, this table show for comparison the obtained performance rates using single-channel signals with the Support Vector Machine (SVM) classifier.  This method is configured to use a linear kernel.  The best performing channel $\gls{bpc}$, where the best letter identification rate was achieved, is also depicted.
+Table~\ref{tab:resultsals} shows the results of applying the Histogram of Gradient Orientations (HIST) algorithm to the subjects of the Dataset I of ALS patients. The percentage of correctly spelled letters is calculated while performing an offline BCI Simulation.  From the seven words for each subject, the first three are used for calibration, and the remaining four are used for testing.  The best performing channel  $\gls{bpc}$ is informed as well. The target ratio is $1:36$; hence theoretical chance level is $2.8\%$. It can be observed that the best performance of the letter identification method is reached in a dissimilar channel depending on the subject being studied.  Moreover, this table shows for comparison the obtained performance rates using single-channel signals with the Support Vector Machine (SVM) classifier.  This method is configured to use a linear kernel.  The best performing channel $\gls{bpc}$, where the best letter identification rate was achieved, is also depicted.
 
 
 \begin{table}[h!]
-\caption[Dataset I - Single Channel Character Recognition Rates]{Dataset I: Character recognition rates for the public dataset of ALS patients using the Histogram of Gradient (HIST) calculated from  single-channel plots.  Performance rates using single-channel signals with the SVM classifier are shown for comparison.  The best performing channel $bpc$ for each method is visualized}
+\caption[Dataset I - Single Channel Character Recognition Rates]{Dataset I: Character recognition rates for the public dataset of ALS patients using HIST calculated from single-channel plots.  Performance rates using single-channel signals with the SVM classifier are shown for comparison.  The best performing channel $bpc$ for each method is visualized}
 \centering
 %% \tablesize{} %% You can specify the fontsize here, e.g.  \tablesize{\footnotesize}. If commented out \small will be used.
 \begin{tabular}{c|cc|cc}
@@ -283,6 +281,19 @@ Table~\ref{tab:resultsals} shows the results of applying the Histogram of Gradie
 
 %The spelled words are \textit{MANSO},\textit{CINCO},\textit{JUEGO} and \textit{QUESO}.
 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=10cm]{images/performance.eps}
+\caption[Dataset I ALS Patients Dataset P300 Performance Curves]{Performance curves for the eight subjects included in the dataset I of ALS patients.  Three out of eight subjects achieved the necessary performance to implement a valid P300 speller.}
+\label{fig:performance}
+\end{figure}
+
+% Agregar la clasificacion perfecta en base a que no considerabamos la varianza de la senial graficada
+
+%The spelled words are \textit{GATTO}, \textit{MENTE}, \textit{VIOLA} and \textit{REBUS}.
+
+The Information Transfer Rate (ITR), or Bit Transfer Rate (BTR), in the case of reactive BCIs~\cite{WolpawJonathanR2012}  depends on the amount of signal averaging required to transmit a valid and robust selection.  Figure~\ref{fig:performance} shows the performance curves for varying intensification sequences for the subjects included in the dataset of ALS patients. It can be noticed that the percentage of correctly identified letters depends on the number of intensification sequences that are used to obtain the averaged signal.  Moreover, when the number of intensification sequences tend to 1, which corresponds to single-intensification character recognition, the performance is reduced. As mentioned before, the SNR of the P300 obtained from only one segment of the intensification sequence is very low and the shape of its P300 component is not very well defined.
+
 \begin{table}[h!]
 \caption[Dataset II - Single Channel Character Recognition Rates]{Dataset II: Character recognition rates and $bpc$  using HIST calculated from  single-channel signals.  Performance rates using single-channel signals with the SVM classifier are shown for comparison.}
 \centering
@@ -304,21 +315,6 @@ Table~\ref{tab:resultsals} shows the results of applying the Histogram of Gradie
 \end{tabular}
 \label{tab:resultsown}
 \end{table}
-
-% Agregar la clasificacion perfecta en base a que no considerabamos la varianza de la senial graficada
-
-%The spelled words are \textit{GATTO}, \textit{MENTE}, \textit{VIOLA} and \textit{REBUS}.
-
-The Information Transfer Rate (ITR), or Bit Transfer Rate (BTR), in the case of reactive BCIs~\cite{WolpawJonathanR2012}  depends on the amount of signal averaging required to transmit a valid and robust selection.  Figure~\ref{fig:performance} shows the performance curves for varying intensification sequences for the subjects included in the dataset of ALS patients. It can be noticed that the percentage of correctly identified letters depends on the number of intensification sequences that are used to obtain the averaged signal.  Moreover, when the number of intensification sequences tend to 1, which corresponds to single-intensification character recognition, the performance is reduced. As mentioned before, the SNR of the P300 obtained from only one segment of the intensification sequence is very low and the shape of its P300 component is not very well defined.
-
-
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=10cm]{images/performance.eps}
-\caption[Dataset I ALS Patients Dataset P300 Performance Curves]{Performance curves for the eight subjects included in the dataset I of ALS patients.  Three out of eight subjects achieved the necessary performance to implement a valid P300 speller.}
-\label{fig:performance}
-\end{figure}
 
 
 In Table~\ref{tab:resultsown} the results obtained for 8 healthy subjects are shown.  It can be observed that the performance is above chance level. It was verified that HIST method has an improved performance at letter identification than SVM that process the signals on a channel by channel strategy (Wilcoxon signed-rank test, $p =  0.004$ for both datasets).
@@ -353,7 +349,7 @@ In Table~\ref{tab:resultsown} the results obtained for 8 healthy subjects are sh
 
 %The PE algorithm, which is also devised on a time-domain description of the waveform, was implemented according to \cite{Unakafova2013} and its parameters were adjusted as stated by \cite{Zanin2012}, with an \textit{order} of $2$ and a \textit{sliding window} of size $10$. 
 
-Tables~\ref{tab:resultsalsswlda} and~\ref{tab:resultsownswlda} are presented in order to compare the performance of the HIST method versus a multichannel version of the SWLDA and SVM classification algorithms for both datasets.  The feature was formed by concatenating all the channels~\cite{Krusienski2006}.  SWLDA is the methodology proposed by the ALS dataset's publisher.  As can be observed in Figure~\ref{fig:boxplots}, It was verified for the dataset I of ALS patients that HIST has similar performance  against other methods like SWLDA or SVM, which use a multichannel feature (Quade test with $p=0.55$) whereas for the dataset of healthy subjects significant differences were found (Quade test with $p=0.02$) where only the HIST method achieved a different performance than SVM (with multiple comparisons, significant difference of level $0.05$).
+Tables~\ref{tab:resultsalsswlda} and~\ref{tab:resultsownswlda} are presented in order to compare the performance of the HIST method versus a multichannel version of the SWLDA and SVM classification algorithms for both datasets.  The feature was formed by concatenating all the channels~\cite{Krusienski2006}.  SWLDA is the methodology proposed by the ALS dataset's publisher.  As can be observed in Figure~\ref{fig:boxplots}, it was verified for the dataset I of ALS patients that HIST has similar performance  against other methods like SWLDA or SVM, which use a multichannel feature (Quade test with $p=0.55$) whereas for the dataset of healthy subjects significant differences were found (Quade test with $p=0.02$) where only the HIST method achieved a different performance than SVM (with multiple comparisons, significant difference of level $0.05$).
 
 \begin{figure}[h!]
 \centering
@@ -363,7 +359,7 @@ Tables~\ref{tab:resultsalsswlda} and~\ref{tab:resultsownswlda} are presented in 
 \end{figure}
 
 \begin{table}[h!]
-\caption[Dataset II - Comparisons of Character Recognition Rates]{Character recognition rates and the best performing channel $bpc$ for the  dataset II  using the HIST versus performance rates obtained by SWLDA and SVM classification algorithms with a multichannel concatenated feature.}
+\caption[Dataset II - Comparisons of Character Recognition Rates]{Character recognition rates and the best performing channel $bpc$ for the  dataset II  using HIST versus performance rates obtained by SWLDA and SVM classification algorithms with a multichannel concatenated feature.}
 \centering
 %% \tablesize{} %% You can specify the fontsize here, e.g.  \tablesize{\footnotesize}. If commented out \small will be used.
 \begin{tabular}{c|cc|c|c}
@@ -395,7 +391,7 @@ The P300 ERP  consists of two overlapping components: the P3a and P3b, the forme
 
 %\subsection{Stability of the P300 shape}
 
-As subjects have varying \textit{latencies} and \textit{amplitudes} of their P300 components, they also have a varying stability of the \textit{shape} of the generated ERP \cite{Nam2010}.  Figure~\ref{fig:p300templates} shows 10 sample P300 templates patches for patients 8 and 3 from the dataset of ALS patients. It can be discerned that in coincidence with the performance results, the P300 signature is more clear and consistent for subject 8 (A) while for subject 3 (B) the characteristic pattern is more difficult to perceive.
+As subjects have varying \textit{latencies} and \textit{amplitudes} of their P300 components, they also have a varying stability of the \textit{shape} of the generated ERP \cite{Nam2010}.  Figure~\ref{fig:p300templates} shows 10 sample P300 templates patches for patients 8 and 3 from the Dataset I of ALS patients. It can be discerned that in coincidence with the performance results, the P300 signature is more clear and consistent for subject 8 (A) while for subject 3 (B) the characteristic pattern is more difficult to perceive.
 
 
 \begin{figure}[h!]
@@ -406,7 +402,7 @@ As subjects have varying \textit{latencies} and \textit{amplitudes} of their P30
 \end{figure}
 
 
-Additionally, the stability of the P300 component waveform has been extensively studied in patients with ALS \cite{SellersandEmanuelDonchin2006,TomohiroMadarame2008,Nijboer2009,Mak2012,McCane2015} where it was found that these patients have a stable P300 component, which were also sustained across different sessions.  In line with these results we do not find evidence of a difference in terms of the performance obtained by analyzing the waveforms (HIST) for the group of patients with ALS and the healthy group of volunteers (Mann-Whitney U Test, $p=0.46$). Particularly, the best performance is obtained for a subject from the ALS dataset for which, based on visual observation, the shape of they P300 component is consistently identified.
+Additionally, the stability of the P300 component waveform has been extensively studied in patients with ALS \cite{SellersandEmanuelDonchin2006,TomohiroMadarame2008,Nijboer2009,Mak2012,McCane2015} where it was found that these patients have a stable P300 component, which were also sustained across different sessions.  In line with these results we do not find evidence of a difference in terms of the performance obtained by analyzing the waveforms, by using the HIST method, for the group of patients with ALS and the healthy group of volunteers (Mann-Whitney U Test, $p=0.46$). Particularly, the best performance is obtained for a subject from the ALS dataset for which, based on visual observation, the shape of they P300 component is consistently identified.
 
 %\subsection{Descriptor Space and classification method}
 
@@ -415,7 +411,9 @@ It is important to remark that when applied to binary images obtained from signa
 %Using the same feature but with classification methods SVM, feed forward Neural Networks and SWLDA  common in BCI Research achieved a reduced performance.
 
 
-Regarding Experiments 1, 2 and 3 for the Dataset III, results are shown in Table~\ref{tab:results} and in Figure~\ref{fig:performancetest}, ~\ref{fig:performancetestlatency} and~\ref{fig:performancetestamplitude}.  Table~\ref{tab:results} shows the  performance while identifying each letter of the standard P300 Speller Matrix, and the $\gls{bpc}$, the channel where the best performance is attained.   Figure~\ref{fig:performancetest} shows the performance curves for the six algorithms under comparison.  Each one represents the percentage of letters that is actually predicted by each algorithm using a cross-validation procedure.  As previously described the data is continuously divided in two sets, where the first 15 letters are used to derive the dictionary of templates while the remaining 20 letters are used to measure the letter identification performance. This is repeated one hundred times, and performances averaged.   Figure~\ref{fig:performancetestlatency} shows the same results for the Experiment 2, where a noisy latency lag was included.   Lastly, Figure ~\ref{fig:performancetestamplitude} represents the performance values obtained for the Experiment 3, when the amplitude of the P3b component of the template is randomly attenuated.  
+Regarding Experiments 1, 2 and 3 for the Dataset III, results are shown in Table~\ref{tab:results} and in Figure~\ref{fig:performancetest}, ~\ref{fig:performancetestlatency} and~\ref{fig:performancetestamplitude}.  Table~\ref{tab:results} shows the  performance for the Experiment I, II and III while identifying each letter of the standard P300 Speller Matrix, and the $\gls{bpc}$, the channel where the best performance is attained.   Figure~\ref{fig:performancetest} shows the performance curves attained for the Experiment 1, for the six algorithms under comparison.  Each one represents the percentage of letters that is actually predicted by each algorithm using a cross-validation procedure.  As previously described the data is continuously divided in two sets, where the first 15 letters are used to derive the dictionary of templates while the remaining 20 letters are used to measure the letter identification performance. This is repeated one hundred times, and performances averaged.   Figure~\ref{fig:performancetestlatency} shows the same results for the Experiment 2, where a noisy latency lag was included.   Last but not least, Figure ~\ref{fig:performancetestamplitude} represents the performance values obtained for the Experiment 3, when the amplitude of the P3b component of the template is randomly attenuated.  
+
+A significant reduction of performance was found when latency noise is added (Experiment 1 vs 2, Wilcoxon rank sum test, one tail, with $p=0.0022$).  The latency noise added to each segment $S_i^l$ under the Experiment 3, reduces the information contained in the averaged signal, mainly due to the invalidation of the SNR enhancement performed by the signal averaging procedure.  This reduction alters the obtained shape of the waveform of the ERP and impacts on the performances regardless of the method. On the other hand, all the algorithms show some resistance to noise in peak amplitudes of the main component. This is shown by the similarities of obtained results between the Experiment 1 and 3 (Wilcoxon rank sum test, two tails, not rejected with $p=0.1797$).  Additionally, a two-way balanced Quade test was performed to evaluate the performance's differences for the three experiments for the dataset III, and for the six methods.  Difference among the method's letter identification rates were found with $p=0.0019$.  The methods \textit{SHCC}, \textit{HIST}, \textit{MP-1} performed much better than the other algorithms, including \textit{SVM}.  By making multiple comparisons at a level  $0.05$, significant differences are found between \textit{SHCC} vs MP-1,MP-2, PE and SVM, between \textit{HIST} vs. MP-2 and PE, and between \textit{SVM} and MP-2.
 
 \begin{figure}[h!]
 \centering
@@ -434,7 +432,7 @@ Regarding Experiments 1, 2 and 3 for the Dataset III, results are shown in Table
 \begin{figure}[h!]
 \centering
 \includegraphics[width=15cm]{images/CrossPerformanceTestAmplitude.eps}
-\caption[Experiment III Pseudo-real Dataset III Speller Performance]{Speller performance obtained for the Experiment 3 while the amplitudes of the P3b component of the superimposed ERP is randomly reduced. Y-axis shows performance accuracy while X-axis shows the number of intensification sequences.}
+\caption[Experiment III Pseudo-real Dataset III Speller Performance]{Speller performance obtained for the Experiment 3 while the amplitudes of the P3b component of the superimposed ERP are randomly reduced. Y-axis shows performances for character recognition rates while X-axis shows the number of intensification sequences.}
 \label{fig:performancetestamplitude}
 \end{figure}
 
@@ -459,7 +457,7 @@ SVM     & PO8  & $78\%$ & $7\%$ & $53\%$\\
 \label{tab:results}
 \end{table}
 
-Finally, results obtained for the dataset BCI Competition 2003 IIb are shown in Figures \ref{fig:performancebcicompetition} and in Table~\ref{tab:bcicompetitionresults}.  As mentioned before, for this experiment the number of available intensification sequences is $15$.
+Finally, results obtained for the dataset BCI Competition 2003 IIb are shown in Figures \ref{fig:performancebcicompetition} and in Table~\ref{tab:bcicompetitionresults}.  As mentioned before, for this experiment the number of available intensification sequences is $15$. The obtained character identification rate is above theoretical chance level, and for HIST close to the usable threshold of $70\%$~\cite{Kathner2017}.
 
 \begin{table}[h!]
 \caption[Dataset IIb BCI Competition II (2003) Speller Performance]{Speller classification performance obtained for Dataset IV, the dataset IIb of the BCI Competition II (2003), for each one of the algorithms using $15$ repetitions of intensification sequences. The first $42$ trials are used for training to build the template dictionary and the remaining $31$ for testing. The channel where the best performance is attained, is also shown. }
@@ -483,7 +481,7 @@ SVM     & C1  & $32\%$ \\
 \begin{figure}[h!]
 \centering
 \includegraphics[width=15cm]{images/PerformanceBCICompetition.eps}
-\caption[Dataset IIb BCI Competition II (2003) Speller Performance]{Speller performance obtained for the Dataset IIb of the BCI Competition II (2003) for each one of the algorithms.  An offline BCI Simulation is performed using the first $42$ trials as training and the remaining $31$ as testing.  The horizontal axis show the number of intensification sequences, from $0$ to $15$ for this dataset, while the vertical axis show the performance rate.}
+\caption[Dataset IIb BCI Competition II (2003) Speller Performance]{Speller performance obtained for the Dataset IV (Dataset IIb of the BCI Competition II 2003) for each one of the algorithms.  An offline BCI Simulation is performed using the first $42$ trials as training and the remaining $31$ as testing.  The horizontal axis show the number of intensification sequences, from $0$ to $15$ for this dataset, while the vertical axis show the performance rate.}
 \label{fig:performancebcicompetition}
 \end{figure}
 
@@ -508,13 +506,13 @@ We believe that the use of descriptors based on the histogram of gradient orient
 
 %and, based on this idea, we wanted to complement the methodology with a cuantitative and objective sight
 
-Considering other methods inspired on the same idea, we verified that similar performance results are obtained for the methods \textit{SHCC}, \textit{HIST} and \textit{MP-1} and that it is also possible to obtain discriminating information from the underlying signal based exclusively on an automated method of processing the waveforms.  Moreover, the possibilities of finding overcomplete dictionaries for matching pursuit sparse representation based on obtained signal templates, could also be considered an area of future improvement~\cite{Gribonval2008}.
+Considering other methods inspired on the same idea, we verified that similar performance results are obtained for the methods \textit{SHCC}, \textit{HIST} and \textit{MP-1} and that it is also possible to obtain discriminating information from the underlying signal based exclusively on an automated method of processing the waveforms.  
 
 The goal of this Chapter is to answer the question if a P300 component could be solely determined by inspecting automatically their waveforms.  We conclude affirmatively, though two very important issues still remain:
 
-First, a correct alignment of the segments used on the averaging procedure is crucial: We tested a preliminary approach to assess if the waveform shape of the P300 of the averaged signal can be improved (i.e. more visually similar between different trials) by applying different alignments of the stacked segments (see Figure~\ref{fig:classification}) and we verified that there is a better performance when a correct segment alignment regularize the averaged waveform.  We applied Dynamic Time Warping (DTW)~\cite{Casarotto2005} to automate the alignment procedure but we were unable to find a substantial improvement.  Further work to study the alignment of segments on averaging procedures,  should be addressed.
+First, a correct alignment of the segments used on the averaging procedure is crucial: a preliminary approach was tested to assess if the waveform shape of the P300 of the averaged signal can be improved (i.e. more visually similar between different trials) by applying different alignments of the stacked segments (see Figure~\ref{fig:classification}) and it was verified that there is a better performance when a correct segment alignment regularize the averaged waveform.  We applied Dynamic Time Warping (DTW)~\cite{Casarotto2005} to automate the alignment procedure but we were unable to find a substantial improvement.  Further work to study the alignment of segments on averaging procedures,  should be addressed.
 
-The second problem is the amplitude variation of the P300. We propose a solution by standardizing the signal, shown in Equation~\ref{eq:standarizedaverages}. It has the effect of normalizing the peak-to-peak amplitude, moderating its variation. It has also the advantage of reducing noise that was not reduced by the averaging procedure.   It is important to remark that the averaged signal variance depends on the number of segments used to compute it \cite{van2006signal}.  The standardizing process converts the signal to unit signal variance which makes it independent of the number $k_a$ of signals averaged.   Although this is initially an advantageous approach, the standardizing process reduces the amplitude of any significant P300 complex diminishing its automatic interpretation capability.
+The second problem is the amplitude variation of the P300.  Standardizing the averaged signal, as described in Equation~\ref{eq:standarizedaverages} has the effect of normalizing the peak-to-peak amplitude, moderating its variation. It has also the advantage of reducing noise that was not reduced by the averaging procedure.   It is important to remark that the averaged signal variance depends on the number of segments used to compute it \cite{van2006signal}.  The standardizing process converts the variance of this averaged signal to unit variance which makes it independent of the number segments used to compute the average.   Although this is initially an advantageous approach, this standardizing process also reduces the amplitude of any significant P300 complex wave, diminishing its automatic interpretation capability.
 
 
 %The spelled words are \textit{GATTO}, \textit{MENTE}, \textit{VIOLA} and \textit{REBUS}.
