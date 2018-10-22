@@ -354,7 +354,7 @@ Tables~\ref{tab:resultsalsswlda} and~\ref{tab:resultsownswlda} are presented in 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=10cm]{images/boxplots.png}
-\caption[Dataset I and II Performances Boxplots]{Boxplots obtained for the methods HIST and multichannel SVM and SWLDA for the Datsets I and II.  The achieved performance for the HIST method is similar to the performace obtained for the other methods (Quade test with $p=0.55$).}
+\caption[Dataset I and II Performance Boxplots]{Boxplots obtained for the methods HIST and multichannel SVM and SWLDA for the Datsets I and II.  The achieved performance for the HIST method is similar to the performace obtained for the other methods (Quade test with $p=0.55$).}
 \label{fig:boxplots}
 \end{figure}
 
@@ -437,7 +437,7 @@ A significant reduction of performance was found when latency noise is added (Ex
 \end{figure}
 
 \begin{table}[h!]
-\caption[Pseudo-real Dataset Speller Performance]{Speller classification performance obtained for all the waveform-based algorithms: MP Matching Pursuit, HIST Histogram of Gradient Orientation, PE Permutation Entropy and SHCC Slope Horizontal Code Chain. Additionally, the control algorithm SVM Support Vector Machines is included for comparison.  All the methods process the signal on a channel-by-channel basis, hence the best performing channel is also shown. In this case with absence of null-signals, it can be interpreted as the channel that adds less noise to the ERP template.  All the methods used $10$ intensification sequences to coherently average the trials to obtain the averaged signal. }
+\caption[Dataset III - Speller Performance]{Dataset III: Speller classification performance obtained for all the waveform-based algorithms: MP Matching Pursuit, HIST Histogram of Gradient Orientation, PE Permutation Entropy and SHCC Slope Horizontal Code Chain. Additionally, the control algorithm SVM Support Vector Machines is included for comparison.  All the methods process the signal on a channel-by-channel basis, hence the best performing channel is also shown. In this case with absence of null-signals, it can be interpreted as the channel that adds less noise to the ERP template.  All the methods used $10$ intensification sequences to coherently average the trials to obtain the averaged signal. }
 \centering
 %% \tablesize{} %% You can specify the fontsize here, e.g.  \tablesize{\footnotesize}. If commented out \small will be used.
 \begin{tabular}{ccccc}
@@ -460,7 +460,7 @@ SVM     & PO8  & $78\%$ & $7\%$ & $53\%$\\
 Finally, results obtained for the dataset BCI Competition 2003 IIb are shown in Figures \ref{fig:performancebcicompetition} and in Table~\ref{tab:bcicompetitionresults}.  As mentioned before, for this experiment the number of available intensification sequences is $15$. The obtained character identification rate is above theoretical chance level, and for HIST close to the usable threshold of $70\%$~\cite{Kathner2017}.
 
 \begin{table}[h!]
-\caption[Dataset IIb BCI Competition II (2003) Speller Performance]{Speller classification performance obtained for Dataset IV, the dataset IIb of the BCI Competition II (2003), for each one of the algorithms using $15$ repetitions of intensification sequences. The first $42$ trials are used for training to build the template dictionary and the remaining $31$ for testing. The channel where the best performance is attained, is also shown. }
+\caption[Dataset IV - Speller Performance]{Speller classification performance obtained for Dataset IV, the dataset IIb of the BCI Competition II (2003), for each one of the algorithms using $15$ repetitions of intensification sequences. The first $42$ trials are used for training to build the template dictionary and the remaining $31$ for testing. The channel where the best performance is attained, is also shown. }
 \centering
 %% \tablesize{} %% You can specify the fontsize here, e.g.  \tablesize{\footnotesize}. If commented out \small will be used.
 \begin{tabular}{ccc}
