@@ -15,7 +15,7 @@ In order to verify if this ERD/ERS could be detected by the method presented in 
 \begin{story}[BCI Simulation or Cross Validation?]
 The task of decoding information from brain signals inherits practices from Machine Learning (ML).  Cross-validation is used in ML to reduce overfitting bias and to increase the independence on the dataset that is used as calibration (see Section~\ref{Calibration}).  However, the brain data used in BCI is extracted from a person who is performing a task and whose signals are changing while trying to adapt to this operation.  Hence, mixing the dataset, shuffling the sessions and trials is at least a challenging assumption.  BCI Simulation, on the other hand, is not very well defined in BCI research, but their practice, without naming it, has been the regular approach for BCI Competitions. It consists in reproducing the operational sequence that was utilized to generate the dataset. Hence, the experiment is replicated offline using the training information to train or calibrate a classifier, and to classify the testing signals as if they were generated at that same moment.
 
-Regardless, of any definition, the online validation with feedback of any BCI system is the unquestioned gold standard of the discipline~\cite{WolpawJonathanR2012}.
+Regardless of any definition, the online validation with feedback of any BCI system is the unquestioned gold standard of the discipline~\cite{WolpawJonathanR2012}.
 \end{story}
 
 
