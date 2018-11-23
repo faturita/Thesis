@@ -595,7 +595,7 @@ Bond and Pompe Permutation Entropy has been extensively used in EEG processing, 
 \label{eq:pe2}
 \end{equation}
 
-This sequence is of order $m$, which is the number of sample points used to derive the ordinal element called $\pi$. There are $m!$ ways in which this sequence can be orderly arranged, according to the position that each sample point holds within the sequence in a strict order relationship.  For example if $m=3$, and the first sample point is the bigger, the second is the smaller and the third one is in the middle, the ordinal element $\pi$ corresponds to $(3,1,2)$. Thus, along the signal window there can be at most $k$ different ordinal (and overlapping) elements $\pi_{s}$
+This sequence is of order $m$, which is the number of sample points used to derive the ordinal element called $\pi$. There are $m!$ ways in which this sequence can be orderly arranged, according to the position that each sample point holds within the sequence in a decreasing order relationship.  For example if $m=3$, and the first sample point is the bigger, the second is the smaller and the third one is in the middle, the ordinal element $\pi$ corresponds to $(1,3,2)$. Thus, along the signal window there can be at most $k$ different ordinal (and overlapping) elements $\pi_{s}$
 
 \begin{equation}
 (\pi_{1},\pi_{2},...,\pi_{k})
