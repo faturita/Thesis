@@ -43,7 +43,7 @@ From its root as assistive technology it has now expanded to include several app
 
 Their adoption as a clinical tool is still years ahead.  Stroke rehabilitation is the only area where clinical trials for BCI are being conducted. It is understood that the neurofeedback provided by a BCI interface improves the prognosis of motor rehabilitation~\cite{Ang2011}.
 
-\vspace{10px}
+\vspace{7px}
 
 \begin{story}[BCI Definition (circa 2018)]
 \theoremstyle{definition}
@@ -53,32 +53,32 @@ Their adoption as a clinical tool is still years ahead.  Stroke rehabilitation i
 \end{definition}
 \end{story}
 
-Hybrid or multi-modal BCI, or Brain Neural Computer Interface, are BCI devices that use not only signals from the CNS, they utilize any kind of available biosignal that can be volitionally modulated to transmit information (this is called dependant BCI).  When the pace of the BCI is regulated by external stimulus it is called synchronous and when the user choose their own pace to transmit information, it is often called asynchronous or self-paced BCI.
+Hybrid or multi-modal BCI, or Brain Neural Computer Interface, are BCI devices that use not only signals from the CNS, they utilize any kind of available biosignal that can be volitionally modulated to transmit information (this is called dependant BCI).  When the pace of the BCI is regulated by external stimulus it is called synchronous and when the user choose their own pace, it is often called asynchronous or self-paced BCI.
 
-Recent years have seen an incredible advance of passive BCI, pBCI \cite{Zander2010}.  The original definition of BCI did not include passive modalities but per definition \ref{def:BCI} it is now part of this discipline.  The important aspect is that passive technologies do not entail necessary the volitional requirement to transmit information.  EEG-based passive BCI has showed significant advances in areas like workload assessment~\cite{Roy2013} and drowsiness detection~\cite{Arico2017}, and is a promising area of research and of eventual commercial applications.
+Recent years have seen an incredible advance of passive BCI, pBCI \cite{Zander2010}.  The original definition of BCI did not include passive modalities but per definition \ref{def:BCI} it is now part of this discipline.  Passive technologies do not entail necessary the volitional requirement to transmit information.  EEG-based passive BCI has showed significant advances in areas like workload assessment~\cite{Roy2013} and drowsiness detection~\cite{Arico2017}, and is a promising area of research and of eventual commercial applications.
 
-Despite all this, its primary objective, its core motive of moving into real applications for disabled people has yet to come \cite{Brunner2014,Jeunet2014,Allison2013}. They still lack the necessary robustness, and its performance is well behind any other method of human computer interaction, including any kind of detection of residual muscular movement~\cite{Clerc2016}. Among the many and current challenges of BCI \cite{Brunner2014} one which is still perennial is precisely their inability to be used and applied outside the BNCI community and specifically in clinical context.  
+Despite all this, its primary objective, its core motive of moving into real applications for disabled people has yet to come \cite{Brunner2014,Jeunet2014,Allison2013}. They still lack the necessary robustness, and its performance is well behind any other method of human computer interaction, including any kind of detection of residual muscular movement~\cite{Clerc2016}. Among current challenges of BCI \cite{Brunner2014} one which is still perennial is precisely their inability to be used and applied outside the BNCI community and specifically in clinical context.  
 
 %BCIs are currently in a plateau.  BCNI Horizon, what the people is saying.  OpenBCI and the Wearables movement.
 % The convergence of invasive BCI and noninvasive BCI into a huge community and the appearance of myriad of comapnies that are exploring the technology.
 Quoting experts in the field:
 
-\vspace{8px}
+\vspace{3px}
 
 \textit{"We yet have an impractical and inaccessible exotica for very specific user groups" (Allison 2010),}
 
-\vspace{10px}
+\vspace{3px}
 
 \textit{"Effectiveness of non-invasive BCI systems remain limited…" (Wolpaw 2011),}
 
-\vspace{10px}
+\vspace{3px}
 
 \textit{"…to ponder if BCIs are really promising and helpful, or if they are simple a passing rod, reinforced by their sci-fi side..." (Lotte 2016).}
 
-\vspace{10px}
+\vspace{3px}
 
 The feasibility of the system has been proved but there are several challenges in BCI that need to be tackled. They can be summarized as 
-increasing the speed of the system, the pervasive low signal-to-noise ratio of brainwaves, particularly of noninvasive signals \cite{Lotte2018}, the reliability of the system, its portability, and the usability of the system \cite{Wang2018}, and at the same time decreasing the biocompatibilities problems, the setup, the training and calibration time and the subject's inter/intra variability. The search for practical, relevant, and invariant \textit{features} that convey good-enough information about the underlying cognitive process is still a goal to be achieved \cite{Perdikis2014}.  Ethical aspects of BCI \cite{Yuste2017} must also be considered and handled: cybersecurity threats and privacy concerns,  agency and identity issues that might be occurring by deleterious plasticity with BCI users and the strict peg to the \textit{Primun non nocere}~\footnote{\textit{First, do not harm}, in reference to the Hippocratic Oath} mandate.
+increasing the speed of the system, the pervasive low signal-to-noise ratio of brainwaves, particularly of noninvasive signals \cite{Lotte2018}, the reliability, portability and usability of the system~\cite{Wang2018}, and at the same time decreasing the biocompatibilities problems, the setup, the training and calibration time and the subject's inter/intra variability. The search for practical, relevant, and invariant \textit{features} that convey good-enough information about the underlying cognitive process is still a goal to be achieved \cite{Perdikis2014}.  Ethical aspects of BCI \cite{Yuste2017} must also be considered and handled: cybersecurity threats and privacy concerns,  agency and identity issues that might be occurring by deleterious plasticity with BCI users and the strict peg to the \textit{Primun non nocere}~\footnote{\textit{First, do not harm}, in reference to the Hippocratic Oath} mandate.
 
 \section{Brain Computer Interface Model and Architecture}
 
@@ -92,6 +92,8 @@ The central point of this system is called the \textit{Brain Machine Dilemma} \c
 \caption[BCI Block Diagram]{General components of a BCI system.}
 \label{fig:bciblockdiagram}
 \end{figure}
+
+\vspace{5pt}
 
 Let $X$ be a multichannel digital signal $X \in \mathbb{R}^{C \times N}$,  with $N$ being the length of the digitalized signal in sample points, and $C$ is the number of available channels.  This signal matrix is 
 
@@ -125,7 +127,7 @@ From this signal processing point of view, BCIs are:
 \begin{itemize}
 \item Causal:  $ y(n) = T\left[  \mathbf{x}(m) \right] $, where $ m \leq n $.  The action of a BCI system depends on the history of the captured brainwaves.
 \item Dynamic: $ y(n) = T\left[ \mathbf{x}(m),  \mathbf{\dot{x}}(m),\mathbf{\ddot{x}}(m), \cdots \right] $.  A BCI system is dynamic, where the output function does not depend only on the current value being observed, it does depend on its dynamic interactions.
-\item Time invariant: $ y(n) = T\left[ \mathbf{x}(n) \right] \Rightarrow y(n-p) = T\left[ \mathbf{x}(n-p) \right] $.  The output of a BCI system does not depend on the particular time frame where it is being used.  However, adaptive BCI, which do adapt to the user behavior, is time variant.
+\item Time invariant: $ y(n) = T\left[ \mathbf{x}(n) \right] \Rightarrow y(n-p) = T\left[ \mathbf{x}(n-p) \right] $.  The output of a BCI system does not depend on the particular time frame where it is being used.  However, adaptive BCI, which adapts to the user behavior, is time variant.
 \item Nonlinear: a system is linear when $T\left[ a_1 \mathbf{x}(n) + a_2 \mathbf{x}(n) \right]  = a_1 T \left[ \mathbf{x}(n) \right] + a_2 T \left[ \mathbf{x}(n) \right] $. Due to brainwave complexity, BCI systems are not linear.
 \item Multirate or broadband \cite{Miller2010}:  The energy of brainwave spectrum is not confined to a certain band, and almost all frequency channels may convey some information.
 \end{itemize}
@@ -190,8 +192,8 @@ The measuring technique determines the most important taxonomic differentiation 
 \item MEG Magnetoencephalography: when active neurons generate electric currents, minuscule magnetic fields are generated.  It is considered complementary to EEG and ECoG, due to the fact that it is sensitive to the firing of neurons aligned parallel to the scalp, which are hard to detect in EEG and ECoG.   Although MEG equipment is bulky and room-size, recent advances~\cite{Boto2018} are aiming to develop portable and wearable versions. 
 \item PET Positron Emission Tomography: this radio nuclear measuring device, use a tracer molecule like fludeoxyglucose, which emits positrons.  Positrons interacts with biological tissue generating photons in exact opposite directions.  The tracer is spread around the body and the brain, and its concentration is higher in those areas where active neuron firing is being conducted which requires more glucose~\cite{Nam2010}. 
 \item fMRI  functional Magnetic Resonance Imaging: this noninvasive, non-portable measuring technique, measures the so-called BOLD response: the Blood Oxygen Level-Dependent contrast.  This is based on the principle that firing neurons generate an imbalance of oxyhemoglobin and deoxyhemoglobin which can be detected on the magnetic resonator, with a very high spatial accuracy.
-\item fNIRS  functional Near Infra Red Spectroscopy:  it also measures the concentration changes of oxy/deoxy-hemoglobin using light pulses of near-infrared wavelengths.  The different types of hemoglobin molecules absorb these light frequencies at different rates.  It is an indirect measure of brain activity.  Although it provides very good spatial localization, temporal localization is hindered by the hemodynamic response~\cite{Nam2010}.
-\item INR Intracortical Neuron Recordings: Electrodes, tetrodes, or Multielectrode arrays MEAs (i.e. Utah Array)~\cite{Ajiboye2017} can be implanted inside the brain.  Often called iEEG, intracraneal EEG, are designed to detect Local Field Potentials LFPs or even single-unit recording~\cite{Buzsaki2012}.
+\item fNIRS  functional Near Infra Red Spectroscopy:  it also measures the concentration changes of oxy/deoxy-hemoglobin using light pulses of near-infrared wavelengths.  The different types of hemoglobin molecules absorb these light frequencies at different rates.  It is an indirect measure of brain activity.  It is also portable and wearable.  Although it provides very good spatial localization, temporal localization is hindered by the hemodynamic response~\cite{Nam2010}.
+\item INR Intracortical Neuron Recordings: Electrodes, tetrodes, or Multielectrode Arrays, MEAs (i.e. Utah Array)~\cite{Ajiboye2017}, can be implanted inside the brain.  Often called iEEG, intracraneal EEG, are designed to detect Local Field Potentials LFPs or even single-unit recording~\cite{Buzsaki2012}.
 \end{enumerate}
 
 ECoG and INR are invasive technologies that require a neurosurgery or craniotomy. The implantation of electrodes is performed inside the skull for the former, and inside the brain for the latter.   The remaining measuring techniques are external or noninvasive.  
