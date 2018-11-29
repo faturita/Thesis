@@ -5,7 +5,7 @@
 %Mental Chrometry and averaging 
 %https://www.ncbi.nlm.nih.gov/pmc/articles/PMC548951/
 
-A regular practice in image processing is to analyze images as bidimensional signals.  In this Thesis the opposite is done and signals are studied by how they are represented on images. This chapter describes the procedure to plot an image from the digital EEG signal.  This image is used to extract a features which represents the waveform, the structure of the signal on a plot.  By analyzing these features, we hypothesize that the underlying cognitive process can be detected and it can be used to implement a brain-computer communication device.
+A regular practice in image processing is to analyze images as bidimensional signals.  In this Thesis the opposite is done and signals are studied by how they are represented on images. This chapter describes the procedure to plot an image from the digital EEG signal.  This image is used to extract features which represents the waveform, the structure of the signal on a plot.  By analyzing these features, we hypothesize that the underlying cognitive process can be detected and it can be used to implement a brain-computer communication device.
 
 \section{Electroencephalographic Plotting}
 
@@ -40,14 +40,14 @@ x(n,c)
 The length of segment $\gls{N}$ in sample point units, the sampling frequency $\gls{Fs}$ in \si{\hertz} and the segment length $\gls{w}$ in seconds are related by
 
 \begin{equation}
-N = \left\lfloor F_s \; w \right\rfloor.
+\gls{N} = \left\lfloor \gls{Fs} \; \gls{w} \right\rfloor.
 \label{eq:segmentlength}
 \end{equation}
 
 Additionally the signal can be scaled on amplitude by the scale factor $\gls{gamma}$ or in time by the time scale factor $\gls{gammat}$.  The  $\gls{gammat}$ parameter can also be used to convert from time to sample point index by doing
 
 \begin{equation}
-n = \left\lfloor F_s \; t \right\rfloor \; \gls{gammat}  .
+n = \left\lfloor \gls{Fs} \; t \right\rfloor \; \gls{gammat}  .
 \label{eq:samplepointconversion}
 \end{equation}
 
@@ -67,7 +67,7 @@ This chapter mostly deals with the coordinates transformation that need to be en
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=1.2]{images/imagecoordinatesystem.pdf}
-\caption[Image Coordinate System]{The image coordinate system and the mapping from the signal segment.  The origin is the $(0,0)$ position at the upper-left corner of the image.  Time is represented as sample points on the horizontal axis, and the amplitude in $\mu V$ is shown on the vertical axis. Image height $H_y$ and width $W_x$ are obtained based on signal parameters.  The signal's zero-level $z(c)$ is the vertical location where the signal zero value is located. The plot of the signal is obtained by first setting the sample points on the predetermined image locations according to equation \ref{eq:images} and then applying a discrete interpolation algorithm to connect them with straight lines. The plotted waveform is a K-Complex.}
+\caption[Image Coordinate System]{The image coordinate system and the mapping from the signal segment.  The origin is the $(0,0)$ position at the upper-left corner of the image.  Time is represented as sample points on the horizontal axis, and the amplitude in $\mu V$ is shown on the vertical axis. Image height $\gls{Hy}$ and width $\gls{Wx}$ are obtained based on signal parameters.  The signal's zero-level $z(c)$ is the vertical location where the signal zero value is located. The plot of the signal is obtained by first setting the sample points on the predetermined image locations according to equation \ref{eq:images} and then applying a discrete interpolation algorithm to connect them with straight lines. The plotted waveform is a K-Complex.}
 \label{fig:imagecoordinatesystem}
 \end{figure}
 
@@ -78,7 +78,7 @@ This chapter mostly deals with the coordinates transformation that need to be en
 %\label{fig:mappingimages}
 %\end{figure}
 
-Let $c_i$ be a given constant channel, the values of $\mathcal{I}(z_1,z_2)$ are obtained for $n$ varying between $1$ and $N$ or $c$ varying between $1$ and $C$.   In order to convert the EEG original signal $x(n,c)$ into a time-domain image $\mathcal{I}(z_1,z_2)$ representation, the following alternatives can be used:
+Let $c_i$ be a given constant channel, the values of $\mathcal{I}(z_1,z_2)$ are obtained for $n$ varying between $1$ and $\gls{N}$ or $c$ varying between $1$ and $C$.   In order to convert the EEG original signal $x(n,c)$ into a time-domain image $\mathcal{I}(z_1,z_2)$ representation, the following alternatives can be used:
 
 \begin{enumerate}
 \item Channel-by-channel binary image:
@@ -152,7 +152,7 @@ To analyze effectively an EEG signal, many signal segments must be produced.  He
 \section{Standardized plotting}
 \label{standardized}
 
-The \textit{z-score} is a widely used method to regularize a signal~\cite{VandenBerg2006,Zhang2013}. This standardization procedure is defined for  $1 \leq n \leq N$ and $1 \leq c \leq C$ by doing
+The \textit{z-score} is a widely used method to regularize a signal~\cite{VandenBerg2006,Zhang2013}. This standardization procedure is defined for  $1 \leq n \leq \gls{N}$ and $1 \leq c \leq \gls{C}$ by doing
 
 \begin{equation}
 \tilde{x}(n,c) =  \frac{ x(n,c) - \bar{x}(c) }{ \hat{\sigma}(c) } 
@@ -208,7 +208,7 @@ H_y = \max \left\lfloor \gamma \; \tilde{x}(n,c) \right\rceil  - \min \left\lflo
 \noindent while for the autoscalable version, it is just twice the value of the zero-level:
 
 \begin{equation}
-H_y = 2 \; z(c) .
+\gls{Hy} = 2 \; z(c) .
 \label{eq:autoscaleheight}
 \end{equation}
 
@@ -218,7 +218,7 @@ H_y = 2 \; z(c) .
 The width, on the other hand, is obtained based on the length of the signal segment, scaled by the $\gamma_t$  scale time factor,
 
 \begin{equation}
-W_x = \gamma_t  N
+\gls{Wx} = \gls{gammat}  \gls{N}
 \label{eq:width}
 \end{equation}
 

@@ -253,7 +253,7 @@ Now that all the ingredients have been exposed, the general layout of the BCI al
 
 \subsection{Preprocessing}
 
-Signal preprocessing~\cite{Simons2016} can be applied to $x(n,c)$ before applying the plotting scheme.  Preprocessing depends on the cognitive paradigm under study.  
+Signal preprocessing~\cite{Simons2016} can be applied to $x(n,c)$ before applying the plotting scheme.  Preprocessing depends on the cognitive paradigm under study and it is covered more deeply in Chapter~\ref{chapter:six}.
 
 %TODO completar esto
 %\begin{itemize}
@@ -281,11 +281,11 @@ Moreover, the calibration can be also used to identify the $\gls{bpc}$, the Best
 A discriminative~\cite{WolpawJonathanR2012} semi-supervised classification method based on Naive Bayes Nearest Neighbor (NBNN)~\cite{Boiman2008} is applied to classify EEG signals using the features provided by the calculated descriptors. In order to classify a new image, a query image, $Q$ descriptors are extracted from it.  The NBNN technique allows to categorize this image to one class by comparing the set of extracted descriptors $\mathbf{q}_{i}^{(bpc)}$ to those which are more similar on each dictionary $T^{bpc}$.  This algorithm is very easy to implement, and is based on the following Equation:
 
 \begin{equation}
-\hat{L} = \arg \min_{L} \sum_{i=1}^{Q} \sum_{h=1}^{\gls{k}} {\left\lVert \mathbf{q}_{i}^{(bpc)} -  \mathbf{d}_{h}^{(bpc)} \right\rVert}  ^{2} 
+\hat{L} = \arg \min_{L} \sum_{i=1}^{Q} \sum_{h=1}^{\gls{k}} {\left\lVert \mathbf{q}_{i}^{(bpc)} -  \mathbf{d}_{h}^{(L,bpc)} \right\rVert}  ^{2} 
 \label{eq:classification}
 \end{equation}
 
-\noindent where the $Q$ descriptors $ \mathbf{q}_{i}^{(bpc)} $ are extracted from a query image for the $\gls{bpc}$ and, the dictionary descriptors  $\mathbf{d}_{h}^{(bpc)} \in N_T(  \mathbf{q}_{i}^{(bpc)} )$ with the set $N_T(  \mathbf{q}_{i}^{(bpc)} ) $ defined as $N_T(  \mathbf{q}_{i}^{(bpc)} ) = \{ \mathbf{d}_{h}^{(bpc)} \in T_{L}^{bpc} / \mathbf{d} $ is the $\gls{k}$-nearest neighbor of $  \mathbf{q}_{i}^{(bpc)} \}$.  This set is obtained by sorting all the elements $ \mathbf{d}_{h}^{(bpc)} $ in $T_{L}^{bpc}$ based on distances between them and $\mathbf{q}_{i}^{(bpc)}$, choosing the $\gls{k}$ with smaller values.  Hence, the estimated class label $\hat{L}$ of a query image is calculated as the class label $L$ that minimizes the summation of the distances between descriptors $\mathbf{q}_{i}^{(bpc)}$ that belong to the query image and their corresponding near neighbor descriptors $\mathbf{d}_{h}^{(bpc)} $  that belong to the template dictionary for each class. Figure~\ref{fig:nbnnclassification} show a scheme of how this classification method works.
+\noindent where the $Q$ descriptors $ \mathbf{q}_{i}^{(bpc)} $ are extracted from a query image for the $\gls{bpc}$ and, the dictionary descriptors  $\mathbf{d}_{h}^{(L,bpc)} \in N_T(  \mathbf{q}_{i}^{(bpc)} )$ with the set $N_T(  \mathbf{q}_{i}^{(bpc)} ) $ defined as $N_T(  \mathbf{q}_{i}^{(bpc)} ) = \{ \mathbf{d}_{h}^{(L,bpc)} \in T_{L}^{bpc} / \mathbf{d} $ is the $\gls{k}$-nearest neighbor of $  \mathbf{q}_{i}^{(bpc)} \}$.  This set is obtained by sorting all the elements $ \mathbf{d}_{h}^{(L,bpc)} $ in $T_{L}^{bpc}$ based on distances between them and $\mathbf{q}_{i}^{(bpc)}$, choosing the $\gls{k}$ with smaller values.  Hence, the estimated class label $\hat{L}$ of a query image is calculated as the class label $L$ that minimizes the summation of the distances between descriptors $\mathbf{q}_{i}^{(bpc)}$ that belong to the query image and their corresponding near neighbor descriptors $\mathbf{d}_{h}^{(L,bpc)} $  that belong to the template dictionary for each class. Figure~\ref{fig:nbnnclassification} show a scheme of how this classification method works.
 
 \begin{figure}[h!]
 \centering
