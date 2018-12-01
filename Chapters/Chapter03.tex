@@ -188,11 +188,16 @@ Figure \ref{fig:plottingscheme}(b) shows the results of the plotting for an impu
 The zero-level $z(c)$ is the image vertical position where the signal's zero value has to be situated in order to fit the entire signal within the image for each channel c:
 
 \begin{equation}
-z(c) = \left \lfloor{ \frac{\max_{n} \tilde{x}(n,c)  - \min_{n} \tilde{x}(n,c) }{2} }\right \rfloor -   \left \lfloor{ \frac{\max_{n} \tilde{x}(n,c)  + \min_{n} \tilde{x}(n,c)}{ 2} }\right \rfloor
+z(c) = \left \lfloor{ \frac{\max_{n} \tilde{x}(n,c)  - \min_{n} \tilde{x}(n,c) }{2} }\right \rfloor -   \left \lfloor{ \frac{\max_{n} \tilde{x}(n,c)  + \min_{n} \tilde{x}(n,c)}{ 2} }\right \rfloor 
 \label{eq:zerolevel}
 \end{equation}
 
-\noindent where the minimization and maximization are carried out for $n$ varying between ${1 \leq n\leq N}$. This value represents the vertical location on the image where the signal goes to zero.  
+\begin{align*}
+z(c) = \left \lfloor{ \min_{n} \tilde{x}(n,c) }\right \rfloor
+\label{eq:zerolevel}
+\end{align*}
+
+\noindent where the minimization and maximization are carried out for $n$ varying between ${1 \leq n\leq N}$. The result of Equation \ref{eq:zerolevel} is the length of the positive peak of the signal because the signal is inverted before the plot is constructed. This value represents the vertical location on the image where the signal goes to zero.  
 
 \section{Image Size}
 
